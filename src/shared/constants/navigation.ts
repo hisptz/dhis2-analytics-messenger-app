@@ -1,13 +1,12 @@
 import React from "react";
 import i18n from "@dhis2/d2-i18n";
 
-// TODO remove this import
-import {
-  IconSettings16,
-  IconTerminalWindow16,
-  IconDashboardWindow16,
-} from "@dhis2/ui";
 import { NavigationItem } from "../interfaces";
+import {
+  AnalyticsIcon16,
+  ChatBotIcon16,
+  SettingsIcon16,
+} from "../components/Icons/Icons";
 
 // Main pages
 const PushAnalyticsPage = React.lazy(
@@ -22,19 +21,19 @@ export const NAVIGATION_ITEMS: Array<NavigationItem> = [
   {
     label: i18n.t("Push Analytics"),
     path: "push-analytics",
-    icon: IconDashboardWindow16,
+    icon: AnalyticsIcon16,
     element: PushAnalyticsPage,
   },
   {
     label: i18n.t("Chat Bot"),
     path: "chat-bot",
-    icon: IconTerminalWindow16,
+    icon: ChatBotIcon16,
     element: ChatBotPage,
   },
   {
     label: i18n.t("Configuration"),
     path: "configuration",
-    icon: IconSettings16,
+    icon: SettingsIcon16,
     element: ConfigurationPage,
   },
 ];
