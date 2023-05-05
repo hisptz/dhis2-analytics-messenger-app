@@ -3,13 +3,14 @@ import { HashRouter, Navigate, Route, Routes } from "react-router-dom";
 import FullPageLoader from "../../shared/components/Loaders";
 import { NAVIGATION_ITEMS } from "../../shared/constants/navigation";
 import NavBar from "./components/NavBar";
+import classes from "../../App.module.css";
 
 export default function AppRouter(): React.ReactElement {
   return (
-    <div>
+    <div className={classes.container}>
       <HashRouter>
         <NavBar />
-        <div>
+        <div className={classes["main-container"]}>
           <Suspense fallback={<FullPageLoader />}>
             <Routes>
               <Route path="/" element={<Navigator />}></Route>
