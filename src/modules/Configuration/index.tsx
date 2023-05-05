@@ -14,6 +14,7 @@ export function ConfigurationOutlet(): React.ReactElement {
           {CONFIGURATION_NAVIGATION_ITEMS.map(({ label, path }) =>
             path !== "" ? (
               <MenuItem
+                key={path}
                 dataTest={`${label}-menu`}
                 onClick={() => navigate(path)}
                 active={Boolean(location.pathname.match(path))}

@@ -1,9 +1,14 @@
 import React from "react";
+import PushAnalyticsList from "./components/PushAnalyticsList";
+
+function anAddPushAnalytics() {
+  console.log("on add push analytics");
+}
 
 export default function PushAnalytics(): React.ReactElement {
   return (
-    <>
-      <h4>Push Analytics Page</h4>
-    </>
+    <div>
+      <PushAnalyticsList anAddPushAnalytics={anAddPushAnalytics} />
+    </div>
   );
 }
