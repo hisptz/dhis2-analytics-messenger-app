@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from "@dhis2/ui";
 import i18n from "@dhis2/d2-i18n";
-import { ChatBotSvg } from "../Icons/Icons";
+import { ChatBotSvg } from "../Icons";
 import classes from "./EmptyChatBotList.module.css";
 
 interface EmptyChatBotListParams {
@@ -19,14 +19,14 @@ export default function EmptyChatBotList({
           "There are no Chat Bot's trigger configured, click the below button to add new."
         )}
       </p>
-      <div>
+      <div className="pt-16">
         <Button
           primary
-          name="Basic button"
+          name="Bot Trigger"
           onClick={onAddChatBotTrigger}
-          value="default"
+          value="botTriggerButton"
         >
-          Add Chat Bot triggers
+          {i18n.t("Add Chat Bot triggers")}
         </Button>
       </div>
     </div>

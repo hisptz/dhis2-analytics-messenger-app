@@ -1,7 +1,7 @@
 {
-  "name": "whatsapp-dhis2-analytics",
+  "name": "dhis2-analytics-messenger",
   "version": "1.0.0",
-  "description": "",
+  "description": "A DHIS2 application that allows sending of analytics data to messaging applications",
   "license": "BSD-3-Clause",
   "private": true,
   "scripts": {
