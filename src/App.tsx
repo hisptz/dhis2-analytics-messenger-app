@@ -1,28 +1,19 @@
-import React from "react";
-import { DataQuery } from "@dhis2/app-runtime";
+import React, { Suspense } from "react";
 import i18n from "@dhis2/d2-i18n";
-import classes from "./App.module.css";
-
-const query = {
-  me: {
-    resource: "me",
-  },
-};
+import FullPageLoader from "./shared/components/Loaders";
+import AppRouter from "./modules/Router";
 
 const MyApp = () => (
-  <div className={classes.container}>
-    <DataQuery query={query}>
-      {({ error, loading, data }: any) => {
-        if (error) return <span>ERROR</span>;
-        if (loading) return <span>...</span>;
-        return (
-          <>
-            <h1>{i18n.t("Hello {{name}}", { name: data.me.name })}</h1>
-            <h3>{i18n.t("Welcome to DHIS2!")}</h3>
-          </>
-        );
-      }}
-    </DataQuery>
+  <div>
+    <Suspense
+      fallback={
+        <FullPageLoader
+          message={i18n.t("Please wait this might take a while...")}
+        />
+      }
+    >
+      <AppRouter />
+    </Suspense>
   </div>
 );
 
