@@ -1,9 +1,9 @@
 import React from "react";
 
-export interface NavItem {
+export interface NavigationItem {
   label?: string;
   path: string;
   icon?: React.JSXElementConstructor<any>;
   element: React.JSXElementConstructor<any>;
-  subItems?: NavItem[];
+  subItems?: NavigationItem[];
 }

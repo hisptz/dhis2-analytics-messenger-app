@@ -16,6 +16,7 @@
   "dependencies": {
     "@dhis2/app-runtime": "^3.9.2",
     "lodash": "^4.17.21",
-    "luxon": "^3.3.0"
+    "luxon": "^3.3.0",
+    "react-router-dom": "^6.11.1"
   }
 }
