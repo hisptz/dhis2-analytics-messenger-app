@@ -6,6 +6,7 @@ export * from "./table";
 
 // Base models
 export interface BaseModel {
+  index?: number;
   id: String;
   name: string;
 }
@@ -14,4 +15,5 @@ export interface IdentifiableModel extends BaseModel {
   created: string;
   lastUpdated: string;
   createdBy: string;
+  action?: any;
 }

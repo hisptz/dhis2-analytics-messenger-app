@@ -1,7 +1,7 @@
 import React from "react";
 import i18n from "@dhis2/d2-i18n";
 import { Button, IconAdd16 } from "@dhis2/ui";
-import classes from "./PushAnalyticsList.module.css";
+import classes from "./EmptyPushAnalyticsList.module.css";
 import { PushAnalyticsSvg } from "../Icons";
 
 interface PushAnalyticsListParams {

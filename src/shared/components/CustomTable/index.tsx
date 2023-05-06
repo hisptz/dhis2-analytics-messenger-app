@@ -39,11 +39,12 @@ export default function CustomTable({
   columns,
   data,
   pagination,
+  loading,
   emptyTableMessage,
 }: CustomTableProps): React.ReactElement {
   const tableId = useRef(uid());
   return (
-    <DataTable>
+    <DataTable bodyProps={{ loading: true }}>
       <TableHead>
         <DataTableRow>
           {columns.map(({ key, label }) => (
@@ -71,9 +72,11 @@ export default function CustomTable({
               colSpan={`${columns.length}`}
               key={`${tableId.current}-column`}
             >
-              <div className={classes["empty-table-message"]}>
-                {emptyTableMessage ?? i18n.t("There are no data available!")}
-              </div>
+              {!loading && (
+                <div className={classes["empty-table-message"]}>
+                  {emptyTableMessage ?? i18n.t("There are no data available!")}
+                </div>
+              )}
             </DataTableCell>
           </DataTableRow>
         )}

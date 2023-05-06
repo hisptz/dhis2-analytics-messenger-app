@@ -7,6 +7,7 @@ export interface CustomTableProps {
   columns: Column[];
   data: Record<string, any>[];
   pagination?: Pagination;
+  loading?: boolean;
   emptyTableMessage?: string;
 }
 
