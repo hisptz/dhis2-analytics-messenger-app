@@ -4,6 +4,7 @@ import FullPageLoader from "../../shared/components/Loaders";
 import { NAVIGATION_ITEMS } from "../../shared/constants/navigation";
 import NavBar from "./components/NavBar";
 import classes from "../../App.module.css";
+import PageNotFound from "../../shared/components/404Page";
 
 export default function AppRouter(): React.ReactElement {
   return (
@@ -35,6 +36,7 @@ export default function AppRouter(): React.ReactElement {
                   </Route>
                 );
               })}
+              <Route path="*" element={<PageNotFound />} />
             </Routes>
           </Suspense>
         </div>

@@ -72,8 +72,17 @@ label > span:nth-child(2) {
 }
 
 /*padding*/
+.p-8 {
+    padding-top: 8px;
+}
+
 .p-16 {
     padding: 16px;
+}
+
+.ph-8 {
+    padding-left: 8px;
+    padding-right: 8px;
 }
 
 .ph-16 {
@@ -88,6 +97,11 @@ label > span:nth-child(2) {
 .pt-16 {
     padding-top: 16px;
 }
+
+.pt-8 {
+    padding-top: 8px;
+}
+
 
 /*icons*/
 .icon-size-32 > svg {
@@ -124,4 +138,14 @@ label > span:nth-child(2) {
 .custom-report-table {
     width: 100%;
     overflow-x: scroll;
+}
+
+.sub-module-title {
+    font-size: 1.5rem !important;
+    margin: 16px 0;
+}
+
+.sub-module-subtitle {
+    font-size: 0.8rem;
+    opacity: 0.6;
 }

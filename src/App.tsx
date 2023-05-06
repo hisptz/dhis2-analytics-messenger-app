@@ -8,7 +8,7 @@ import "./common.css";
 
 const App = () => (
   <DataStoreProvider
-    namespace="hisptz-analytics"
+    namespace="hisptz-analytics-messenger"
     loadingComponent={
       <FullPageLoader message={i18n.t("Fetching App configurations...")} />
     }

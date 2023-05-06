@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2023-05-06T08:23:48.633Z\n"
-"PO-Revision-Date: 2023-05-06T08:23:48.633Z\n"
+"POT-Creation-Date: 2023-05-06T13:50:02.305Z\n"
+"PO-Revision-Date: 2023-05-06T13:50:02.305Z\n"
 
 msgid "Fetching App configurations..."
 msgstr "Fetching App configurations..."
@@ -24,17 +24,73 @@ msgstr ""
 msgid "Add Chat Bot triggers"
 msgstr "Add Chat Bot triggers"
 
+msgid "S/N"
+msgstr "S/N"
+
+msgid "Name"
+msgstr "Name"
+
+msgid "Url"
+msgstr "Url"
+
+msgid "Created"
+msgstr "Created"
+
+msgid ""
+"There are no gateway configurations, click the above button to add new "
+"configurations."
+msgstr ""
+"There are no gateway configurations, click the above button to add new "
+"configurations."
+
+msgid "Gateway"
+msgstr "Gateway"
+
+msgid "Configuration of the gateways for push analytics"
+msgstr "Configuration of the gateways for push analytics"
+
+msgid "Add gateway"
+msgstr "Add gateway"
+
+msgid "Group name"
+msgstr "Group name"
+
+msgid "created"
+msgstr "created"
+
+msgid ""
+"There are no Visualization groups, click the above button to add a new "
+"group."
+msgstr ""
+"There are no Visualization groups, click the above button to add a new "
+"group."
+
+msgid "Visualization groups"
+msgstr "Visualization groups"
+
+msgid "Configuration of the visualization groups for push analytics and chat bot"
+msgstr "Configuration of the visualization groups for push analytics and chat bot"
+
+msgid "Add visualization group"
+msgstr "Add visualization group"
+
 msgid "There are no Push Analytics configured, click the below button to add new."
 msgstr "There are no Push Analytics configured, click the below button to add new."
 
 msgid "Add push analytics"
 msgstr "Add push analytics"
 
-msgid "Gateway"
-msgstr "Gateway"
+msgid "Recipients"
+msgstr "Recipients"
 
-msgid "Visualization groups"
-msgstr "Visualization groups"
+msgid "Page not Found"
+msgstr "Page not Found"
+
+msgid "Go to home"
+msgstr "Go to home"
+
+msgid "There are no data available!"
+msgstr "There are no data available!"
 
 msgid "Push Analytics"
 msgstr "Push Analytics"
