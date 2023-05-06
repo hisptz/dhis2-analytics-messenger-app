@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2023-05-06T08:23:48.633Z\n"
-"PO-Revision-Date: 2023-05-06T08:23:48.633Z\n"
+"POT-Creation-Date: 2023-05-06T09:04:04.575Z\n"
+"PO-Revision-Date: 2023-05-06T09:04:04.575Z\n"
 
 msgid "Fetching App configurations..."
 msgstr "Fetching App configurations..."
@@ -29,6 +29,12 @@ msgstr "There are no Push Analytics configured, click the below button to add ne
 
 msgid "Add push analytics"
 msgstr "Add push analytics"
+
+msgid "Page not Found"
+msgstr "Page not Found"
+
+msgid "Go to home"
+msgstr "Go to home"
 
 msgid "Gateway"
 msgstr "Gateway"
