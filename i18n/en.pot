@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2023-05-05T12:33:15.709Z\n"
-"PO-Revision-Date: 2023-05-05T12:33:15.709Z\n"
+"POT-Creation-Date: 2023-05-06T08:23:48.633Z\n"
+"PO-Revision-Date: 2023-05-06T08:23:48.633Z\n"
 
 msgid "Fetching App configurations..."
 msgstr "Fetching App configurations..."
@@ -20,6 +20,15 @@ msgid ""
 msgstr ""
 "There are no Chat Bot's trigger configured, click the below button to add "
 "new."
+
+msgid "Add Chat Bot triggers"
+msgstr "Add Chat Bot triggers"
+
+msgid "There are no Push Analytics configured, click the below button to add new."
+msgstr "There are no Push Analytics configured, click the below button to add new."
+
+msgid "Add push analytics"
+msgstr "Add push analytics"
 
 msgid "Gateway"
 msgstr "Gateway"

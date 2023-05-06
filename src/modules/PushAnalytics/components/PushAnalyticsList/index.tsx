@@ -1,6 +1,6 @@
 import React from "react";
 import i18n from "@dhis2/d2-i18n";
-import { Button } from "@dhis2/ui";
+import { Button, IconAdd16 } from "@dhis2/ui";
 import classes from "./PushAnalyticsList.module.css";
 import { PushAnalyticsSvg } from "../Icons";
 
@@ -25,6 +25,7 @@ export default function PushAnalyticsList({
           onClick={anAddPushAnalytics}
           name="Push Analytics"
           value="pushAnalyticsButton"
+          icon={<IconAdd16 />}
         >
           {i18n.t("Add push analytics")}
         </Button>

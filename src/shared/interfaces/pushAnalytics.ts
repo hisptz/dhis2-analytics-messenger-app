@@ -4,7 +4,7 @@ export interface PushAnalytics extends IdentifiableModel {
   gateway: string;
   favorites: Array<Favorite>;
   contacts: Array<Contacts>;
-  logs: Array<string>;
+  logs?: Array<string>;
   description?: string;
 }
 
