@@ -1,9 +1,9 @@
 const config = {
-  type: "app",
-
-  entryPoints: {
-    app: "./src/App.tsx",
-  },
+    type: "app",
+    name: "Analytics Messenger",
+    entryPoints: {
+        app: "./src/App.tsx",
+    },
 };
 
 module.exports = config;
