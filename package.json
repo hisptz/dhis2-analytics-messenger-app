@@ -20,6 +20,7 @@
     "@hisptz/dhis2-ui": "^1.0.42",
     "@hisptz/dhis2-utils": "^1.0.42",
     "async-es": "^3.2.4",
+    "axios": "^1.4.0",
     "lodash": "^4.17.21",
     "luxon": "^3.3.0",
     "react-hook-form": "^7.43.9",
