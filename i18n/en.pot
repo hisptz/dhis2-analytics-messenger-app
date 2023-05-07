@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2023-05-07T10:30:35.267Z\n"
-"PO-Revision-Date: 2023-05-07T10:30:35.267Z\n"
+"POT-Creation-Date: 2023-05-07T13:29:25.687Z\n"
+"PO-Revision-Date: 2023-05-07T13:29:25.687Z\n"
 
 msgid "Fetching App configurations..."
 msgstr "Fetching App configurations..."
@@ -24,11 +24,32 @@ msgstr ""
 msgid "Add Chat Bot triggers"
 msgstr "Add Chat Bot triggers"
 
-msgid "Add gateway"
-msgstr "Add gateway"
+msgid "Gateway config saved successfully"
+msgstr "Gateway config saved successfully"
+
+msgid "Gateway config updated successfully"
+msgstr "Gateway config updated successfully"
+
+msgid "{{operation}} gateway"
+msgstr "{{operation}} gateway"
+
+msgid "Update"
+msgstr "Update"
+
+msgid "Add"
+msgstr "Add"
+
+msgid "Name"
+msgstr "Name"
 
 msgid "Name is required"
 msgstr "Name is required"
+
+msgid "URL"
+msgstr "URL"
+
+msgid "URL is required"
+msgstr "URL is required"
 
 msgid "Cancel"
 msgstr "Cancel"
@@ -39,14 +60,8 @@ msgstr "Save"
 msgid "S/N"
 msgstr "S/N"
 
-msgid "Name"
-msgstr "Name"
-
 msgid "Url"
 msgstr "Url"
-
-msgid "Created"
-msgstr "Created"
 
 msgid ""
 "There are no gateway configurations, click the above button to add new "
@@ -61,18 +76,41 @@ msgstr "Gateway"
 msgid "Configuration of the gateways for push analytics"
 msgstr "Configuration of the gateways for push analytics"
 
+msgid "Add gateway"
+msgstr "Add gateway"
+
+msgid "Group updated successfully"
+msgstr "Group updated successfully"
+
+msgid "Group created successfully"
+msgstr "Group created successfully"
+
+msgid "{{operation}} group"
+msgstr "{{operation}} group"
+
+msgid "Select at least one visualization"
+msgstr "Select at least one visualization"
+
+msgid "Visualizations"
+msgstr "Visualizations"
+
+msgid "Updating..."
+msgstr "Updating..."
+
+msgid "Saving..."
+msgstr "Saving..."
+
 msgid "Group name"
 msgstr "Group name"
 
 msgid "created"
 msgstr "created"
 
-msgid ""
-"There are no Visualization groups, click the above button to add a new "
-"group."
-msgstr ""
-"There are no Visualization groups, click the above button to add a new "
-"group."
+msgid "Actions"
+msgstr "Actions"
+
+msgid "Edit"
+msgstr "Edit"
 
 msgid "Visualization groups"
 msgstr "Visualization groups"
@@ -97,6 +135,9 @@ msgstr "Page not Found"
 
 msgid "Go to home"
 msgstr "Go to home"
+
+msgid "There are no bookings for the specified filters"
+msgstr "There are no bookings for the specified filters"
 
 msgid "There are no data available!"
 msgstr "There are no data available!"
