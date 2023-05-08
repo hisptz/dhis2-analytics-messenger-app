@@ -1,17 +1,32 @@
-import {Button, ButtonStrip, Modal, ModalActions, ModalContent, ModalTitle} from "@dhis2/ui"
-import React, {useCallback} from "react"
-import {PushAnalytics} from "../../../../shared/interfaces";
+import {
+    Button,
+    ButtonStrip,
+    FlyoutMenu,
+    MenuItem,
+    Modal,
+    ModalActions,
+    ModalContent,
+    ModalTitle,
+    SplitButton
+} from "@dhis2/ui"
+import React, {useCallback, useMemo} from "react"
+import {Contact, PushAnalytics} from "../../../../shared/interfaces";
 import {FormProvider, useForm} from "react-hook-form";
 import i18n from '@dhis2/d2-i18n';
-import {RHFTextInputField} from "@hisptz/dhis2-ui";
+import {RHFTextInputField, useConfirmDialog} from "@hisptz/dhis2-ui";
 import {RHFGatewaySelector} from "./components/RHFGatewaySelector";
 import {RHFVisSelector} from "./components/RHFVisSelector";
 import {RHFGroupSelector} from "./components/RHFGroupSelector";
 import axios from "axios";
-import {find} from "lodash";
+import {compact, find, isEmpty} from "lodash";
 import {useSavedObject} from "@dhis2/app-service-datastore";
 import {useBoolean} from "usehooks-ts";
-import {useAlert} from "@dhis2/app-runtime";
+import {useAlert, useDataMutation} from "@dhis2/app-runtime";
+import {PUSH_ANALYTICS_DATASTORE_KEY} from "../../../../shared/constants/dataStore";
+import {uid} from "@hisptz/dhis2-utils";
+import {RHFDescription} from "./components/RHFDescription";
+import {RHFRecipientSelector} from "./components/RHFRecipientSelector";
+import {asyncify, mapSeries} from "async-es";
 
 
 export interface PushAnalyticsModalConfigProps {
@@ -32,8 +47,6 @@ async function getImage(visualizationId: string) {
 }
 
 async function sendMessage(message: any, gateway: string) {
-    console.log(message)
-
 
     try {
         const response = await axios.post(`${gateway}/send`, message,)
@@ -42,6 +55,7 @@ async function sendMessage(message: any, gateway: string) {
         }
     } catch (e) {
         console.error(e)
+        throw Error("Could not send message")
     }
 }
 
@@ -51,31 +65,49 @@ function useSendAnalytics() {
 
     const [gateways] = useSavedObject(`gateways`);
 
+
+    async function getMessage(vis: { id: string; name: string }, {recipients, description}: {
+        description: string;
+        recipients: Contact[]
+    }) {
+        const visualization = await getImage(vis.id);
+        if (visualization) {
+            return {
+                to: recipients,
+                message: {
+                    type: "image",
+                    image: visualization,
+                    text: description ?? "Push analytics from your DHIS2"
+                }
+            }
+        }
+    }
+
     const send = useCallback(
-        async ({gateway, visualizations: visualizationId, recipients, description}: any) => {
+        async ({gateway, visualizations, contacts, description}: PushAnalytics) => {
             startLoading();
             const gatewayConf = find(gateways as any[], ['id', gateway]);
             if (!gatewayConf) {
                 endLoading()
                 return;
             }
-            const visualization = await getImage(visualizationId);
-            if (visualization) {
-                const message = {
-                    to: [{
-                        type: "individual",
-                        number: recipients
-                    }],
-                    message: {
-                        type: "image",
-                        image: visualization,
-                        text: description ?? "Push analytics from your DHIS2"
-                    }
-                }
-                await sendMessage(message, gatewayConf.url);
-                show({message: i18n.t("Analytics sent successfully"), type: {success: true}});
-                endLoading();
+            const url = gatewayConf.url;
+
+            const messages = compact(await mapSeries(visualizations, asyncify(async (visualization: any) => await getMessage(visualization, {
+                recipients: contacts,
+                description: description ?? " "
+            }))));
+
+            if (isEmpty(messages)) {
+                show({message: i18n.t("Could not send any visualizations to user"), type: {critical: true}});
+                return;
             }
+
+            const responses = await mapSeries(messages, asyncify(async (message: any) => await sendMessage(message, url)));
+
+            console.log(responses);
+            show({message: i18n.t("Messages successfully sent"), type: {success: true}})
+            endLoading()
         },
         [],
     );
@@ -87,24 +119,150 @@ function useSendAnalytics() {
     }
 }
 
+
+const generateCreateMutation = (id: string): any => ({
+    type: "create",
+    resource: `dataStore/${PUSH_ANALYTICS_DATASTORE_KEY}/${id}`,
+    data: ({data}: any) => data
+})
+const updateMutation: any = {
+    type: "update",
+    resource: `dataStore/${PUSH_ANALYTICS_DATASTORE_KEY}`,
+    id: ({id}: any) => id,
+    data: ({data}: any) => data
+}
+
+
+function useSaveConfig(defaultConfig?: PushAnalytics) {
+    const id = useMemo(() => uid(), []);
+    const {show} = useAlert(({message}) => message, ({type}) => ({...type, duration: 3000}))
+    const [create, {loading: creating}] = useDataMutation(generateCreateMutation(id), {
+        onComplete: () => {
+            show({message: i18n.t("Configuration saved successfully"), type: {success: true}})
+        },
+        onError: (error) => {
+            show({message: `${i18n.t("Error saving configuration")}: ${error.message}`, type: {critical: true}})
+        }
+    })
+    const [update, {loading: updating}] = useDataMutation(updateMutation, {
+        onComplete: () => {
+            show({message: i18n.t("Configuration updated successfully"), type: {success: true}})
+        },
+        onError: (error) => {
+            show({message: `${i18n.t("Error updating configuration")}: ${error.message}`, type: {critical: true}})
+        }
+    })
+
+
+    const save = useCallback(
+        async (data: PushAnalytics) => {
+            if (defaultConfig) {
+                await update({
+                    data,
+                    id: defaultConfig.id
+                })
+            } else {
+                const newData = {
+                    ...data,
+                    id
+                }
+                await create({
+                    data: newData
+                })
+            }
+        },
+        [id, create, update],
+    );
+
+    return {
+        creating,
+        updating,
+        save
+    }
+}
+
+function SendActions({actions}: { actions: { label: string; action: () => void }[] }) {
+
+    return (
+        <FlyoutMenu>
+            {
+                actions.map(({label, action}) => (<MenuItem label={label} onClick={action}/>))
+            }
+        </FlyoutMenu>
+    )
+}
+
 export function PushAnalyticsModalConfig({config, hidden, onClose}: PushAnalyticsModalConfigProps) {
+    const {confirm} = useConfirmDialog()
     const form = useForm<PushAnalytics>({
         defaultValues: config,
         shouldFocusError: false
     })
+    const {send, loading: sending} = useSendAnalytics();
+    const {save, creating, updating} = useSaveConfig(config)
 
-    const {send, loading} = useSendAnalytics();
-
-    const onSubmit = useCallback(
-        (data: any) => {
-            send(data)
+    const onSaveAndSend = useCallback(
+        async (data: PushAnalytics) => {
+            // await save(data);
+            await send(data);
+            // onClose();
         },
         [send],
     );
 
+    const onCloseClick = useCallback(
+        () => {
+            if (form.formState.isDirty) {
+                confirm({
+                    message: i18n.t("Are you sure you want to close the form? All changes will be lost."),
+                    title: i18n.t("Confirm close"),
+                    confirmButtonColor: "primary",
+                    confirmButtonText: i18n.t("Close"),
+                    onCancel: () => {
+                    },
+                    onConfirm: () => {
+                        form.reset({});
+                        onClose()
+                    }
+                })
+            } else {
+                form.reset({});
+                onClose()
+            }
+        },
+        [],
+    );
+
+
+    const onSave = useCallback(
+        async (data: PushAnalytics) => {
+            await save(data);
+        },
+        [save],
+    );
+
+    function getButtonLabel(creating: boolean, updating: boolean, sending: boolean, config: PushAnalytics | undefined) {
+        if (config) {
+            if (updating) {
+                return i18n.t("Updating")
+            }
+            if (sending) {
+                return i18n.t("Sending...")
+            }
+            return i18n.t("Update and send")
+        } else {
+            if (creating) {
+                return i18n.t("Saving...")
+            }
+            if (sending) {
+                return i18n.t("Sending...")
+            }
+            return i18n.t("Save and send")
+        }
+    }
 
     return (
-        <Modal position="middle" hide={hidden} onClose={onClose}>
+        <Modal position="middle" hide={hidden} onClose={onCloseClick}>
             <ModalTitle>
                 {i18n.t("Send push analytics")}
             </ModalTitle>
@@ -126,17 +284,29 @@ export function PushAnalyticsModalConfig({config, hidden, onClose}: PushAnalytic
                                         validations={{required: i18n.t("At least one visualization is required")}}
                                         name="visualizations"
                                         label={i18n.t("Visualizations")}/>
-                        <RHFTextInputField label={i18n.t("Description")} name="description"/>
-                        <RHFTextInputField label={i18n.t("Recipient")} name={"recipients"}/>
-                        {/*<RHFRecipientSelector label={i18n.t("Recipients")} name="recipients"/>*/}
+                        <RHFDescription label={i18n.t("Description")} name="description"/>
+                        <RHFRecipientSelector label={i18n.t("Recipients")} name="contacts"/>
                     </div>
                 </FormProvider>
             </ModalContent>
             <ModalActions>
                 <ButtonStrip>
-                    <Button>{i18n.t("Cancel")}</Button>
-                    <Button loading={loading} onClick={form.handleSubmit(onSubmit)}
-                            primary>{loading ? i18n.t("Sending...") : i18n.t("Send")}</Button>
+                    <Button onClick={onCloseClick}>{i18n.t("Cancel")}</Button>
+                    <SplitButton component={<SendActions actions={[
+                        {
+                            label: i18n.t("Save and send"),
+                            action: () => {
+                                form.handleSubmit(onSaveAndSend)
+                            }
+                        },
+                        {
+                            label: i18n.t("Save"),
+                            action: () => {
+                                form.handleSubmit(onSave)
+                            }
+                        }
+                    ]}/>} loading={sending || creating || updating} onClick={form.handleSubmit(onSaveAndSend)}
+                                 primary>{getButtonLabel(creating, updating, sending, config)}</SplitButton>
                 </ButtonStrip>
             </ModalActions>
         </Modal>
