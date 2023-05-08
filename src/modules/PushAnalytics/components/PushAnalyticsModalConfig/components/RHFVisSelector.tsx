@@ -1,8 +1,8 @@
 import React, {useMemo} from "react";
-import {RHFSingleSelectField} from "@hisptz/dhis2-ui";
 import {useGroups} from "./RHFGroupSelector";
-import {useWatch} from "react-hook-form";
+import {Controller, useFormContext, useWatch} from "react-hook-form";
 import {find} from "lodash";
+import {MultiSelectField, MultiSelectOption} from "@dhis2/ui";
 
 export interface RHFVisSelectorProps {
     name: string;
@@ -13,6 +13,7 @@ export interface RHFVisSelectorProps {
 
 export function RHFVisSelector({validations, name, label, required}: RHFVisSelectorProps) {
     const {data: groups, loading} = useGroups();
+    const {setValue} = useFormContext();
 
     const [selectedGroup] = useWatch({
         name: ['group']
@@ -23,20 +24,42 @@ export function RHFVisSelector({validations, name, label, required}: RHFVisSelec
             return [];
         }
         const group = find(groups, ['id', selectedGroup]);
-
-        return group?.visualizations?.map((vis: any) => ({label: vis.name, value: vis.id}))
+        setValue(`${name}`, [])
+        return group?.visualizations?.map((vis: any) => ({label: vis.name, value: vis.id})) ?? []
 
     }, [groups, selectedGroup]);
 
-
     return (
-        <RHFSingleSelectField
-            loading={loading}
-            required={required}
-            validations={validations}
-            label={label}
-            options={options}
-            name={name}
-        />
+        <Controller
+            rules={validations}
+            render={
+                ({field, fieldState, formState,}) => {
+
+                    return (
+                        <MultiSelectField
+                            required={required}
+                            filterable
+                            label={label}
+                            onChange={({selected}: { selected: string[] }) => {
+                                field.onChange(selected?.map((sel) => {
+                                    const option = find(options, ['value', sel]);
+                                    return {
+                                        id: option.value,
+                                        name: option.label
+                                    }
+                                }))
+                            }}
+                            selected={field.value?.map(({id}: { id: string }) => id) ?? []}
+                            error={!!fieldState.error}
+                            validationText={fieldState.error?.message}
+                        >
+                            {
+                                options?.map(({label, value}: any) => (
+                                    <MultiSelectOption key={`${label}-${value}`} label={label} value={value}/>))
+                            }
+                        </MultiSelectField>
+                    )
+                }
+            } name={name}/>
     )
 }
