@@ -6,9 +6,9 @@ import {useAlert, useDataMutation, useDataQuery} from "@dhis2/app-runtime";
 import CustomTable from "../../../../shared/components/CustomTable";
 import EmptyPushAnalyticsList from "../EmptyPushAnalyticsList";
 import {useBoolean} from "usehooks-ts";
-import {PushAnalyticsModalConfig} from "../PushAnalyticsModalConfig";
+import {PushAnalyticsModalConfig, useSendAnalytics} from "../PushAnalyticsModalConfig";
 import {find, isEmpty} from "lodash";
-import {Button, Chip, IconAdd24, IconDelete24, IconEdit24, IconUser24, IconUserGroup24} from "@dhis2/ui"
+import {Button, Chip, IconAdd24, IconDelete24, IconEdit24, IconMessages24, IconUser24, IconUserGroup24} from "@dhis2/ui"
 import FullPageLoader from "../../../../shared/components/Loaders";
 import {useSavedObject} from "@dhis2/app-service-datastore";
 import {ActionButton} from "../../../../shared/components/CustomDataTable/components/ActionButton";
@@ -84,6 +84,7 @@ function usePushAnalyticsConfig({onEdit}: { onEdit: () => void }) {
         }
     });
     const {confirm} = useConfirmDialog();
+    const {send,} = useSendAnalytics()
 
     const [gateways] = useSavedObject(`gateways`)
     const configs = useMemo(() => {
@@ -132,7 +133,28 @@ function usePushAnalyticsConfig({onEdit}: { onEdit: () => void }) {
                                 }
                             })
                         }
-                    }
+                    },
+                    {
+                        key: `send-messages`,
+                        label: i18n.t("Send"),
+                        icon: <IconMessages24/>,
+                        onClick: () => {
+                            confirm({
+                                confirmButtonColor: "primary",
+                                loadingText: i18n.t("Sending..."),
+                                confirmButtonText: i18n.t("Send"),
+                                title: i18n.t("Confirm sending"),
+                                message: i18n.t(`${i18n.t("Sending visualizations to ")} ${contacts?.map(({number}) => number).join(', ')}`, {
+                                    name: config.name
+                                }),
+                                onCancel: () => {
+                                },
+                                onConfirm: async () => {
+                                    await send(config)
+                                }
+                            })
+                        }
+                    },
                 ]} row={config}/>
             }
         })

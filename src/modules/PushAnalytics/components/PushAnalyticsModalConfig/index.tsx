@@ -61,7 +61,7 @@ async function sendMessage(message: any, gateway: string) {
     }
 }
 
-function useSendAnalytics() {
+export function useSendAnalytics() {
     const {value: loading, setTrue: startLoading, setFalse: endLoading} = useBoolean(false);
     const {show} = useAlert(({message}: { message: string }) => message, ({type}: any) => ({...type, duration: 3000}))
 
