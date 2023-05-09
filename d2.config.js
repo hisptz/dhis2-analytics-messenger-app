@@ -1,6 +1,7 @@
 const config = {
     type: "app",
-    name: "Analytics Messenger",
+    title: "Analytics Messenger",
+    name: "dhis2-analytics-messenger",
     entryPoints: {
         app: "./src/App.tsx",
     },

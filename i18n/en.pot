@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2023-05-09T04:49:20.177Z\n"
-"PO-Revision-Date: 2023-05-09T04:49:20.177Z\n"
+"POT-Creation-Date: 2023-05-09T08:54:56.216Z\n"
+"PO-Revision-Date: 2023-05-09T08:54:56.216Z\n"
 
 msgid "Fetching App configurations..."
 msgstr "Fetching App configurations..."
@@ -167,15 +167,6 @@ msgstr "Configuration updated successfully"
 msgid "Error updating configuration"
 msgstr "Error updating configuration"
 
-msgid "Are you sure you want to close the form? All changes will be lost."
-msgstr "Are you sure you want to close the form? All changes will be lost."
-
-msgid "Confirm close"
-msgstr "Confirm close"
-
-msgid "Close"
-msgstr "Close"
-
 msgid "Updating"
 msgstr "Updating"
 
@@ -187,6 +178,15 @@ msgstr "Update and send"
 
 msgid "Save and send"
 msgstr "Save and send"
+
+msgid "Are you sure you want to close the form? All changes will be lost."
+msgstr "Are you sure you want to close the form? All changes will be lost."
+
+msgid "Confirm close"
+msgstr "Confirm close"
+
+msgid "Close"
+msgstr "Close"
 
 msgid "Gateway is required"
 msgstr "Gateway is required"
@@ -205,6 +205,27 @@ msgstr "Description"
 
 msgid "Recipients"
 msgstr "Recipients"
+
+msgid "Configuration deleted successfully"
+msgstr "Configuration deleted successfully"
+
+msgid "Delete"
+msgstr "Delete"
+
+msgid "Deleting..."
+msgstr "Deleting..."
+
+msgid "Confirm delete"
+msgstr "Confirm delete"
+
+msgid "Are you sure you want to delete the configuration {{name}}?"
+msgstr "Are you sure you want to delete the configuration {{name}}?"
+
+msgid "Send"
+msgstr "Send"
+
+msgid "Confirm sending"
+msgstr "Confirm sending"
 
 msgid "Add push analytics configuration"
 msgstr "Add push analytics configuration"
