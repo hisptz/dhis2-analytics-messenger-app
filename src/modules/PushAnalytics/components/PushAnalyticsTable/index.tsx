@@ -1,4 +1,4 @@
-import React, {useMemo} from "react";
+import React, {useCallback, useMemo} from "react";
 import i18n from "@dhis2/d2-i18n";
 import {Column, Contact, PushAnalytics} from "../../../../shared/interfaces";
 import {PUSH_ANALYTICS_DATASTORE_KEY} from "../../../../shared/constants/dataStore";
@@ -88,7 +88,6 @@ function usePushAnalyticsConfig({onEdit}: { onEdit: () => void }) {
     const [gateways] = useSavedObject(`gateways`)
     const configs = useMemo(() => {
         return data?.config?.entries?.map((config, index) => {
-            console.log(config)
             const gateway = find((gateways as any[]), ['id', config.gateway]);
             const contacts = config?.contacts;
             return {
@@ -141,14 +140,20 @@ function usePushAnalyticsConfig({onEdit}: { onEdit: () => void }) {
 
     return {
         data: configs,
-        loading
+        loading,
+        refetch
     }
 }
 
 export default function PushAnalyticsTable(): React.ReactElement {
     const {value: hidden, setTrue: hide, setFalse: open} = useBoolean(true);
-    const {data, loading} = usePushAnalyticsConfig({onEdit: open});
+    const {data, loading, refetch} = usePushAnalyticsConfig({onEdit: open});
     const configUpdate = useRecoilValue(ConfigUpdateState);
+
+    const onClose = useCallback(() => {
+        hide();
+        refetch()
+    }, [])
 
     if (loading) {
         return (<FullPageLoader/>)
@@ -156,7 +161,7 @@ export default function PushAnalyticsTable(): React.ReactElement {
 
     return (
         <>
-            <PushAnalyticsModalConfig config={configUpdate} hidden={hidden} onClose={hide}/>
+            <PushAnalyticsModalConfig config={configUpdate} hidden={hidden} onClose={onClose}/>
             {isEmpty(data) ? <EmptyPushAnalyticsList anAddPushAnalytics={open}/> :
                 <div className="column gap-16" style={{width: "100%"}}>
                     <div>

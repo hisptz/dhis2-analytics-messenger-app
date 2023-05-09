@@ -224,7 +224,7 @@ export function PushAnalyticsModalConfig({config, hidden, onClose}: PushAnalytic
         shouldFocusError: false
     })
     const {send, loading: sending} = useSendAnalytics();
-    const {save, creating, updating} = useSaveConfig(config)
+    const {save, creating, updating} = useSaveConfig(config);
 
     const onSaveAndSend = useCallback(
         async (data: PushAnalytics) => {
@@ -271,6 +271,7 @@ export function PushAnalyticsModalConfig({config, hidden, onClose}: PushAnalytic
     const onSave = useCallback(
         async (data: PushAnalytics) => {
             await save(data);
+            onClose()
         },
         [save],
     );
