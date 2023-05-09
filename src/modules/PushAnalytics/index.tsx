@@ -1,15 +1,15 @@
 import React from "react";
-import EmptyPushAnalyticsList from "./components/EmptyPushAnalyticsList";
+import PushAnalyticsTable from "./components/PushAnalyticsTable";
 
 function anAddPushAnalytics() {
-  console.log("on add push analytics");
+    console.log("on add push analytics");
 }
 
 export default function PushAnalytics(): React.ReactElement {
-  return (
-    <div>
-      <EmptyPushAnalyticsList anAddPushAnalytics={anAddPushAnalytics} />
-      {/* TODO add switch condition to render table */}
-    </div>
-  );
+
+    return (
+        <div className="w-100 h-100 align-center p-32 column">
+            <PushAnalyticsTable/>
+        </div>
+    );
 }

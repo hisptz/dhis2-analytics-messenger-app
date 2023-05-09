@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2023-05-07T13:29:25.687Z\n"
-"PO-Revision-Date: 2023-05-07T13:29:25.687Z\n"
+"POT-Creation-Date: 2023-05-09T04:49:20.177Z\n"
+"PO-Revision-Date: 2023-05-09T04:49:20.177Z\n"
 
 msgid "Fetching App configurations..."
 msgstr "Fetching App configurations..."
@@ -124,11 +124,90 @@ msgstr "Add visualization group"
 msgid "There are no Push Analytics configured, click the below button to add new."
 msgstr "There are no Push Analytics configured, click the below button to add new."
 
-msgid "Add push analytics"
-msgstr "Add push analytics"
+msgid "Send push analytics"
+msgstr "Send push analytics"
+
+msgid ""
+"You can use different formatting conventions as per the selected gateway. "
+"(E.g * to bold for whatsapp gateway)"
+msgstr ""
+"You can use different formatting conventions as per the selected gateway. "
+"(E.g * to bold for whatsapp gateway)"
+
+msgid "Add new recipient"
+msgstr "Add new recipient"
+
+msgid "Type"
+msgstr "Type"
+
+msgid "Group"
+msgstr "Group"
+
+msgid "Phone Number"
+msgstr "Phone Number"
+
+msgid "Number"
+msgstr "Number"
+
+msgid "Could not send any visualizations to user"
+msgstr "Could not send any visualizations to user"
+
+msgid "Messages successfully sent"
+msgstr "Messages successfully sent"
+
+msgid "Configuration saved successfully"
+msgstr "Configuration saved successfully"
+
+msgid "Error saving configuration"
+msgstr "Error saving configuration"
+
+msgid "Configuration updated successfully"
+msgstr "Configuration updated successfully"
+
+msgid "Error updating configuration"
+msgstr "Error updating configuration"
+
+msgid "Are you sure you want to close the form? All changes will be lost."
+msgstr "Are you sure you want to close the form? All changes will be lost."
+
+msgid "Confirm close"
+msgstr "Confirm close"
+
+msgid "Close"
+msgstr "Close"
+
+msgid "Updating"
+msgstr "Updating"
+
+msgid "Sending..."
+msgstr "Sending..."
+
+msgid "Update and send"
+msgstr "Update and send"
+
+msgid "Save and send"
+msgstr "Save and send"
+
+msgid "Gateway is required"
+msgstr "Gateway is required"
+
+msgid "Group is required"
+msgstr "Group is required"
+
+msgid "Visualization group"
+msgstr "Visualization group"
+
+msgid "At least one visualization is required"
+msgstr "At least one visualization is required"
+
+msgid "Description"
+msgstr "Description"
 
 msgid "Recipients"
 msgstr "Recipients"
+
+msgid "Add push analytics configuration"
+msgstr "Add push analytics configuration"
 
 msgid "Page not Found"
 msgstr "Page not Found"

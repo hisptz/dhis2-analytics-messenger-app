@@ -1,11 +1,14 @@
-import { IdentifiableModel, BaseModel, Visualization } from ".";
+import {IdentifiableModel, Visualization} from ".";
 
 export interface PushAnalytics extends IdentifiableModel {
-  gateway: string;
-  visualizations: Array<Visualization>;
-  contacts: Array<Contacts>;
-  logs?: Array<string>;
-  description?: string;
+    gateway: string;
+    visualizations: Array<Visualization>;
+    contacts: Array<Contact>;
+    logs?: Array<string>;
+    description?: string;
 }
 
-export type Contacts = BaseModel;
+export interface Contact {
+    number: string;
+    type: 'group' | 'individual'
+}

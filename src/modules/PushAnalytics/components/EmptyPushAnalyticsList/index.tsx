@@ -1,8 +1,8 @@
 import React from "react";
 import i18n from "@dhis2/d2-i18n";
-import { Button, IconAdd16 } from "@dhis2/ui";
+import {Button, IconAdd16} from "@dhis2/ui";
 import classes from "./EmptyPushAnalyticsList.module.css";
-import { PushAnalyticsSvg } from "../Icons";
+import {PushAnalyticsSvg} from "../Icons";
 
 interface PushAnalyticsListParams {
   anAddPushAnalytics: VoidFunction;
@@ -27,7 +27,7 @@ export default function EmptyPushAnalyticsList({
           value="pushAnalyticsButton"
           icon={<IconAdd16 />}
         >
-          {i18n.t("Add push analytics")}
+          {i18n.t("Send push analytics")}
         </Button>
       </div>
     </div>
