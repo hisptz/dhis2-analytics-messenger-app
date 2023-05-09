@@ -5,11 +5,248 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2023-05-04T03:41:55.176Z\n"
-"PO-Revision-Date: 2023-05-04T03:41:55.176Z\n"
+"POT-Creation-Date: 2023-05-09T08:54:56.216Z\n"
+"PO-Revision-Date: 2023-05-09T08:54:56.216Z\n"
 
-msgid "Hello {{name}}"
-msgstr "Hello {{name}}"
+msgid "Fetching App configurations..."
+msgstr "Fetching App configurations..."
 
-msgid "Welcome to DHIS2!"
-msgstr "Welcome to DHIS2!"
+msgid "Please wait this might take a while..."
+msgstr "Please wait this might take a while..."
+
+msgid ""
+"There are no Chat Bot's trigger configured, click the below button to add "
+"new."
+msgstr ""
+"There are no Chat Bot's trigger configured, click the below button to add "
+"new."
+
+msgid "Add Chat Bot triggers"
+msgstr "Add Chat Bot triggers"
+
+msgid "Gateway config saved successfully"
+msgstr "Gateway config saved successfully"
+
+msgid "Gateway config updated successfully"
+msgstr "Gateway config updated successfully"
+
+msgid "{{operation}} gateway"
+msgstr "{{operation}} gateway"
+
+msgid "Update"
+msgstr "Update"
+
+msgid "Add"
+msgstr "Add"
+
+msgid "Name"
+msgstr "Name"
+
+msgid "Name is required"
+msgstr "Name is required"
+
+msgid "URL"
+msgstr "URL"
+
+msgid "URL is required"
+msgstr "URL is required"
+
+msgid "Cancel"
+msgstr "Cancel"
+
+msgid "Save"
+msgstr "Save"
+
+msgid "S/N"
+msgstr "S/N"
+
+msgid "Url"
+msgstr "Url"
+
+msgid ""
+"There are no gateway configurations, click the above button to add new "
+"configurations."
+msgstr ""
+"There are no gateway configurations, click the above button to add new "
+"configurations."
+
+msgid "Gateway"
+msgstr "Gateway"
+
+msgid "Configuration of the gateways for push analytics"
+msgstr "Configuration of the gateways for push analytics"
+
+msgid "Add gateway"
+msgstr "Add gateway"
+
+msgid "Group updated successfully"
+msgstr "Group updated successfully"
+
+msgid "Group created successfully"
+msgstr "Group created successfully"
+
+msgid "{{operation}} group"
+msgstr "{{operation}} group"
+
+msgid "Select at least one visualization"
+msgstr "Select at least one visualization"
+
+msgid "Visualizations"
+msgstr "Visualizations"
+
+msgid "Updating..."
+msgstr "Updating..."
+
+msgid "Saving..."
+msgstr "Saving..."
+
+msgid "Group name"
+msgstr "Group name"
+
+msgid "created"
+msgstr "created"
+
+msgid "Actions"
+msgstr "Actions"
+
+msgid "Edit"
+msgstr "Edit"
+
+msgid "Visualization groups"
+msgstr "Visualization groups"
+
+msgid "Configuration of the visualization groups for push analytics and chat bot"
+msgstr "Configuration of the visualization groups for push analytics and chat bot"
+
+msgid "Add visualization group"
+msgstr "Add visualization group"
+
+msgid "There are no Push Analytics configured, click the below button to add new."
+msgstr "There are no Push Analytics configured, click the below button to add new."
+
+msgid "Send push analytics"
+msgstr "Send push analytics"
+
+msgid ""
+"You can use different formatting conventions as per the selected gateway. "
+"(E.g * to bold for whatsapp gateway)"
+msgstr ""
+"You can use different formatting conventions as per the selected gateway. "
+"(E.g * to bold for whatsapp gateway)"
+
+msgid "Add new recipient"
+msgstr "Add new recipient"
+
+msgid "Type"
+msgstr "Type"
+
+msgid "Group"
+msgstr "Group"
+
+msgid "Phone Number"
+msgstr "Phone Number"
+
+msgid "Number"
+msgstr "Number"
+
+msgid "Could not send any visualizations to user"
+msgstr "Could not send any visualizations to user"
+
+msgid "Messages successfully sent"
+msgstr "Messages successfully sent"
+
+msgid "Configuration saved successfully"
+msgstr "Configuration saved successfully"
+
+msgid "Error saving configuration"
+msgstr "Error saving configuration"
+
+msgid "Configuration updated successfully"
+msgstr "Configuration updated successfully"
+
+msgid "Error updating configuration"
+msgstr "Error updating configuration"
+
+msgid "Updating"
+msgstr "Updating"
+
+msgid "Sending..."
+msgstr "Sending..."
+
+msgid "Update and send"
+msgstr "Update and send"
+
+msgid "Save and send"
+msgstr "Save and send"
+
+msgid "Are you sure you want to close the form? All changes will be lost."
+msgstr "Are you sure you want to close the form? All changes will be lost."
+
+msgid "Confirm close"
+msgstr "Confirm close"
+
+msgid "Close"
+msgstr "Close"
+
+msgid "Gateway is required"
+msgstr "Gateway is required"
+
+msgid "Group is required"
+msgstr "Group is required"
+
+msgid "Visualization group"
+msgstr "Visualization group"
+
+msgid "At least one visualization is required"
+msgstr "At least one visualization is required"
+
+msgid "Description"
+msgstr "Description"
+
+msgid "Recipients"
+msgstr "Recipients"
+
+msgid "Configuration deleted successfully"
+msgstr "Configuration deleted successfully"
+
+msgid "Delete"
+msgstr "Delete"
+
+msgid "Deleting..."
+msgstr "Deleting..."
+
+msgid "Confirm delete"
+msgstr "Confirm delete"
+
+msgid "Are you sure you want to delete the configuration {{name}}?"
+msgstr "Are you sure you want to delete the configuration {{name}}?"
+
+msgid "Send"
+msgstr "Send"
+
+msgid "Confirm sending"
+msgstr "Confirm sending"
+
+msgid "Add push analytics configuration"
+msgstr "Add push analytics configuration"
+
+msgid "Page not Found"
+msgstr "Page not Found"
+
+msgid "Go to home"
+msgstr "Go to home"
+
+msgid "There are no bookings for the specified filters"
+msgstr "There are no bookings for the specified filters"
+
+msgid "There are no data available!"
+msgstr "There are no data available!"
+
+msgid "Push Analytics"
+msgstr "Push Analytics"
+
+msgid "Chat Bot"
+msgstr "Chat Bot"
+
+msgid "Configuration"
+msgstr "Configuration"

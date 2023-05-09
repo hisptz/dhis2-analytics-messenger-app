@@ -1,7 +1,7 @@
 {
-  "name": "whatsapp-dhis2-analytics",
+  "name": "dhis2-analytics-messenger-app",
   "version": "1.0.0",
-  "description": "",
+  "description": "A DHIS2 web application that allows sending of analytics data to messaging applications",
   "license": "BSD-3-Clause",
   "private": true,
   "scripts": {
@@ -11,9 +11,24 @@
     "deploy": "d2-app-scripts deploy"
   },
   "devDependencies": {
-    "@dhis2/cli-app-scripts": "^10.3.8"
+    "@dhis2/cli-app-scripts": "^10.3.8",
+    "@types/async": "^3.2.20",
+    "@types/lodash": "^4.14.194",
+    "@types/react-helmet": "^6.1.6"
   },
   "dependencies": {
-    "@dhis2/app-runtime": "^3.9.2"
+    "@dhis2/app-runtime": "^3.9.2",
+    "@dhis2/app-service-datastore": "^1.0.0-beta.3",
+    "@hisptz/dhis2-ui": "^1.0.42",
+    "@hisptz/dhis2-utils": "^1.0.42",
+    "async-es": "^3.2.4",
+    "axios": "^1.4.0",
+    "lodash": "^4.17.21",
+    "luxon": "^3.3.0",
+    "react-helmet": "^6.1.0",
+    "react-hook-form": "^7.43.9",
+    "react-router-dom": "^6.11.1",
+    "recoil": "^0.7.7",
+    "usehooks-ts": "^2.9.1"
   }
 }
