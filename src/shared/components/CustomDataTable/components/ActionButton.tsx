@@ -1,14 +1,14 @@
-import { DataTableRow as DataTableRowInterface, TableAction } from '../interfaces';
-import React, { useState } from 'react';
-import { IconButton } from '@mui/material';
-import { FlyoutMenu, IconMore24, MenuItem, Popover } from '@dhis2/ui';
+import {TableAction} from '../interfaces';
+import React, {useState} from 'react';
+import {IconButton} from '@mui/material';
+import {FlyoutMenu, IconMore24, MenuItem, Popover} from '@dhis2/ui';
 
 export function ActionButton({
     actions,
     row,
 }: {
     actions?: TableAction[];
-    row: DataTableRowInterface;
+    row: any;
 }) {
     const [buttonRef, setButtonRef] = useState<HTMLButtonElement | null>(null);
 

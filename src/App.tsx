@@ -6,6 +6,7 @@ import AppRouter from "./modules/Router";
 import "./main.css";
 import "./common.css";
 import {ConfirmDialogProvider} from "@hisptz/dhis2-ui";
+import {RecoilRoot} from "recoil";
 
 const App = () => (
     <DataStoreProvider
@@ -15,17 +16,19 @@ const App = () => (
         }
     >
         <div>
-            <Suspense
-                fallback={
-                    <FullPageLoader
-                        message={i18n.t("Please wait this might take a while...")}
-                    />
-                }
-            >
-                <ConfirmDialogProvider>
-                    <AppRouter/>
-                </ConfirmDialogProvider>
-            </Suspense>
+            <RecoilRoot>
+                <Suspense
+                    fallback={
+                        <FullPageLoader
+                            message={i18n.t("Please wait this might take a while...")}
+                        />
+                    }
+                >
+                    <ConfirmDialogProvider>
+                        <AppRouter/>
+                    </ConfirmDialogProvider>
+                </Suspense>
+            </RecoilRoot>
         </div>
     </DataStoreProvider>
 );

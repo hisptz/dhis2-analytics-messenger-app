@@ -80,6 +80,10 @@ label > span:nth-child(2) {
     padding: 16px;
 }
 
+.p-32 {
+    padding: 32px;
+}
+
 .ph-8 {
     padding-left: 8px;
     padding-right: 8px;

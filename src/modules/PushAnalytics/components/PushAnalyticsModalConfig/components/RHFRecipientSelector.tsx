@@ -84,9 +84,7 @@ function AddRecipient({onChange, groups}: { onChange: (recipient: Contact) => vo
 
 
 export function RHFRecipientSelector({validations, name, label, required}: RHFRecipientSelectorProps) {
-    const [loading, setLoading] = useState(false);
     const [groups, setGroups] = useState<Array<{ label: string, value: string }>>([]);
-    const [contact, setContact] = useState<String | null>();
     const [gateways] = useSavedObject(`gateways`);
     const [selectedGateway] = useWatch({
         name: ['gateway']

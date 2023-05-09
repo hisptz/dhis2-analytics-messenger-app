@@ -9,7 +9,7 @@ import {
     ModalTitle,
     SplitButton
 } from "@dhis2/ui"
-import React, {useCallback, useMemo} from "react"
+import React, {useCallback, useEffect, useMemo} from "react"
 import {Contact, PushAnalytics} from "../../../../shared/interfaces";
 import {FormProvider, useForm} from "react-hook-form";
 import i18n from '@dhis2/d2-i18n';
@@ -27,10 +27,12 @@ import {uid} from "@hisptz/dhis2-utils";
 import {RHFDescription} from "./components/RHFDescription";
 import {RHFRecipientSelector} from "./components/RHFRecipientSelector";
 import {asyncify, mapSeries} from "async-es";
+import {useResetRecoilState} from "recoil";
+import {ConfigUpdateState} from "../PushAnalyticsTable";
 
 
 export interface PushAnalyticsModalConfigProps {
-    config?: PushAnalytics,
+    config?: PushAnalytics | null,
     hidden: boolean;
     onClose: () => void
 }
@@ -133,7 +135,7 @@ const updateMutation: any = {
 }
 
 
-function useSaveConfig(defaultConfig?: PushAnalytics) {
+function useSaveConfig(defaultConfig?: PushAnalytics | null) {
     const id = useMemo(() => uid(), []);
     const {show} = useAlert(({message}) => message, ({type}) => ({...type, duration: 3000}))
     const [create, {loading: creating}] = useDataMutation(generateCreateMutation(id), {
@@ -192,10 +194,33 @@ function SendActions({actions}: { actions: { label: string; action: () => void }
     )
 }
 
+
+function getButtonLabel(creating: boolean, updating: boolean, sending: boolean, config?: PushAnalytics | null) {
+    if (config) {
+        if (updating) {
+            return i18n.t("Updating")
+        }
+        if (sending) {
+            return i18n.t("Sending...")
+        }
+        return i18n.t("Update and send")
+    } else {
+        if (creating) {
+            return i18n.t("Saving...")
+        }
+        if (sending) {
+            return i18n.t("Sending...")
+        }
+        return i18n.t("Save and send")
+    }
+}
+
+
 export function PushAnalyticsModalConfig({config, hidden, onClose}: PushAnalyticsModalConfigProps) {
+    const resetConfigUpdate = useResetRecoilState(ConfigUpdateState);
     const {confirm} = useConfirmDialog()
     const form = useForm<PushAnalytics>({
-        defaultValues: config,
+        defaultValues: config || {},
         shouldFocusError: false
     })
     const {send, loading: sending} = useSendAnalytics();
@@ -203,9 +228,9 @@ export function PushAnalyticsModalConfig({config, hidden, onClose}: PushAnalytic
 
     const onSaveAndSend = useCallback(
         async (data: PushAnalytics) => {
-            // await save(data);
+            await save(data);
             await send(data);
-            // onClose();
+            onClose();
         },
         [send],
     );
@@ -233,6 +258,15 @@ export function PushAnalyticsModalConfig({config, hidden, onClose}: PushAnalytic
         [],
     );
 
+    useEffect(() => {
+        if (config) {
+            form.reset(config)
+        }
+        return () => {
+            form.reset({});
+            resetConfigUpdate();
+        }
+    }, [config])
 
     const onSave = useCallback(
         async (data: PushAnalytics) => {
@@ -240,26 +274,6 @@ export function PushAnalyticsModalConfig({config, hidden, onClose}: PushAnalytic
         },
         [save],
     );
-
-    function getButtonLabel(creating: boolean, updating: boolean, sending: boolean, config: PushAnalytics | undefined) {
-        if (config) {
-            if (updating) {
-                return i18n.t("Updating")
-            }
-            if (sending) {
-                return i18n.t("Sending...")
-            }
-            return i18n.t("Update and send")
-        } else {
-            if (creating) {
-                return i18n.t("Saving...")
-            }
-            if (sending) {
-                return i18n.t("Sending...")
-            }
-            return i18n.t("Save and send")
-        }
-    }
 
     return (
         <Modal position="middle" hide={hidden} onClose={onCloseClick}>
@@ -295,15 +309,11 @@ export function PushAnalyticsModalConfig({config, hidden, onClose}: PushAnalytic
                     <SplitButton component={<SendActions actions={[
                         {
                             label: i18n.t("Save and send"),
-                            action: () => {
-                                form.handleSubmit(onSaveAndSend)
-                            }
+                            action: form.handleSubmit(onSaveAndSend)
                         },
                         {
                             label: i18n.t("Save"),
-                            action: () => {
-                                form.handleSubmit(onSave)
-                            }
+                            action: form.handleSubmit(onSave)
                         }
                     ]}/>} loading={sending || creating || updating} onClick={form.handleSubmit(onSaveAndSend)}
                                  primary>{getButtonLabel(creating, updating, sending, config)}</SplitButton>

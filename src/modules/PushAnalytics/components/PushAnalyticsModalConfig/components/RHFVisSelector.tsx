@@ -1,7 +1,7 @@
 import React, {useMemo} from "react";
 import {useGroups} from "./RHFGroupSelector";
 import {Controller, useFormContext, useWatch} from "react-hook-form";
-import {find} from "lodash";
+import {find, intersectionBy, isEmpty} from "lodash";
 import {MultiSelectField, MultiSelectOption} from "@dhis2/ui";
 
 export interface RHFVisSelectorProps {
@@ -15,8 +15,8 @@ export function RHFVisSelector({validations, name, label, required}: RHFVisSelec
     const {data: groups, loading} = useGroups();
     const {setValue} = useFormContext();
 
-    const [selectedGroup] = useWatch({
-        name: ['group']
+    const [selectedGroup, visualizations] = useWatch({
+        name: ['group', 'visualizations']
     });
 
     const options = useMemo(() => {
@@ -24,9 +24,13 @@ export function RHFVisSelector({validations, name, label, required}: RHFVisSelec
             return [];
         }
         const group = find(groups, ['id', selectedGroup]);
-        setValue(`${name}`, [])
-        return group?.visualizations?.map((vis: any) => ({label: vis.name, value: vis.id})) ?? []
+        const visualizationOptions = group?.visualizations?.map((vis: any) => ({label: vis.name, value: vis.id})) ?? [];
 
+        if (isEmpty(intersectionBy(visualizationOptions, visualizations, (option: any, vis: any) => option.value === vis?.id))) {
+            setValue(`${name}`, [])
+        }
+
+        return visualizationOptions;
     }, [groups, selectedGroup]);
 
     return (

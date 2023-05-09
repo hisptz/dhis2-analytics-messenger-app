@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2023-05-08T14:28:56.987Z\n"
-"PO-Revision-Date: 2023-05-08T14:28:56.987Z\n"
+"POT-Creation-Date: 2023-05-09T04:49:20.177Z\n"
+"PO-Revision-Date: 2023-05-09T04:49:20.177Z\n"
 
 msgid "Fetching App configurations..."
 msgstr "Fetching App configurations..."
@@ -149,9 +149,6 @@ msgstr "Phone Number"
 msgid "Number"
 msgstr "Number"
 
-msgid "Recipients"
-msgstr "Recipients"
-
 msgid "Could not send any visualizations to user"
 msgstr "Could not send any visualizations to user"
 
@@ -205,6 +202,12 @@ msgstr "At least one visualization is required"
 
 msgid "Description"
 msgstr "Description"
+
+msgid "Recipients"
+msgstr "Recipients"
+
+msgid "Add push analytics configuration"
+msgstr "Add push analytics configuration"
 
 msgid "Page not Found"
 msgstr "Page not Found"
