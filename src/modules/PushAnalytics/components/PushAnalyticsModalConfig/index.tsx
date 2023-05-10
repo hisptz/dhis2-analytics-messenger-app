@@ -27,7 +27,7 @@ import {uid} from "@hisptz/dhis2-utils";
 import {RHFDescription} from "./components/RHFDescription";
 import {RHFRecipientSelector} from "./components/RHFRecipientSelector";
 import {asyncify, mapSeries} from "async-es";
-import {useResetRecoilState} from "recoil";
+import {useRecoilValue, useResetRecoilState} from "recoil";
 import {ConfigUpdateState} from "../PushAnalyticsTable";
 
 
@@ -215,12 +215,13 @@ function getButtonLabel(creating: boolean, updating: boolean, sending: boolean, 
 }
 
 
-export function PushAnalyticsModalConfig({config, hidden, onClose}: PushAnalyticsModalConfigProps) {
+export function PushAnalyticsModalConfig({hidden, onClose}: PushAnalyticsModalConfigProps) {
+    const config = useRecoilValue(ConfigUpdateState);
     const resetConfigUpdate = useResetRecoilState(ConfigUpdateState);
     const {confirm} = useConfirmDialog()
     const form = useForm<PushAnalytics>({
         defaultValues: config || {},
-        shouldFocusError: false
+        shouldFocusError: false,
     })
     const {send, loading: sending} = useSendAnalytics();
     const {save, creating, updating} = useSaveConfig(config);
@@ -250,20 +251,23 @@ export function PushAnalyticsModalConfig({config, hidden, onClose}: PushAnalytic
                         onClose()
                     }
                 });
-
             } else {
+                resetConfigUpdate();
                 form.reset({});
                 onClose()
             }
         },
-        [],
+        [onClose],
     );
-
     useEffect(() => {
         if (config) {
             form.reset(config)
         }
-    }, [config])
+
+        return () => {
+            form.reset({})
+        }
+    }, [config]);
 
     const onSave = useCallback(
         async (data: PushAnalytics) => {
