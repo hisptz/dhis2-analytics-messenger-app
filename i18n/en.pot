@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2023-05-09T08:54:56.216Z\n"
-"PO-Revision-Date: 2023-05-09T08:54:56.216Z\n"
+"POT-Creation-Date: 2023-05-10T10:55:05.412Z\n"
+"PO-Revision-Date: 2023-05-10T10:55:05.412Z\n"
 
 msgid "Fetching App configurations..."
 msgstr "Fetching App configurations..."
@@ -166,9 +166,6 @@ msgstr "Configuration updated successfully"
 
 msgid "Error updating configuration"
 msgstr "Error updating configuration"
-
-msgid "Updating"
-msgstr "Updating"
 
 msgid "Sending..."
 msgstr "Sending..."
