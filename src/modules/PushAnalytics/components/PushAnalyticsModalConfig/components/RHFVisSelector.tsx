@@ -1,8 +1,83 @@
-import React, {useMemo} from "react";
+import React, {useEffect, useMemo} from "react";
 import {useGroups} from "./RHFGroupSelector";
 import {Controller, useFormContext, useWatch} from "react-hook-form";
-import {find, intersectionBy, isEmpty} from "lodash";
+import {find, intersectionWith, isEmpty} from "lodash";
 import {MultiSelectField, MultiSelectOption} from "@dhis2/ui";
+
+
+function FieldControl({groups, name}: { groups: any; name: string }) {
+    const {setValue} = useFormContext();
+    const [selectedGroup, visualizations] = useWatch({
+        name: ['group', 'visualizations']
+    });
+
+    const group = useMemo(() => {
+        return find(groups, ['id', selectedGroup]);
+    }, [groups, selectedGroup]);
+
+    const options = useMemo(() => {
+        if (!group) {
+            return [];
+        }
+        return group?.visualizations?.map((vis: any) => ({label: vis.name, value: vis.id})) ?? [];
+    }, [group]);
+
+    useEffect(() => {
+        const validValues = intersectionWith(visualizations, options, (vis: any, option: any) => {
+            return vis.id === option.value
+        })
+
+        console.log(validValues)
+        if (isEmpty(validValues)) {
+            //Requires a reset
+            setValue(name, [])
+        }
+    }, [selectedGroup])
+
+    return null;
+}
+
+export function Field({field, fieldState, options, loading, required, label, group}: {
+    label: string;
+    field: any;
+    fieldState: any,
+    options: any;
+    loading?: boolean;
+    required?: boolean;
+    group: any
+}) {
+
+    const groupChanged = isEmpty(intersectionWith(field.value, options, (vis: any, option: any) => {
+        return vis.id === option.value
+    }))
+
+    return (
+        <MultiSelectField
+            loading={loading}
+            required={required}
+            filterable
+            label={label}
+            onChange={({selected}: { selected: string[] }) => {
+                field.onChange(selected?.map((sel) => {
+                    const option = find(options, ['value', sel]);
+                    return {
+                        id: option.value,
+                        name: option.label
+                    }
+                }))
+            }}
+            selected={groupChanged ? [] : field.value?.map(({id}: { id: string }) => id) ?? []}
+            error={!!fieldState.error}
+            validationText={fieldState.error?.message}
+        >
+            {
+                options?.map(({label, value}: any) => (
+                    <MultiSelectOption key={`${label}-${value}`} label={label} value={value}/>))
+            }
+        </MultiSelectField>
+    )
+}
+
 
 export interface RHFVisSelectorProps {
     name: string;
@@ -13,57 +88,42 @@ export interface RHFVisSelectorProps {
 
 export function RHFVisSelector({validations, name, label, required}: RHFVisSelectorProps) {
     const {data: groups, loading} = useGroups();
-    const {setValue} = useFormContext();
 
-    const [selectedGroup, visualizations] = useWatch({
-        name: ['group', 'visualizations']
+    const [selectedGroup] = useWatch({
+        name: ['group']
     });
 
-    const options = useMemo(() => {
-        if (!selectedGroup) {
-            return [];
-        }
-        const group = find(groups, ['id', selectedGroup]);
-        const visualizationOptions = group?.visualizations?.map((vis: any) => ({label: vis.name, value: vis.id})) ?? [];
-
-        if (isEmpty(intersectionBy(visualizationOptions, visualizations, (option: any, vis: any) => option.value === vis?.id))) {
-            setValue(`${name}`, [])
-        }
-
-        return visualizationOptions;
+    const group = useMemo(() => {
+        return find(groups, ['id', selectedGroup]);
     }, [groups, selectedGroup]);
 
-    return (
-        <Controller
-            rules={validations}
-            render={
-                ({field, fieldState, formState,}) => {
+    const options = useMemo(() => {
+        if (!group) {
+            return [];
+        }
+        return group?.visualizations?.map((vis: any) => ({label: vis.name, value: vis.id})) ?? [];
+    }, [group]);
 
-                    return (
-                        <MultiSelectField
-                            required={required}
-                            filterable
-                            label={label}
-                            onChange={({selected}: { selected: string[] }) => {
-                                field.onChange(selected?.map((sel) => {
-                                    const option = find(options, ['value', sel]);
-                                    return {
-                                        id: option.value,
-                                        name: option.label
-                                    }
-                                }))
-                            }}
-                            selected={field.value?.map(({id}: { id: string }) => id) ?? []}
-                            error={!!fieldState.error}
-                            validationText={fieldState.error?.message}
-                        >
-                            {
-                                options?.map(({label, value}: any) => (
-                                    <MultiSelectOption key={`${label}-${value}`} label={label} value={value}/>))
-                            }
-                        </MultiSelectField>
-                    )
-                }
-            } name={name}/>
+
+    return (
+        <>
+            <Controller
+                rules={validations}
+                render={
+                    ({field, fieldState, formState,}) => {
+                        return (
+                            <Field
+                                group={group}
+                                options={options}
+                                field={field}
+                                fieldState={fieldState}
+                                label={label}
+                                required={required}
+                                loading={loading}
+                            />
+                        )
+                    }
+                } name={name}/>
+        </>
     )
 }
