@@ -6,7 +6,7 @@ import {useAlert, useDataMutation, useDataQuery} from "@dhis2/app-runtime";
 import CustomTable from "../../../../shared/components/CustomTable";
 import EmptyPushAnalyticsList from "../EmptyPushAnalyticsList";
 import {useBoolean} from "usehooks-ts";
-import {PushAnalyticsModalConfig, useSendAnalytics} from "../PushAnalyticsModalConfig";
+import {PushAnalyticsModalConfig} from "../PushAnalyticsModalConfig";
 import {find, isEmpty} from "lodash";
 import {Button, Chip, IconAdd24, IconDelete24, IconEdit24, IconMessages24, IconUser24, IconUserGroup24} from "@dhis2/ui"
 import FullPageLoader from "../../../../shared/components/Loaders";
@@ -14,6 +14,7 @@ import {useSavedObject} from "@dhis2/app-service-datastore";
 import {ActionButton} from "../../../../shared/components/CustomDataTable/components/ActionButton";
 import {atom, useRecoilValue, useSetRecoilState} from "recoil";
 import {useConfirmDialog} from "@hisptz/dhis2-ui";
+import {useSendAnalytics} from "../PushAnalyticsModalConfig/hooks/send";
 
 const tableColumns: Column[] = [
     {
