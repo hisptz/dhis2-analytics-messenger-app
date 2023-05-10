@@ -134,7 +134,6 @@ const updateMutation: any = {
     data: ({data}: any) => data
 }
 
-
 function useSaveConfig(defaultConfig?: PushAnalytics | null) {
     const id = useMemo(() => uid(), []);
     const {show} = useAlert(({message}) => message, ({type}) => ({...type, duration: 3000}))
@@ -198,7 +197,7 @@ function SendActions({actions}: { actions: { label: string; action: () => void }
 function getButtonLabel(creating: boolean, updating: boolean, sending: boolean, config?: PushAnalytics | null) {
     if (config) {
         if (updating) {
-            return i18n.t("Updating")
+            return i18n.t("Updating...")
         }
         if (sending) {
             return i18n.t("Sending...")
@@ -230,14 +229,14 @@ export function PushAnalyticsModalConfig({config, hidden, onClose}: PushAnalytic
         async (data: PushAnalytics) => {
             await save(data);
             await send(data);
-            onClose();
+            onCloseClick(true);
         },
         [send],
     );
 
     const onCloseClick = useCallback(
-        () => {
-            if (form.formState.isDirty) {
+        (fromSave?: boolean) => {
+            if (!fromSave && form.formState.isDirty) {
                 confirm({
                     message: i18n.t("Are you sure you want to close the form? All changes will be lost."),
                     title: i18n.t("Confirm close"),
@@ -246,10 +245,12 @@ export function PushAnalyticsModalConfig({config, hidden, onClose}: PushAnalytic
                     onCancel: () => {
                     },
                     onConfirm: () => {
+                        resetConfigUpdate();
                         form.reset({});
                         onClose()
                     }
-                })
+                });
+
             } else {
                 form.reset({});
                 onClose()
@@ -262,16 +263,12 @@ export function PushAnalyticsModalConfig({config, hidden, onClose}: PushAnalytic
         if (config) {
             form.reset(config)
         }
-        return () => {
-            form.reset({});
-            resetConfigUpdate();
-        }
     }, [config])
 
     const onSave = useCallback(
         async (data: PushAnalytics) => {
             await save(data);
-            onClose()
+            onCloseClick(true)
         },
         [save],
     );
@@ -309,11 +306,11 @@ export function PushAnalyticsModalConfig({config, hidden, onClose}: PushAnalytic
                     <Button onClick={onCloseClick}>{i18n.t("Cancel")}</Button>
                     <SplitButton component={<SendActions actions={[
                         {
-                            label: i18n.t("Save and send"),
+                            label: config ? i18n.t("Update and send") : i18n.t("Save and send"),
                             action: form.handleSubmit(onSaveAndSend)
                         },
                         {
-                            label: i18n.t("Save"),
+                            label: config ? i18n.t("Update") : i18n.t("Save"),
                             action: form.handleSubmit(onSave)
                         }
                     ]}/>} loading={sending || creating || updating} onClick={form.handleSubmit(onSaveAndSend)}
