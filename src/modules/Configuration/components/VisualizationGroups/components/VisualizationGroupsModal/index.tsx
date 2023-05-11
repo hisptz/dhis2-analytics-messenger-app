@@ -3,46 +3,51 @@ import {Button, ButtonStrip, Modal, ModalActions, ModalContent, ModalTitle} from
 import i18n from '@dhis2/d2-i18n';
 import {FormProvider, useForm} from "react-hook-form";
 import {RHFTextInputField} from "@hisptz/dhis2-ui";
-import {useSaveVisualizationGroup} from "./hooks/save";
+import {useSaveVisualizationGroup, VisGroupUpdateState} from "./hooks/save";
 import {RHFVisualizationSelector} from "./Components/RHFVisualizationSelector";
 import {isEmpty} from "lodash";
+import {VisualizationGroup} from "../../schema";
+import {useRecoilValue, useResetRecoilState} from "recoil";
 
-
-export interface VisualizationGroupConfig {
-    id: string;
-    name: string;
-    visualizations: {
-        id: string;
-        name: string
-    }[]
-}
 
 export interface VisualizationGroupsModalProps {
     onClose: () => void,
-    config?: VisualizationGroupConfig;
     hidden: boolean;
 }
 
-export function VisualizationGroupsModal({onClose, config, hidden}: VisualizationGroupsModalProps) {
-    const form = useForm<VisualizationGroupConfig>({
-        defaultValues: config,
+export function VisualizationGroupsModal({onClose, hidden}: VisualizationGroupsModalProps) {
+    const group = useRecoilValue(VisGroupUpdateState);
+    const resetGroupUpdate = useResetRecoilState(VisGroupUpdateState);
+    const form = useForm<VisualizationGroup>({
+        defaultValues: group || {},
         shouldFocusError: false
     });
-    const {save, updating, creating} = useSaveVisualizationGroup(config);
 
-    const onSubmit = useCallback(
-        async (data: VisualizationGroupConfig) => {
-            await save(data);
+    const {save, updating, creating} = useSaveVisualizationGroup();
+    const onCloseClick = useCallback(
+        () => {
+            form.reset({});
+            resetGroupUpdate();
             onClose()
         },
-        [],
+        [onClose],
     );
 
+    const onSubmit = useCallback(
+        async (data: VisualizationGroup) => {
+            await save(data);
+            onCloseClick()
+        },
+        [onCloseClick],
+    );
+
+    console.log(group)
+
     return (
-        <Modal position="middle" hide={hidden} onClose={onClose}>
+        <Modal position="middle" hide={hidden} onClose={onCloseClick}>
             <ModalTitle>
                 {i18n.t("{{operation}} group", {
-                    operation: config ? i18n.t("Update") : i18n.t("Add")
+                    operation: group ? i18n.t("Update") : i18n.t("Add")
                 })}
             </ModalTitle>
             <ModalContent>
@@ -65,9 +70,9 @@ export function VisualizationGroupsModal({onClose, config, hidden}: Visualizatio
             </ModalContent>
             <ModalActions>
                 <ButtonStrip>
-                    <Button onClick={onClose}>{i18n.t("Cancel")}</Button>
+                    <Button onClick={onCloseClick}>{i18n.t("Cancel")}</Button>
                     <Button loading={creating || updating} onClick={form.handleSubmit(onSubmit)}
-                            primary>{config ? updating ? i18n.t("Updating...") : i18n.t("Update") : creating ? i18n.t("Saving...") : i18n.t("Save")}</Button>
+                            primary>{group ? updating ? i18n.t("Updating...") : i18n.t("Update") : creating ? i18n.t("Saving...") : i18n.t("Save")}</Button>
                 </ButtonStrip>
             </ModalActions>
         </Modal>

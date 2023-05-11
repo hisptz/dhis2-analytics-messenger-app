@@ -1,49 +1,63 @@
-import {useCallback} from "react";
-import {VisualizationGroupConfig} from "../index";
+import {useCallback, useMemo} from "react";
 import {useAlert, useDataMutation} from "@dhis2/app-runtime";
 import {ANALYTICS_GROUPS_DATASTORE_KEY} from "../../../../../../../shared/constants/dataStore";
 import {uid} from "@hisptz/dhis2-utils";
 import i18n from '@dhis2/d2-i18n';
+import {VisualizationGroup} from "../../../schema";
+import {atom, useRecoilValue} from "recoil";
 
-const generateCreateQuery = (id: string) => ({
+
+export const VisGroupUpdateState = atom<VisualizationGroup | null>({
+    key: "vis-group-update",
+    default: null
+})
+const generateCreateQuery = (id: string): any => ({
     type: "create",
     resource: `dataStore/${ANALYTICS_GROUPS_DATASTORE_KEY}/${id}`,
     data: ({data}: any) => data,
 })
 
-const updateGroupMutation = {
+const updateGroupMutation: any = {
     type: "update",
     resource: `dataStore/${ANALYTICS_GROUPS_DATASTORE_KEY}`,
     data: ({data}: any) => data,
-    id: ({id}: any) => id
+    id: ({data}: any) => data.key
 }
 
-export function useSaveVisualizationGroup(group?: VisualizationGroupConfig) {
-    const id = group?.id ?? uid();
-    const [create, {loading: creating}] = useDataMutation(generateCreateQuery(id));
-    const [update, {loading: updating}] = useDataMutation(updateGroupMutation)
-    const {show} = useAlert(({message}: { message: string }) => message, ({type}: { type: Record<string, any> }) => ({
-        ...type,
-        duration: 3000
-    }))
+export function useSaveVisualizationGroup() {
+    const defaultGroup = useRecoilValue(VisGroupUpdateState);
+    const {show} = useAlert(({message}) => message, ({type}) => ({...type, duration: 3000}))
+    const id = useMemo(() => uid(), []);
+    const [create, {loading: creating}] = useDataMutation(generateCreateQuery(id), {
+        onComplete: () => {
+            show({message: i18n.t("Visualization group created successfully"), type: {success: true}})
+        },
+        onError: (e) => {
+            show({message: `${i18n.t("Error creating visualization group")}: ${e.message}`, type: {critical: true}})
+        }
+    });
+    const [update, {loading: updating}] = useDataMutation(updateGroupMutation, {
+        onComplete: () => {
+            show({message: i18n.t("Visualization group updated successfully"), type: {success: true}})
+        },
+        onError: (e) => {
+            show({message: `${i18n.t("Error updating visualization group")}: ${e.message}`, type: {critical: true}})
+        }
+    })
 
-    const save = useCallback(async (data: VisualizationGroupConfig) => {
-        if (group) {
+    const save = useCallback(async (data: VisualizationGroup) => {
+        if (defaultGroup || !!data.id) {
             await update({
-                data,
-                id: group.id
+                data
             })
-            show({message: i18n.t("Group updated successfully"), type: {success: true}})
         } else {
             const newGroup = {
                 ...data,
-                id: uid()
+                id
             }
             await create({
                 data: newGroup,
-                id: newGroup.id
             })
-            show({message: i18n.t("Group created successfully"), type: {success: true}})
         }
     }, [create, update]);
 
