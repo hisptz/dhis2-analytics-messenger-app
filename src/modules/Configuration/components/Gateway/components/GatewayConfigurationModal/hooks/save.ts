@@ -1,48 +1,84 @@
-import {useSavedObject} from "@dhis2/app-service-datastore";
-import {useCallback} from "react";
-import {GatewayConfig} from "../index";
+import {useCallback, useMemo} from "react";
 import {uid} from "@hisptz/dhis2-utils";
-import {cloneDeep, findIndex, isEmpty, set} from "lodash";
-import {useAlert} from "@dhis2/app-runtime";
+import {useAlert, useDataMutation} from "@dhis2/app-runtime";
 import i18n from '@dhis2/d2-i18n';
+import {GATEWAY_DATASTORE_KEY} from "../../../../../../../shared/constants/dataStore";
+import {atom, useRecoilValue} from "recoil";
+import {Gateway} from "../../../schema";
+
+
+const generateGatewayCreateMutation = (id: string): any => ({
+    type: "create",
+    resource: `dataStore/${GATEWAY_DATASTORE_KEY}/${id}`,
+    data: ({data}: any) => data
+})
+
+const updateGatewayMutation: any = {
+    type: "update",
+    resource: `dataStore/${GATEWAY_DATASTORE_KEY}`,
+    id: ({data}: any) => data.id,
+    data: ({data}: any) => data
+}
+
+
+export const GatewayUpdateState = atom<Gateway | null>({
+    key: "gateway-update-state",
+    default: null,
+})
 
 export function useSaveGateway() {
-    const [value, {replace}] = useSavedObject(`gateways`,);
-    const {show} = useAlert(({message}: { message: string }) => message, ({type}: { type: Record<string, any> }) => ({
+    const gateway = useRecoilValue(GatewayUpdateState);
+    const id = useMemo(() => uid(), []);
+    const {show, hide} = useAlert(({message}: { message: string }) => message, ({type}: {
+        type: Record<string, any>
+    }) => ({
         ...type,
         duration: 3000
     }))
-
-    const save = useCallback(async (config: GatewayConfig) => {
-        const id = config.id;
-        const index = findIndex(value as any, ['id', id]);
-        if (index === -1) {
-            const newConfig = {
-                ...config,
-                id: uid()
-            }
-            if (isEmpty(value)) {
-                await replace([
-                    newConfig
-                ])
-            } else {
-                await replace([
-                    ...(value as any),
-                    newConfig
-                ])
-            }
+    const [create, {loading: creating}] = useDataMutation(generateGatewayCreateMutation(id), {
+        onComplete: () => {
             show({message: i18n.t("Gateway config saved successfully"), type: {success: true}})
-        } else {
-            const updatedValue = cloneDeep(value);
-            set(updatedValue, [index], config);
-            await replace(updatedValue);
-            show({message: i18n.t("Gateway config updated successfully"), type: {success: true}})
-
+        },
+        onError: (error) => {
+            show({
+                message: `${i18n.t("Could not save gateway information")}: ${error.message}`,
+                type: {critical: true}
+            });
+            setTimeout(hide, 5000);
         }
+    });
+    const [update, {loading: updating}] = useDataMutation(updateGatewayMutation, {
+        onComplete: () => {
+            show({message: i18n.t("Gateway config updated successfully"), type: {success: true}})
+        },
+        onError: (error) => {
+            show({
+                message: `${i18n.t("Could not update gateway information")}: ${error.message}`,
+                type: {critical: true}
+            });
+            setTimeout(hide, 5000);
+        }
+    });
 
-    }, [replace, value]);
+    const save = useCallback(async (config: Gateway) => {
+        if (gateway || config.id) {
+            return await update({
+                data: config
+            })
+        } else {
+            return await create({
+                data: {
+                    // @ts-ignore
+                    id,
+                    ...config,
+                }
+            })
+        }
+    }, [gateway, id]);
 
     return {
-        save
+        save,
+        creating,
+        updating
     }
 }
