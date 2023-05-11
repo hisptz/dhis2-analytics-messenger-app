@@ -67,8 +67,12 @@ export function useVisualizationGroups(onEdit: () => void): {
                 index: index + 1,
                 id: id ?? "" as string,
                 name: name ?? "",
-                visualizations: (visualizations ?? []).map(({name, id}: any) => (
-                    <div key={`${id}-tag`}><Tag>{name}</Tag></div>)),
+                visualizations: <div style={{gap: 8}} className="row">
+                    {
+                        (visualizations ?? []).map(({name, id}: any) => (
+                            <div key={`${id}-tag`}><Tag>{name}</Tag></div>))
+                    }
+                </div>,
                 action: (<ActionButton
                     actions={[
                         {
