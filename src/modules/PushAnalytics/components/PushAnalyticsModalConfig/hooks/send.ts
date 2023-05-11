@@ -86,7 +86,7 @@ export function useSendAnalytics() {
                 show({message: `${i18n.t("Error sending message(s)")}: ${e.message}`, type: {critical: true}})
             }
         },
-        [],
+        [gateways],
     );
 
     return {
