@@ -6,14 +6,16 @@ import {useAlert, useDataMutation, useDataQuery} from "@dhis2/app-runtime";
 import CustomTable from "../../../../shared/components/CustomTable";
 import EmptyPushAnalyticsList from "../EmptyPushAnalyticsList";
 import {useBoolean} from "usehooks-ts";
-import {PushAnalyticsModalConfig, useSendAnalytics} from "../PushAnalyticsModalConfig";
+import {PushAnalyticsModalConfig} from "../PushAnalyticsModalConfig";
 import {find, isEmpty} from "lodash";
 import {Button, Chip, IconAdd24, IconDelete24, IconEdit24, IconMessages24, IconUser24, IconUserGroup24} from "@dhis2/ui"
 import FullPageLoader from "../../../../shared/components/Loaders";
-import {useSavedObject} from "@dhis2/app-service-datastore";
 import {ActionButton} from "../../../../shared/components/CustomDataTable/components/ActionButton";
 import {atom, useRecoilValue, useSetRecoilState} from "recoil";
 import {useConfirmDialog} from "@hisptz/dhis2-ui";
+import {useSendAnalytics} from "../PushAnalyticsModalConfig/hooks/send";
+import {useGateways} from "../../../Configuration/components/Gateway/hooks/data";
+import {Gateway} from "../../../Configuration/components/Gateway/schema";
 
 const tableColumns: Column[] = [
     {
@@ -86,10 +88,10 @@ function usePushAnalyticsConfig({onEdit}: { onEdit: () => void }) {
     const {confirm} = useConfirmDialog();
     const {send,} = useSendAnalytics()
 
-    const [gateways] = useSavedObject(`gateways`)
+    const {gateways, loading: loadingGateways} = useGateways()
     const configs = useMemo(() => {
         return data?.config?.entries?.map((config, index) => {
-            const gateway = find((gateways as any[]), ['id', config.gateway]);
+            const gateway = find((gateways as Gateway[]), ['id', config.gateway]);
             const contacts = config?.contacts;
             return {
                 ...config,
@@ -158,11 +160,11 @@ function usePushAnalyticsConfig({onEdit}: { onEdit: () => void }) {
                 ]} row={config}/>
             }
         })
-    }, [data]);
+    }, [data, gateways]);
 
     return {
         data: configs,
-        loading,
+        loading: loadingGateways || loading,
         refetch
     }
 }
@@ -183,7 +185,9 @@ export default function PushAnalyticsTable(): React.ReactElement {
 
     return (
         <>
-            <PushAnalyticsModalConfig config={configUpdate} hidden={hidden} onClose={onClose}/>
+            {
+                !hidden && (<PushAnalyticsModalConfig config={configUpdate} hidden={hidden} onClose={onClose}/>)
+            }
             {isEmpty(data) ? <EmptyPushAnalyticsList anAddPushAnalytics={open}/> :
                 <div className="column gap-16" style={{width: "100%"}}>
                     <div>

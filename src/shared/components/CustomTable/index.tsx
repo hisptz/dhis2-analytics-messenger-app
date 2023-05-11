@@ -1,18 +1,18 @@
-import React, { useRef } from "react";
+import React, {useRef} from "react";
 import i18n from "@dhis2/d2-i18n";
 import {
   DataTable,
-  DataTableColumnHeader,
-  TableHead,
   DataTableCell,
+  DataTableColumnHeader,
   DataTableRow,
+  Pagination,
   TableBody,
   TableFoot,
-  Pagination,
+  TableHead,
 } from "@dhis2/ui";
-import { uid } from "@hisptz/dhis2-utils";
+import {uid} from "@hisptz/dhis2-utils";
 import classes from "./CustomTable.module.css";
-import { Column, CustomTableProps } from "../../interfaces";
+import {Column, CustomTableProps} from "../../interfaces";
 
 function CustomTableRow({
   columns,
@@ -47,27 +47,27 @@ export default function CustomTable({
     <DataTable bodyProps={{ loading: true }}>
       <TableHead>
         <DataTableRow>
-          {columns.map(({ key, label }) => (
-            <DataTableColumnHeader
-              dataTest={`${label}-column`}
-              key={`${tableId.current}-${key}-column-header`}
-            >
-              {label}
-            </DataTableColumnHeader>
+          {columns.map(({key, label}) => (
+              <DataTableColumnHeader
+                  dataTest={`${label}-column`}
+                  key={`${tableId.current}-${key}-column-header`}
+              >
+                {label}
+              </DataTableColumnHeader>
           ))}
         </DataTableRow>
       </TableHead>
-      <TableBody>
+      <TableBody loading={loading}>
         {data && data.length ? (
-          data.map((row, index) => (
-            <CustomTableRow
-              key={`${tableId.current}-${index}-row`}
-              row={row}
-              columns={columns}
-            />
-          ))
+            data.map((row, index) => (
+                <CustomTableRow
+                    key={`${tableId.current}-${index}-row`}
+                    row={row}
+                    columns={columns}
+                />
+            ))
         ) : (
-          <DataTableRow className={classes.row}>
+            <DataTableRow className={classes.row}>
             <DataTableCell
               colSpan={`${columns.length}`}
               key={`${tableId.current}-column`}

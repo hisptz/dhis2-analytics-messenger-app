@@ -1,6 +1,7 @@
-import {useSavedObject} from "@dhis2/app-service-datastore";
 import React, {useMemo} from "react";
 import {RHFSingleSelectField} from "@hisptz/dhis2-ui";
+import {useGateways} from "../../../../Configuration/components/Gateway/hooks/data";
+import {Gateway} from "../../../../Configuration/components/Gateway/schema";
 
 export interface RHFGatewaySelectorProps {
     name: string;
@@ -11,17 +12,18 @@ export interface RHFGatewaySelectorProps {
 
 
 export function RHFGatewaySelector({validations, name, label, required}: RHFGatewaySelectorProps) {
-    const [value] = useSavedObject('gateways');
+    const {gateways, loading} = useGateways();
 
     const options = useMemo(() => {
-        return (value as any).map((value: any) => ({
+        return (gateways as Gateway[]).map((value: any) => ({
             label: value.name,
             value: value.id
         }))
-    }, [value]);
+    }, [gateways]);
 
     return (
         <RHFSingleSelectField
+            loading={loading}
             required={required}
             validations={validations}
             label={label}

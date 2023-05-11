@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2023-05-09T08:54:56.216Z\n"
-"PO-Revision-Date: 2023-05-09T08:54:56.216Z\n"
+"POT-Creation-Date: 2023-05-11T12:17:00.233Z\n"
+"PO-Revision-Date: 2023-05-11T12:17:00.233Z\n"
 
 msgid "Fetching App configurations..."
 msgstr "Fetching App configurations..."
@@ -14,21 +14,23 @@ msgstr "Fetching App configurations..."
 msgid "Please wait this might take a while..."
 msgstr "Please wait this might take a while..."
 
-msgid ""
-"There are no Chat Bot's trigger configured, click the below button to add "
-"new."
-msgstr ""
-"There are no Chat Bot's trigger configured, click the below button to add "
-"new."
+msgid "Coming soon"
+msgstr "Coming soon"
 
-msgid "Add Chat Bot triggers"
-msgstr "Add Chat Bot triggers"
+msgid "Here is where you can configure different flows for the DHIS2 chat bot"
+msgstr "Here is where you can configure different flows for the DHIS2 chat bot"
 
 msgid "Gateway config saved successfully"
 msgstr "Gateway config saved successfully"
 
+msgid "Could not save gateway information"
+msgstr "Could not save gateway information"
+
 msgid "Gateway config updated successfully"
 msgstr "Gateway config updated successfully"
+
+msgid "Could not update gateway information"
+msgstr "Could not update gateway information"
 
 msgid "{{operation}} gateway"
 msgstr "{{operation}} gateway"
@@ -45,14 +47,29 @@ msgstr "Name"
 msgid "Name is required"
 msgstr "Name is required"
 
-msgid "URL"
-msgstr "URL"
+msgid "Whatsapp URL"
+msgstr "Whatsapp URL"
 
-msgid "URL is required"
-msgstr "URL is required"
+msgid "Whatsapp URL is required"
+msgstr "Whatsapp URL is required"
+
+msgid "Visualizer URL"
+msgstr "Visualizer URL"
+
+msgid "Chat bot URL"
+msgstr "Chat bot URL"
+
+msgid "Visualizer URL is required"
+msgstr "Visualizer URL is required"
 
 msgid "Cancel"
 msgstr "Cancel"
+
+msgid "Updating..."
+msgstr "Updating..."
+
+msgid "Saving..."
+msgstr "Saving..."
 
 msgid "Save"
 msgstr "Save"
@@ -60,8 +77,35 @@ msgstr "Save"
 msgid "S/N"
 msgstr "S/N"
 
-msgid "Url"
-msgstr "Url"
+msgid "Whatsapp Service"
+msgstr "Whatsapp Service"
+
+msgid "Visualizer Service"
+msgstr "Visualizer Service"
+
+msgid "Chat bot Service"
+msgstr "Chat bot Service"
+
+msgid "Actions"
+msgstr "Actions"
+
+msgid "Edit"
+msgstr "Edit"
+
+msgid "Delete"
+msgstr "Delete"
+
+msgid "Deleting..."
+msgstr "Deleting..."
+
+msgid "Confirm delete"
+msgstr "Confirm delete"
+
+msgid "Are you sure you want to delete the gateway {{name}}?"
+msgstr "Are you sure you want to delete the gateway {{name}}?"
+
+msgid "Add gateway"
+msgstr "Add gateway"
 
 msgid ""
 "There are no gateway configurations, click the above button to add new "
@@ -70,20 +114,29 @@ msgstr ""
 "There are no gateway configurations, click the above button to add new "
 "configurations."
 
+msgid "Gateway deleted successfully"
+msgstr "Gateway deleted successfully"
+
+msgid "Error deleting gateway"
+msgstr "Error deleting gateway"
+
 msgid "Gateway"
 msgstr "Gateway"
 
 msgid "Configuration of the gateways for push analytics"
 msgstr "Configuration of the gateways for push analytics"
 
-msgid "Add gateway"
-msgstr "Add gateway"
+msgid "Visualization group created successfully"
+msgstr "Visualization group created successfully"
 
-msgid "Group updated successfully"
-msgstr "Group updated successfully"
+msgid "Error creating visualization group"
+msgstr "Error creating visualization group"
 
-msgid "Group created successfully"
-msgstr "Group created successfully"
+msgid "Visualization group updated successfully"
+msgstr "Visualization group updated successfully"
+
+msgid "Error updating visualization group"
+msgstr "Error updating visualization group"
 
 msgid "{{operation}} group"
 msgstr "{{operation}} group"
@@ -94,23 +147,8 @@ msgstr "Select at least one visualization"
 msgid "Visualizations"
 msgstr "Visualizations"
 
-msgid "Updating..."
-msgstr "Updating..."
-
-msgid "Saving..."
-msgstr "Saving..."
-
 msgid "Group name"
 msgstr "Group name"
-
-msgid "created"
-msgstr "created"
-
-msgid "Actions"
-msgstr "Actions"
-
-msgid "Edit"
-msgstr "Edit"
 
 msgid "Visualization groups"
 msgstr "Visualization groups"
@@ -121,11 +159,23 @@ msgstr "Configuration of the visualization groups for push analytics and chat bo
 msgid "Add visualization group"
 msgstr "Add visualization group"
 
+msgid "Visualization group deleted successfully"
+msgstr "Visualization group deleted successfully"
+
+msgid "Error deleting group"
+msgstr "Error deleting group"
+
+msgid "Are you sure you want to delete the group {{name}}?"
+msgstr "Are you sure you want to delete the group {{name}}?"
+
+msgid "At least one visualization is required"
+msgstr "At least one visualization is required"
+
 msgid "There are no Push Analytics configured, click the below button to add new."
 msgstr "There are no Push Analytics configured, click the below button to add new."
 
-msgid "Send push analytics"
-msgstr "Send push analytics"
+msgid "Add push analytics"
+msgstr "Add push analytics"
 
 msgid ""
 "You can use different formatting conventions as per the selected gateway. "
@@ -149,12 +199,6 @@ msgstr "Phone Number"
 msgid "Number"
 msgstr "Number"
 
-msgid "Could not send any visualizations to user"
-msgstr "Could not send any visualizations to user"
-
-msgid "Messages successfully sent"
-msgstr "Messages successfully sent"
-
 msgid "Configuration saved successfully"
 msgstr "Configuration saved successfully"
 
@@ -167,8 +211,17 @@ msgstr "Configuration updated successfully"
 msgid "Error updating configuration"
 msgstr "Error updating configuration"
 
-msgid "Updating"
-msgstr "Updating"
+msgid "Could not send message"
+msgstr "Could not send message"
+
+msgid "Could not send any visualizations to user"
+msgstr "Could not send any visualizations to user"
+
+msgid "Messages successfully sent"
+msgstr "Messages successfully sent"
+
+msgid "Error sending message(s)"
+msgstr "Error sending message(s)"
 
 msgid "Sending..."
 msgstr "Sending..."
@@ -188,6 +241,9 @@ msgstr "Confirm close"
 msgid "Close"
 msgstr "Close"
 
+msgid "Send push analytics"
+msgstr "Send push analytics"
+
 msgid "Gateway is required"
 msgstr "Gateway is required"
 
@@ -197,9 +253,6 @@ msgstr "Group is required"
 msgid "Visualization group"
 msgstr "Visualization group"
 
-msgid "At least one visualization is required"
-msgstr "At least one visualization is required"
-
 msgid "Description"
 msgstr "Description"
 
@@ -208,15 +261,6 @@ msgstr "Recipients"
 
 msgid "Configuration deleted successfully"
 msgstr "Configuration deleted successfully"
-
-msgid "Delete"
-msgstr "Delete"
-
-msgid "Deleting..."
-msgstr "Deleting..."
-
-msgid "Confirm delete"
-msgstr "Confirm delete"
 
 msgid "Are you sure you want to delete the configuration {{name}}?"
 msgstr "Are you sure you want to delete the configuration {{name}}?"
