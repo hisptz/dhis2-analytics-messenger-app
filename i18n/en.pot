@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2023-05-11T07:12:54.340Z\n"
-"PO-Revision-Date: 2023-05-11T07:12:54.340Z\n"
+"POT-Creation-Date: 2023-05-11T12:01:46.584Z\n"
+"PO-Revision-Date: 2023-05-11T12:01:46.584Z\n"
 
 msgid "Fetching App configurations..."
 msgstr "Fetching App configurations..."
@@ -118,17 +118,29 @@ msgstr ""
 "There are no gateway configurations, click the above button to add new "
 "configurations."
 
+msgid "Gateway deleted successfully"
+msgstr "Gateway deleted successfully"
+
+msgid "Error deleting gateway"
+msgstr "Error deleting gateway"
+
 msgid "Gateway"
 msgstr "Gateway"
 
 msgid "Configuration of the gateways for push analytics"
 msgstr "Configuration of the gateways for push analytics"
 
-msgid "Group updated successfully"
-msgstr "Group updated successfully"
+msgid "Visualization group created successfully"
+msgstr "Visualization group created successfully"
 
-msgid "Group created successfully"
-msgstr "Group created successfully"
+msgid "Error creating visualization group"
+msgstr "Error creating visualization group"
+
+msgid "Visualization group updated successfully"
+msgstr "Visualization group updated successfully"
+
+msgid "Error updating visualization group"
+msgstr "Error updating visualization group"
 
 msgid "{{operation}} group"
 msgstr "{{operation}} group"
@@ -142,9 +154,6 @@ msgstr "Visualizations"
 msgid "Group name"
 msgstr "Group name"
 
-msgid "created"
-msgstr "created"
-
 msgid "Visualization groups"
 msgstr "Visualization groups"
 
@@ -154,11 +163,23 @@ msgstr "Configuration of the visualization groups for push analytics and chat bo
 msgid "Add visualization group"
 msgstr "Add visualization group"
 
+msgid "Visualization group deleted successfully"
+msgstr "Visualization group deleted successfully"
+
+msgid "Error deleting group"
+msgstr "Error deleting group"
+
+msgid "Are you sure you want to delete the group {{name}}?"
+msgstr "Are you sure you want to delete the group {{name}}?"
+
+msgid "At least one visualization is required"
+msgstr "At least one visualization is required"
+
 msgid "There are no Push Analytics configured, click the below button to add new."
 msgstr "There are no Push Analytics configured, click the below button to add new."
 
-msgid "Send push analytics"
-msgstr "Send push analytics"
+msgid "Add push analytics"
+msgstr "Add push analytics"
 
 msgid ""
 "You can use different formatting conventions as per the selected gateway. "
@@ -194,11 +215,17 @@ msgstr "Configuration updated successfully"
 msgid "Error updating configuration"
 msgstr "Error updating configuration"
 
+msgid "Could not send message"
+msgstr "Could not send message"
+
 msgid "Could not send any visualizations to user"
 msgstr "Could not send any visualizations to user"
 
 msgid "Messages successfully sent"
 msgstr "Messages successfully sent"
+
+msgid "Error sending message(s)"
+msgstr "Error sending message(s)"
 
 msgid "Sending..."
 msgstr "Sending..."
@@ -218,6 +245,9 @@ msgstr "Confirm close"
 msgid "Close"
 msgstr "Close"
 
+msgid "Send push analytics"
+msgstr "Send push analytics"
+
 msgid "Gateway is required"
 msgstr "Gateway is required"
 
@@ -226,9 +256,6 @@ msgstr "Group is required"
 
 msgid "Visualization group"
 msgstr "Visualization group"
-
-msgid "At least one visualization is required"
-msgstr "At least one visualization is required"
 
 msgid "Description"
 msgstr "Description"
