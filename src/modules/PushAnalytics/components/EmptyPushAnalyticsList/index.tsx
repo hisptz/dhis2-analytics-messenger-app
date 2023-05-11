@@ -27,7 +27,7 @@ export default function EmptyPushAnalyticsList({
           value="pushAnalyticsButton"
           icon={<IconAdd16 />}
         >
-          {i18n.t("Send push analytics")}
+          {i18n.t("Add push analytics")}
         </Button>
       </div>
     </div>

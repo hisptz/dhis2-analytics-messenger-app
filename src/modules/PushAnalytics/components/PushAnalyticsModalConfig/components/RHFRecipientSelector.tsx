@@ -1,12 +1,13 @@
 import React, {useCallback, useEffect, useMemo, useState} from "react";
 import {Controller, FormProvider, useForm, useWatch} from "react-hook-form";
-import {useSavedObject} from "@dhis2/app-service-datastore";
 import axios from "axios"
 import {filter, find, head, uniqBy} from "lodash";
 import i18n from '@dhis2/d2-i18n';
 import {Button, Chip, Field, IconUser24, IconUserGroup24} from "@dhis2/ui"
 import {RHFSingleSelectField, RHFTextInputField} from "@hisptz/dhis2-ui";
 import {Contact} from "../../../../../shared/interfaces";
+import {useGateways} from "../../../../Configuration/components/Gateway/hooks/data";
+import {Gateway} from "../../../../Configuration/components/Gateway/schema";
 
 export interface RHFRecipientSelectorProps {
     name: string;
@@ -85,7 +86,7 @@ function AddRecipient({onChange, groups}: { onChange: (recipient: Contact) => vo
 
 export function RHFRecipientSelector({validations, name, label, required}: RHFRecipientSelectorProps) {
     const [groups, setGroups] = useState<Array<{ label: string, value: string }>>([]);
-    const [gateways] = useSavedObject(`gateways`);
+    const {gateways} = useGateways();
     const [selectedGateway] = useWatch({
         name: ['gateway']
     });
@@ -93,11 +94,11 @@ export function RHFRecipientSelector({validations, name, label, required}: RHFRe
     useEffect(() => {
         async function get() {
             if (selectedGateway) {
-                const gateway = find(gateways as any[], ['id', selectedGateway]);
+                const gateway = find(gateways as Gateway[], ['id', selectedGateway]);
                 if (!gateway) {
                     return;
                 }
-                const groups = await getGroups(gateway?.url);
+                const groups = await getGroups(gateway?.whatsappURL);
                 setGroups(groups?.map(({id, name}: any) => ({label: name, value: head(id.split('@')) ?? ''})) ?? [])
             }
         }

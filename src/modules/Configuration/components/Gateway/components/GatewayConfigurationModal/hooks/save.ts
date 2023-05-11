@@ -16,7 +16,7 @@ const generateGatewayCreateMutation = (id: string): any => ({
 const updateGatewayMutation: any = {
     type: "update",
     resource: `dataStore/${GATEWAY_DATASTORE_KEY}`,
-    id: ({data}: any) => data.id,
+    id: ({data}: any) => data.key,
     data: ({data}: any) => data
 }
 
