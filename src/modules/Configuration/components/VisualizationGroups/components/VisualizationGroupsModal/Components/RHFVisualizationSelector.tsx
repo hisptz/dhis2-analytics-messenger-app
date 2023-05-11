@@ -1,5 +1,5 @@
 import {useDataQuery} from "@dhis2/app-runtime"
-import React, {useCallback, useEffect, useRef, useState} from "react"
+import React, {useCallback, useEffect, useMemo, useRef, useState} from "react"
 import {Controller} from "react-hook-form";
 import {Field, Transfer} from "@dhis2/ui";
 import {debounce, find, uniqBy} from "lodash";
@@ -22,7 +22,7 @@ const visualizationQuery = {
                 pageSize: 50,
                 totalPages: true,
                 filter: keyword ? [
-                    `identifiableToken:like:${keyword}`
+                    `identifiableToken:like:${keyword}`,
                 ] : undefined
             }
         }
@@ -31,7 +31,9 @@ const visualizationQuery = {
 
 export function RHFVisualizationSelector({name, label, validations, required}: RHFVisualizationSelectorProps) {
     const [options, setOptions] = useState<Array<{ label: string; value: string }>>([]);
-    const {data, loading, refetch} = useDataQuery(visualizationQuery, {
+    const {data, loading, refetch} = useDataQuery<{
+        vis: { pager: any; visualizations: any[] }
+    }>(visualizationQuery, {
         variables: {
             page: 1
         }
@@ -60,7 +62,8 @@ export function RHFVisualizationSelector({name, label, validations, required}: R
                 page: parseInt(data?.vis?.pager?.page) + 1
             })
         }
-    }, [refetch, data])
+    }, [refetch, data]);
+
 
     const onFilter = useCallback(
         (keyword: string) => {
@@ -81,17 +84,24 @@ export function RHFVisualizationSelector({name, label, validations, required}: R
             render={
                 ({field, fieldState}) => {
 
+                    const updatedOptions = useMemo(() => {
+                        return uniqBy([
+                            ...(options ?? []),
+                            ...(field.value?.map(({id, name}: any) => ({label: name, value: id})) ?? [])
+                        ], 'value')
+                    }, [options]);
+
                     return (<Field required={required} label={label}>
                         <Transfer
                             onEndReached={onNextPage}
                             filterable
                             loading={loading}
-                            options={options}
+                            options={updatedOptions}
                             selected={field?.value?.map(({id}: { id: string }) => id) ?? []}
                             onChange={({selected}: { selected: string[] }) => {
                                 field.onChange(selected?.map((value) => ({
                                     id: value,
-                                    name: find(options, ['value', value])?.label
+                                    name: find(updatedOptions, ['value', value])?.label
                                 })));
                             }}
                         />

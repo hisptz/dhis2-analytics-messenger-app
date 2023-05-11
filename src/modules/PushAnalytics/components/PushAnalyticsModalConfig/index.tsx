@@ -9,177 +9,26 @@ import {
     ModalTitle,
     SplitButton
 } from "@dhis2/ui"
-import React, {useCallback, useEffect, useMemo} from "react"
-import {Contact, PushAnalytics} from "../../../../shared/interfaces";
+import React, {useCallback, useEffect} from "react"
+import {PushAnalytics} from "../../../../shared/interfaces";
 import {FormProvider, useForm} from "react-hook-form";
 import i18n from '@dhis2/d2-i18n';
 import {RHFTextInputField, useConfirmDialog} from "@hisptz/dhis2-ui";
 import {RHFGatewaySelector} from "./components/RHFGatewaySelector";
 import {RHFVisSelector} from "./components/RHFVisSelector";
 import {RHFGroupSelector} from "./components/RHFGroupSelector";
-import axios from "axios";
-import {compact, find, isEmpty} from "lodash";
-import {useSavedObject} from "@dhis2/app-service-datastore";
-import {useBoolean} from "usehooks-ts";
-import {useAlert, useDataMutation} from "@dhis2/app-runtime";
-import {PUSH_ANALYTICS_DATASTORE_KEY} from "../../../../shared/constants/dataStore";
-import {uid} from "@hisptz/dhis2-utils";
 import {RHFDescription} from "./components/RHFDescription";
 import {RHFRecipientSelector} from "./components/RHFRecipientSelector";
-import {asyncify, mapSeries} from "async-es";
 import {useRecoilValue, useResetRecoilState} from "recoil";
 import {ConfigUpdateState} from "../PushAnalyticsTable";
+import {useSendAnalytics} from "./hooks/send";
+import {useSaveConfig} from "./hooks/save";
 
 
 export interface PushAnalyticsModalConfigProps {
     config?: PushAnalytics | null,
     hidden: boolean;
     onClose: () => void
-}
-
-async function getImage(visualizationId: string) {
-    try {
-        const response = await axios.get(`https://vmi368782.contaboserver.net/dev/visualizer/api/generate/${visualizationId}`)
-        if (response.status === 200) {
-            return response.data?.image;
-        }
-    } catch (e) {
-
-    }
-}
-
-async function sendMessage(message: any, gateway: string) {
-
-    try {
-        const response = await axios.post(`${gateway}/send`, message,)
-        if (response.status === 200) {
-            return response.data;
-        }
-    } catch (e) {
-        console.error(e)
-        throw Error("Could not send message")
-    }
-}
-
-export function useSendAnalytics() {
-    const {value: loading, setTrue: startLoading, setFalse: endLoading} = useBoolean(false);
-    const {show} = useAlert(({message}: { message: string }) => message, ({type}: any) => ({...type, duration: 3000}))
-
-    const [gateways] = useSavedObject(`gateways`);
-
-
-    async function getMessage(vis: { id: string; name: string }, {recipients, description}: {
-        description: string;
-        recipients: Contact[]
-    }) {
-        const visualization = await getImage(vis.id);
-        if (visualization) {
-            return {
-                to: recipients,
-                message: {
-                    type: "image",
-                    image: visualization,
-                    text: description ?? "Push analytics from your DHIS2"
-                }
-            }
-        }
-    }
-
-    const send = useCallback(
-        async ({gateway, visualizations, contacts, description}: PushAnalytics) => {
-            startLoading();
-            const gatewayConf = find(gateways as any[], ['id', gateway]);
-            if (!gatewayConf) {
-                endLoading()
-                return;
-            }
-            const url = gatewayConf.url;
-
-            const messages = compact(await mapSeries(visualizations, asyncify(async (visualization: any) => await getMessage(visualization, {
-                recipients: contacts,
-                description: description ?? " "
-            }))));
-
-            if (isEmpty(messages)) {
-                show({message: i18n.t("Could not send any visualizations to user"), type: {critical: true}});
-                return;
-            }
-
-            const responses = await mapSeries(messages, asyncify(async (message: any) => await sendMessage(message, url)));
-
-            console.log(responses);
-            show({message: i18n.t("Messages successfully sent"), type: {success: true}})
-            endLoading()
-        },
-        [],
-    );
-
-
-    return {
-        send,
-        loading
-    }
-}
-
-
-const generateCreateMutation = (id: string): any => ({
-    type: "create",
-    resource: `dataStore/${PUSH_ANALYTICS_DATASTORE_KEY}/${id}`,
-    data: ({data}: any) => data
-})
-const updateMutation: any = {
-    type: "update",
-    resource: `dataStore/${PUSH_ANALYTICS_DATASTORE_KEY}`,
-    id: ({id}: any) => id,
-    data: ({data}: any) => data
-}
-
-function useSaveConfig(defaultConfig?: PushAnalytics | null) {
-    const id = useMemo(() => uid(), []);
-    const {show} = useAlert(({message}) => message, ({type}) => ({...type, duration: 3000}))
-    const [create, {loading: creating}] = useDataMutation(generateCreateMutation(id), {
-        onComplete: () => {
-            show({message: i18n.t("Configuration saved successfully"), type: {success: true}})
-        },
-        onError: (error) => {
-            show({message: `${i18n.t("Error saving configuration")}: ${error.message}`, type: {critical: true}})
-        }
-    })
-    const [update, {loading: updating}] = useDataMutation(updateMutation, {
-        onComplete: () => {
-            show({message: i18n.t("Configuration updated successfully"), type: {success: true}})
-        },
-        onError: (error) => {
-            show({message: `${i18n.t("Error updating configuration")}: ${error.message}`, type: {critical: true}})
-        }
-    })
-
-
-    const save = useCallback(
-        async (data: PushAnalytics) => {
-            if (defaultConfig) {
-                await update({
-                    data,
-                    id: defaultConfig.id
-                })
-            } else {
-                const newData = {
-                    ...data,
-                    id
-                }
-                await create({
-                    data: newData
-                })
-            }
-        },
-        [id, create, update],
-    );
-
-    return {
-        creating,
-        updating,
-        save
-    }
 }
 
 function SendActions({actions}: { actions: { label: string; action: () => void }[] }) {
@@ -192,7 +41,6 @@ function SendActions({actions}: { actions: { label: string; action: () => void }
         </FlyoutMenu>
     )
 }
-
 
 function getButtonLabel(creating: boolean, updating: boolean, sending: boolean, config?: PushAnalytics | null) {
     if (config) {
@@ -213,7 +61,6 @@ function getButtonLabel(creating: boolean, updating: boolean, sending: boolean, 
         return i18n.t("Save and send")
     }
 }
-
 
 export function PushAnalyticsModalConfig({hidden, onClose}: PushAnalyticsModalConfigProps) {
     const config = useRecoilValue(ConfigUpdateState);
