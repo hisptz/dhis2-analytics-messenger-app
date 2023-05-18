@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2023-05-11T12:17:00.233Z\n"
-"PO-Revision-Date: 2023-05-11T12:17:00.233Z\n"
+"POT-Creation-Date: 2023-05-18T12:50:43.153Z\n"
+"PO-Revision-Date: 2023-05-18T12:50:43.153Z\n"
 
 msgid "Fetching App configurations..."
 msgstr "Fetching App configurations..."
@@ -213,9 +213,6 @@ msgstr "Error updating configuration"
 
 msgid "Could not send message"
 msgstr "Could not send message"
-
-msgid "Could not send any visualizations to user"
-msgstr "Could not send any visualizations to user"
 
 msgid "Messages successfully sent"
 msgstr "Messages successfully sent"
