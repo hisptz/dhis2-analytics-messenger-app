@@ -1,29 +1,28 @@
 import axios from "axios";
 import {useBoolean} from "usehooks-ts";
 import {useAlert} from "@dhis2/app-runtime";
-import {Contact, PushAnalytics} from "../../../../../shared/interfaces";
+import {PushAnalytics} from "../../../../../shared/interfaces";
 import {useCallback} from "react";
-import {compact, find, isEmpty} from "lodash";
-import {asyncify, mapSeries} from "async-es";
+import {find} from "lodash";
 import i18n from "@dhis2/d2-i18n";
 import {useGateways} from "../../../../Configuration/components/Gateway/hooks/data";
 import {Gateway} from "../../../../Configuration/components/Gateway/schema";
 
-async function getImage(visualizationId: string, gateway: Gateway) {
-    try {
-        const response = await axios.get(`${gateway.visualizerURL.trim()}/generate/${visualizationId}`)
-        if (response.status === 200) {
-            return response.data?.image;
-        }
-    } catch (e) {
+async function sendMessages({gateway, contacts, visualizations, description}: {
+    contacts: { type: string; number: string }[],
+    visualizations: { id: string; name: string }[],
+    gateway: Gateway;
+    description: string;
 
-    }
-}
-
-async function sendMessage(message: any, gateway: string) {
+}) {
 
     try {
-        const response = await axios.post(`${gateway.trim()}/send`, message,)
+        const url = gateway.chatBotURL;
+        const response = await axios.post(`${url}/push`, {
+            to: contacts,
+            visualizations,
+            description
+        },)
         if (response.status === 200) {
             return response.data;
         }
@@ -38,24 +37,6 @@ export function useSendAnalytics() {
     const {show} = useAlert(({message}: { message: string }) => message, ({type}: any) => ({...type, duration: 3000}))
     const {gateways} = useGateways();
 
-    async function getMessage(vis: { id: string; name: string }, {recipients, description, gateway}: {
-        description: string;
-        recipients: Contact[],
-        gateway: Gateway
-    }) {
-        const visualization = await getImage(vis.id, gateway);
-        if (visualization) {
-            return {
-                to: recipients,
-                message: {
-                    type: "image",
-                    image: visualization,
-                    text: description ?? "Push analytics from your DHIS2"
-                }
-            }
-        }
-    }
-
     const send = useCallback(
         async ({gateway, visualizations, contacts, description}: PushAnalytics) => {
             try {
@@ -65,20 +46,14 @@ export function useSendAnalytics() {
                     endLoading()
                     return;
                 }
-                const url = gatewayConf.whatsappURL;
 
-                const messages = compact(await mapSeries(visualizations, asyncify(async (visualization: any) => await getMessage(visualization, {
-                    recipients: contacts,
-                    description: description ?? " ",
+                await sendMessages({
+                    contacts,
+                    visualizations,
+                    description,
                     gateway: gatewayConf
-                }))));
+                } as any);
 
-                if (isEmpty(messages)) {
-                    show({message: i18n.t("Could not send any visualizations to user"), type: {critical: true}});
-                    return;
-                }
-
-                await mapSeries(messages, asyncify(async (message: any) => await sendMessage(message, url)));
 
                 show({message: i18n.t("Messages successfully sent"), type: {success: true}})
                 endLoading()
