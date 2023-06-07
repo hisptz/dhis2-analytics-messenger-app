@@ -16,6 +16,7 @@ import {useConfirmDialog} from "@hisptz/dhis2-ui";
 import {useSendAnalytics} from "../PushAnalyticsModalConfig/hooks/send";
 import {useGateways} from "../../../Configuration/components/Gateway/hooks/data";
 import {Gateway} from "../../../Configuration/components/Gateway/schema";
+import {useWhatsappData} from "../../../../shared/hooks/whatsapp";
 
 const tableColumns: Column[] = [
     {
@@ -85,14 +86,23 @@ function usePushAnalyticsConfig({onEdit}: { onEdit: () => void }) {
             show({message: `${i18n.t("Could not delete configuration:")}: ${error.message}`, type: {critical: true}})
         }
     });
+
+    const {groups, loading: whatsAppLoading} = useWhatsappData();
+
     const {confirm} = useConfirmDialog();
-    const {send,} = useSendAnalytics()
+    const {send,} = useSendAnalytics();
 
     const {gateways, loading: loadingGateways} = useGateways()
     const configs = useMemo(() => {
         return data?.config?.entries?.map((config, index) => {
             const gateway = find((gateways as Gateway[]), ['id', config.gateway]);
             const contacts = config?.contacts;
+
+
+            function getGroup(value: string) {
+                return find(groups, ({id}: { id: string }) => id.includes(value))?.name ?? value;
+            }
+
             return {
                 ...config,
                 index: index + 1,
@@ -101,7 +111,7 @@ function usePushAnalyticsConfig({onEdit}: { onEdit: () => void }) {
                     {
                         contacts?.map(({number, type}: Contact) => (
                             <Chip key={`${number}-recipient`} icon={type === 'group' ? <IconUserGroup24/> :
-                                <IconUser24/>}>{number}</Chip>))
+                                <IconUser24/>}>{type === "group" ? getGroup(number) : number}</Chip>))
                     }
                 </div>,
                 actions: <ActionButton actions={[
@@ -146,9 +156,13 @@ function usePushAnalyticsConfig({onEdit}: { onEdit: () => void }) {
                                 loadingText: i18n.t("Sending..."),
                                 confirmButtonText: i18n.t("Send"),
                                 title: i18n.t("Confirm sending"),
-                                message: i18n.t(`${i18n.t("Sending visualizations to ")} ${contacts?.map(({number}) => number).join(', ')}`, {
-                                    name: config.name
-                                }),
+                                message: <>{i18n.t("Sending visualizations to")}:
+                                    <ul>{contacts?.map(({
+                                                            number,
+                                                            type
+                                                        }) => <li
+                                        key={`${number}-list`}>{type === "group" ? getGroup(number) : number}</li>)}</ul>
+                                </>,
                                 onCancel: () => {
                                 },
                                 onConfirm: async () => {
@@ -160,11 +174,11 @@ function usePushAnalyticsConfig({onEdit}: { onEdit: () => void }) {
                 ]} row={config}/>
             }
         })
-    }, [data, gateways]);
+    }, [data, gateways, groups]);
 
     return {
         data: configs,
-        loading: loadingGateways || loading,
+        loading: loadingGateways || loading || whatsAppLoading,
         refetch
     }
 }
