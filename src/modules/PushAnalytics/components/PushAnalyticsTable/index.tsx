@@ -8,7 +8,7 @@ import EmptyPushAnalyticsList from "../EmptyPushAnalyticsList";
 import {useBoolean} from "usehooks-ts";
 import {PushAnalyticsModalConfig} from "../PushAnalyticsModalConfig";
 import {find, isEmpty} from "lodash";
-import {Button, Chip, IconAdd24, IconDelete24, IconEdit24, IconMessages24, IconUser24, IconUserGroup24} from "@dhis2/ui"
+import {Button, IconAdd24, IconDelete24, IconEdit24, IconMessages24} from "@dhis2/ui"
 import FullPageLoader from "../../../../shared/components/Loaders";
 import {ActionButton} from "../../../../shared/components/CustomDataTable/components/ActionButton";
 import {atom, useRecoilValue, useSetRecoilState} from "recoil";
@@ -17,6 +17,8 @@ import {useSendAnalytics} from "../PushAnalyticsModalConfig/hooks/send";
 import {useGateways} from "../../../Configuration/components/Gateway/hooks/data";
 import {Gateway} from "../../../Configuration/components/Gateway/schema";
 import {useWhatsappData} from "../../../../shared/hooks/whatsapp";
+import {ContactChip} from "../../../../shared/components/ContactChip";
+import {useDHIS2Users} from "../../../../shared/hooks/users";
 
 const tableColumns: Column[] = [
     {
@@ -88,6 +90,7 @@ function usePushAnalyticsConfig({onEdit}: { onEdit: () => void }) {
     });
 
     const {groups, loading: whatsAppLoading} = useWhatsappData();
+    const {loading: usersLoading} = useDHIS2Users();
 
     const {confirm} = useConfirmDialog();
     const {send,} = useSendAnalytics();
@@ -110,8 +113,7 @@ function usePushAnalyticsConfig({onEdit}: { onEdit: () => void }) {
                 contacts: <div style={{gap: 8, flexWrap: "wrap"}} className="row">
                     {
                         contacts?.map(({number, type}: Contact) => (
-                            <Chip key={`${number}-recipient`} icon={type === 'group' ? <IconUserGroup24/> :
-                                <IconUser24/>}>{type === "group" ? getGroup(number) : number}</Chip>))
+                            <ContactChip key={`${number}-recipient`} number={number} type={type}/>))
                     }
                 </div>,
                 actions: <ActionButton actions={[
@@ -178,7 +180,7 @@ function usePushAnalyticsConfig({onEdit}: { onEdit: () => void }) {
 
     return {
         data: configs,
-        loading: loadingGateways || loading || whatsAppLoading,
+        loading: loadingGateways || loading || whatsAppLoading || usersLoading,
         refetch
     }
 }
