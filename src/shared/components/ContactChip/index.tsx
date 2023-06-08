@@ -17,7 +17,6 @@ export function ContactChip({type, number, onRemove}: ContactChipProps) {
     function getGroup(value: string) {
         return find(groups, ({id}: { id: string }) => id.includes(value))?.name ?? value;
     }
-
     function getUser(value: string) {
         return find(users, ({whatsApp}) => whatsApp.includes(value))?.displayName ?? value;
     }

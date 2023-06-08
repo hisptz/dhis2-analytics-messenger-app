@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect} from "react";
+import React, {useCallback} from "react";
 import {Controller, FormProvider, useForm} from "react-hook-form";
 import {filter, uniqBy} from "lodash";
 import i18n from '@dhis2/d2-i18n';
@@ -7,6 +7,8 @@ import {RHFSingleSelectField, RHFTextInputField} from "@hisptz/dhis2-ui";
 import {Contact} from "../../../../../shared/interfaces";
 import {useWhatsappData} from "../../../../../shared/hooks/whatsapp";
 import {ContactChip} from "../../../../../shared/components/ContactChip";
+import {useDHIS2Users} from "../../../../../shared/hooks/users";
+import {useUpdateEffect} from "usehooks-ts";
 
 export interface RHFRecipientSelectorProps {
     name: string;
@@ -15,17 +17,19 @@ export interface RHFRecipientSelectorProps {
     required?: boolean;
 }
 
-function AddRecipient({onChange, groups, loading}: {
+function AddRecipient({onChange}: {
     loading?: boolean;
     onChange: (recipient: Contact) => void,
-    groups: Array<{ id: string; name: string }>
 }) {
+    const {groups, loading} = useWhatsappData();
+    const {users, loading: usersLoading} = useDHIS2Users();
     const form = useForm<Contact>({
         defaultValues: {
             type: "individual"
         },
         reValidateMode: "onBlur",
-        mode: "onBlur"
+        mode: "onBlur",
+        shouldFocusError: false
     });
 
     const [type] = form.watch(['type']);
@@ -38,14 +42,16 @@ function AddRecipient({onChange, groups, loading}: {
         [form, onChange],
     );
 
-    useEffect(() => {
-        form.clearErrors('number')
+    useUpdateEffect(() => {
+        form.unregister("number");
+        form.clearErrors('number');
+        form.resetField("number");
     }, [type])
 
     return (
         <Field
             label={i18n.t("Add new recipient")}
-            helpText={type === "individual" && i18n.t("Start with country code without the + sign. Example 255XXXXXXXXX")}
+            helpText={type === "individual" ? i18n.t("Start with country code without the + sign. Example 255XXXXXXXXX") : type === "user" && (i18n.t("Only users with whatsApp contacts will be listed"))}
         >
             <div style={{display: "grid", gridTemplateColumns: "2fr 3fr 1fr", gap: 16, alignItems: 'end'}}>
                 <FormProvider {...form}>
@@ -59,6 +65,10 @@ function AddRecipient({onChange, groups, loading}: {
                             {
                                 label: i18n.t("Phone Number"),
                                 value: "individual"
+                            },
+                            {
+                                label: i18n.t("Users"),
+                                value: "user"
                             }
                         ]}
                         name={'type'}
@@ -66,18 +76,30 @@ function AddRecipient({onChange, groups, loading}: {
                     {
                         type === "group" &&
                         <RHFSingleSelectField loading={loading} label={i18n.t("Group")}
-                                              options={groups.map(group => ({value: group.id, label: group.name}))}
+                                              options={groups.map((group: any) => ({
+                                                  value: group.id,
+                                                  label: group.name
+                                              }))}
+                                              name={'number'}/>
+                    }
+                    {
+                        type === "user" &&
+                        <RHFSingleSelectField loading={loading} label={i18n.t("User")}
+                                              options={users.map((user: any) => ({
+                                                  value: user.whatsApp,
+                                                  label: user.displayName
+                                              }))}
                                               name={'number'}/>
                     }
                     {
                         type === "individual" && (<RHFTextInputField
                             placeholder={`255XXXXXXXXX`}
-                            validations={type === "individual" ? {
+                            validations={{
                                 pattern: {
                                     value: /^\d{1,3}\d{9}$/,
                                     message: i18n.t("Invalid phone number")
                                 }
-                            } : undefined} label={i18n.t("Number")} name={'number'}/>)
+                            }} label={i18n.t("Number")} name={'number'}/>)
                     }
                     <Button onClick={form.handleSubmit(onSubmit)}>
                         {i18n.t("Add")}
@@ -90,8 +112,6 @@ function AddRecipient({onChange, groups, loading}: {
 
 
 export function RHFRecipientSelector({validations, name, label, required}: RHFRecipientSelectorProps) {
-    const {groups, loading} = useWhatsappData();
-
     return (
         <Controller
             rules={validations}
@@ -108,12 +128,12 @@ export function RHFRecipientSelector({validations, name, label, required}: RHFRe
                                         }} number={number} type={type}/>))
                                 }
                             </div>
-                            <AddRecipient loading={loading} onChange={(contact) => {
+                            <AddRecipient onChange={(contact) => {
                                 field.onChange(uniqBy([
                                     ...recipients,
                                     contact
                                 ], 'number'))
-                            }} groups={groups}/>
+                            }}/>
                         </div>
                     </Field>
                 )
