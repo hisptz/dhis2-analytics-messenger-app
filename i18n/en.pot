@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2023-06-07T08:49:27.145Z\n"
-"PO-Revision-Date: 2023-06-07T08:49:27.145Z\n"
+"POT-Creation-Date: 2023-06-08T06:34:48.482Z\n"
+"PO-Revision-Date: 2023-06-08T06:34:48.482Z\n"
 
 msgid "Fetching App configurations..."
 msgstr "Fetching App configurations..."
@@ -187,6 +187,12 @@ msgstr ""
 msgid "Add new recipient"
 msgstr "Add new recipient"
 
+msgid "Start with country code without the + sign. Example 255XXXXXXXXX"
+msgstr "Start with country code without the + sign. Example 255XXXXXXXXX"
+
+msgid "Only users with whatsApp contacts will be listed"
+msgstr "Only users with whatsApp contacts will be listed"
+
 msgid "Type"
 msgstr "Type"
 
@@ -195,6 +201,15 @@ msgstr "Group"
 
 msgid "Phone Number"
 msgstr "Phone Number"
+
+msgid "Users"
+msgstr "Users"
+
+msgid "User"
+msgstr "User"
+
+msgid "Invalid phone number"
+msgstr "Invalid phone number"
 
 msgid "Number"
 msgstr "Number"
