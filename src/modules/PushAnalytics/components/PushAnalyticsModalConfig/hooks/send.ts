@@ -17,16 +17,21 @@ async function sendMessages({gateway, contacts, visualizations, description}: {
 }) {
 
     try {
+
+        const sanitizedContacts = contacts.map((contact) => ({
+            ...contact,
+            type: contact.type !== "group" ? "individual" : "group"
+        }))
         const url = gateway.chatBotURL;
         const response = await axios.post(`${url}/push`, {
-            to: contacts,
+            to: sanitizedContacts,
             visualizations,
             description
         },)
         if (response.status === 200) {
             return response.data;
         }
-    } catch (e: any) {
+    } catch (e) {
         console.error(e)
         throw Error(`${i18n.t("Could not send message")}: ${e.message}`)
     }
@@ -57,7 +62,7 @@ export function useSendAnalytics() {
 
                 show({message: i18n.t("Messages successfully sent"), type: {success: true}})
                 endLoading()
-            } catch (e: any) {
+            } catch (e) {
                 show({message: `${i18n.t("Error sending message(s)")}: ${e.message}`, type: {critical: true}})
             }
         },

@@ -1,5 +1,5 @@
 import {useGateways} from "../../modules/Configuration/components/Gateway/hooks/data";
-import {useEffect, useMemo} from "react";
+import {useMemo} from "react";
 import {head} from "lodash";
 import {useQuery} from "@tanstack/react-query";
 import {Gateway} from "../../modules/Configuration/components/Gateway/schema";
@@ -25,24 +25,21 @@ export function useWhatsappData() {
     const {
         data,
         isLoading,
-        refetch,
-        isRefetching
-    } = useQuery([gateway, 'whatsapp'], async () => getWhatsappData(gateway), {
+    } = useQuery<{
+        groups: Array<{ id: string; name: string }>
+    }>([gateway, 'whatsapp'], async () => getWhatsappData(gateway), {
         enabled: !!gateway,
-        refetchOnWindowFocus: false
+        refetchOnWindowFocus: false,
+        keepPreviousData: true
     })
 
-    const groups = useMemo(() => data?.groups ?? [], [data]);
-
-    useEffect(() => {
-        if (gateway) {
-            refetch()
-        }
-    }, [gateway]);
-
+    const groups = useMemo(() => data?.groups.map((group) => ({
+        ...group,
+        id: group.id.replace('@g.us', '')
+    })) ?? [], [data]);
 
     return {
         groups,
-        loading: isLoading || isRefetching
+        loading: isLoading
     }
 }

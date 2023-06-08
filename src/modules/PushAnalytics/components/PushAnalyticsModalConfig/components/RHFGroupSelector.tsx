@@ -25,7 +25,7 @@ const groupQuery = {
 
 
 export function useGroups() {
-    const {data, loading} = useDataQuery(groupQuery);
+    const {data, loading} = useDataQuery<{ groups: { page: any; entries: Array<any> } }>(groupQuery);
 
     return {
         data: data?.groups?.entries,
