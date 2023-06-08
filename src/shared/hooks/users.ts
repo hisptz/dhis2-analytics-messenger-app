@@ -27,7 +27,7 @@ export function useDHIS2Users() {
     }>(userQuery);
 
     const users = useMemo(() => {
-        return data?.users?.users ?? []
+        return data?.users?.users?.map((user) => ({...user, whatsApp: user.whatsApp.replace('+', '')})) ?? []
     }, [data]);
 
     return {

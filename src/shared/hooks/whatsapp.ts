@@ -25,13 +25,18 @@ export function useWhatsappData() {
     const {
         data,
         isLoading,
-    } = useQuery([gateway, 'whatsapp'], async () => getWhatsappData(gateway), {
+    } = useQuery<{
+        groups: Array<{ id: string; name: string }>
+    }>([gateway, 'whatsapp'], async () => getWhatsappData(gateway), {
         enabled: !!gateway,
         refetchOnWindowFocus: false,
         keepPreviousData: true
     })
 
-    const groups = useMemo(() => data?.groups ?? [], [data]);
+    const groups = useMemo(() => data?.groups.map((group) => ({
+        ...group,
+        id: group.id.replace('@g.us', '')
+    })) ?? [], [data]);
 
     return {
         groups,
