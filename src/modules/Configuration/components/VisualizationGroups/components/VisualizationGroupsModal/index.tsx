@@ -41,7 +41,6 @@ export function VisualizationGroupsModal({onClose, hidden}: VisualizationGroupsM
         [onCloseClick],
     );
 
-    console.log(group)
 
     return (
         <Modal position="middle" hide={hidden} onClose={onCloseClick}>
@@ -60,7 +59,6 @@ export function VisualizationGroupsModal({onClose, hidden}: VisualizationGroupsM
                             name={'visualizations'}
                             validations={{
                                 validate: (value: string[]) => {
-                                    console.log(value)
                                     return !isEmpty(value) || i18n.t("Select at least one visualization")
                                 }
                             }}

@@ -9,13 +9,13 @@ import axios from "axios";
 async function getWhatsappData(gateway?: Gateway) {
     try {
         if (!gateway) {
-            return;
+            return new Promise((resolve) => resolve(null));
         }
         const whatsappURL = gateway.whatsappURL as string;
         const response = await axios.get(`/groups`, {baseURL: whatsappURL} as any);
         return response.data;
     } catch (e) {
-
+        return new Promise<any>((resolve) => resolve(null));
     }
 }
 
@@ -37,7 +37,6 @@ export function useWhatsappData() {
         ...group,
         id: group.id.replace('@g.us', '')
     })) ?? [], [data]);
-
     return {
         groups,
         loading: isLoading

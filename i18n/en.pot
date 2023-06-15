@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2023-06-08T06:34:48.482Z\n"
-"PO-Revision-Date: 2023-06-08T06:34:48.482Z\n"
+"POT-Creation-Date: 2023-06-14T07:39:22.869Z\n"
+"PO-Revision-Date: 2023-06-14T07:39:22.869Z\n"
 
 msgid "Fetching App configurations..."
 msgstr "Fetching App configurations..."
@@ -177,6 +177,30 @@ msgstr "There are no Push Analytics configured, click the below button to add ne
 msgid "Add push analytics"
 msgstr "Add push analytics"
 
+msgid "Minute"
+msgstr "Minute"
+
+msgid "Hour"
+msgstr "Hour"
+
+msgid "at"
+msgstr "at"
+
+msgid "Day"
+msgstr "Day"
+
+msgid "on"
+msgstr "on"
+
+msgid "Month"
+msgstr "Month"
+
+msgid "Day of week"
+msgstr "Day of week"
+
+msgid "Year"
+msgstr "Year"
+
 msgid ""
 "You can use different formatting conventions as per the selected gateway. "
 "(E.g * to bold for whatsapp gateway)"
@@ -274,6 +298,9 @@ msgstr "Recipients"
 msgid "Configuration deleted successfully"
 msgstr "Configuration deleted successfully"
 
+msgid "Schedule"
+msgstr "Schedule"
+
 msgid "Are you sure you want to delete the configuration {{name}}?"
 msgstr "Are you sure you want to delete the configuration {{name}}?"
 
@@ -288,6 +315,72 @@ msgstr "Sending visualizations to"
 
 msgid "Add push analytics configuration"
 msgstr "Add push analytics configuration"
+
+msgid "Every 2 minutes"
+msgstr "Every 2 minutes"
+
+msgid "Every 5 minutes"
+msgstr "Every 5 minutes"
+
+msgid "Every 10 minutes"
+msgstr "Every 10 minutes"
+
+msgid "Every hour"
+msgstr "Every hour"
+
+msgid "Every day at midnight"
+msgstr "Every day at midnight"
+
+msgid "Every day at noon"
+msgstr "Every day at noon"
+
+msgid "Every week on Monday"
+msgstr "Every week on Monday"
+
+msgid "Select time"
+msgstr "Select time"
+
+msgid "Add new schedule"
+msgstr "Add new schedule"
+
+msgid "Scheduling to send"
+msgstr "Scheduling to send"
+
+msgid "Predefined"
+msgstr "Predefined"
+
+msgid "Custom"
+msgstr "Custom"
+
+msgid "Custom support is on the way!"
+msgstr "Custom support is on the way!"
+
+msgid "Adding..."
+msgstr "Adding..."
+
+msgid "Data from analytics messenger"
+msgstr "Data from analytics messenger"
+
+msgid "Error scheduling push"
+msgstr "Error scheduling push"
+
+msgid "Schedule added successfully"
+msgstr "Schedule added successfully"
+
+msgid "Schedules for {{name}}"
+msgstr "Schedules for {{name}}"
+
+msgid "Click on add schedule to start"
+msgstr "Click on add schedule to start"
+
+msgid "Add Schedule"
+msgstr "Add Schedule"
+
+msgid "When"
+msgstr "When"
+
+msgid "Next run"
+msgstr "Next run"
 
 msgid "Page not Found"
 msgstr "Page not Found"

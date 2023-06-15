@@ -27,7 +27,6 @@ function FieldControl({groups, name}: { groups: any; name: string }) {
             return vis.id === option.value
         })
 
-        console.log(validValues)
         if (isEmpty(validValues)) {
             //Requires a reset
             setValue(name, [])

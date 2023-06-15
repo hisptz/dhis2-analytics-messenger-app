@@ -125,7 +125,7 @@ export function PushAnalyticsModalConfig({hidden, onClose}: PushAnalyticsModalCo
     );
 
     return (
-        <Modal position="middle" hide={hidden} onClose={onCloseClick}>
+        <Modal large position="middle" hide={hidden} onClose={onCloseClick}>
             <ModalTitle>
                 {i18n.t("Send push analytics")}
             </ModalTitle>

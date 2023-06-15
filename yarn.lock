@@ -4937,6 +4937,13 @@ crc@^3.4.4:
   dependencies:
     buffer "^5.1.0"
 
+cron-converter@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/cron-converter/-/cron-converter-2.0.0.tgz#6c580cabe51ef7403b1b66301dc26da57e6fa3a7"
+  integrity sha512-bAEw/8paYNcHI4kbVwg4Ag+ve8T4QbuNAN4vFcIXv4tVpjVLd67bxn9NIqzkc/6LoH/Xqc2oXtlV0VReiyZWnA==
+  dependencies:
+    luxon "^3.1.0"
+
 cross-spawn@^5.0.1:
   version "5.1.0"
   resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-5.1.0.tgz#e8bd0efee58fcff6f8f94510a0a554bbfa235449"
@@ -8537,7 +8544,7 @@ lru-cache@^6.0.0:
   dependencies:
     yallist "^4.0.0"
 
-luxon@^3.0.1, luxon@^3.3.0:
+luxon@^3.0.1, luxon@^3.1.0, luxon@^3.3.0:
   version "3.3.0"
   resolved "https://registry.yarnpkg.com/luxon/-/luxon-3.3.0.tgz#d73ab5b5d2b49a461c47cedbc7e73309b4805b48"
   integrity sha512-An0UCfG/rSiqtAIiBPO0Y9/zAnHUZxAMiCpTd5h2smgsj7GGmcenvrvww2cqNA8/4A5ZrD1gJpHN2mIHZQF+Mg==

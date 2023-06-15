@@ -1,4 +1,4 @@
-import React, {useCallback, useMemo} from "react";
+import React, {useCallback, useMemo, useState} from "react";
 import i18n from "@dhis2/d2-i18n";
 import {Column, Contact, PushAnalytics} from "../../../../shared/interfaces";
 import {PUSH_ANALYTICS_DATASTORE_KEY} from "../../../../shared/constants/dataStore";
@@ -8,7 +8,7 @@ import EmptyPushAnalyticsList from "../EmptyPushAnalyticsList";
 import {useBoolean} from "usehooks-ts";
 import {PushAnalyticsModalConfig} from "../PushAnalyticsModalConfig";
 import {find, isEmpty} from "lodash";
-import {Button, IconAdd24, IconDelete24, IconEdit24, IconMessages24} from "@dhis2/ui"
+import {Button, IconAdd24, IconClockHistory24, IconDelete24, IconEdit24, IconMessages24} from "@dhis2/ui"
 import FullPageLoader from "../../../../shared/components/Loaders";
 import {ActionButton} from "../../../../shared/components/CustomDataTable/components/ActionButton";
 import {atom, useRecoilValue, useSetRecoilState} from "recoil";
@@ -19,6 +19,7 @@ import {Gateway} from "../../../Configuration/components/Gateway/schema";
 import {useWhatsappData} from "../../../../shared/hooks/whatsapp";
 import {ContactChip} from "../../../../shared/components/ContactChip";
 import {useDHIS2Users} from "../../../../shared/hooks/users";
+import {ScheduleModal} from "../ScheduleModal";
 
 const tableColumns: Column[] = [
     {
@@ -74,7 +75,9 @@ export const ConfigUpdateState = atom<PushAnalytics | null>({
 })
 
 function usePushAnalyticsConfig({onEdit}: { onEdit: () => void }) {
-    const {show} = useAlert(({message}) => message, ({type}) => ({...type, duration: 3000}))
+    const {show} = useAlert(({message}) => message, ({type}) => ({...type, duration: 3000}));
+    const [scheduleConfig, setScheduleConfig] = useState<PushAnalytics | null>(null);
+
     const setUpdateConfig = useSetRecoilState(ConfigUpdateState);
     const {data, loading, refetch} = useDataQuery<{
         config: { entries: Array<PushAnalytics & { key: string }> }
@@ -89,7 +92,7 @@ function usePushAnalyticsConfig({onEdit}: { onEdit: () => void }) {
         }
     });
 
-    const {groups, loading: whatsAppLoading} = useWhatsappData();
+    const {groups,} = useWhatsappData();
     const {loading: usersLoading} = useDHIS2Users();
 
     const {confirm} = useConfirmDialog();
@@ -124,6 +127,14 @@ function usePushAnalyticsConfig({onEdit}: { onEdit: () => void }) {
                         onClick: () => {
                             setUpdateConfig(config);
                             onEdit();
+                        }
+                    },
+                    {
+                        key: `edit-config`,
+                        label: i18n.t("Schedule"),
+                        icon: <IconClockHistory24/>,
+                        onClick: () => {
+                            setScheduleConfig(config);
                         }
                     },
                     {
@@ -178,16 +189,19 @@ function usePushAnalyticsConfig({onEdit}: { onEdit: () => void }) {
         })
     }, [data, gateways, groups]);
 
+
     return {
         data: configs,
-        loading: loadingGateways || loading || whatsAppLoading || usersLoading,
+        scheduleConfig,
+        setScheduleConfig,
+        loading: loadingGateways || loading || usersLoading,
         refetch
     }
 }
 
 export default function PushAnalyticsTable(): React.ReactElement {
     const {value: hidden, setTrue: hide, setFalse: open} = useBoolean(true);
-    const {data, loading, refetch} = usePushAnalyticsConfig({onEdit: open});
+    const {data, loading, refetch, scheduleConfig, setScheduleConfig} = usePushAnalyticsConfig({onEdit: open});
     const configUpdate = useRecoilValue(ConfigUpdateState);
 
     const onClose = useCallback(() => {
@@ -201,6 +215,10 @@ export default function PushAnalyticsTable(): React.ReactElement {
 
     return (
         <>
+            {
+                scheduleConfig && (
+                    <ScheduleModal config={scheduleConfig} hide={!scheduleConfig} onClose={() => setScheduleConfig(null)}/>)
+            }
             {
                 !hidden && (<PushAnalyticsModalConfig config={configUpdate} hidden={hidden} onClose={onClose}/>)
             }
