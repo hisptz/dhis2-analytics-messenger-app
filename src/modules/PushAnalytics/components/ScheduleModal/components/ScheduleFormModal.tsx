@@ -1,17 +1,17 @@
 import i18n from "@dhis2/d2-i18n";
 import {Button, ButtonStrip, Modal, ModalActions, ModalContent, ModalTitle, SegmentedControl} from "@dhis2/ui";
 import {FormProvider, useForm} from "react-hook-form";
-import React, {useCallback, useState} from "react";
+import React, {useState} from "react";
 import {PushAnalytics} from "../../../../../shared/interfaces";
 import {RHFSingleSelectField} from "@hisptz/dhis2-ui";
-import {useSavePushSchedule} from "../hooks/schedule";
+import {PushSchedule, useManagePushSchedule} from "../hooks/schedule";
 
 
 export interface ScheduleFormModalProps {
     onClose: () => void;
     hide: boolean;
     config: PushAnalytics,
-    defaultValue?: any;
+    defaultValue?: PushSchedule;
 }
 
 export const cronOptions = [
@@ -56,11 +56,8 @@ function Predefined() {
 export function ScheduleFormModal({onClose, hide, config, defaultValue}: ScheduleFormModalProps) {
     const form = useForm<{ cron: string }>();
     const [type, setType] = useState('predefined');
-    const {onAdd, saving} = useSavePushSchedule(config, defaultValue, onClose);
-
-    const onSubmit = useCallback(async (data) => {
-        const response = await onAdd(data);
-    }, [])
+    const {onAdd, saving} = useManagePushSchedule(config, defaultValue, onClose);
+    const onSubmit = (data: { cron: string }) => onAdd(data);
 
     return (
         <Modal position="middle" hide={hide} onClose={onClose}>
@@ -90,7 +87,7 @@ export function ScheduleFormModal({onClose, hide, config, defaultValue}: Schedul
             <ModalActions>
                 <ButtonStrip>
                     <Button onClick={onClose}>Cancel</Button>
-                    <Button onClick={form.handleSubmit(onAdd)} loading={saving}
+                    <Button onClick={form.handleSubmit(onSubmit)} loading={saving}
                             primary>{saving ? i18n.t("Adding...") : i18n.t("Add")}</Button>
                 </ButtonStrip>
             </ModalActions>

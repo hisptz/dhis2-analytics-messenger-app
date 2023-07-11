@@ -22,18 +22,6 @@ const tableColumns: Column[] = [
         key: "name",
     },
     {
-        label: i18n.t("Whatsapp Service"),
-        key: "whatsappURL",
-    },
-    {
-        label: i18n.t("Visualizer Service"),
-        key: "visualizerURL",
-    },
-    {
-        label: i18n.t("Chat bot Service"),
-        key: "chatBotURL",
-    },
-    {
         label: i18n.t("Actions"),
         key: "actions",
     },

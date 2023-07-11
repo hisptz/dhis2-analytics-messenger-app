@@ -6,7 +6,7 @@
   "private": true,
   "scripts": {
     "build": "d2-app-scripts build",
-    "start": "d2-app-scripts start --proxy https://dev.hisptz.com/demodhis2",
+    "start": "dotenv -- cross-var d2-app-scripts start --proxy %REACT_APP_DHIS2_PROXY%",
     "test": "d2-app-scripts test",
     "deploy": "d2-app-scripts deploy"
   },
@@ -14,7 +14,10 @@
     "@dhis2/cli-app-scripts": "^10.3.8",
     "@types/async": "^3.2.20",
     "@types/lodash": "^4.14.194",
-    "@types/react-helmet": "^6.1.6"
+    "@types/react-helmet": "^6.1.6",
+    "cross-var": "^1.1.0",
+    "dotenv": "^16.3.1",
+    "dotenv-cli": "^7.2.1"
   },
   "dependencies": {
     "@dhis2/app-runtime": "^3.9.2",

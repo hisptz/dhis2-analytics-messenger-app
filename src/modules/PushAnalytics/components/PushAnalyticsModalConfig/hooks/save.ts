@@ -4,6 +4,11 @@ import {useCallback, useMemo} from "react";
 import {uid} from "@hisptz/dhis2-utils";
 import {useAlert, useDataMutation} from "@dhis2/app-runtime";
 import i18n from "@dhis2/d2-i18n";
+import axios from "axios";
+import {useMutation} from "@tanstack/react-query";
+import {useGateways} from "../../../../Configuration/components/Gateway/hooks/data";
+import {find} from "lodash";
+import {Gateway} from "../../../../Configuration/components/Gateway/schema";
 
 const generateCreateMutation = (id: string): any => ({
     type: "create",
@@ -17,13 +22,52 @@ const updateMutation: any = {
     data: ({data}: any) => data
 }
 
+async function updateJob(data: PushAnalytics, {url, apiKey}: Gateway) {
+    try {
+        const response = await axios.put(`/jobs/${data.id}`, data, {
+            baseURL: url,
+            headers: {
+                'x-api-key': apiKey
+            }
+        })
+        return response.data ?? null;
+    } catch (e) {
+        console.error(e);
+        throw e;
+    }
+}
+
+async function createJob(data: PushAnalytics, {url, apiKey}: Gateway) {
+    try {
+        const response = await axios.post(`/jobs`, data, {
+            baseURL: url,
+            headers: {
+                'x-api-key': apiKey
+            }
+        })
+        return response.data ?? null;
+    } catch (e) {
+        console.error(e);
+        throw e;
+    }
+}
+
 export function useSaveConfig(defaultConfig?: PushAnalytics | null) {
     const id = useMemo(() => uid(), []);
+    const {gateways} = useGateways();
     const {show} = useAlert(({message}) => message, ({type}) => ({...type, duration: 3000}))
+    const {mutate: manageJob} = useMutation(['job'], async (data: PushAnalytics) => {
+        const gateway = find(gateways, ['id', data.gateway]);
+        if (!gateway) {
+            throw Error("Configured gateway could not be found")
+        }
+        if (defaultConfig) {
+            return await updateJob(data, gateway)
+        } else {
+            return await createJob(data, gateway)
+        }
+    })
     const [create, {loading: creating}] = useDataMutation(generateCreateMutation(id), {
-        onComplete: () => {
-            show({message: i18n.t("Configuration saved successfully"), type: {success: true}})
-        },
         onError: (error) => {
             show({message: `${i18n.t("Error saving configuration")}: ${error.message}`, type: {critical: true}})
         }
@@ -44,6 +88,8 @@ export function useSaveConfig(defaultConfig?: PushAnalytics | null) {
                     data,
                     id: defaultConfig.id
                 })
+                manageJob(data);
+                show({message: i18n.t("Configuration updated successfully"), type: {success: true}})
             } else {
                 const newData = {
                     ...data,
@@ -51,7 +97,9 @@ export function useSaveConfig(defaultConfig?: PushAnalytics | null) {
                 }
                 await create({
                     data: newData
-                })
+                });
+                manageJob(newData);
+                show({message: i18n.t("Configuration saved successfully"), type: {success: true}})
             }
         },
         [id, create, update],

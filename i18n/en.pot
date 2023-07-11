@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2023-06-14T07:39:22.869Z\n"
-"PO-Revision-Date: 2023-06-14T07:39:22.869Z\n"
+"POT-Creation-Date: 2023-07-11T09:26:43.302Z\n"
+"PO-Revision-Date: 2023-07-11T09:26:43.302Z\n"
 
 msgid "Fetching App configurations..."
 msgstr "Fetching App configurations..."
@@ -47,20 +47,17 @@ msgstr "Name"
 msgid "Name is required"
 msgstr "Name is required"
 
-msgid "Whatsapp URL"
-msgstr "Whatsapp URL"
+msgid "URL"
+msgstr "URL"
 
 msgid "Whatsapp URL is required"
 msgstr "Whatsapp URL is required"
 
-msgid "Visualizer URL"
-msgstr "Visualizer URL"
+msgid "API Key"
+msgstr "API Key"
 
-msgid "Chat bot URL"
-msgstr "Chat bot URL"
-
-msgid "Visualizer URL is required"
-msgstr "Visualizer URL is required"
+msgid "API key is required"
+msgstr "API key is required"
 
 msgid "Cancel"
 msgstr "Cancel"
@@ -238,9 +235,6 @@ msgstr "Invalid phone number"
 msgid "Number"
 msgstr "Number"
 
-msgid "Configuration saved successfully"
-msgstr "Configuration saved successfully"
-
 msgid "Error saving configuration"
 msgstr "Error saving configuration"
 
@@ -249,6 +243,9 @@ msgstr "Configuration updated successfully"
 
 msgid "Error updating configuration"
 msgstr "Error updating configuration"
+
+msgid "Configuration saved successfully"
+msgstr "Configuration saved successfully"
 
 msgid "Could not send message"
 msgstr "Could not send message"
@@ -358,11 +355,11 @@ msgstr "Custom support is on the way!"
 msgid "Adding..."
 msgstr "Adding..."
 
-msgid "Data from analytics messenger"
-msgstr "Data from analytics messenger"
-
 msgid "Error scheduling push"
 msgstr "Error scheduling push"
+
+msgid "Schedule updated successfully"
+msgstr "Schedule updated successfully"
 
 msgid "Schedule added successfully"
 msgstr "Schedule added successfully"

@@ -57,12 +57,10 @@ export function GatewayConfigurationModal({onClose, hidden}: GatewayConfiguratio
                     <div className="column gap-16">
                         <RHFTextInputField label={i18n.t("Name")} name="name" required
                                            validations={{required: i18n.t("Name is required")}}/>
-                        <RHFTextInputField label={i18n.t("Whatsapp URL")} type="url" name="whatsappURL" required
+                        <RHFTextInputField label={i18n.t("URL")} type="url" name="url" required
                                            validations={{required: i18n.t("Whatsapp URL is required")}}/>
-                        <RHFTextInputField label={i18n.t("Visualizer URL")} type="url" name="visualizerURL" required
-                                           validations={{required: i18n.t("Whatsapp URL is required")}}/>
-                        <RHFTextInputField label={i18n.t("Chat bot URL")} type="url" name="chatBotURL" required
-                                           validations={{required: i18n.t("Visualizer URL is required")}}/>
+                        <RHFTextInputField label={i18n.t("API Key")} type="url" name="apiKey" required
+                                           validations={{required: i18n.t("API key is required")}}/>
                     </div>
                 </FormProvider>
             </ModalContent>

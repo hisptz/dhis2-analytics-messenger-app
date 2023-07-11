@@ -11,7 +11,7 @@ import {
 import React from "react"
 import i18n from '@dhis2/d2-i18n';
 import {PushAnalytics} from "../../../../shared/interfaces";
-import {usePushSchedule, useSavePushSchedule} from "./hooks/schedule";
+import {useManagePushSchedule, usePushJobSchedules} from "./hooks/schedule";
 import {useBoolean} from "usehooks-ts";
 import {cronOptions, ScheduleFormModal} from "./components/ScheduleFormModal";
 import CustomTable from "../../../../shared/components/CustomTable";
@@ -26,9 +26,9 @@ export interface ScheduleModalProps {
 
 
 export function ScheduleModal({onClose, hide, config}: ScheduleModalProps) {
-    const {loading, data} = usePushSchedule(config.id as string);
+    const {loading, data} = usePushJobSchedules(config.id as string);
     const {value: hideAdd, setTrue: closeAdd, setFalse: openAdd} = useBoolean(true);
-    const {} = useSavePushSchedule(config, data);
+    const {} = useManagePushSchedule(config, data);
 
     return (
         <Modal position="middle" hide={hide} onClose={onClose}>
