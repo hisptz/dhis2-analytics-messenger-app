@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2023-07-11T09:26:43.302Z\n"
-"PO-Revision-Date: 2023-07-11T09:26:43.302Z\n"
+"POT-Creation-Date: 2023-07-11T11:46:23.553Z\n"
+"PO-Revision-Date: 2023-07-11T11:46:23.553Z\n"
 
 msgid "Fetching App configurations..."
 msgstr "Fetching App configurations..."
@@ -73,15 +73,6 @@ msgstr "Save"
 
 msgid "S/N"
 msgstr "S/N"
-
-msgid "Whatsapp Service"
-msgstr "Whatsapp Service"
-
-msgid "Visualizer Service"
-msgstr "Visualizer Service"
-
-msgid "Chat bot Service"
-msgstr "Chat bot Service"
 
 msgid "Actions"
 msgstr "Actions"
@@ -247,11 +238,11 @@ msgstr "Error updating configuration"
 msgid "Configuration saved successfully"
 msgstr "Configuration saved successfully"
 
-msgid "Could not send message"
-msgstr "Could not send message"
+msgid "Gateway not found"
+msgstr "Gateway not found"
 
-msgid "Messages successfully sent"
-msgstr "Messages successfully sent"
+msgid "Message sent successfully"
+msgstr "Message sent successfully"
 
 msgid "Error sending message(s)"
 msgstr "Error sending message(s)"

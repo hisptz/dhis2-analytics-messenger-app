@@ -23,6 +23,7 @@ import {useRecoilValue, useResetRecoilState} from "recoil";
 import {ConfigUpdateState} from "../PushAnalyticsTable";
 import {useSendAnalytics} from "./hooks/send";
 import {useSaveConfig} from "./hooks/save";
+import {uid} from "@hisptz/dhis2-utils";
 
 
 export interface PushAnalyticsModalConfigProps {
@@ -71,17 +72,6 @@ export function PushAnalyticsModalConfig({hidden, onClose}: PushAnalyticsModalCo
         shouldFocusError: false,
     })
     const {send, loading: sending} = useSendAnalytics();
-    const {save, creating, updating} = useSaveConfig(config);
-
-    const onSaveAndSend = useCallback(
-        async (data: PushAnalytics) => {
-            await save(data);
-            await send(data);
-            onCloseClick(true);
-        },
-        [send],
-    );
-
     const onCloseClick = useCallback(
         (fromSave?: boolean) => {
             if (!fromSave && form.formState.isDirty) {
@@ -106,6 +96,25 @@ export function PushAnalyticsModalConfig({hidden, onClose}: PushAnalyticsModalCo
         },
         [onClose],
     );
+    const {save, creating, updating} = useSaveConfig(config);
+
+    const onSaveAndSend = useCallback(
+        (shouldSend: boolean) => async (data: PushAnalytics) => {
+            const sanitizedData = {
+                ...data,
+                id: config?.id ?? uid(),
+                contacts: data.contacts.map((contact) => ({...contact, id: uid()}))
+            }
+            await save(sanitizedData);
+            if (shouldSend) {
+                await send(sanitizedData);
+            }
+            onCloseClick(true);
+        },
+        [send],
+    );
+
+
     useEffect(() => {
         if (config) {
             form.reset(config)
@@ -116,13 +125,6 @@ export function PushAnalyticsModalConfig({hidden, onClose}: PushAnalyticsModalCo
         }
     }, [config]);
 
-    const onSave = useCallback(
-        async (data: PushAnalytics) => {
-            await save(data);
-            onCloseClick(true)
-        },
-        [save],
-    );
 
     return (
         <Modal large position="middle" hide={hidden} onClose={onCloseClick}>
@@ -158,13 +160,13 @@ export function PushAnalyticsModalConfig({hidden, onClose}: PushAnalyticsModalCo
                     <SplitButton component={<SendActions actions={[
                         {
                             label: config ? i18n.t("Update and send") : i18n.t("Save and send"),
-                            action: form.handleSubmit(onSaveAndSend)
+                            action: form.handleSubmit(onSaveAndSend(true))
                         },
                         {
                             label: config ? i18n.t("Update") : i18n.t("Save"),
-                            action: form.handleSubmit(onSave)
+                            action: form.handleSubmit(onSaveAndSend(false))
                         }
-                    ]}/>} loading={sending || creating || updating} onClick={form.handleSubmit(onSaveAndSend)}
+                    ]}/>} loading={sending || creating || updating} onClick={form.handleSubmit(onSaveAndSend(true))}
                                  primary>{getButtonLabel(creating, updating, sending, config)}</SplitButton>
                 </ButtonStrip>
             </ModalActions>

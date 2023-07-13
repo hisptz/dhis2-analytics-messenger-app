@@ -24,7 +24,7 @@ const updateMutation: any = {
 
 async function updateJob(data: PushAnalytics, {url, apiKey}: Gateway) {
     try {
-        const response = await axios.put(`/jobs/${data.id}`, data, {
+        const response = await axios.put(`/bot/jobs/${data.id}`, data, {
             baseURL: url,
             headers: {
                 'x-api-key': apiKey
@@ -39,7 +39,7 @@ async function updateJob(data: PushAnalytics, {url, apiKey}: Gateway) {
 
 async function createJob(data: PushAnalytics, {url, apiKey}: Gateway) {
     try {
-        const response = await axios.post(`/jobs`, data, {
+        const response = await axios.post(`/bot/jobs`, data, {
             baseURL: url,
             headers: {
                 'x-api-key': apiKey
@@ -56,51 +56,48 @@ export function useSaveConfig(defaultConfig?: PushAnalytics | null) {
     const id = useMemo(() => uid(), []);
     const {gateways} = useGateways();
     const {show} = useAlert(({message}) => message, ({type}) => ({...type, duration: 3000}))
+    const [create, {loading: creating}] = useDataMutation(generateCreateMutation(id), {})
+    const [update, {loading: updating}] = useDataMutation(updateMutation, {})
     const {mutate: manageJob} = useMutation(['job'], async (data: PushAnalytics) => {
         const gateway = find(gateways, ['id', data.gateway]);
         if (!gateway) {
             throw Error("Configured gateway could not be found")
         }
         if (defaultConfig) {
+            await update({
+                data,
+                id: defaultConfig.id
+            })
             return await updateJob(data, gateway)
         } else {
-            return await createJob(data, gateway)
+            const newData = {
+                ...data,
+                id
+            }
+            await create({
+                data: newData
+            });
+            return await createJob(newData, gateway)
         }
-    })
-    const [create, {loading: creating}] = useDataMutation(generateCreateMutation(id), {
-        onError: (error) => {
-            show({message: `${i18n.t("Error saving configuration")}: ${error.message}`, type: {critical: true}})
-        }
-    })
-    const [update, {loading: updating}] = useDataMutation(updateMutation, {
-        onComplete: () => {
-            show({message: i18n.t("Configuration updated successfully"), type: {success: true}})
+    }, {
+        onError: (error: any) => {
+            show({message: `${i18n.t("Error saving configuration")}: ${error.message}`, type: {critical: true}});
+            return false;
         },
-        onError: (error) => {
-            show({message: `${i18n.t("Error updating configuration")}: ${error.message}`, type: {critical: true}})
+        onSuccess: () => {
+            if (defaultConfig) {
+                show({message: i18n.t("Configuration updated successfully"), type: {success: true}})
+            } else {
+                show({message: i18n.t("Configuration saved successfully"), type: {success: true}})
+            }
+            return true;
         }
     })
 
+
     const save = useCallback(
         async (data: PushAnalytics) => {
-            if (defaultConfig) {
-                await update({
-                    data,
-                    id: defaultConfig.id
-                })
-                manageJob(data);
-                show({message: i18n.t("Configuration updated successfully"), type: {success: true}})
-            } else {
-                const newData = {
-                    ...data,
-                    id
-                }
-                await create({
-                    data: newData
-                });
-                manageJob(newData);
-                show({message: i18n.t("Configuration saved successfully"), type: {success: true}})
-            }
+            return manageJob(data);
         },
         [id, create, update],
     );

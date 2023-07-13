@@ -24,7 +24,7 @@
     "@dhis2/app-service-datastore": "^1.0.0-beta.3",
     "@hisptz/dhis2-ui": "^1.0.42",
     "@hisptz/dhis2-utils": "^1.0.42",
-    "@tanstack/react-query": "^4.29.12",
+    "@tanstack/react-query": "^4.29.19",
     "async-es": "^3.2.4",
     "axios": "^1.4.0",
     "cron-converter": "^2.0.0",

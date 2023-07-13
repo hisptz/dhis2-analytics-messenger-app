@@ -11,7 +11,7 @@ async function getWhatsappData(gateway?: Gateway) {
         if (!gateway) {
             return new Promise((resolve) => resolve(null));
         }
-        const whatsappURL = gateway.whatsappURL as string;
+        const whatsappURL = `${gateway.url}/whatsapp` as string;
         const response = await axios.get(`/groups`, {baseURL: whatsappURL} as any);
         return response.data;
     } catch (e) {

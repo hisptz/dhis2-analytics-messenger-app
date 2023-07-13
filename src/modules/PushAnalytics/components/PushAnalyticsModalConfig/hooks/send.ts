@@ -1,68 +1,57 @@
 import axios from "axios";
-import {useBoolean} from "usehooks-ts";
 import {useAlert} from "@dhis2/app-runtime";
 import {PushAnalytics} from "../../../../../shared/interfaces";
 import {useCallback} from "react";
-import {find} from "lodash";
 import i18n from "@dhis2/d2-i18n";
 import {useGateways} from "../../../../Configuration/components/Gateway/hooks/data";
 import {Gateway} from "../../../../Configuration/components/Gateway/schema";
+import {useMutation} from "@tanstack/react-query";
+import {find} from "lodash";
 
-async function sendMessages({gateway, contacts, visualizations, description}: {
-    contacts: { type: string; number: string }[],
-    visualizations: { id: string; name: string }[],
-    gateway: Gateway;
-    description: string;
-
-}) {
-
-    try {
-
-        const sanitizedContacts = contacts.map((contact) => ({
-            ...contact,
-            type: contact.type !== "group" ? "individual" : "group"
-        }))
-        const url = gateway.chatBotURL;
-        const response = await axios.post(`${url}/push`, {
-            to: sanitizedContacts,
-            visualizations,
-            description
-        },)
-        if (response.status === 200) {
-            return response.data;
+async function sendMessage({id, gateway}: { id: string, gateway: Gateway }) {
+    const {url, apiKey} = gateway;
+    const response = await axios.get(`/bot/jobs/${id}/push`, {
+        baseURL: url,
+        withCredentials: true,
+        headers: {
+            'x-api-key': apiKey,
         }
-    } catch (e) {
-        console.error(e)
-        throw Error(`${i18n.t("Could not send message")}: ${e.message}`)
+    });
+    const {data} = response;
+    if (response.status === 200) {
+        return data;
+    } else {
+        throw new Error(data.message);
     }
 }
 
 export function useSendAnalytics() {
-    const {value: loading, setTrue: startLoading, setFalse: endLoading} = useBoolean(false);
     const {show} = useAlert(({message}: { message: string }) => message, ({type}: any) => ({...type, duration: 3000}))
     const {gateways} = useGateways();
+    const mutation = useMutation([], {
+        mutationFn: sendMessage
+    })
 
     const send = useCallback(
-        async ({gateway, visualizations, contacts, description}: PushAnalytics) => {
+        async ({gateway, visualizations, contacts, description, id}: PushAnalytics) => {
             try {
-                startLoading();
-                const gatewayConf = find(gateways as Gateway[], ['id', gateway]);
-                if (!gatewayConf) {
-                    endLoading()
-                    return;
+                const gatewayObject = find(gateways, {id: gateway})
+                if (!gatewayObject) {
+                    throw new Error(i18n.t("Gateway not found"))
                 }
+                mutation.mutate({
+                    id,
+                    gateway: gatewayObject
+                }, {
+                    onSuccess: () => {
+                        show({message: i18n.t("Message sent successfully"), type: {critical: false}})
+                    },
+                    onError: (e: any) => {
+                        show({message: `${i18n.t("Error sending message(s)")}: ${e.message}`, type: {info: true}})
+                    }
+                })
 
-                await sendMessages({
-                    contacts,
-                    visualizations,
-                    description,
-                    gateway: gatewayConf
-                } as any);
-
-
-                show({message: i18n.t("Messages successfully sent"), type: {success: true}})
-                endLoading()
-            } catch (e) {
+            } catch (e: any) {
                 show({message: `${i18n.t("Error sending message(s)")}: ${e.message}`, type: {critical: true}})
             }
         },
@@ -71,6 +60,6 @@ export function useSendAnalytics() {
 
     return {
         send,
-        loading
+        loading: mutation.isLoading
     }
 }
