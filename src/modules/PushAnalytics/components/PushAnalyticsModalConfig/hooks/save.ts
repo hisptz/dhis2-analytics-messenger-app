@@ -58,31 +58,35 @@ export function useSaveConfig(defaultConfig?: PushAnalytics | null) {
     const {show} = useAlert(({message}) => message, ({type}) => ({...type, duration: 3000}))
     const [create, {loading: creating}] = useDataMutation(generateCreateMutation(id), {})
     const [update, {loading: updating}] = useDataMutation(updateMutation, {})
-    const {mutate: manageJob} = useMutation(['job'], async (data: PushAnalytics) => {
+    const {
+        mutateAsync: manageJob,
+        isLoading
+    } = useMutation<boolean, any, PushAnalytics, any>(['job'], async (data: PushAnalytics) => {
         const gateway = find(gateways, ['id', data.gateway]);
         if (!gateway) {
             throw Error("Configured gateway could not be found")
         }
         if (defaultConfig) {
+            await updateJob(data, gateway)
             await update({
                 data,
                 id: defaultConfig.id
             })
-            return await updateJob(data, gateway)
+            return true;
         } else {
             const newData = {
                 ...data,
                 id
             }
+            await createJob(newData, gateway)
             await create({
                 data: newData
             });
-            return await createJob(newData, gateway)
+            return true;
         }
     }, {
         onError: (error: any) => {
             show({message: `${i18n.t("Error saving configuration")}: ${error.message}`, type: {critical: true}});
-            return false;
         },
         onSuccess: () => {
             if (defaultConfig) {
@@ -90,21 +94,19 @@ export function useSaveConfig(defaultConfig?: PushAnalytics | null) {
             } else {
                 show({message: i18n.t("Configuration saved successfully"), type: {success: true}})
             }
-            return true;
         }
     })
 
-
     const save = useCallback(
-        async (data: PushAnalytics) => {
+        async (data: PushAnalytics): Promise<boolean> => {
             return manageJob(data);
         },
         [id, create, update],
     );
 
     return {
-        creating,
-        updating,
+        creating: isLoading || creating,
+        updating: isLoading || updating,
         save
     }
 }

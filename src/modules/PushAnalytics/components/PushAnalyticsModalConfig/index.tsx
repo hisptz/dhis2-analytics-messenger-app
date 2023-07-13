@@ -25,7 +25,6 @@ import {useSendAnalytics} from "./hooks/send";
 import {useSaveConfig} from "./hooks/save";
 import {uid} from "@hisptz/dhis2-utils";
 
-
 export interface PushAnalyticsModalConfigProps {
     config?: PushAnalytics | null,
     hidden: boolean;
@@ -105,11 +104,14 @@ export function PushAnalyticsModalConfig({hidden, onClose}: PushAnalyticsModalCo
                 id: config?.id ?? uid(),
                 contacts: data.contacts.map((contact) => ({...contact, id: uid()}))
             }
-            await save(sanitizedData);
-            if (shouldSend) {
-                await send(sanitizedData);
+            const success = await save(sanitizedData);
+
+            if (success) {
+                if (shouldSend) {
+                    await send(sanitizedData);
+                }
+                onCloseClick(true);
             }
-            onCloseClick(true);
         },
         [send],
     );
