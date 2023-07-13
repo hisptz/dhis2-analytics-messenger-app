@@ -16,8 +16,7 @@ import {useConfirmDialog} from "@hisptz/dhis2-ui";
 import {useSendAnalytics} from "../PushAnalyticsModalConfig/hooks/send";
 import {useGateways} from "../../../Configuration/components/Gateway/hooks/data";
 import {Gateway} from "../../../Configuration/components/Gateway/schema";
-import {useWhatsappData} from "../../../../shared/hooks/whatsapp";
-import {ContactChip} from "../../../../shared/components/ContactChip";
+import {ContactChip, ContactName} from "../../../../shared/components/ContactChip";
 import {useDHIS2Users} from "../../../../shared/hooks/users";
 import {ScheduleModal} from "../ScheduleModal";
 
@@ -43,8 +42,6 @@ const tableColumns: Column[] = [
         key: "actions",
     },
 ];
-
-
 const pushAnalyticsConfigQuery = {
     config: {
         resource: `dataStore/${PUSH_ANALYTICS_DATASTORE_KEY}`,
@@ -92,7 +89,6 @@ function usePushAnalyticsConfig({onEdit}: { onEdit: () => void }) {
         }
     });
 
-    const {groups,} = useWhatsappData();
     const {loading: usersLoading} = useDHIS2Users();
 
     const {confirm} = useConfirmDialog();
@@ -105,10 +101,6 @@ function usePushAnalyticsConfig({onEdit}: { onEdit: () => void }) {
             const contacts = config?.contacts;
 
 
-            function getGroup(value: string) {
-                return find(groups, ({id}: { id: string }) => id.includes(value))?.name ?? value;
-            }
-
             return {
                 ...config,
                 index: index + 1,
@@ -116,7 +108,8 @@ function usePushAnalyticsConfig({onEdit}: { onEdit: () => void }) {
                 contacts: <div style={{gap: 8, flexWrap: "wrap"}} className="row">
                     {
                         contacts?.map(({number, type}: Contact) => (
-                            <ContactChip key={`${number}-recipient`} number={number} type={type}/>))
+                            <ContactChip gatewayId={gateway?.id as string} key={`${number}-recipient`} number={number}
+                                         type={type}/>))
                     }
                 </div>,
                 actions: <ActionButton actions={[
@@ -170,11 +163,19 @@ function usePushAnalyticsConfig({onEdit}: { onEdit: () => void }) {
                                 confirmButtonText: i18n.t("Send"),
                                 title: i18n.t("Confirm sending"),
                                 message: <>{i18n.t("Sending visualizations to")}:
-                                    <ul>{contacts?.map(({
+                                    <ul>
+                                        {contacts?.map(({
                                                             number,
                                                             type
                                                         }) => <li
-                                        key={`${number}-list`}>{type === "group" ? getGroup(number) : number}</li>)}</ul>
+                                            key={`${number}-list`}>
+                                            <ContactName
+                                                type={type}
+                                                number={number}
+                                                gatewayId={gateway?.id as string}
+                                            />
+                                        </li>)}
+                                    </ul>
                                 </>,
                                 onCancel: () => {
                                 },
@@ -187,8 +188,7 @@ function usePushAnalyticsConfig({onEdit}: { onEdit: () => void }) {
                 ]} row={config}/>
             }
         })
-    }, [data, gateways, groups]);
-
+    }, [data, gateways]);
 
     return {
         data: configs,

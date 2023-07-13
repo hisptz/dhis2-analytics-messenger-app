@@ -1,5 +1,5 @@
 import React, {useCallback} from "react";
-import {Controller, FormProvider, useForm} from "react-hook-form";
+import {Controller, FormProvider, useForm, useWatch} from "react-hook-form";
 import {filter, uniqBy} from "lodash";
 import i18n from '@dhis2/d2-i18n';
 import {Button, Field} from "@dhis2/ui"
@@ -21,9 +21,12 @@ function AddRecipient({onChange}: {
     loading?: boolean;
     onChange: (recipient: Contact) => void,
 }) {
-    const {groups, loading} = useWhatsappData();
+    const gateway = useWatch({
+        name: 'gateway'
+    })
+    const {groups, loading} = useWhatsappData(gateway);
     const {users, loading: usersLoading} = useDHIS2Users();
-    const form = useForm<Contact>({
+    const form = useForm<Omit<Contact, "type"> & { type: 'user' | 'individual' | 'group' }>({
         defaultValues: {
             type: "individual"
         },
@@ -35,8 +38,11 @@ function AddRecipient({onChange}: {
     const [type] = form.watch(['type']);
 
     const onSubmit = useCallback(
-        (data: Contact) => {
-            onChange(data)
+        (data: Omit<Contact, "type"> & { type: 'user' | 'individual' | 'group' }) => {
+            onChange({
+                ...data,
+                type: type === "user" ? "individual" : type,
+            })
             form.reset({});
         },
         [form, onChange],
@@ -75,21 +81,24 @@ function AddRecipient({onChange}: {
                     />
                     {
                         type === "group" &&
-                        <RHFSingleSelectField loading={loading} label={i18n.t("Group")}
-                                              options={groups.map((group: any) => ({
-                                                  value: group.id,
-                                                  label: group.name
-                                              }))}
-                                              name={'number'}/>
+                        <RHFSingleSelectField
+                            loading={loading} label={i18n.t("Group")}
+                            options={groups.map((group: any) => ({
+                                value: group.id,
+                                label: group.name
+                            }))}
+                            name={'number'}/>
                     }
                     {
                         type === "user" &&
-                        <RHFSingleSelectField loading={loading} label={i18n.t("User")}
-                                              options={users.map((user: any) => ({
-                                                  value: user.whatsApp,
-                                                  label: user.displayName
-                                              }))}
-                                              name={'number'}/>
+                        <RHFSingleSelectField
+                            loading={usersLoading}
+                            label={i18n.t("User")}
+                            options={users.map((user: any) => ({
+                                value: user.whatsApp,
+                                label: user.displayName
+                            }))}
+                            name={'number'}/>
                     }
                     {
                         type === "individual" && (<RHFTextInputField
@@ -112,6 +121,9 @@ function AddRecipient({onChange}: {
 
 
 export function RHFRecipientSelector({validations, name, label, required}: RHFRecipientSelectorProps) {
+    const gateway = useWatch({
+        name: 'gateway'
+    })
     return (
         <Controller
             rules={validations}
@@ -123,7 +135,7 @@ export function RHFRecipientSelector({validations, name, label, required}: RHFRe
                             <div style={{flexWrap: "wrap", gap: 8}} className="row">
                                 {
                                     recipients.map(({number, type}: Contact) => (
-                                        <ContactChip key={`${number}-recipient`} onRemove={() => {
+                                        <ContactChip gatewayId={gateway} key={`${number}-recipient`} onRemove={() => {
                                             field.onChange(filter(recipients, (recipient) => number !== recipient.number))
                                         }} number={number} type={type}/>))
                                 }

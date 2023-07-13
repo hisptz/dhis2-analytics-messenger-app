@@ -1,44 +1,48 @@
-import {useGateways} from "../../modules/Configuration/components/Gateway/hooks/data";
-import {useMemo} from "react";
-import {head} from "lodash";
+import {useCallback, useEffect, useMemo} from "react";
 import {useQuery} from "@tanstack/react-query";
-import {Gateway} from "../../modules/Configuration/components/Gateway/schema";
-import axios from "axios";
+import {AxiosInstance} from "axios";
+import {usePushServiceClient} from "./pushService";
+import {head} from "lodash";
 
 
-async function getWhatsappData(gateway?: Gateway) {
-    try {
-        if (!gateway) {
-            return new Promise((resolve) => resolve(null));
-        }
-        const whatsappURL = `${gateway.url}/whatsapp` as string;
-        const response = await axios.get(`/groups`, {baseURL: whatsappURL} as any);
-        return response.data;
-    } catch (e) {
-        return new Promise<any>((resolve) => resolve(null));
+async function getWhatsappData(client: AxiosInstance) {
+    if (!client) {
+        return;
     }
+    const endpoint = '/whatsapp/groups';
+    const {data} = await client.get(endpoint);
+    return data;
 }
 
-export function useWhatsappData() {
-    const {gateways} = useGateways();
-    const gateway = useMemo(() => head(gateways), [gateways]);
+export function useWhatsappData(gatewayId?: string) {
+    const getClient = usePushServiceClient();
     const {
         data,
         isLoading,
+        refetch,
     } = useQuery<{
         groups: Array<{ id: string; name: string }>
-    }>([gateway, 'whatsapp'], async () => getWhatsappData(gateway), {
-        enabled: !!gateway,
+    }>([gatewayId, 'whatsapp'], async ({queryKey}) => getWhatsappData(getClient(head(queryKey) as string)), {
+        enabled: !!gatewayId,
         refetchOnWindowFocus: false,
         keepPreviousData: true
     })
-
     const groups = useMemo(() => data?.groups.map((group) => ({
         ...group,
         id: group.id.replace('@g.us', '')
     })) ?? [], [data]);
+
+    const fetchGroups = useCallback(async (gatewayId) => {
+        return refetch({queryKey: [gatewayId, 'whatsapp']})
+    }, [])
+
+    useEffect(() => {
+        refetch();
+    }, [gatewayId])
+
     return {
         groups,
+        fetchGroups,
         loading: isLoading
     }
 }
