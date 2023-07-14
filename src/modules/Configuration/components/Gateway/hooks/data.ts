@@ -10,9 +10,8 @@ const query = {
             fields: [
                 "id",
                 "name",
-                "whatsappURL",
-                "visualizerURL",
-                "chatBotURL"
+                "url",
+                "apiKey"
             ],
             page: page ?? 1,
             pageSize: pageSize ?? 10,

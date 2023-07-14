@@ -6,7 +6,7 @@
   "private": true,
   "scripts": {
     "build": "d2-app-scripts build",
-    "start": "d2-app-scripts start --proxy https://vmi1245558.contaboserver.net/udsmfyp",
+    "start": "dotenv -- cross-var d2-app-scripts start --proxy %REACT_APP_DHIS2_PROXY%",
     "test": "d2-app-scripts test",
     "deploy": "d2-app-scripts deploy"
   },
@@ -14,16 +14,20 @@
     "@dhis2/cli-app-scripts": "^10.3.8",
     "@types/async": "^3.2.20",
     "@types/lodash": "^4.14.194",
-    "@types/react-helmet": "^6.1.6"
+    "@types/react-helmet": "^6.1.6",
+    "cross-var": "^1.1.0",
+    "dotenv": "^16.3.1",
+    "dotenv-cli": "^7.2.1"
   },
   "dependencies": {
     "@dhis2/app-runtime": "^3.9.2",
     "@dhis2/app-service-datastore": "^1.0.0-beta.3",
     "@hisptz/dhis2-ui": "^1.0.42",
     "@hisptz/dhis2-utils": "^1.0.42",
-    "@tanstack/react-query": "^4.29.12",
+    "@tanstack/react-query": "^4.29.19",
     "async-es": "^3.2.4",
     "axios": "^1.4.0",
+    "cron-converter": "^2.0.0",
     "lodash": "^4.17.21",
     "luxon": "^3.3.0",
     "react-helmet": "^6.1.0",

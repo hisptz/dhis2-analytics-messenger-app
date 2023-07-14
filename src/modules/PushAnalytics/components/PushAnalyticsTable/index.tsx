@@ -1,14 +1,14 @@
-import React, {useCallback, useMemo} from "react";
+import React, {useCallback, useMemo, useState} from "react";
 import i18n from "@dhis2/d2-i18n";
 import {Column, Contact, PushAnalytics} from "../../../../shared/interfaces";
 import {PUSH_ANALYTICS_DATASTORE_KEY} from "../../../../shared/constants/dataStore";
-import {useAlert, useDataMutation, useDataQuery} from "@dhis2/app-runtime";
+import {useAlert, useDataQuery} from "@dhis2/app-runtime";
 import CustomTable from "../../../../shared/components/CustomTable";
 import EmptyPushAnalyticsList from "../EmptyPushAnalyticsList";
 import {useBoolean} from "usehooks-ts";
 import {PushAnalyticsModalConfig} from "../PushAnalyticsModalConfig";
 import {find, isEmpty} from "lodash";
-import {Button, IconAdd24, IconDelete24, IconEdit24, IconMessages24} from "@dhis2/ui"
+import {Button, IconAdd24, IconClockHistory24, IconDelete24, IconEdit24, IconMessages24} from "@dhis2/ui"
 import FullPageLoader from "../../../../shared/components/Loaders";
 import {ActionButton} from "../../../../shared/components/CustomDataTable/components/ActionButton";
 import {atom, useRecoilValue, useSetRecoilState} from "recoil";
@@ -16,9 +16,10 @@ import {useConfirmDialog} from "@hisptz/dhis2-ui";
 import {useSendAnalytics} from "../PushAnalyticsModalConfig/hooks/send";
 import {useGateways} from "../../../Configuration/components/Gateway/hooks/data";
 import {Gateway} from "../../../Configuration/components/Gateway/schema";
-import {useWhatsappData} from "../../../../shared/hooks/whatsapp";
-import {ContactChip} from "../../../../shared/components/ContactChip";
+import {ContactChip, ContactName} from "../../../../shared/components/ContactChip";
 import {useDHIS2Users} from "../../../../shared/hooks/users";
+import {ScheduleModal} from "../ScheduleModal";
+import {useManageConfig} from "../PushAnalyticsModalConfig/hooks/save";
 
 const tableColumns: Column[] = [
     {
@@ -42,8 +43,6 @@ const tableColumns: Column[] = [
         key: "actions",
     },
 ];
-
-
 const pushAnalyticsConfigQuery = {
     config: {
         resource: `dataStore/${PUSH_ANALYTICS_DATASTORE_KEY}`,
@@ -61,39 +60,26 @@ const pushAnalyticsConfigQuery = {
     }
 }
 
-
-const deleteMutation: any = {
-    type: "delete",
-    resource: `dataStore/${PUSH_ANALYTICS_DATASTORE_KEY}`,
-    id: ({id}: { id: string }) => id
-}
-
 export const ConfigUpdateState = atom<PushAnalytics | null>({
     key: 'config-update-state',
     default: null
 })
 
 function usePushAnalyticsConfig({onEdit}: { onEdit: () => void }) {
-    const {show} = useAlert(({message}) => message, ({type}) => ({...type, duration: 3000}))
+    const {show} = useAlert(({message}) => message, ({type}) => ({...type, duration: 3000}));
+    const [scheduleConfig, setScheduleConfig] = useState<PushAnalytics | null>(null);
+
     const setUpdateConfig = useSetRecoilState(ConfigUpdateState);
     const {data, loading, refetch} = useDataQuery<{
         config: { entries: Array<PushAnalytics & { key: string }> }
     }>(pushAnalyticsConfigQuery);
-    const [deleteConfig, {loading: deleting}] = useDataMutation(deleteMutation, {
-        onComplete: () => {
-            show({message: i18n.t("Configuration deleted successfully"), type: {success: true}});
-            refetch()
-        },
-        onError: (error) => {
-            show({message: `${i18n.t("Could not delete configuration:")}: ${error.message}`, type: {critical: true}})
-        }
-    });
 
-    const {groups, loading: whatsAppLoading} = useWhatsappData();
     const {loading: usersLoading} = useDHIS2Users();
 
     const {confirm} = useConfirmDialog();
     const {send,} = useSendAnalytics();
+
+    const {deleteConfig} = useManageConfig('');
 
     const {gateways, loading: loadingGateways} = useGateways()
     const configs = useMemo(() => {
@@ -102,10 +88,6 @@ function usePushAnalyticsConfig({onEdit}: { onEdit: () => void }) {
             const contacts = config?.contacts;
 
 
-            function getGroup(value: string) {
-                return find(groups, ({id}: { id: string }) => id.includes(value))?.name ?? value;
-            }
-
             return {
                 ...config,
                 index: index + 1,
@@ -113,7 +95,8 @@ function usePushAnalyticsConfig({onEdit}: { onEdit: () => void }) {
                 contacts: <div style={{gap: 8, flexWrap: "wrap"}} className="row">
                     {
                         contacts?.map(({number, type}: Contact) => (
-                            <ContactChip key={`${number}-recipient`} number={number} type={type}/>))
+                            <ContactChip gatewayId={gateway?.id as string} key={`${number}-recipient`} number={number}
+                                         type={type}/>))
                     }
                 </div>,
                 actions: <ActionButton actions={[
@@ -124,6 +107,14 @@ function usePushAnalyticsConfig({onEdit}: { onEdit: () => void }) {
                         onClick: () => {
                             setUpdateConfig(config);
                             onEdit();
+                        }
+                    },
+                    {
+                        key: `edit-config`,
+                        label: i18n.t("Schedule"),
+                        icon: <IconClockHistory24/>,
+                        onClick: () => {
+                            setScheduleConfig(config);
                         }
                     },
                     {
@@ -141,9 +132,8 @@ function usePushAnalyticsConfig({onEdit}: { onEdit: () => void }) {
                                 onCancel: () => {
                                 },
                                 onConfirm: async () => {
-                                    await deleteConfig({
-                                        id: config.key
-                                    });
+                                    await deleteConfig(config);
+                                    await refetch();
                                 }
                             })
                         }
@@ -159,11 +149,19 @@ function usePushAnalyticsConfig({onEdit}: { onEdit: () => void }) {
                                 confirmButtonText: i18n.t("Send"),
                                 title: i18n.t("Confirm sending"),
                                 message: <>{i18n.t("Sending visualizations to")}:
-                                    <ul>{contacts?.map(({
+                                    <ul>
+                                        {contacts?.map(({
                                                             number,
                                                             type
                                                         }) => <li
-                                        key={`${number}-list`}>{type === "group" ? getGroup(number) : number}</li>)}</ul>
+                                            key={`${number}-list`}>
+                                            <ContactName
+                                                type={type}
+                                                number={number}
+                                                gatewayId={gateway?.id as string}
+                                            />
+                                        </li>)}
+                                    </ul>
                                 </>,
                                 onCancel: () => {
                                 },
@@ -176,18 +174,20 @@ function usePushAnalyticsConfig({onEdit}: { onEdit: () => void }) {
                 ]} row={config}/>
             }
         })
-    }, [data, gateways, groups]);
+    }, [data, gateways]);
 
     return {
         data: configs,
-        loading: loadingGateways || loading || whatsAppLoading || usersLoading,
+        scheduleConfig,
+        setScheduleConfig,
+        loading: loadingGateways || loading || usersLoading,
         refetch
     }
 }
 
 export default function PushAnalyticsTable(): React.ReactElement {
     const {value: hidden, setTrue: hide, setFalse: open} = useBoolean(true);
-    const {data, loading, refetch} = usePushAnalyticsConfig({onEdit: open});
+    const {data, loading, refetch, scheduleConfig, setScheduleConfig} = usePushAnalyticsConfig({onEdit: open});
     const configUpdate = useRecoilValue(ConfigUpdateState);
 
     const onClose = useCallback(() => {
@@ -201,6 +201,10 @@ export default function PushAnalyticsTable(): React.ReactElement {
 
     return (
         <>
+            {
+                scheduleConfig && (
+                    <ScheduleModal config={scheduleConfig} hide={!scheduleConfig} onClose={() => setScheduleConfig(null)}/>)
+            }
             {
                 !hidden && (<PushAnalyticsModalConfig config={configUpdate} hidden={hidden} onClose={onClose}/>)
             }

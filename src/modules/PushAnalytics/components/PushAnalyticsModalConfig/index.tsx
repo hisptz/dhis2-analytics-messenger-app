@@ -9,7 +9,7 @@ import {
     ModalTitle,
     SplitButton
 } from "@dhis2/ui"
-import React, {useCallback, useEffect} from "react"
+import React, {useCallback, useEffect, useMemo} from "react"
 import {PushAnalytics} from "../../../../shared/interfaces";
 import {FormProvider, useForm} from "react-hook-form";
 import i18n from '@dhis2/d2-i18n';
@@ -22,8 +22,8 @@ import {RHFRecipientSelector} from "./components/RHFRecipientSelector";
 import {useRecoilValue, useResetRecoilState} from "recoil";
 import {ConfigUpdateState} from "../PushAnalyticsTable";
 import {useSendAnalytics} from "./hooks/send";
-import {useSaveConfig} from "./hooks/save";
-
+import {useManageConfig} from "./hooks/save";
+import {uid} from "@hisptz/dhis2-utils";
 
 export interface PushAnalyticsModalConfigProps {
     config?: PushAnalytics | null,
@@ -63,6 +63,7 @@ function getButtonLabel(creating: boolean, updating: boolean, sending: boolean, 
 }
 
 export function PushAnalyticsModalConfig({hidden, onClose}: PushAnalyticsModalConfigProps) {
+    const id = useMemo(() => uid(), []);
     const config = useRecoilValue(ConfigUpdateState);
     const resetConfigUpdate = useResetRecoilState(ConfigUpdateState);
     const {confirm} = useConfirmDialog()
@@ -71,17 +72,6 @@ export function PushAnalyticsModalConfig({hidden, onClose}: PushAnalyticsModalCo
         shouldFocusError: false,
     })
     const {send, loading: sending} = useSendAnalytics();
-    const {save, creating, updating} = useSaveConfig(config);
-
-    const onSaveAndSend = useCallback(
-        async (data: PushAnalytics) => {
-            await save(data);
-            await send(data);
-            onCloseClick(true);
-        },
-        [send],
-    );
-
     const onCloseClick = useCallback(
         (fromSave?: boolean) => {
             if (!fromSave && form.formState.isDirty) {
@@ -106,6 +96,29 @@ export function PushAnalyticsModalConfig({hidden, onClose}: PushAnalyticsModalCo
         },
         [onClose],
     );
+    const {save, creating, updating} = useManageConfig(id, config);
+
+    const onSaveAndSend = useCallback(
+        (shouldSend: boolean) => async (data: PushAnalytics) => {
+            const sanitizedData = {
+                ...data,
+                id: config?.id ?? id,
+                contacts: data.contacts.map((contact) => ({...contact, id: contact.id ?? uid()}))
+            }
+            const success = await save(sanitizedData);
+            if (success) {
+                if (shouldSend) {
+                    console.log({
+                        sanitizedData
+                    })
+                    await send(sanitizedData);
+                }
+                onCloseClick(true);
+            }
+        },
+        [send, id],
+    );
+
     useEffect(() => {
         if (config) {
             form.reset(config)
@@ -116,16 +129,9 @@ export function PushAnalyticsModalConfig({hidden, onClose}: PushAnalyticsModalCo
         }
     }, [config]);
 
-    const onSave = useCallback(
-        async (data: PushAnalytics) => {
-            await save(data);
-            onCloseClick(true)
-        },
-        [save],
-    );
 
     return (
-        <Modal position="middle" hide={hidden} onClose={onCloseClick}>
+        <Modal large position="middle" hide={hidden} onClose={onCloseClick}>
             <ModalTitle>
                 {i18n.t("Send push analytics")}
             </ModalTitle>
@@ -158,13 +164,13 @@ export function PushAnalyticsModalConfig({hidden, onClose}: PushAnalyticsModalCo
                     <SplitButton component={<SendActions actions={[
                         {
                             label: config ? i18n.t("Update and send") : i18n.t("Save and send"),
-                            action: form.handleSubmit(onSaveAndSend)
+                            action: form.handleSubmit(onSaveAndSend(true))
                         },
                         {
                             label: config ? i18n.t("Update") : i18n.t("Save"),
-                            action: form.handleSubmit(onSave)
+                            action: form.handleSubmit(onSaveAndSend(false))
                         }
-                    ]}/>} loading={sending || creating || updating} onClick={form.handleSubmit(onSaveAndSend)}
+                    ]}/>} loading={sending || creating || updating} onClick={form.handleSubmit(onSaveAndSend(true))}
                                  primary>{getButtonLabel(creating, updating, sending, config)}</SplitButton>
                 </ButtonStrip>
             </ModalActions>
