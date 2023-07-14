@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2023-07-14T04:05:13.707Z\n"
-"PO-Revision-Date: 2023-07-14T04:05:13.707Z\n"
+"POT-Creation-Date: 2023-07-14T08:10:21.842Z\n"
+"PO-Revision-Date: 2023-07-14T08:10:21.842Z\n"
 
 msgid "Fetching App configurations..."
 msgstr "Fetching App configurations..."
@@ -235,6 +235,9 @@ msgstr "Configuration updated successfully"
 msgid "Configuration saved successfully"
 msgstr "Configuration saved successfully"
 
+msgid "Configuration deleted successfully"
+msgstr "Configuration deleted successfully"
+
 msgid "Message sent successfully"
 msgstr "Message sent successfully"
 
@@ -276,9 +279,6 @@ msgstr "Description"
 
 msgid "Recipients"
 msgstr "Recipients"
-
-msgid "Configuration deleted successfully"
-msgstr "Configuration deleted successfully"
 
 msgid "Schedule"
 msgstr "Schedule"
@@ -363,6 +363,12 @@ msgstr "When"
 
 msgid "Next run"
 msgstr "Next run"
+
+msgid "Confirm schedule delete"
+msgstr "Confirm schedule delete"
+
+msgid "Are you sure you want to delete this schedule?"
+msgstr "Are you sure you want to delete this schedule?"
 
 msgid "Page not Found"
 msgstr "Page not Found"
