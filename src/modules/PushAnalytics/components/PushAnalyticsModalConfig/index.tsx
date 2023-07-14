@@ -9,7 +9,7 @@ import {
     ModalTitle,
     SplitButton
 } from "@dhis2/ui"
-import React, {useCallback, useEffect} from "react"
+import React, {useCallback, useEffect, useMemo} from "react"
 import {PushAnalytics} from "../../../../shared/interfaces";
 import {FormProvider, useForm} from "react-hook-form";
 import i18n from '@dhis2/d2-i18n';
@@ -22,7 +22,7 @@ import {RHFRecipientSelector} from "./components/RHFRecipientSelector";
 import {useRecoilValue, useResetRecoilState} from "recoil";
 import {ConfigUpdateState} from "../PushAnalyticsTable";
 import {useSendAnalytics} from "./hooks/send";
-import {useSaveConfig} from "./hooks/save";
+import {useManageConfig} from "./hooks/save";
 import {uid} from "@hisptz/dhis2-utils";
 
 export interface PushAnalyticsModalConfigProps {
@@ -63,6 +63,7 @@ function getButtonLabel(creating: boolean, updating: boolean, sending: boolean, 
 }
 
 export function PushAnalyticsModalConfig({hidden, onClose}: PushAnalyticsModalConfigProps) {
+    const id = useMemo(() => uid(), []);
     const config = useRecoilValue(ConfigUpdateState);
     const resetConfigUpdate = useResetRecoilState(ConfigUpdateState);
     const {confirm} = useConfirmDialog()
@@ -95,24 +96,27 @@ export function PushAnalyticsModalConfig({hidden, onClose}: PushAnalyticsModalCo
         },
         [onClose],
     );
-    const {save, creating, updating} = useSaveConfig(config);
+    const {save, creating, updating} = useManageConfig(id, config);
 
     const onSaveAndSend = useCallback(
         (shouldSend: boolean) => async (data: PushAnalytics) => {
             const sanitizedData = {
                 ...data,
-                id: config?.id ?? uid(),
+                id: config?.id ?? id,
                 contacts: data.contacts.map((contact) => ({...contact, id: contact.id ?? uid()}))
             }
             const success = await save(sanitizedData);
             if (success) {
                 if (shouldSend) {
+                    console.log({
+                        sanitizedData
+                    })
                     await send(sanitizedData);
                 }
                 onCloseClick(true);
             }
         },
-        [send],
+        [send, id],
     );
 
     useEffect(() => {

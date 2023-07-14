@@ -42,65 +42,62 @@ export function ScheduleModal({onClose, hide, config}: ScheduleModalProps) {
             <ModalContent>
                 <ScheduleFormModal onClose={closeAdd} hide={hideAdd} config={config}/>
                 {
-                    loading && (
-                        <div style={{minHeight: 300}} className="column align-center center"><CircularLoader small/></div>)
-                }
-                {
-                    (!data && !loading) ? (<div style={{minHeight: 300}}
-                                                className="column align-center center gap-16">{i18n.t("Click on add schedule to start")}
-                        <Button onClick={openAdd} primary>{i18n.t("Add Schedule")}</Button></div>) : null
-                }
-                {
-                    isEmpty(data.schedules) ? (<div style={{minHeight: 300}}
-                                                    className="column align-center center gap-16">{i18n.t("Click on add schedule to start")}
-                        <Button onClick={openAdd} primary>{i18n.t("Add Schedule")}</Button></div>) : (
-                        <div className="column gap-16 ">
-                            <div className="row end">
-                                <Button onClick={openAdd} primary>{i18n.t("Add Schedule")}</Button>
-                            </div>
-                            <CustomTable columns={[
-                                {
-                                    key: "cron",
-                                    label: i18n.t("When")
-                                },
-                                {
-                                    key: "nextRun",
-                                    label: i18n.t("Next run")
-                                },
-                                {
-                                    key: "actions",
-                                    label: i18n.t("Actions")
-                                }
-                            ]}
-                                         data={data.schedules.map((schedule: any) => ({
-                                             cron: find(cronOptions, ['value', schedule.cron])?.label,
-                                             nextRun: getSchedule(stringToArray(schedule.cron)).next().toFormat('yyyy-MM-dd HH:mm'),
-                                             actions: (
-                                                 <ButtonStrip>
-                                                     <Button
-                                                         onClick={() => {
-                                                             confirm({
-                                                                 title: i18n.t("Confirm schedule delete"),
-                                                                 message: i18n.t("Are you sure you want to delete this schedule?"),
-                                                                 onConfirm: async () => {
-                                                                     await onDelete(schedule.id);
-                                                                 },
-                                                                 onCancel: () => {
-                                                                 }
-                                                             })
-                                                         }}
-                                                         destructive
-                                                         icon={<IconDelete24/>}
-                                                     />
-                                                 </ButtonStrip>
-                                             )
-                                         }))}
+                    loading ? (
+                        <div style={{minHeight: 300}} className="column align-center center"><CircularLoader small/>
+                        </div>) : (
+                        <>
+                            {
+                                (!data || isEmpty(data.schedules)) ? (<div style={{minHeight: 200}}
+                                                                           className="column align-center center gap-16">{i18n.t("Click on add schedule to start")}
+                                        <Button onClick={openAdd} primary>{i18n.t("Add Schedule")}</Button></div>) :
+                                    <div className="column gap-16 ">
+                                        <div className="row end">
+                                            <Button onClick={openAdd} primary>{i18n.t("Add Schedule")}</Button>
+                                        </div>
+                                        <CustomTable columns={[
+                                            {
+                                                key: "cron",
+                                                label: i18n.t("When")
+                                            },
+                                            {
+                                                key: "nextRun",
+                                                label: i18n.t("Next run")
+                                            },
+                                            {
+                                                key: "actions",
+                                                label: i18n.t("Actions")
+                                            }
+                                        ]}
+                                                     data={data.schedules.map((schedule: any) => ({
+                                                         cron: find(cronOptions, ['value', schedule.cron])?.label,
+                                                         nextRun: getSchedule(stringToArray(schedule.cron)).next().toFormat('yyyy-MM-dd HH:mm'),
+                                                         actions: (
+                                                             <ButtonStrip>
+                                                                 <Button
+                                                                     onClick={() => {
+                                                                         confirm({
+                                                                             title: i18n.t("Confirm schedule delete"),
+                                                                             message: i18n.t("Are you sure you want to delete this schedule?"),
+                                                                             onConfirm: async () => {
+                                                                                 await onDelete(schedule.id);
+                                                                             },
+                                                                             onCancel: () => {
+                                                                             }
+                                                                         })
+                                                                     }}
+                                                                     destructive
+                                                                     icon={<IconDelete24/>}
+                                                                 />
+                                                             </ButtonStrip>
+                                                         )
+                                                     }))}
 
-                            />
-                        </div>
+                                        />
+                                    </div>
+                            }
+                        </>
                     )
                 }
-
             </ModalContent>
             <ModalActions>
                 <ButtonStrip>

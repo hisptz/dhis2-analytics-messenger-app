@@ -1,7 +1,6 @@
 import {PUSH_ANALYTICS_DATASTORE_KEY} from "../../../../../shared/constants/dataStore";
 import {PushAnalytics} from "../../../../../shared/interfaces";
-import {useCallback, useMemo} from "react";
-import {uid} from "@hisptz/dhis2-utils";
+import {useCallback} from "react";
 import {useAlert, useDataMutation} from "@dhis2/app-runtime";
 import i18n from "@dhis2/d2-i18n";
 import {AxiosInstance} from "axios";
@@ -18,6 +17,12 @@ const updateMutation: any = {
     resource: `dataStore/${PUSH_ANALYTICS_DATASTORE_KEY}`,
     id: ({id}: any) => id,
     data: ({data}: any) => data
+}
+
+const deleteMutation: any = {
+    type: "delete",
+    resource: `dataStore/${PUSH_ANALYTICS_DATASTORE_KEY}`,
+    id: ({id}: { id: string }) => id
 }
 
 async function updateJob(data: PushAnalytics, client: AxiosInstance) {
@@ -42,8 +47,18 @@ async function createJob(data: PushAnalytics, client: AxiosInstance) {
     }
 }
 
-export function useSaveConfig(defaultConfig?: PushAnalytics | null) {
-    const id = useMemo(() => uid(), []);
+async function deleteJob(data: PushAnalytics, client: AxiosInstance) {
+    try {
+        const endpoint = `/bot/jobs/${data.id}`;
+        const {data: responseData} = await client.delete(endpoint);
+        return responseData ?? null;
+    } catch (e) {
+        console.error(e);
+        throw e;
+    }
+}
+
+export function useManageConfig(id: string, defaultConfig?: PushAnalytics | null) {
     const getClient = usePushServiceClient();
     const {show} = useAlert(({message}) => message, ({type}) => ({...type, duration: 3000}))
     const [create, {loading: creating}] = useDataMutation(generateCreateMutation(id), {})
@@ -84,6 +99,24 @@ export function useSaveConfig(defaultConfig?: PushAnalytics | null) {
         }
     })
 
+
+    const [deleteDataStoreConfig] = useDataMutation(deleteMutation);
+
+    const {mutateAsync: deleteConfig} = useMutation(['config'], async (data: PushAnalytics) => {
+        const client = getClient(data.gateway)
+        await deleteJob(data, client)
+        await deleteDataStoreConfig({id: data.id});
+        return true;
+    }, {
+        onSuccess: () => {
+            show({message: i18n.t("Configuration deleted successfully"), type: {success: true}});
+        },
+        onError: (error: any) => {
+            show({message: `${i18n.t("Could not delete configuration:")}: ${error.message}`, type: {critical: true}})
+        }
+    })
+
+
     const save = useCallback(
         async (data: PushAnalytics): Promise<boolean> => {
             return manageJob(data);
@@ -94,6 +127,7 @@ export function useSaveConfig(defaultConfig?: PushAnalytics | null) {
     return {
         creating: isLoading || creating,
         updating: isLoading || updating,
+        deleteConfig,
         save
     }
 }

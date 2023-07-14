@@ -2,7 +2,7 @@ import React, {useCallback, useMemo, useState} from "react";
 import i18n from "@dhis2/d2-i18n";
 import {Column, Contact, PushAnalytics} from "../../../../shared/interfaces";
 import {PUSH_ANALYTICS_DATASTORE_KEY} from "../../../../shared/constants/dataStore";
-import {useAlert, useDataMutation, useDataQuery} from "@dhis2/app-runtime";
+import {useAlert, useDataQuery} from "@dhis2/app-runtime";
 import CustomTable from "../../../../shared/components/CustomTable";
 import EmptyPushAnalyticsList from "../EmptyPushAnalyticsList";
 import {useBoolean} from "usehooks-ts";
@@ -19,6 +19,7 @@ import {Gateway} from "../../../Configuration/components/Gateway/schema";
 import {ContactChip, ContactName} from "../../../../shared/components/ContactChip";
 import {useDHIS2Users} from "../../../../shared/hooks/users";
 import {ScheduleModal} from "../ScheduleModal";
+import {useManageConfig} from "../PushAnalyticsModalConfig/hooks/save";
 
 const tableColumns: Column[] = [
     {
@@ -59,13 +60,6 @@ const pushAnalyticsConfigQuery = {
     }
 }
 
-
-const deleteMutation: any = {
-    type: "delete",
-    resource: `dataStore/${PUSH_ANALYTICS_DATASTORE_KEY}`,
-    id: ({id}: { id: string }) => id
-}
-
 export const ConfigUpdateState = atom<PushAnalytics | null>({
     key: 'config-update-state',
     default: null
@@ -79,20 +73,13 @@ function usePushAnalyticsConfig({onEdit}: { onEdit: () => void }) {
     const {data, loading, refetch} = useDataQuery<{
         config: { entries: Array<PushAnalytics & { key: string }> }
     }>(pushAnalyticsConfigQuery);
-    const [deleteConfig, {loading: deleting}] = useDataMutation(deleteMutation, {
-        onComplete: () => {
-            show({message: i18n.t("Configuration deleted successfully"), type: {success: true}});
-            refetch()
-        },
-        onError: (error) => {
-            show({message: `${i18n.t("Could not delete configuration:")}: ${error.message}`, type: {critical: true}})
-        }
-    });
 
     const {loading: usersLoading} = useDHIS2Users();
 
     const {confirm} = useConfirmDialog();
     const {send,} = useSendAnalytics();
+
+    const {deleteConfig} = useManageConfig('');
 
     const {gateways, loading: loadingGateways} = useGateways()
     const configs = useMemo(() => {
@@ -145,9 +132,8 @@ function usePushAnalyticsConfig({onEdit}: { onEdit: () => void }) {
                                 onCancel: () => {
                                 },
                                 onConfirm: async () => {
-                                    await deleteConfig({
-                                        id: config.key
-                                    });
+                                    await deleteConfig(config);
+                                    await refetch();
                                 }
                             })
                         }
