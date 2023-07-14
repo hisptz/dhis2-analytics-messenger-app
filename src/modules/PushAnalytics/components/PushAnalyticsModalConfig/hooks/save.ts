@@ -4,11 +4,9 @@ import {useCallback, useMemo} from "react";
 import {uid} from "@hisptz/dhis2-utils";
 import {useAlert, useDataMutation} from "@dhis2/app-runtime";
 import i18n from "@dhis2/d2-i18n";
-import axios from "axios";
+import {AxiosInstance} from "axios";
 import {useMutation} from "@tanstack/react-query";
-import {useGateways} from "../../../../Configuration/components/Gateway/hooks/data";
-import {find} from "lodash";
-import {Gateway} from "../../../../Configuration/components/Gateway/schema";
+import {usePushServiceClient} from "../../../../../shared/hooks/pushService";
 
 const generateCreateMutation = (id: string): any => ({
     type: "create",
@@ -22,30 +20,22 @@ const updateMutation: any = {
     data: ({data}: any) => data
 }
 
-async function updateJob(data: PushAnalytics, {url, apiKey}: Gateway) {
+async function updateJob(data: PushAnalytics, client: AxiosInstance) {
     try {
-        const response = await axios.put(`/bot/jobs/${data.id}`, data, {
-            baseURL: url,
-            headers: {
-                'x-api-key': apiKey
-            }
-        })
-        return response.data ?? null;
+        const endpoint = `/bot/jobs/${data.id}`;
+        const {data: responseData} = await client.put(endpoint, data);
+        return responseData ?? null;
     } catch (e) {
         console.error(e);
         throw e;
     }
 }
 
-async function createJob(data: PushAnalytics, {url, apiKey}: Gateway) {
+async function createJob(data: PushAnalytics, client: AxiosInstance) {
     try {
-        const response = await axios.post(`/bot/jobs`, data, {
-            baseURL: url,
-            headers: {
-                'x-api-key': apiKey
-            }
-        })
-        return response.data ?? null;
+        const endpoint = `/bot/jobs`;
+        const {data: responseData} = await client.post(endpoint, data);
+        return responseData ?? null;
     } catch (e) {
         console.error(e);
         throw e;
@@ -54,7 +44,7 @@ async function createJob(data: PushAnalytics, {url, apiKey}: Gateway) {
 
 export function useSaveConfig(defaultConfig?: PushAnalytics | null) {
     const id = useMemo(() => uid(), []);
-    const {gateways} = useGateways();
+    const getClient = usePushServiceClient();
     const {show} = useAlert(({message}) => message, ({type}) => ({...type, duration: 3000}))
     const [create, {loading: creating}] = useDataMutation(generateCreateMutation(id), {})
     const [update, {loading: updating}] = useDataMutation(updateMutation, {})
@@ -62,12 +52,9 @@ export function useSaveConfig(defaultConfig?: PushAnalytics | null) {
         mutateAsync: manageJob,
         isLoading
     } = useMutation<boolean, any, PushAnalytics, any>(['job'], async (data: PushAnalytics) => {
-        const gateway = find(gateways, ['id', data.gateway]);
-        if (!gateway) {
-            throw Error("Configured gateway could not be found")
-        }
+        const client = getClient(data.gateway)
         if (defaultConfig) {
-            await updateJob(data, gateway)
+            await updateJob(data, client)
             await update({
                 data,
                 id: defaultConfig.id
@@ -78,7 +65,7 @@ export function useSaveConfig(defaultConfig?: PushAnalytics | null) {
                 ...data,
                 id
             }
-            await createJob(newData, gateway)
+            await createJob(newData, client)
             await create({
                 data: newData
             });

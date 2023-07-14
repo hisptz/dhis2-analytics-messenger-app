@@ -1,12 +1,11 @@
-import {useGateways} from "../../../../Configuration/components/Gateway/hooks/data";
 import {useMemo} from "react";
-import {head} from "lodash";
-import axios from "axios";
+import {AxiosInstance} from "axios";
 import {useMutation, useQuery, useQueryClient} from "@tanstack/react-query";
 import {PushAnalytics} from "../../../../../shared/interfaces";
 import i18n from '@dhis2/d2-i18n';
 import {useAlert} from "@dhis2/app-runtime";
 import {uid} from "@hisptz/dhis2-utils";
+import {usePushServiceClient} from "../../../../../shared/hooks/pushService";
 
 
 export interface PushSchedule {
@@ -26,12 +25,12 @@ function formatData(data: PushSchedule) {
     }
 }
 
-async function create(data: PushSchedule, {gateway}: { gateway: string }) {
+async function create(data: PushSchedule, client: AxiosInstance) {
     const payload = formatData(data);
     try {
-        const response = await axios.post(`/schedules`, payload, {
-            baseURL: gateway
-        });
+        console.log("This function?")
+        const endpoint = `/bot/schedules`
+        const response = await client.post(endpoint, payload);
         return response.data ?? null;
     } catch (e) {
         console.error(e);
@@ -39,11 +38,10 @@ async function create(data: PushSchedule, {gateway}: { gateway: string }) {
     }
 }
 
-async function remove(id: string, {gateway}: { gateway: string }) {
+async function remove(id: string, client: AxiosInstance) {
     try {
-        const response = await axios.delete(`/schedules/${id}`, {
-            baseURL: gateway
-        });
+        const endpoint = `/bot/schedules/${id}`
+        const response = await client.delete(endpoint);
         return response.data ?? null;
     } catch (e) {
         console.error(e);
@@ -51,14 +49,11 @@ async function remove(id: string, {gateway}: { gateway: string }) {
     }
 }
 
-async function update(updatedValue: PushSchedule, {gateway}: {
-    gateway: string
-}) {
+async function update(updatedValue: PushSchedule, client: AxiosInstance) {
     try {
-        const response = await axios.put(`/schedules/${updatedValue.id}`, {
+        const endpoint = `/bot/schedules/${updatedValue.id}`
+        const response = await client.put(endpoint, {
             ...updatedValue,
-        }, {
-            baseURL: gateway
         });
         return response.data ?? null;
     } catch (e) {
@@ -67,24 +62,23 @@ async function update(updatedValue: PushSchedule, {gateway}: {
     }
 }
 
-export function usePushJobSchedules(id: string) {
-    const {gateways} = useGateways();
-    const gateway = useMemo(() => head(gateways), [gateways]);
+export function usePushJobData({gatewayId, jobId}: { gatewayId: string, jobId: string }) {
+    const getClient = usePushServiceClient();
+
+    const client = useMemo(() => getClient(gatewayId), [gatewayId, getClient]);
 
     async function get() {
         try {
-            const chatbotURL = gateway?.chatBotURL;
-            if (!chatbotURL) return;
-            const response = await axios.get(`/jobs/${id}`, {baseURL: chatbotURL});
+            const response = await client.get(`/bot/jobs/${jobId}`);
             return response.data ?? null;
         } catch (e) {
             console.error(e);
-            return null;
+            throw e;
         }
 
     }
 
-    const {isLoading, data} = useQuery([id, 'job'], async () => get(), {enabled: !!id});
+    const {isLoading, data} = useQuery([jobId], async () => get(), {enabled: !!jobId});
 
     return {
         loading: isLoading,
@@ -92,26 +86,30 @@ export function usePushJobSchedules(id: string) {
     }
 }
 
-export function useManagePushSchedule(config: PushAnalytics, defaultValue?: any, onComplete?: () => void) {
-    const {gateways} = useGateways();
+export function useManagePushSchedule(config: PushAnalytics, defaultValue?: PushSchedule, onComplete?: () => void) {
+    const getClient = usePushServiceClient();
+    const client = useMemo(() => getClient(config.gateway), [config.gateway, getClient]);
     const queryClient = useQueryClient();
     const {show} = useAlert(({message}) => message, ({type}) => ({...type, duration: 3000}))
-    const gateway = useMemo(() => head(gateways), [gateways]);
-    const {mutate: onAdd, isLoading} = useMutation([config.id, 'schedule'], async (data: { cron: string }) => {
-        const chatbotGateway = gateway?.chatBotURL as string;
+    const {mutateAsync: onAdd, isLoading} = useMutation([config.id, 'schedule'], async (data: { cron: string }) => {
         if (defaultValue) {
-            return update({
+            const response = await update({
                 ...defaultValue,
                 ...data
-            }, {gateway: chatbotGateway})
+            }, client);
+            queryClient.invalidateQueries([config.id]);
+
+            return response;
         } else {
-            return create({
+            const response = await create({
                 ...data,
                 enabled: true,
                 job: {
                     id: config.id
                 }
-            }, {gateway: chatbotGateway})
+            }, client)
+            queryClient.invalidateQueries([config.id])
+            return response;
         }
     }, {
         onError: (error: any) => {
@@ -129,9 +127,10 @@ export function useManagePushSchedule(config: PushAnalytics, defaultValue?: any,
             }
         }
     });
-    const {mutate: onDelete} = useMutation(['schedule', config.id], async (id: string) => {
-        const chatbotGateway = gateway?.chatBotURL as string;
-        return remove(id, {gateway: chatbotGateway})
+    const {mutateAsync: onDelete} = useMutation(['schedule', config.id], async (id: string) => {
+        const response = await remove(id, client);
+        queryClient.invalidateQueries([config.id]);
+        return response;
     });
 
     return {

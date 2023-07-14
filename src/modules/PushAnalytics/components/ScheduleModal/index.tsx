@@ -11,12 +11,13 @@ import {
 import React from "react"
 import i18n from '@dhis2/d2-i18n';
 import {PushAnalytics} from "../../../../shared/interfaces";
-import {useManagePushSchedule, usePushJobSchedules} from "./hooks/schedule";
+import {useManagePushSchedule, usePushJobData} from "./hooks/schedule";
 import {useBoolean} from "usehooks-ts";
 import {cronOptions, ScheduleFormModal} from "./components/ScheduleFormModal";
 import CustomTable from "../../../../shared/components/CustomTable";
-import {find} from "lodash";
+import {find, isEmpty} from "lodash";
 import {getSchedule, stringToArray} from "cron-converter";
+import {useConfirmDialog} from "@hisptz/dhis2-ui";
 
 export interface ScheduleModalProps {
     onClose: () => void;
@@ -26,15 +27,20 @@ export interface ScheduleModalProps {
 
 
 export function ScheduleModal({onClose, hide, config}: ScheduleModalProps) {
-    const {loading, data} = usePushJobSchedules(config.id as string);
+    const {loading, data} = usePushJobData({
+        jobId: config.id,
+        gatewayId: config.gateway
+    });
+    const {confirm} = useConfirmDialog();
     const {value: hideAdd, setTrue: closeAdd, setFalse: openAdd} = useBoolean(true);
-    const {} = useManagePushSchedule(config, data);
+    const {onDelete} = useManagePushSchedule(config, data);
+
 
     return (
         <Modal position="middle" hide={hide} onClose={onClose}>
             <ModalTitle>{i18n.t("Schedules for {{name}}", {name: config.name})}</ModalTitle>
             <ModalContent>
-                <ScheduleFormModal defaultValue={data} onClose={closeAdd} hide={hideAdd} config={config}/>
+                <ScheduleFormModal onClose={closeAdd} hide={hideAdd} config={config}/>
                 {
                     loading && (
                         <div style={{minHeight: 300}} className="column align-center center"><CircularLoader small/></div>)
@@ -45,7 +51,9 @@ export function ScheduleModal({onClose, hide, config}: ScheduleModalProps) {
                         <Button onClick={openAdd} primary>{i18n.t("Add Schedule")}</Button></div>) : null
                 }
                 {
-                    data && (
+                    isEmpty(data.schedules) ? (<div style={{minHeight: 300}}
+                                                    className="column align-center center gap-16">{i18n.t("Click on add schedule to start")}
+                        <Button onClick={openAdd} primary>{i18n.t("Add Schedule")}</Button></div>) : (
                         <div className="column gap-16 ">
                             <div className="row end">
                                 <Button onClick={openAdd} primary>{i18n.t("Add Schedule")}</Button>
@@ -69,7 +77,21 @@ export function ScheduleModal({onClose, hide, config}: ScheduleModalProps) {
                                              nextRun: getSchedule(stringToArray(schedule.cron)).next().toFormat('yyyy-MM-dd HH:mm'),
                                              actions: (
                                                  <ButtonStrip>
-                                                     <Button icon={<IconDelete24/>}/>
+                                                     <Button
+                                                         onClick={() => {
+                                                             confirm({
+                                                                 title: i18n.t("Confirm schedule delete"),
+                                                                 message: i18n.t("Are you sure you want to delete this schedule?"),
+                                                                 onConfirm: async () => {
+                                                                     await onDelete(schedule.id);
+                                                                 },
+                                                                 onCancel: () => {
+                                                                 }
+                                                             })
+                                                         }}
+                                                         destructive
+                                                         icon={<IconDelete24/>}
+                                                     />
                                                  </ButtonStrip>
                                              )
                                          }))}

@@ -102,10 +102,9 @@ export function PushAnalyticsModalConfig({hidden, onClose}: PushAnalyticsModalCo
             const sanitizedData = {
                 ...data,
                 id: config?.id ?? uid(),
-                contacts: data.contacts.map((contact) => ({...contact, id: uid()}))
+                contacts: data.contacts.map((contact) => ({...contact, id: contact.id ?? uid()}))
             }
             const success = await save(sanitizedData);
-
             if (success) {
                 if (shouldSend) {
                     await send(sanitizedData);
@@ -115,7 +114,6 @@ export function PushAnalyticsModalConfig({hidden, onClose}: PushAnalyticsModalCo
         },
         [send],
     );
-
 
     useEffect(() => {
         if (config) {

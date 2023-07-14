@@ -27,7 +27,7 @@ export function useSendAnalytics() {
                     client: getClient(gateway),
                 }, {
                     onSuccess: () => {
-                        show({message: i18n.t("Message sent successfully"), type: {critical: false}})
+                        show({message: i18n.t("Message sent successfully"), type: {success: true}})
                     },
                     onError: (e: any) => {
                         show({message: `${i18n.t("Error sending message(s)")}: ${e.message}`, type: {info: true}})
@@ -38,7 +38,7 @@ export function useSendAnalytics() {
                 show({message: `${i18n.t("Error sending message(s)")}: ${e.message}`, type: {critical: true}})
             }
         },
-        [],
+        [getClient],
     );
 
     return {

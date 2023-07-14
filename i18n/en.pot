@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2023-07-11T11:46:23.553Z\n"
-"PO-Revision-Date: 2023-07-11T11:46:23.553Z\n"
+"POT-Creation-Date: 2023-07-14T04:05:13.707Z\n"
+"PO-Revision-Date: 2023-07-14T04:05:13.707Z\n"
 
 msgid "Fetching App configurations..."
 msgstr "Fetching App configurations..."
@@ -232,14 +232,8 @@ msgstr "Error saving configuration"
 msgid "Configuration updated successfully"
 msgstr "Configuration updated successfully"
 
-msgid "Error updating configuration"
-msgstr "Error updating configuration"
-
 msgid "Configuration saved successfully"
 msgstr "Configuration saved successfully"
-
-msgid "Gateway not found"
-msgstr "Gateway not found"
 
 msgid "Message sent successfully"
 msgstr "Message sent successfully"
