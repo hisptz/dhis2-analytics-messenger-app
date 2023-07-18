@@ -1,29 +1,29 @@
-import {PUSH_ANALYTICS_DATASTORE_KEY} from "../../../../../shared/constants/dataStore";
-import {PushAnalytics} from "../../../../../shared/interfaces";
-import {useCallback} from "react";
 import {useAlert, useDataMutation} from "@dhis2/app-runtime";
 import i18n from "@dhis2/d2-i18n";
-import {AxiosInstance} from "axios";
 import {useMutation} from "@tanstack/react-query";
+import {AxiosInstance} from "axios";
+import {useCallback} from "react";
+import {PUSH_ANALYTICS_DATASTORE_KEY} from "../../../../../shared/constants/dataStore";
 import {usePushServiceClient} from "../../../../../shared/hooks/pushService";
+import {PushAnalytics} from "../../../../../shared/interfaces";
 
 const generateCreateMutation = (id: string): any => ({
     type: "create",
     resource: `dataStore/${PUSH_ANALYTICS_DATASTORE_KEY}/${id}`,
     data: ({data}: any) => data
-})
+});
 const updateMutation: any = {
     type: "update",
     resource: `dataStore/${PUSH_ANALYTICS_DATASTORE_KEY}`,
     id: ({id}: any) => id,
     data: ({data}: any) => data
-}
+};
 
 const deleteMutation: any = {
     type: "delete",
     resource: `dataStore/${PUSH_ANALYTICS_DATASTORE_KEY}`,
     id: ({id}: { id: string }) => id
-}
+};
 
 async function updateJob(data: PushAnalytics, client: AxiosInstance) {
     try {
@@ -38,7 +38,7 @@ async function updateJob(data: PushAnalytics, client: AxiosInstance) {
 
 async function createJob(data: PushAnalytics, client: AxiosInstance) {
     try {
-        const endpoint = `/bot/jobs`;
+        const endpoint = "/bot/jobs";
         const {data: responseData} = await client.post(endpoint, data);
         return responseData ?? null;
     } catch (e) {
@@ -60,27 +60,27 @@ async function deleteJob(data: PushAnalytics, client: AxiosInstance) {
 
 export function useManageConfig(id: string, defaultConfig?: PushAnalytics | null) {
     const getClient = usePushServiceClient();
-    const {show} = useAlert(({message}) => message, ({type}) => ({...type, duration: 3000}))
-    const [create, {loading: creating}] = useDataMutation(generateCreateMutation(id), {})
-    const [update, {loading: updating}] = useDataMutation(updateMutation, {})
+    const {show} = useAlert(({message}) => message, ({type}) => ({...type, duration: 3000}));
+    const [create, {loading: creating}] = useDataMutation(generateCreateMutation(id), {});
+    const [update, {loading: updating}] = useDataMutation(updateMutation, {});
     const {
         mutateAsync: manageJob,
         isLoading
-    } = useMutation<boolean, any, PushAnalytics, any>(['job'], async (data: PushAnalytics) => {
-        const client = getClient(data.gateway)
+    } = useMutation<boolean, any, PushAnalytics, any>(["job"], async (data: PushAnalytics) => {
+        const client = getClient(data.gateway);
         if (defaultConfig) {
-            await updateJob(data, client)
+            await updateJob(data, client);
             await update({
                 data,
                 id: defaultConfig.id
-            })
+            });
             return true;
         } else {
             const newData = {
                 ...data,
                 id
-            }
-            await createJob(newData, client)
+            };
+            await createJob(newData, client);
             await create({
                 data: newData
             });
@@ -92,19 +92,19 @@ export function useManageConfig(id: string, defaultConfig?: PushAnalytics | null
         },
         onSuccess: () => {
             if (defaultConfig) {
-                show({message: i18n.t("Configuration updated successfully"), type: {success: true}})
+                show({message: i18n.t("Configuration updated successfully"), type: {success: true}});
             } else {
-                show({message: i18n.t("Configuration saved successfully"), type: {success: true}})
+                show({message: i18n.t("Configuration saved successfully"), type: {success: true}});
             }
         }
-    })
+    });
 
 
     const [deleteDataStoreConfig] = useDataMutation(deleteMutation);
 
-    const {mutateAsync: deleteConfig} = useMutation(['config'], async (data: PushAnalytics) => {
-        const client = getClient(data.gateway)
-        await deleteJob(data, client)
+    const {mutateAsync: deleteConfig} = useMutation(["config"], async (data: PushAnalytics) => {
+        const client = getClient(data.gateway);
+        await deleteJob(data, client);
         await deleteDataStoreConfig({id: data.id});
         return true;
     }, {
@@ -112,9 +112,9 @@ export function useManageConfig(id: string, defaultConfig?: PushAnalytics | null
             show({message: i18n.t("Configuration deleted successfully"), type: {success: true}});
         },
         onError: (error: any) => {
-            show({message: `${i18n.t("Could not delete configuration:")}: ${error.message}`, type: {critical: true}})
+            show({message: `${i18n.t("Could not delete configuration:")}: ${error.message}`, type: {critical: true}});
         }
-    })
+    });
 
 
     const save = useCallback(
@@ -129,5 +129,5 @@ export function useManageConfig(id: string, defaultConfig?: PushAnalytics | null
         updating: isLoading || updating,
         deleteConfig,
         save
-    }
+    };
 }

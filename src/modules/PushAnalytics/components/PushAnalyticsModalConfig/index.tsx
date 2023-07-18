@@ -1,3 +1,4 @@
+import i18n from "@dhis2/d2-i18n";
 import {
     Button,
     ButtonStrip,
@@ -8,27 +9,26 @@ import {
     ModalContent,
     ModalTitle,
     SplitButton
-} from "@dhis2/ui"
-import React, {useCallback, useEffect, useMemo} from "react"
-import {PushAnalytics} from "../../../../shared/interfaces";
-import {FormProvider, useForm} from "react-hook-form";
-import i18n from '@dhis2/d2-i18n';
+} from "@dhis2/ui";
 import {RHFTextInputField, useConfirmDialog} from "@hisptz/dhis2-ui";
-import {RHFGatewaySelector} from "./components/RHFGatewaySelector";
-import {RHFVisSelector} from "./components/RHFVisSelector";
-import {RHFGroupSelector} from "./components/RHFGroupSelector";
-import {RHFDescription} from "./components/RHFDescription";
-import {RHFRecipientSelector} from "./components/RHFRecipientSelector";
-import {useRecoilValue, useResetRecoilState} from "recoil";
-import {ConfigUpdateState} from "../PushAnalyticsTable";
-import {useSendAnalytics} from "./hooks/send";
-import {useManageConfig} from "./hooks/save";
 import {uid} from "@hisptz/dhis2-utils";
+import React, {useCallback, useEffect, useMemo} from "react";
+import {FormProvider, useForm} from "react-hook-form";
+import {useRecoilValue, useResetRecoilState} from "recoil";
+import {PushAnalytics} from "../../../../shared/interfaces";
+import {ConfigUpdateState} from "../PushAnalyticsTable";
+import {RHFDescription} from "./components/RHFDescription";
+import {RHFGatewaySelector} from "./components/RHFGatewaySelector";
+import {RHFGroupSelector} from "./components/RHFGroupSelector";
+import {RHFRecipientSelector} from "./components/RHFRecipientSelector";
+import {RHFVisSelector} from "./components/RHFVisSelector";
+import {useManageConfig} from "./hooks/save";
+import {useSendAnalytics} from "./hooks/send";
 
 export interface PushAnalyticsModalConfigProps {
-    config?: PushAnalytics | null,
-    hidden: boolean;
-    onClose: () => void
+		config?: PushAnalytics | null,
+		hidden: boolean;
+		onClose: () => void
 }
 
 function SendActions({actions}: { actions: { label: string; action: () => void }[] }) {
@@ -39,26 +39,26 @@ function SendActions({actions}: { actions: { label: string; action: () => void }
                 actions.map(({label, action}) => (<MenuItem label={label} onClick={action}/>))
             }
         </FlyoutMenu>
-    )
+    );
 }
 
 function getButtonLabel(creating: boolean, updating: boolean, sending: boolean, config?: PushAnalytics | null) {
     if (config) {
         if (updating) {
-            return i18n.t("Updating...")
+            return i18n.t("Updating...");
         }
         if (sending) {
-            return i18n.t("Sending...")
+            return i18n.t("Sending...");
         }
-        return i18n.t("Update and send")
+        return i18n.t("Update and send");
     } else {
         if (creating) {
-            return i18n.t("Saving...")
+            return i18n.t("Saving...");
         }
         if (sending) {
-            return i18n.t("Sending...")
+            return i18n.t("Sending...");
         }
-        return i18n.t("Save and send")
+        return i18n.t("Save and send");
     }
 }
 
@@ -66,11 +66,11 @@ export function PushAnalyticsModalConfig({hidden, onClose}: PushAnalyticsModalCo
     const id = useMemo(() => uid(), []);
     const config = useRecoilValue(ConfigUpdateState);
     const resetConfigUpdate = useResetRecoilState(ConfigUpdateState);
-    const {confirm} = useConfirmDialog()
+    const {confirm} = useConfirmDialog();
     const form = useForm<PushAnalytics>({
         defaultValues: config || {},
         shouldFocusError: false,
-    })
+    });
     const {send, loading: sending} = useSendAnalytics();
     const onCloseClick = useCallback(
         (fromSave?: boolean) => {
@@ -85,13 +85,13 @@ export function PushAnalyticsModalConfig({hidden, onClose}: PushAnalyticsModalCo
                     onConfirm: () => {
                         resetConfigUpdate();
                         form.reset({});
-                        onClose()
+                        onClose();
                     }
                 });
             } else {
                 resetConfigUpdate();
                 form.reset({});
-                onClose()
+                onClose();
             }
         },
         [onClose],
@@ -104,13 +104,13 @@ export function PushAnalyticsModalConfig({hidden, onClose}: PushAnalyticsModalCo
                 ...data,
                 id: config?.id ?? id,
                 contacts: data.contacts.map((contact) => ({...contact, id: contact.id ?? uid()}))
-            }
+            };
             const success = await save(sanitizedData);
             if (success) {
                 if (shouldSend) {
                     console.log({
                         sanitizedData
-                    })
+                    });
                     await send(sanitizedData);
                 }
                 onCloseClick(true);
@@ -121,12 +121,12 @@ export function PushAnalyticsModalConfig({hidden, onClose}: PushAnalyticsModalCo
 
     useEffect(() => {
         if (config) {
-            form.reset(config)
+            form.reset(config);
         }
 
         return () => {
-            form.reset({})
-        }
+            form.reset({});
+        };
     }, [config]);
 
 
@@ -139,7 +139,7 @@ export function PushAnalyticsModalConfig({hidden, onClose}: PushAnalyticsModalCo
                 <FormProvider {...form}>
                     <div className="column gap-16">
                         <RHFTextInputField required validations={{required: i18n.t("Name is required")}} name="name"
-                                           label={i18n.t("Name")}/>
+																					 label={i18n.t("Name")}/>
                         <RHFGatewaySelector
                             required validations={{required: i18n.t("Gateway is required")}}
                             name="gateway"
@@ -147,12 +147,12 @@ export function PushAnalyticsModalConfig({hidden, onClose}: PushAnalyticsModalCo
                         />
 
                         <RHFGroupSelector required validations={{required: i18n.t("Group is required")}}
-                                          name="group"
-                                          label={i18n.t("Visualization group")}/>
+                            name="group"
+                            label={i18n.t("Visualization group")}/>
                         <RHFVisSelector required
-                                        validations={{required: i18n.t("At least one visualization is required")}}
-                                        name="visualizations"
-                                        label={i18n.t("Visualizations")}/>
+                            validations={{required: i18n.t("At least one visualization is required")}}
+                            name="visualizations"
+                            label={i18n.t("Visualizations")}/>
                         <RHFDescription label={i18n.t("Description")} name="description"/>
                         <RHFRecipientSelector label={i18n.t("Recipients")} name="contacts"/>
                     </div>
@@ -171,9 +171,9 @@ export function PushAnalyticsModalConfig({hidden, onClose}: PushAnalyticsModalCo
                             action: form.handleSubmit(onSaveAndSend(false))
                         }
                     ]}/>} loading={sending || creating || updating} onClick={form.handleSubmit(onSaveAndSend(true))}
-                                 primary>{getButtonLabel(creating, updating, sending, config)}</SplitButton>
+																 primary>{getButtonLabel(creating, updating, sending, config)}</SplitButton>
                 </ButtonStrip>
             </ModalActions>
         </Modal>
-    )
+    );
 }

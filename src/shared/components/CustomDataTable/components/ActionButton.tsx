@@ -1,14 +1,14 @@
-import {TableAction} from '../interfaces';
-import React, {useState} from 'react';
-import {IconButton} from '@mui/material';
-import {FlyoutMenu, IconMore24, MenuItem, Popover} from '@dhis2/ui';
+import {FlyoutMenu, IconMore24, MenuItem, Popover} from "@dhis2/ui";
+import {IconButton} from "@mui/material";
+import React, {useState} from "react";
+import {TableAction} from "../interfaces";
 
 export function ActionButton({
-    actions,
-    row,
-}: {
-    actions?: TableAction[];
-    row: any;
+																 actions,
+																 row,
+														 }: {
+		actions?: TableAction[];
+		row: any;
 }) {
     const [buttonRef, setButtonRef] = useState<HTMLButtonElement | null>(null);
 

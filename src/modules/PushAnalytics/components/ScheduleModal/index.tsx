@@ -1,3 +1,4 @@
+import i18n from "@dhis2/d2-i18n";
 import {
     Button,
     ButtonStrip,
@@ -7,22 +8,21 @@ import {
     ModalActions,
     ModalContent,
     ModalTitle
-} from "@dhis2/ui"
-import React from "react"
-import i18n from '@dhis2/d2-i18n';
-import {PushAnalytics} from "../../../../shared/interfaces";
-import {useManagePushSchedule, usePushJobData} from "./hooks/schedule";
-import {useBoolean} from "usehooks-ts";
-import {cronOptions, ScheduleFormModal} from "./components/ScheduleFormModal";
-import CustomTable from "../../../../shared/components/CustomTable";
-import {find, isEmpty} from "lodash";
-import {getSchedule, stringToArray} from "cron-converter";
+} from "@dhis2/ui";
 import {useConfirmDialog} from "@hisptz/dhis2-ui";
+import {getSchedule, stringToArray} from "cron-converter";
+import {find, isEmpty} from "lodash";
+import React from "react";
+import {useBoolean} from "usehooks-ts";
+import CustomTable from "../../../../shared/components/CustomTable";
+import {PushAnalytics} from "../../../../shared/interfaces";
+import {cronOptions, ScheduleFormModal} from "./components/ScheduleFormModal";
+import {useManagePushSchedule, usePushJobData} from "./hooks/schedule";
 
 export interface ScheduleModalProps {
-    onClose: () => void;
-    hide: boolean;
-    config: PushAnalytics;
+		onClose: () => void;
+		hide: boolean;
+		config: PushAnalytics;
 }
 
 
@@ -48,8 +48,8 @@ export function ScheduleModal({onClose, hide, config}: ScheduleModalProps) {
                         <>
                             {
                                 (!data || isEmpty(data.schedules)) ? (<div style={{minHeight: 200}}
-                                                                           className="column align-center center gap-16">{i18n.t("Click on add schedule to start")}
-                                        <Button onClick={openAdd} primary>{i18n.t("Add Schedule")}</Button></div>) :
+																																					 className="column align-center center gap-16">{i18n.t("Click on add schedule to start")}
+                                    <Button onClick={openAdd} primary>{i18n.t("Add Schedule")}</Button></div>) :
                                     <div className="column gap-16 ">
                                         <div className="row end">
                                             <Button onClick={openAdd} primary>{i18n.t("Add Schedule")}</Button>
@@ -68,29 +68,29 @@ export function ScheduleModal({onClose, hide, config}: ScheduleModalProps) {
                                                 label: i18n.t("Actions")
                                             }
                                         ]}
-                                                     data={data.schedules.map((schedule: any) => ({
-                                                         cron: find(cronOptions, ['value', schedule.cron])?.label,
-                                                         nextRun: getSchedule(stringToArray(schedule.cron)).next().toFormat('yyyy-MM-dd HH:mm'),
-                                                         actions: (
-                                                             <ButtonStrip>
-                                                                 <Button
-                                                                     onClick={() => {
-                                                                         confirm({
-                                                                             title: i18n.t("Confirm schedule delete"),
-                                                                             message: i18n.t("Are you sure you want to delete this schedule?"),
-                                                                             onConfirm: async () => {
-                                                                                 await onDelete(schedule.id);
-                                                                             },
-                                                                             onCancel: () => {
-                                                                             }
-                                                                         })
-                                                                     }}
-                                                                     destructive
-                                                                     icon={<IconDelete24/>}
-                                                                 />
-                                                             </ButtonStrip>
-                                                         )
-                                                     }))}
+																										 data={data.schedules.map((schedule: any) => ({
+																												 cron: find(cronOptions, ["value", schedule.cron])?.label,
+																												 nextRun: getSchedule(stringToArray(schedule.cron)).next().toFormat("yyyy-MM-dd HH:mm"),
+																												 actions: (
+																														 <ButtonStrip>
+																																 <Button
+																																		 onClick={() => {
+																																				 confirm({
+																																						 title: i18n.t("Confirm schedule delete"),
+																																						 message: i18n.t("Are you sure you want to delete this schedule?"),
+																																						 onConfirm: async () => {
+																																								 await onDelete(schedule.id);
+																																						 },
+																																						 onCancel: () => {
+																																						 }
+																																				 });
+																																		 }}
+																																		 destructive
+																																		 icon={<IconDelete24/>}
+																																 />
+																														 </ButtonStrip>
+																												 )
+																										 }))}
 
                                         />
                                     </div>
@@ -105,5 +105,5 @@ export function ScheduleModal({onClose, hide, config}: ScheduleModalProps) {
                 </ButtonStrip>
             </ModalActions>
         </Modal>
-    )
+    );
 }

@@ -1,6 +1,6 @@
-import {useGateways} from "../../modules/Configuration/components/Gateway/hooks/data";
-import {useCallback} from "react";
 import axios from "axios";
+import {useCallback} from "react";
+import {useGateways} from "../../modules/Configuration/components/Gateway/hooks/data";
 
 export function usePushServiceClient() {
     const {gateways} = useGateways();
@@ -12,9 +12,9 @@ export function usePushServiceClient() {
         return axios.create({
             baseURL: gateway.url,
             headers: {
-                'Content-Type': 'application/json',
-                'x-api-key': gateway.apiKey
+                "Content-Type": "application/json",
+                "x-api-key": gateway.apiKey
             },
-        })
+        });
     }, [gateways]);
 }

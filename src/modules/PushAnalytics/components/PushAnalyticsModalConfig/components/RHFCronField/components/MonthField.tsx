@@ -1,6 +1,6 @@
-import React, {useMemo} from "react";
 import {RHFSingleSelectField} from "@hisptz/dhis2-ui";
-import {Info} from "luxon"
+import {Info} from "luxon";
+import React, {useMemo} from "react";
 
 export function MonthField() {
     const options = useMemo(() => Info.months("long").map((option: string, index: number) => ({
@@ -11,5 +11,5 @@ export function MonthField() {
 
     return (
         <RHFSingleSelectField options={options} name={"3"}/>
-    )
+    );
 }

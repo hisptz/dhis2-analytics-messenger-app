@@ -1,12 +1,12 @@
-import React, {useCallback} from "react";
 import i18n from "@dhis2/d2-i18n";
-import {Column,} from "../../../../../../shared/interfaces";
-import {useVisualizationGroups} from "../../hooks";
-import {CustomDataTable} from "@hisptz/dhis2-ui";
-import {VisualizationGroupsModal} from "../VisualizationGroupsModal";
 import {Button, IconAdd16} from "@dhis2/ui";
+import {CustomDataTable} from "@hisptz/dhis2-ui";
+import React, {useCallback} from "react";
 import {useBoolean} from "usehooks-ts";
 import FullPageLoader from "../../../../../../shared/components/Loaders";
+import {Column,} from "../../../../../../shared/interfaces";
+import {useVisualizationGroups} from "../../hooks";
+import {VisualizationGroupsModal} from "../VisualizationGroupsModal";
 
 const tableColumns: Column[] = [
     {
@@ -28,14 +28,14 @@ const tableColumns: Column[] = [
 ];
 
 export default function VisualizationGroupsTable(): React.ReactElement {
-    const {value: hidden, setTrue: hide, setFalse: open} = useBoolean(true)
+    const {value: hidden, setTrue: hide, setFalse: open} = useBoolean(true);
     const {visualizationGroups, loading, error, refetch, pager} =
-        useVisualizationGroups(open);
+				useVisualizationGroups(open);
 
     const onCloseClick = useCallback(
         () => {
             hide();
-            refetch()
+            refetch();
         },
         [hide, refetch],
     );

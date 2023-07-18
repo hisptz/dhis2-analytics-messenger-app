@@ -9,5 +9,5 @@ export function ScheduleLabel() {
         <div>
 
         </div>
-    )
+    );
 }

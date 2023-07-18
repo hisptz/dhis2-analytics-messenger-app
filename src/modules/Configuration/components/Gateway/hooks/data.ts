@@ -1,7 +1,7 @@
 import {useAlert, useDataMutation, useDataQuery} from "@dhis2/app-runtime";
+import i18n from "@dhis2/d2-i18n";
 import {GATEWAY_DATASTORE_KEY} from "../../../../../shared/constants/dataStore";
 import {Gateway} from "../schema";
-import i18n from '@dhis2/d2-i18n';
 // TODO add mechanism for pagination
 const query = {
     gateways: {
@@ -23,21 +23,21 @@ const deleteMutation: any = {
     type: "delete",
     resource: `dataStore/${GATEWAY_DATASTORE_KEY}`,
     id: ({id}: { id: string }) => id
-}
+};
 
 export function useGateways() {
-    const {show} = useAlert(({message}) => message, ({type}) => ({...type, duration: 3000}))
+    const {show} = useAlert(({message}) => message, ({type}) => ({...type, duration: 3000}));
     const {data, loading, error, refetch} = useDataQuery<{
-        gateways: { pager: any; entries: (Gateway & { key: string })[] }
-    }>(query);
+				gateways: { pager: any; entries: (Gateway & { key: string })[] }
+				    }>(query);
     const [deleteGateway,] = useDataMutation(deleteMutation, {
         onComplete: () => {
-            show({message: i18n.t("Gateway deleted successfully"), type: {success: true}})
+            show({message: i18n.t("Gateway deleted successfully"), type: {success: true}});
         },
         onError: (error) => {
-            show({message: `${i18n.t("Error deleting gateway")}: ${error.message}`, type: {critical: true}})
+            show({message: `${i18n.t("Error deleting gateway")}: ${error.message}`, type: {critical: true}});
         }
-    })
+    });
 
     const {entries, pager} = data?.gateways ?? {};
 
@@ -47,5 +47,5 @@ export function useGateways() {
         error,
         gateways: entries ?? [],
         refetch
-    }
+    };
 }

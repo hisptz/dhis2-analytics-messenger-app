@@ -1,27 +1,27 @@
-import React from "react";
-import i18n from '@dhis2/d2-i18n';
-import {FormProvider, useController, useForm} from "react-hook-form";
+import i18n from "@dhis2/d2-i18n";
 import {Field} from "@dhis2/ui";
-import {Info} from "luxon"
+import {Info} from "luxon";
+import React from "react";
+import {FormProvider, useController, useForm} from "react-hook-form";
 
 export interface RHFCronFieldProps {
-    name: string;
-    validations?: Record<string, any>,
-    required?: boolean,
-    label?: string;
+		name: string;
+		validations?: Record<string, any>,
+		required?: boolean,
+		label?: string;
 }
 
 export const units = [
     {
-        name: 'minute',
+        name: "minute",
         label: i18n.t("Minute"),
-        sideLabel: ':',
+        sideLabel: ":",
         rank: 1,
         min: 0,
         max: 59
     },
     {
-        name: 'hour',
+        name: "hour",
         label: i18n.t("Hour"),
         sideLabel: i18n.t("at"),
         rank: 2,
@@ -45,7 +45,7 @@ export const units = [
         sideLabel: i18n.t("on"),
         rank: 4,
         enabled: true,
-        options: Info.months('long'),
+        options: Info.months("long"),
         min: 0,
         max: 11
     },
@@ -55,7 +55,7 @@ export const units = [
         sideLabel: i18n.t("on"),
         rank: 5,
         enabled: false,
-        options: Info.weekdays('long'),
+        options: Info.weekdays("long"),
         min: 1,
         max: 7
     },
@@ -65,19 +65,19 @@ export const units = [
         sideLabel: i18n.t("on"),
         rank: 5,
         enabled: true,
-        options: Info.weekdays('long'),
+        options: Info.weekdays("long"),
         min: 1970,
         max: 2099
     },
 
-].reverse()
+].reverse();
 
 
 export function RHFCronField({name, label, required, validations}: RHFCronFieldProps) {
     const controller = useController({
         name,
         rules: validations
-    })
+    });
     const form = useForm();
 
 
@@ -87,5 +87,5 @@ export function RHFCronField({name, label, required, validations}: RHFCronFieldP
 
             </FormProvider>
         </Field>
-    )
+    );
 }

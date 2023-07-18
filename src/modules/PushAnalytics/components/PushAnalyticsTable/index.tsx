@@ -1,25 +1,25 @@
-import React, {useCallback, useMemo, useState} from "react";
-import i18n from "@dhis2/d2-i18n";
-import {Column, Contact, PushAnalytics} from "../../../../shared/interfaces";
-import {PUSH_ANALYTICS_DATASTORE_KEY} from "../../../../shared/constants/dataStore";
 import {useAlert, useDataQuery} from "@dhis2/app-runtime";
-import CustomTable from "../../../../shared/components/CustomTable";
-import EmptyPushAnalyticsList from "../EmptyPushAnalyticsList";
-import {useBoolean} from "usehooks-ts";
-import {PushAnalyticsModalConfig} from "../PushAnalyticsModalConfig";
-import {find, isEmpty} from "lodash";
-import {Button, IconAdd24, IconClockHistory24, IconDelete24, IconEdit24, IconMessages24} from "@dhis2/ui"
-import FullPageLoader from "../../../../shared/components/Loaders";
-import {ActionButton} from "../../../../shared/components/CustomDataTable/components/ActionButton";
-import {atom, useRecoilValue, useSetRecoilState} from "recoil";
+import i18n from "@dhis2/d2-i18n";
+import {Button, IconAdd24, IconClockHistory24, IconDelete24, IconEdit24, IconMessages24} from "@dhis2/ui";
 import {useConfirmDialog} from "@hisptz/dhis2-ui";
-import {useSendAnalytics} from "../PushAnalyticsModalConfig/hooks/send";
+import {find, isEmpty} from "lodash";
+import React, {useCallback, useMemo, useState} from "react";
+import {atom, useRecoilValue, useSetRecoilState} from "recoil";
+import {useBoolean} from "usehooks-ts";
+import {ActionButton} from "../../../../shared/components/CustomDataTable/components/ActionButton";
+import CustomTable from "../../../../shared/components/CustomTable";
+import {PUSH_ANALYTICS_DATASTORE_KEY} from "../../../../shared/constants/dataStore";
+import {Column, Contact, PushAnalytics} from "../../../../shared/interfaces";
 import {useGateways} from "../../../Configuration/components/Gateway/hooks/data";
 import {Gateway} from "../../../Configuration/components/Gateway/schema";
+import EmptyPushAnalyticsList from "../EmptyPushAnalyticsList";
+import {PushAnalyticsModalConfig} from "../PushAnalyticsModalConfig";
+import FullPageLoader from "../../../../shared/components/Loaders";
+import {useManageConfig} from "../PushAnalyticsModalConfig/hooks/save";
+import {useSendAnalytics} from "../PushAnalyticsModalConfig/hooks/send";
 import {ContactChip, ContactName} from "../../../../shared/components/ContactChip";
 import {useDHIS2Users} from "../../../../shared/hooks/users";
 import {ScheduleModal} from "../ScheduleModal";
-import {useManageConfig} from "../PushAnalyticsModalConfig/hooks/save";
 
 const tableColumns: Column[] = [
     {
@@ -48,22 +48,22 @@ const pushAnalyticsConfigQuery = {
         resource: `dataStore/${PUSH_ANALYTICS_DATASTORE_KEY}`,
         params: {
             fields: [
-                'id',
-                'name',
-                'gateway',
-                'contacts',
-                'group',
-                'visualizations',
-                'description'
+                "id",
+                "name",
+                "gateway",
+                "contacts",
+                "group",
+                "visualizations",
+                "description"
             ]
         }
     }
-}
+};
 
 export const ConfigUpdateState = atom<PushAnalytics | null>({
-    key: 'config-update-state',
+    key: "config-update-state",
     default: null
-})
+});
 
 function usePushAnalyticsConfig({onEdit}: { onEdit: () => void }) {
     const {show} = useAlert(({message}) => message, ({type}) => ({...type, duration: 3000}));
@@ -79,12 +79,12 @@ function usePushAnalyticsConfig({onEdit}: { onEdit: () => void }) {
     const {confirm} = useConfirmDialog();
     const {send,} = useSendAnalytics();
 
-    const {deleteConfig} = useManageConfig('');
+    const {deleteConfig} = useManageConfig("");
 
-    const {gateways, loading: loadingGateways} = useGateways()
+    const {gateways, loading: loadingGateways} = useGateways();
     const configs = useMemo(() => {
         return data?.config?.entries?.map((config, index) => {
-            const gateway = find((gateways as Gateway[]), ['id', config.gateway]);
+            const gateway = find((gateways as Gateway[]), ["id", config.gateway]);
             const contacts = config?.contacts;
 
 
@@ -96,12 +96,12 @@ function usePushAnalyticsConfig({onEdit}: { onEdit: () => void }) {
                     {
                         contacts?.map(({number, type}: Contact) => (
                             <ContactChip gatewayId={gateway?.id as string} key={`${number}-recipient`} number={number}
-                                         type={type}/>))
+																				 type={type}/>))
                     }
                 </div>,
                 actions: <ActionButton actions={[
                     {
-                        key: `edit-config`,
+                        key: "edit-config",
                         label: i18n.t("Edit"),
                         icon: <IconEdit24/>,
                         onClick: () => {
@@ -110,7 +110,7 @@ function usePushAnalyticsConfig({onEdit}: { onEdit: () => void }) {
                         }
                     },
                     {
-                        key: `edit-config`,
+                        key: "edit-config",
                         label: i18n.t("Schedule"),
                         icon: <IconClockHistory24/>,
                         onClick: () => {
@@ -118,7 +118,7 @@ function usePushAnalyticsConfig({onEdit}: { onEdit: () => void }) {
                         }
                     },
                     {
-                        key: `delete-config`,
+                        key: "delete-config",
                         label: i18n.t("Delete"),
                         icon: <IconDelete24/>,
                         onClick: () => {
@@ -135,11 +135,11 @@ function usePushAnalyticsConfig({onEdit}: { onEdit: () => void }) {
                                     await deleteConfig(config);
                                     await refetch();
                                 }
-                            })
+                            });
                         }
                     },
                     {
-                        key: `send-messages`,
+                        key: "send-messages",
                         label: i18n.t("Send"),
                         icon: <IconMessages24/>,
                         onClick: () => {
@@ -151,9 +151,9 @@ function usePushAnalyticsConfig({onEdit}: { onEdit: () => void }) {
                                 message: <>{i18n.t("Sending visualizations to")}:
                                     <ul>
                                         {contacts?.map(({
-                                                            number,
-                                                            type
-                                                        }) => <li
+                                            number,
+                                            type
+                                        }) => <li
                                             key={`${number}-list`}>
                                             <ContactName
                                                 type={type}
@@ -166,14 +166,14 @@ function usePushAnalyticsConfig({onEdit}: { onEdit: () => void }) {
                                 onCancel: () => {
                                 },
                                 onConfirm: async () => {
-                                    await send(config)
+                                    await send(config);
                                 }
-                            })
+                            });
                         }
                     },
                 ]} row={config}/>
-            }
-        })
+            };
+        });
     }, [data, gateways]);
 
     return {
@@ -182,7 +182,7 @@ function usePushAnalyticsConfig({onEdit}: { onEdit: () => void }) {
         setScheduleConfig,
         loading: loadingGateways || loading || usersLoading,
         refetch
-    }
+    };
 }
 
 export default function PushAnalyticsTable(): React.ReactElement {
@@ -192,11 +192,11 @@ export default function PushAnalyticsTable(): React.ReactElement {
 
     const onClose = useCallback(() => {
         hide();
-        refetch()
-    }, [])
+        refetch();
+    }, []);
 
     if (loading) {
-        return (<FullPageLoader/>)
+        return (<FullPageLoader/>);
     }
 
     return (
@@ -212,7 +212,7 @@ export default function PushAnalyticsTable(): React.ReactElement {
                 <div className="column gap-16" style={{width: "100%"}}>
                     <div>
                         <Button onClick={open} primary
-                                icon={<IconAdd24/>}>{i18n.t("Add push analytics configuration")}</Button>
+                            icon={<IconAdd24/>}>{i18n.t("Add push analytics configuration")}</Button>
                     </div>
                     <CustomTable columns={tableColumns} data={data as any} pagination={undefined}/>
                 </div>}

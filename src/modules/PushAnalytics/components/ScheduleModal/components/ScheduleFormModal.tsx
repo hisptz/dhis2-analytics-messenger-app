@@ -1,9 +1,9 @@
 import i18n from "@dhis2/d2-i18n";
 import {Button, ButtonStrip, Modal, ModalActions, ModalContent, ModalTitle, SegmentedControl} from "@dhis2/ui";
-import {FormProvider, useForm} from "react-hook-form";
-import React, {useState} from "react";
-import {PushAnalytics} from "../../../../../shared/interfaces";
 import {RHFSingleSelectField} from "@hisptz/dhis2-ui";
+import React, {useState} from "react";
+import {FormProvider, useForm} from "react-hook-form";
+import {PushAnalytics} from "../../../../../shared/interfaces";
 import {PushSchedule, useManagePushSchedule} from "../hooks/schedule";
 
 
@@ -43,19 +43,19 @@ export const cronOptions = [
         label: i18n.t("Every week on Monday"),
         value: "0 0 * * 1"
     }
-]
+];
 
 function Predefined() {
 
     return (
         <RHFSingleSelectField label={i18n.t("Select time")} options={cronOptions} name={"cron"}/>
-    )
+    );
 
 }
 
 export function ScheduleFormModal({onClose, hide, config, defaultValue}: ScheduleFormModalProps) {
     const form = useForm<{ cron: string }>();
-    const [type, setType] = useState('predefined');
+    const [type, setType] = useState("predefined");
     const {onAdd, saving} = useManagePushSchedule(config, defaultValue, onClose);
     const onSubmit = (data: { cron: string }) => onAdd(data);
 
@@ -76,10 +76,10 @@ export function ScheduleFormModal({onClose, hide, config, defaultValue}: Schedul
                         />
 
                         {
-                            type === 'predefined' && <Predefined/>
+                            type === "predefined" && <Predefined/>
                         }
                         {
-                            type === 'custom' && <div>{i18n.t("Custom support is on the way!")}</div>
+                            type === "custom" && <div>{i18n.t("Custom support is on the way!")}</div>
                         }
                     </div>
                 </FormProvider>
@@ -88,9 +88,9 @@ export function ScheduleFormModal({onClose, hide, config, defaultValue}: Schedul
                 <ButtonStrip>
                     <Button onClick={onClose}>Cancel</Button>
                     <Button onClick={form.handleSubmit(onSubmit)} loading={saving}
-                            primary>{saving ? i18n.t("Adding...") : i18n.t("Add")}</Button>
+                        primary>{saving ? i18n.t("Adding...") : i18n.t("Add")}</Button>
                 </ButtonStrip>
             </ModalActions>
         </Modal>
-    )
+    );
 }

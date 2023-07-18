@@ -1,21 +1,21 @@
-import React, {useCallback, useEffect} from "react"
-import {Button, ButtonStrip, Modal, ModalActions, ModalContent, ModalTitle} from "@dhis2/ui"
-import i18n from '@dhis2/d2-i18n';
-import {FormProvider, useForm} from "react-hook-form";
+import i18n from "@dhis2/d2-i18n";
+import {Button, ButtonStrip, Modal, ModalActions, ModalContent, ModalTitle} from "@dhis2/ui";
 import {RHFTextInputField} from "@hisptz/dhis2-ui";
-import {GatewayUpdateState, useSaveGateway} from "./hooks/save";
-import {Gateway} from "../../schema";
+import React, {useCallback, useEffect} from "react";
+import {FormProvider, useForm} from "react-hook-form";
 import {useRecoilValue, useResetRecoilState} from "recoil";
+import {Gateway} from "../../schema";
+import {GatewayUpdateState, useSaveGateway} from "./hooks/save";
 
 
 export interface GatewayConfigurationModalProps {
-    onClose: () => void,
-    hidden: boolean;
+		onClose: () => void,
+		hidden: boolean;
 }
 
 export function GatewayConfigurationModal({onClose, hidden}: GatewayConfigurationModalProps) {
-    const resetConfig = useResetRecoilState(GatewayUpdateState)
-    const config = useRecoilValue(GatewayUpdateState)
+    const resetConfig = useResetRecoilState(GatewayUpdateState);
+    const config = useRecoilValue(GatewayUpdateState);
     const form = useForm<Gateway>({
         defaultValues: config || {}
     });
@@ -25,7 +25,7 @@ export function GatewayConfigurationModal({onClose, hidden}: GatewayConfiguratio
         () => {
             resetConfig();
             form.reset({});
-            onClose()
+            onClose();
         },
         [onClose, form.reset],
     );
@@ -40,9 +40,9 @@ export function GatewayConfigurationModal({onClose, hidden}: GatewayConfiguratio
 
     useEffect(() => {
         if (config) {
-            form.reset(config)
+            form.reset(config);
         }
-    }, [config, form.reset])
+    }, [config, form.reset]);
 
 
     return (
@@ -56,11 +56,11 @@ export function GatewayConfigurationModal({onClose, hidden}: GatewayConfiguratio
                 <FormProvider {...form}>
                     <div className="column gap-16">
                         <RHFTextInputField label={i18n.t("Name")} name="name" required
-                                           validations={{required: i18n.t("Name is required")}}/>
+																					 validations={{required: i18n.t("Name is required")}}/>
                         <RHFTextInputField label={i18n.t("URL")} type="url" name="url" required
-                                           validations={{required: i18n.t("Whatsapp URL is required")}}/>
+																					 validations={{required: i18n.t("Whatsapp URL is required")}}/>
                         <RHFTextInputField label={i18n.t("API Key")} type="url" name="apiKey" required
-                                           validations={{required: i18n.t("API key is required")}}/>
+																					 validations={{required: i18n.t("API key is required")}}/>
                     </div>
                 </FormProvider>
             </ModalContent>
@@ -68,9 +68,9 @@ export function GatewayConfigurationModal({onClose, hidden}: GatewayConfiguratio
                 <ButtonStrip>
                     <Button onClick={onCloseClick}>{i18n.t("Cancel")}</Button>
                     <Button loading={updating || creating} onClick={form.handleSubmit(onSubmit)}
-                            primary>{config ? updating ? i18n.t("Updating...") : i18n.t("Update") : creating ? i18n.t("Saving...") : i18n.t("Save")}</Button>
+                        primary>{config ? updating ? i18n.t("Updating...") : i18n.t("Update") : creating ? i18n.t("Saving...") : i18n.t("Save")}</Button>
                 </ButtonStrip>
             </ModalActions>
         </Modal>
-    )
+    );
 }

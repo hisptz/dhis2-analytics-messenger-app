@@ -1,5 +1,4 @@
 import React from "react";
-
 import VisualizationGroupsTable from "./components/VisualizationGroupsTable";
 
 export default function VisualizationGroupsConfiguration(): React.ReactElement {
