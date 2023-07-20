@@ -6,7 +6,10 @@ import {PushAnalytics} from "../../../../../shared/interfaces";
 import {PushSchedule, useManagePushSchedule} from "../hooks/schedule";
 import {PredefinedSelector} from "./PredefinedSelector";
 import {CustomCronInput} from "./CustomCronInput";
-
+import {z} from "zod";
+import {zodResolver} from "@hookform/resolvers/zod"
+import {CronInput} from "./CronInput";
+import cronstrue from "cronstrue";
 
 export interface ScheduleFormModalProps {
     onClose: () => void;
@@ -15,12 +18,30 @@ export interface ScheduleFormModalProps {
     defaultValue?: PushSchedule;
 }
 
+const cronSchema = z.object({
+    cron: z.string({required_error: i18n.t("Cron is required")}).refine((value) => {
 
+        if (!value) return false;
+
+        let isValid = true;
+        try {
+            cronstrue.toString(value);
+        } catch (e) {
+            isValid = false;
+        }
+        return isValid;
+    }, i18n.t("Invalid cron expression"))
+});
 export function ScheduleFormModal({onClose, hide, config, defaultValue}: ScheduleFormModalProps) {
-    const form = useForm<{ cron: string }>();
+    const form = useForm<{ cron: string }>({
+        shouldFocusError: false,
+        resolver: zodResolver(cronSchema),
+    });
     const [type, setType] = useState('predefined');
     const {onAdd, saving} = useManagePushSchedule(config, defaultValue, onClose);
-    const onSubmit = (data: { cron: string }) => onAdd(data);
+    const onSubmit = (data: { cron: string }) => {
+        onAdd(data)
+    };
 
     const onCloseClick = () => {
         form.reset();
@@ -40,6 +61,7 @@ export function ScheduleFormModal({onClose, hide, config, defaultValue}: Schedul
                             options={[
                                 {label: i18n.t("Predefined"), value: "predefined"},
                                 {label: i18n.t("Custom"), value: "custom"},
+                                {label: i18n.t("Cron"), value: "cron"},
                             ]}
                         />
 
@@ -48,6 +70,9 @@ export function ScheduleFormModal({onClose, hide, config, defaultValue}: Schedul
                         }
                         {
                             type === 'custom' && <CustomCronInput/>
+                        }
+                        {
+                            type === 'cron' && <CronInput/>
                         }
                     </div>
                 </FormProvider>

@@ -15,10 +15,10 @@ import {useManagePushSchedule, usePushJobData} from "./hooks/schedule";
 import {useBoolean} from "usehooks-ts";
 import {ScheduleFormModal} from "./components/ScheduleFormModal";
 import CustomTable from "../../../../shared/components/CustomTable";
-import {find, isEmpty} from "lodash";
+import {isEmpty} from "lodash";
 import {getSchedule, stringToArray} from "cron-converter";
 import {useConfirmDialog} from "@hisptz/dhis2-ui";
-import {useSetting} from "@dhis2/app-service-datastore";
+import cronstrue from "cronstrue";
 
 export interface ScheduleModalProps {
     onClose: () => void;
@@ -27,8 +27,23 @@ export interface ScheduleModalProps {
 }
 
 
+function getCronName(cron: string) {
+    try {
+        return cronstrue.toString(cron);
+    } catch (e) {
+        return cron;
+    }
+}
+
+function getNextRun(cron: string) {
+    try {
+        return getSchedule(stringToArray(cron)).next().toFormat('yyyy-MM-dd HH:mm')
+    } catch (e) {
+        return "";
+    }
+}
+
 export function ScheduleModal({onClose, hide, config}: ScheduleModalProps) {
-    const [cronOptions] = useSetting("predefinedSchedules", {global: true})
     const {loading, data} = usePushJobData({
         jobId: config.id,
         gatewayId: config.gateway
@@ -71,8 +86,8 @@ export function ScheduleModal({onClose, hide, config}: ScheduleModalProps) {
                                             }
                                         ]}
                                                      data={data.schedules.map((schedule: any) => ({
-                                                         cron: find(cronOptions, ['value', schedule.cron])?.label,
-                                                         nextRun: getSchedule(stringToArray(schedule.cron)).next().toFormat('yyyy-MM-dd HH:mm'),
+                                                         cron: getCronName(schedule.cron),
+                                                         nextRun: getNextRun(schedule.cron),
                                                          actions: (
                                                              <ButtonStrip>
                                                                  <Button
@@ -87,7 +102,6 @@ export function ScheduleModal({onClose, hide, config}: ScheduleModalProps) {
                                                                              }
                                                                          })
                                                                      }}
-                                                                     destructive
                                                                      icon={<IconDelete24/>}
                                                                  />
                                                              </ButtonStrip>
