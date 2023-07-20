@@ -13,11 +13,12 @@ import i18n from '@dhis2/d2-i18n';
 import {PushAnalytics} from "../../../../shared/interfaces";
 import {useManagePushSchedule, usePushJobData} from "./hooks/schedule";
 import {useBoolean} from "usehooks-ts";
-import {cronOptions, ScheduleFormModal} from "./components/ScheduleFormModal";
+import {ScheduleFormModal} from "./components/ScheduleFormModal";
 import CustomTable from "../../../../shared/components/CustomTable";
 import {find, isEmpty} from "lodash";
 import {getSchedule, stringToArray} from "cron-converter";
 import {useConfirmDialog} from "@hisptz/dhis2-ui";
+import {useSetting} from "@dhis2/app-service-datastore";
 
 export interface ScheduleModalProps {
     onClose: () => void;
@@ -27,6 +28,7 @@ export interface ScheduleModalProps {
 
 
 export function ScheduleModal({onClose, hide, config}: ScheduleModalProps) {
+    const [cronOptions] = useSetting("predefinedSchedules", {global: true})
     const {loading, data} = usePushJobData({
         jobId: config.id,
         gatewayId: config.gateway

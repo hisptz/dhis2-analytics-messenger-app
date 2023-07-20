@@ -9,6 +9,7 @@ import {ConfirmDialogProvider} from "@hisptz/dhis2-ui";
 import {RecoilRoot} from "recoil";
 import {Helmet} from "react-helmet"
 import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
+import {predefinedSchedules} from "./shared/constants/dataStore";
 
 
 const queryClient = new QueryClient();
@@ -24,6 +25,9 @@ const App = () => (
         <QueryClientProvider client={queryClient}>
             <DataStoreProvider
                 namespace="hisptz-analytics-messenger"
+                defaultGlobalSettings={{
+                    predefinedSchedules
+                }}
                 loadingComponent={
                     <FullPageLoader message={i18n.t("Fetching App configurations...")}/>
                 }

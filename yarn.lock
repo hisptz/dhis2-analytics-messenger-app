@@ -5649,6 +5649,16 @@ cron-converter@^2.0.0:
   dependencies:
     luxon "^3.1.0"
 
+cron-time-generator@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/cron-time-generator/-/cron-time-generator-2.0.0.tgz#7ddcc32189f80e0859e55596d3dde10f0e263f4a"
+  integrity sha512-s38Fzmh7C6MgFT+EzgYcMNmm5iMivN9o8CzUTmrxmMtoqOf4dUW6AeulTzGRLAnIOyWF8Ho+uh7lZRSyaH6ttA==
+
+cronstrue@^2.28.0:
+  version "2.28.0"
+  resolved "https://registry.yarnpkg.com/cronstrue/-/cronstrue-2.28.0.tgz#2e90f3052b2529c15aa9d5d50ee6e3c6b95cde46"
+  integrity sha512-yByAR5on9i/p26djiSve4l29/AJkjCFDgopq+3gUVrQh2xgb3KKScofwkpf5XcRhuWAX0u0EuEK2nltB5hV1jQ==
+
 cross-spawn@^5.0.1:
   version "5.1.0"
   resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-5.1.0.tgz#e8bd0efee58fcff6f8f94510a0a554bbfa235449"
@@ -12747,6 +12757,11 @@ typescript@^4.6.3:
   version "4.9.5"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.9.5.tgz#095979f9bcc0d09da324d58d03ce8f8374cbe65a"
   integrity sha512-1FXk9E2Hm+QzZQ7z+McJiHL4NW1F2EzMu9Nq9i3zAaGqibafqYwCVU6WyWAuyQRRzOlxou8xZSyXLEN8oKj24g==
+
+typescript@^5.1.6:
+  version "5.1.6"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.1.6.tgz#02f8ac202b6dad2c0dd5e0913745b47a37998274"
+  integrity sha512-zaWCozRZ6DLEWAWFrVDz1H6FVXzUSfTy5FUMWsQlU8Ym5JP9eO4xkTIROFCQvhQf61z6O/G6ugw3SgAnvvm+HA==
 
 uglify-js@^3.1.4:
   version "3.17.4"

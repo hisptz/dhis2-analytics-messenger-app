@@ -17,7 +17,8 @@
     "@types/react-helmet": "^6.1.6",
     "cross-var": "^1.1.0",
     "dotenv": "^16.3.1",
-    "dotenv-cli": "^7.2.1"
+    "dotenv-cli": "^7.2.1",
+    "typescript": "^5.1.6"
   },
   "dependencies": {
     "@dhis2/app-runtime": "^3.9.2",
@@ -28,6 +29,8 @@
     "async-es": "^3.2.4",
     "axios": "^1.4.0",
     "cron-converter": "^2.0.0",
+    "cron-time-generator": "^2.0.0",
+    "cronstrue": "^2.28.0",
     "lodash": "^4.17.21",
     "luxon": "^3.3.0",
     "react-helmet": "^6.1.0",

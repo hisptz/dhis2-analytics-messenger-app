@@ -27,7 +27,7 @@ function CustomTableRow({
   return (
     <DataTableRow className={classes.row} dataTest={`${rowRef.current}-row`}>
       {columns.map(({ key }) => (
-        <DataTableCell key={`${tableId.current}-${key}-column`}>
+        <DataTableCell dense key={`${tableId.current}-${key}-column`}>
           {row[key]}
         </DataTableCell>
       ))}
