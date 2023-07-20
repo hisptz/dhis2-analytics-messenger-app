@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2023-07-20T03:38:50.403Z\n"
-"PO-Revision-Date: 2023-07-20T03:38:50.403Z\n"
+"POT-Creation-Date: 2023-07-20T12:36:43.295Z\n"
+"PO-Revision-Date: 2023-07-20T12:36:43.295Z\n"
 
 msgid "Fetching App configurations..."
 msgstr "Fetching App configurations..."
@@ -298,8 +298,8 @@ msgstr "Sending visualizations to"
 msgid "Add push analytics configuration"
 msgstr "Add push analytics configuration"
 
-msgid "Select time"
-msgstr "Select time"
+msgid "Cron expression"
+msgstr "Cron expression"
 
 msgid "Monday"
 msgstr "Monday"
@@ -322,6 +322,42 @@ msgstr "Saturday"
 msgid "Sunday"
 msgstr "Sunday"
 
+msgid "January"
+msgstr "January"
+
+msgid "February"
+msgstr "February"
+
+msgid "March"
+msgstr "March"
+
+msgid "April"
+msgstr "April"
+
+msgid "May"
+msgstr "May"
+
+msgid "June"
+msgstr "June"
+
+msgid "July"
+msgstr "July"
+
+msgid "August"
+msgstr "August"
+
+msgid "September"
+msgstr "September"
+
+msgid "October"
+msgstr "October"
+
+msgid "November"
+msgstr "November"
+
+msgid "December"
+msgstr "December"
+
 msgid "At"
 msgstr "At"
 
@@ -334,6 +370,15 @@ msgstr "On"
 msgid "Every"
 msgstr "Every"
 
+msgid "Select time"
+msgstr "Select time"
+
+msgid "Cron is required"
+msgstr "Cron is required"
+
+msgid "Invalid cron expression"
+msgstr "Invalid cron expression"
+
 msgid "Add new schedule"
 msgstr "Add new schedule"
 
@@ -345,6 +390,9 @@ msgstr "Predefined"
 
 msgid "Custom"
 msgstr "Custom"
+
+msgid "Cron"
+msgstr "Cron"
 
 msgid "Adding..."
 msgstr "Adding..."
@@ -390,27 +438,6 @@ msgstr "There are no bookings for the specified filters"
 
 msgid "There are no data available!"
 msgstr "There are no data available!"
-
-msgid "Every 2 minutes"
-msgstr "Every 2 minutes"
-
-msgid "Every 5 minutes"
-msgstr "Every 5 minutes"
-
-msgid "Every 10 minutes"
-msgstr "Every 10 minutes"
-
-msgid "Every hour"
-msgstr "Every hour"
-
-msgid "Every day at midnight"
-msgstr "Every day at midnight"
-
-msgid "Every day at noon"
-msgstr "Every day at noon"
-
-msgid "Every week on Monday"
-msgstr "Every week on Monday"
 
 msgid "Push Analytics"
 msgstr "Push Analytics"
