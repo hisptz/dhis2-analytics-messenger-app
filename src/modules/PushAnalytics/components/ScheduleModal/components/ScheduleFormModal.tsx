@@ -3,9 +3,13 @@ import {Button, ButtonStrip, Modal, ModalActions, ModalContent, ModalTitle, Segm
 import {FormProvider, useForm} from "react-hook-form";
 import React, {useState} from "react";
 import {PushAnalytics} from "../../../../../shared/interfaces";
-import {RHFSingleSelectField} from "@hisptz/dhis2-ui";
 import {PushSchedule, useManagePushSchedule} from "../hooks/schedule";
-
+import {PredefinedSelector} from "./PredefinedSelector";
+import {CustomCronInput} from "./CustomCronInput";
+import {z} from "zod";
+import {zodResolver} from "@hookform/resolvers/zod"
+import {CronInput} from "./CronInput";
+import cronstrue from "cronstrue";
 
 export interface ScheduleFormModalProps {
     onClose: () => void;
@@ -14,53 +18,38 @@ export interface ScheduleFormModalProps {
     defaultValue?: PushSchedule;
 }
 
-export const cronOptions = [
-    {
-        label: i18n.t("Every 2 minutes"),
-        value: "*/2 * * * *"
-    },
-    {
-        label: i18n.t("Every 5 minutes"),
-        value: "*/5 * * * *"
-    },
-    {
-        label: i18n.t("Every 10 minutes"),
-        value: "*/10 * * * *"
-    },
-    {
-        label: i18n.t("Every hour"),
-        value: "0 * * * *"
-    },
-    {
-        label: i18n.t("Every day at midnight"),
-        value: "0 0 * * *"
-    },
-    {
-        label: i18n.t("Every day at noon"),
-        value: "0 12 * * *"
-    },
-    {
-        label: i18n.t("Every week on Monday"),
-        value: "0 0 * * 1"
-    }
-]
+const cronSchema = z.object({
+    cron: z.string({required_error: i18n.t("Cron is required")}).refine((value) => {
 
-function Predefined() {
+        if (!value) return false;
 
-    return (
-        <RHFSingleSelectField label={i18n.t("Select time")} options={cronOptions} name={"cron"}/>
-    )
-
-}
-
+        let isValid = true;
+        try {
+            cronstrue.toString(value);
+        } catch (e) {
+            isValid = false;
+        }
+        return isValid;
+    }, i18n.t("Invalid cron expression"))
+});
 export function ScheduleFormModal({onClose, hide, config, defaultValue}: ScheduleFormModalProps) {
-    const form = useForm<{ cron: string }>();
+    const form = useForm<{ cron: string }>({
+        shouldFocusError: false,
+        resolver: zodResolver(cronSchema),
+    });
     const [type, setType] = useState('predefined');
     const {onAdd, saving} = useManagePushSchedule(config, defaultValue, onClose);
-    const onSubmit = (data: { cron: string }) => onAdd(data);
+    const onSubmit = (data: { cron: string }) => {
+        onAdd(data)
+    };
+
+    const onCloseClick = () => {
+        form.reset();
+        onClose()
+    }
 
     return (
-        <Modal position="middle" hide={hide} onClose={onClose}>
+        <Modal position="middle" hide={hide} onClose={onCloseClick}>
             <ModalTitle>{i18n.t("Add new schedule")}</ModalTitle>
             <ModalContent>
                 <FormProvider {...form} >
@@ -72,21 +61,25 @@ export function ScheduleFormModal({onClose, hide, config, defaultValue}: Schedul
                             options={[
                                 {label: i18n.t("Predefined"), value: "predefined"},
                                 {label: i18n.t("Custom"), value: "custom"},
+                                {label: i18n.t("Cron"), value: "cron"},
                             ]}
                         />
 
                         {
-                            type === 'predefined' && <Predefined/>
+                            type === 'predefined' && <PredefinedSelector/>
                         }
                         {
-                            type === 'custom' && <div>{i18n.t("Custom support is on the way!")}</div>
+                            type === 'custom' && <CustomCronInput/>
+                        }
+                        {
+                            type === 'cron' && <CronInput/>
                         }
                     </div>
                 </FormProvider>
             </ModalContent>
             <ModalActions>
                 <ButtonStrip>
-                    <Button onClick={onClose}>Cancel</Button>
+                    <Button onClick={onCloseClick}>Cancel</Button>
                     <Button onClick={form.handleSubmit(onSubmit)} loading={saving}
                             primary>{saving ? i18n.t("Adding...") : i18n.t("Add")}</Button>
                 </ButtonStrip>
