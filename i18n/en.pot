@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2023-07-21T06:59:01.802Z\n"
-"PO-Revision-Date: 2023-07-21T06:59:01.802Z\n"
+"POT-Creation-Date: 2023-07-21T08:16:05.504Z\n"
+"PO-Revision-Date: 2023-07-21T08:16:05.504Z\n"
 
 msgid "Fetching App configurations..."
 msgstr "Fetching App configurations..."
@@ -82,6 +82,9 @@ msgstr "Message"
 
 msgid "Last synced at"
 msgstr "Last synced at"
+
+msgid "Refresh"
+msgstr "Refresh"
 
 msgid "Error"
 msgstr "Error"
@@ -387,6 +390,9 @@ msgstr "Week"
 
 msgid "On"
 msgstr "On"
+
+msgid "This field is required"
+msgstr "This field is required"
 
 msgid "Every"
 msgstr "Every"
