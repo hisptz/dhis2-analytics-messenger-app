@@ -9,8 +9,8 @@ import {
     useFormContext,
     useWatch
 } from "react-hook-form";
-import React, {useMemo, useState} from "react";
-import {useEffectOnce, useUpdateEffect} from "usehooks-ts";
+import React, {useEffect, useMemo, useState} from "react";
+import {useUpdateEffect} from "usehooks-ts";
 import {isEmpty, padStart, range, set} from "lodash";
 import {RHFMultiSelectField} from "../../../../../shared/components/Fields/RHFMultiSelectField";
 import {RHFSingleSelectField} from "@hisptz/dhis2-ui";
@@ -278,10 +278,11 @@ export function CustomCronInput() {
         return "";
     }, [field.value]);
 
-
-    useEffectOnce(() => () => {
-        form.reset()
-    })
+    useEffect(() => {
+        return () => {
+            form.reset()
+        }
+    }, [])
 
 
     return (

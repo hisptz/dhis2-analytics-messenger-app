@@ -38,15 +38,17 @@ export function ScheduleFormModal({onClose, hide, config, defaultValue}: Schedul
         resolver: zodResolver(cronSchema),
     });
     const [type, setType] = useState('predefined');
-    const {onAdd, saving} = useManagePushSchedule(config, defaultValue, onClose);
+
+    const onCloseClick = () => {
+        setType("predefined");
+        form.reset();
+        onClose()
+    }
+    const {onAdd, saving} = useManagePushSchedule(config, defaultValue, onCloseClick);
     const onSubmit = (data: { cron: string }) => {
         onAdd(data)
     };
 
-    const onCloseClick = () => {
-        form.reset();
-        onClose()
-    }
 
     return (
         <Modal position="middle" hide={hide} onClose={onCloseClick}>
@@ -79,7 +81,7 @@ export function ScheduleFormModal({onClose, hide, config, defaultValue}: Schedul
             </ModalContent>
             <ModalActions>
                 <ButtonStrip>
-                    <Button onClick={onCloseClick}>Cancel</Button>
+                    <Button onClick={onCloseClick}>{i18n.t("Cancel")}</Button>
                     <Button onClick={form.handleSubmit(onSubmit)} loading={saving}
                             primary>{saving ? i18n.t("Adding...") : i18n.t("Add")}</Button>
                 </ButtonStrip>
