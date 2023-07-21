@@ -7,7 +7,7 @@ import "./main.css";
 import "./common.css";
 import {ConfirmDialogProvider} from "@hisptz/dhis2-ui";
 import {RecoilRoot} from "recoil";
-import {Helmet} from "react-helmet"
+import {Helmet} from "react-helmet";
 import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
 import {predefinedSchedules} from "./shared/constants/dataStore";
 

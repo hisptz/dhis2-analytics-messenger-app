@@ -25,4 +25,4 @@ export const predefinedSchedules = [
     {
         value: "0 0 * * 1"
     }
-]
+];

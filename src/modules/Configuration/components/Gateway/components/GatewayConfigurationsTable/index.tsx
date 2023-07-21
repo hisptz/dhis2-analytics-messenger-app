@@ -33,7 +33,7 @@ const tableColumns: Column[] = [
 ];
 
 export default function GatewayConfigurationsTable(): React.ReactElement {
-    const {value: hidden, setTrue: hide, setFalse: open} = useBoolean(true)
+    const {value: hidden, setTrue: hide, setFalse: open} = useBoolean(true);
     const {gateways, loading, error, refetch, deleteGateway} = useGateways();
     const setGatewayUpdate = useSetRecoilState(GatewayUpdateState);
     const {confirm} = useConfirmDialog();
@@ -47,7 +47,7 @@ export default function GatewayConfigurationsTable(): React.ReactElement {
                 actions: <ActionButton
                     actions={[
                         {
-                            key: `edit-config`,
+                            key: "edit-config",
                             label: i18n.t("Edit"),
                             icon: <IconEdit24/>,
                             onClick: () => {
@@ -56,7 +56,7 @@ export default function GatewayConfigurationsTable(): React.ReactElement {
                             }
                         },
                         {
-                            key: `delete-config`,
+                            key: "delete-config",
                             label: i18n.t("Delete"),
                             icon: <IconDelete24/>,
                             onClick: () => {
@@ -75,19 +75,19 @@ export default function GatewayConfigurationsTable(): React.ReactElement {
                                         });
                                         await refetch();
                                     }
-                                })
+                                });
                             }
                         },
                     ]} row={value}/>
-            }
-        })
+            };
+        });
     }, [gateways]);
 
 
     const onClose = useCallback(
         () => {
             refetch();
-            hide()
+            hide();
         },
         [],
     );

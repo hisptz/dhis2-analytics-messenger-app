@@ -27,7 +27,7 @@ export function RHFMultiSelectField({name, label, options, ...props}: RHFMultiSe
                         onChange={({selected}: { selected: string[] }) => {
                             field.onChange(selected?.map((sel) => {
                                 return sel;
-                            }))
+                            }));
                         }}
                         selected={Array.isArray(field.value) ? field.value ?? [] : []}
                         error={!!fieldState.error}
@@ -38,9 +38,9 @@ export function RHFMultiSelectField({name, label, options, ...props}: RHFMultiSe
                                 <MultiSelectOption key={`${label}-${value}`} label={label} value={value}/>))
                         }
                     </MultiSelectField>
-                )
+                );
             }} name={name}
         />
-    )
+    );
 
 }
