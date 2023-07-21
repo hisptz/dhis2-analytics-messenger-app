@@ -1,16 +1,17 @@
+import React, {useCallback, useMemo} from "react";
 import i18n from "@dhis2/d2-i18n";
+import {Column} from "../../../../../../shared/interfaces";
+import CustomTable from "../../../../../../shared/components/CustomTable";
+import {useGateways} from "../../hooks/data";
+import {ActionButton} from "../../../../../../shared/components/CustomDataTable/components/ActionButton";
 import {Button, IconAdd16, IconDelete24, IconEdit24} from "@dhis2/ui";
 import {useConfirmDialog} from "@hisptz/dhis2-ui";
-import React, {useCallback, useMemo} from "react";
 import {useSetRecoilState} from "recoil";
-import {useBoolean} from "usehooks-ts";
-import {ActionButton} from "../../../../../../shared/components/CustomDataTable/components/ActionButton";
-import CustomTable from "../../../../../../shared/components/CustomTable";
-import FullPageLoader from "../../../../../../shared/components/Loaders";
-import {Column} from "../../../../../../shared/interfaces";
-import {useGateways} from "../../hooks/data";
-import {GatewayConfigurationModal} from "../GatewayConfigurationModal";
 import {GatewayUpdateState} from "../GatewayConfigurationModal/hooks/save";
+import {useBoolean} from "usehooks-ts";
+import {GatewayConfigurationModal} from "../GatewayConfigurationModal";
+import FullPageLoader from "../../../../../../shared/components/Loaders";
+import {StatusIndicator} from "./components/StatusIndicator";
 
 const tableColumns: Column[] = [
     {
@@ -22,13 +23,17 @@ const tableColumns: Column[] = [
         key: "name",
     },
     {
+        label: i18n.t("Status"),
+        key: "status"
+    },
+    {
         label: i18n.t("Actions"),
         key: "actions",
     },
 ];
 
 export default function GatewayConfigurationsTable(): React.ReactElement {
-    const {value: hidden, setTrue: hide, setFalse: open} = useBoolean(true);
+    const {value: hidden, setTrue: hide, setFalse: open} = useBoolean(true)
     const {gateways, loading, error, refetch, deleteGateway} = useGateways();
     const setGatewayUpdate = useSetRecoilState(GatewayUpdateState);
     const {confirm} = useConfirmDialog();
@@ -38,10 +43,11 @@ export default function GatewayConfigurationsTable(): React.ReactElement {
             return {
                 index: index + 1,
                 ...value,
+                status: <StatusIndicator value={value}/>,
                 actions: <ActionButton
                     actions={[
                         {
-                            key: "edit-config",
+                            key: `edit-config`,
                             label: i18n.t("Edit"),
                             icon: <IconEdit24/>,
                             onClick: () => {
@@ -50,7 +56,7 @@ export default function GatewayConfigurationsTable(): React.ReactElement {
                             }
                         },
                         {
-                            key: "delete-config",
+                            key: `delete-config`,
                             label: i18n.t("Delete"),
                             icon: <IconDelete24/>,
                             onClick: () => {
@@ -69,19 +75,19 @@ export default function GatewayConfigurationsTable(): React.ReactElement {
                                         });
                                         await refetch();
                                     }
-                                });
+                                })
                             }
                         },
                     ]} row={value}/>
-            };
-        });
+            }
+        })
     }, [gateways]);
 
 
     const onClose = useCallback(
         () => {
             refetch();
-            hide();
+            hide()
         },
         [],
     );
