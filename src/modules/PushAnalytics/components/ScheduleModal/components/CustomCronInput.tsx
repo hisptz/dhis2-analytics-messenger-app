@@ -217,22 +217,26 @@ function CustomSelector({type}: { type?: string | null }) {
                         if (!isEmpty(options)) {
                             if (multiple) {
                                 return (
-                                    <RHFMultiSelectField validations={{
+                                    <RHFMultiSelectField
+                                        key={`${index}-${label}`}
+                                        validations={{
+                                            required: {
+                                                value: required,
+                                                message: i18n.t("This field is required")
+                                            }
+                                        }} required={required} name={index.toString()} label={label} options={options}/>
+                                );
+                            }
+                            return (
+                                <RHFSingleSelectField
+                                    key={`${index}-${label}`}
+                                    validations={{
                                         required: {
                                             value: required,
                                             message: i18n.t("This field is required")
                                         }
-                                    }} required={required} name={index.toString()} label={label} options={options}/>
-                                );
-                            }
-                            return (
-                                <RHFSingleSelectField validations={{
-                                    required: {
-                                        value: required,
-                                        message: i18n.t("This field is required")
-                                    }
-                                }} required={required} label={label} fullWidth options={options}
-                                name={index.toString()}/>
+                                    }} required={required} label={label} fullWidth options={options}
+                                    name={index.toString()}/>
                             );
                         }
 
@@ -243,6 +247,7 @@ function CustomSelector({type}: { type?: string | null }) {
 
                         return (
                             <RHFSingleSelectField
+                                key={`${index}-${label}`}
                                 validations={{required: {value: required, message: i18n.t("This field is required")}}}
                                 required={required} label={label} fullWidth options={generatedOptions}
                                 name={index.toString()}/>
@@ -275,7 +280,7 @@ function Submitter({field, type}: { field: ControllerRenderProps<FieldValues, "c
 
 export function CustomCronInput() {
     const [type, setType] = useState<string | null>(null);
-    const {field, formState, fieldState} = useController({
+    const {field, fieldState} = useController({
         name: "cron"
     });
     const form = useForm();
