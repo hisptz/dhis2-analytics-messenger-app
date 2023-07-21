@@ -11,7 +11,7 @@ import {
 } from "react-hook-form";
 import React, {useMemo, useState} from "react";
 import {useEffectOnce, useUpdateEffect} from "usehooks-ts";
-import {isEmpty, padStart, range} from "lodash";
+import {isEmpty, padStart, range, set} from "lodash";
 import {RHFMultiSelectField} from "../../../../../shared/components/Fields/RHFMultiSelectField";
 import {RHFSingleSelectField} from "@hisptz/dhis2-ui";
 import cronstrue from "cronstrue";
@@ -99,6 +99,32 @@ const monthsOfYear = [
     }
 ]
 
+const minuteConfig = {
+    label: i18n.t("Minute"),
+    min: 0,
+    max: 59,
+    initial: 0
+}
+
+const hourConfig = {
+    label: i18n.t("Hour"),
+    min: 0,
+    max: 23,
+    initial: 0
+}
+const weekDayConfig = {
+    label: i18n.t("Day"),
+    multiple: true,
+    options: daysOfWeek
+}
+
+const monthDayConfig = {
+    label: i18n.t("Day"),
+    min: 1,
+    max: 31,
+    initial: 1
+}
+
 const fields = [
     {
         label: i18n.t("Hour"),
@@ -106,11 +132,7 @@ const fields = [
         conjunction: i18n.t("At"),
         fn: CronTime.everyHourAt,
         fields: [
-            {
-                label: i18n.t("Minute"),
-                min: 0,
-                max: 59
-            }
+            minuteConfig
         ] as any[]
     },
     {
@@ -119,16 +141,8 @@ const fields = [
         fn: CronTime.everyDayAt,
         conjunction: i18n.t("At"),
         fields: [
-            {
-                label: i18n.t("Hour"),
-                min: 0,
-                max: 23
-            },
-            {
-                label: i18n.t("Minute"),
-                min: 0,
-                max: 59
-            }
+            hourConfig,
+            minuteConfig
         ] as any[]
     },
     {
@@ -137,21 +151,9 @@ const fields = [
         fn: CronTime.everyWeekAt,
         conjunction: i18n.t("On"),
         fields: [
-            {
-                label: i18n.t("Day"),
-                multiple: true,
-                options: daysOfWeek
-            },
-            {
-                label: i18n.t("Hour"),
-                min: 0,
-                max: 23
-            },
-            {
-                label: i18n.t("Minute"),
-                min: 0,
-                max: 59
-            }
+            weekDayConfig,
+            hourConfig,
+            minuteConfig
         ] as any[]
     },
     {
@@ -160,21 +162,9 @@ const fields = [
         fn: CronTime.everyMonthOn,
         conjunction: i18n.t("On"),
         fields: [
-            {
-                label: i18n.t("Day"),
-                min: 1,
-                max: 31
-            },
-            {
-                label: i18n.t("Hour"),
-                min: 0,
-                max: 23
-            },
-            {
-                label: i18n.t("Minute"),
-                min: 0,
-                max: 59
-            }
+            monthDayConfig,
+            hourConfig,
+            minuteConfig
         ]
     },
     {
@@ -188,21 +178,9 @@ const fields = [
                 multiple: true,
                 options: monthsOfYear
             },
-            {
-                label: i18n.t("Day"),
-                min: 1,
-                max: 31
-            },
-            {
-                label: i18n.t("Hour"),
-                min: 0,
-                max: 23
-            },
-            {
-                label: i18n.t("Minute"),
-                min: 0,
-                max: 59
-            }
+            monthDayConfig,
+            hourConfig,
+            minuteConfig
         ]
     }
 ]
@@ -214,7 +192,11 @@ function CustomSelector({type}: { type?: string | null }) {
     }, [type]);
 
     useUpdateEffect(() => {
-        reset();
+        const defaultValues = {};
+        selectedConfig?.fields?.forEach(({initial}, index) => {
+            set(defaultValues, index.toString(), initial)
+        })
+        reset(defaultValues);
     }, [selectedConfig])
 
     return (
@@ -265,10 +247,8 @@ function Submitter({field, type}: { field: ControllerRenderProps<FieldValues, "c
         if (config) {
             if (isEmpty(values)) return;
             let params: any = Object.values(values) as any[];
-            console.log(params)
             if (config.fields.length === params.length) {
                 const cron = config.fn(...params);
-                console.log(cron)
                 field.onChange(cron);
             }
         }
