@@ -11,5 +11,5 @@ export interface PushAnalytics extends IdentifiableModel {
 export interface Contact {
     id?: string;
     number: string;
-    type: 'group' | 'individual'
+    type: "group" | "individual"
 }

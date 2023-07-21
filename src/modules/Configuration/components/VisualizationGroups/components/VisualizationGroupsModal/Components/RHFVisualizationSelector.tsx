@@ -1,14 +1,14 @@
-import {useDataQuery} from "@dhis2/app-runtime"
-import React, {useCallback, useEffect, useMemo, useRef, useState} from "react"
-import {Controller} from "react-hook-form";
+import {useDataQuery} from "@dhis2/app-runtime";
 import {Field, Transfer} from "@dhis2/ui";
 import {debounce, find, uniqBy} from "lodash";
+import React, {useCallback, useEffect, useMemo, useRef, useState} from "react";
+import {Controller} from "react-hook-form";
 
 export interface RHFVisualizationSelectorProps {
-    name: string;
-    validations: Record<string, any>;
-    label: string;
-    required?: boolean
+		name: string;
+		validations: Record<string, any>;
+		label: string;
+		required?: boolean
 }
 
 
@@ -17,17 +17,17 @@ const visualizationQuery = {
         resource: "visualizations",
         params: ({page, keyword}: any) => {
             return {
-                fields: ['id', 'displayName'],
+                fields: ["id", "displayName"],
                 page,
                 pageSize: 50,
                 totalPages: true,
                 filter: keyword ? [
                     `identifiableToken:like:${keyword}`,
                 ] : undefined
-            }
+            };
         }
     }
-}
+};
 
 export function RHFVisualizationSelector({name, label, validations, required}: RHFVisualizationSelectorProps) {
     const [options, setOptions] = useState<Array<{ label: string; value: string }>>([]);
@@ -45,14 +45,14 @@ export function RHFVisualizationSelector({name, label, validations, required}: R
                 return {
                     label: visualization.displayName,
                     value: visualization.id
-                }
+                };
             });
             setOptions(prevState => (uniqBy([
                 ...prevState,
                 ...newData
-            ], 'value')))
+            ], "value")));
         }
-    }, [data])
+    }, [data]);
 
     const onNextPage = useCallback(() => {
         const page = parseInt(data?.vis?.pager?.page);
@@ -60,7 +60,7 @@ export function RHFVisualizationSelector({name, label, validations, required}: R
         if (page !== totalPages) {
             refetch({
                 page: parseInt(data?.vis?.pager?.page) + 1
-            })
+            });
         }
     }, [refetch, data]);
 
@@ -70,7 +70,7 @@ export function RHFVisualizationSelector({name, label, validations, required}: R
             refetch({
                 keyword,
                 page: 1
-            })
+            });
         },
         [refetch],
     );
@@ -88,7 +88,7 @@ export function RHFVisualizationSelector({name, label, validations, required}: R
                         return uniqBy([
                             ...(options ?? []),
                             ...(field.value?.map(({id, name}: any) => ({label: name, value: id})) ?? [])
-                        ], 'value')
+                        ], "value");
                     }, [options]);
 
                     return (<Field required={required} label={label}>
@@ -101,13 +101,13 @@ export function RHFVisualizationSelector({name, label, validations, required}: R
                             onChange={({selected}: { selected: string[] }) => {
                                 field.onChange(selected?.map((value) => ({
                                     id: value,
-                                    name: find(updatedOptions, ['value', value])?.label
+                                    name: find(updatedOptions, ["value", value])?.label
                                 })));
                             }}
                         />
-                    </Field>)
+                    </Field>);
                 }
             }
             name={name}/>
-    )
+    );
 }

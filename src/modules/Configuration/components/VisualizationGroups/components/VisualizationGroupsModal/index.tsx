@@ -1,18 +1,18 @@
-import React, {useCallback} from "react"
-import {Button, ButtonStrip, Modal, ModalActions, ModalContent, ModalTitle} from "@dhis2/ui"
-import i18n from '@dhis2/d2-i18n';
-import {FormProvider, useForm} from "react-hook-form";
+import i18n from "@dhis2/d2-i18n";
+import {Button, ButtonStrip, Modal, ModalActions, ModalContent, ModalTitle} from "@dhis2/ui";
 import {RHFTextInputField} from "@hisptz/dhis2-ui";
-import {useSaveVisualizationGroup, VisGroupUpdateState} from "./hooks/save";
-import {RHFVisualizationSelector} from "./Components/RHFVisualizationSelector";
 import {isEmpty} from "lodash";
-import {VisualizationGroup} from "../../schema";
+import React, {useCallback} from "react";
+import {FormProvider, useForm} from "react-hook-form";
 import {useRecoilValue, useResetRecoilState} from "recoil";
+import {VisualizationGroup} from "../../schema";
+import {RHFVisualizationSelector} from "./Components/RHFVisualizationSelector";
+import {useSaveVisualizationGroup, VisGroupUpdateState} from "./hooks/save";
 
 
 export interface VisualizationGroupsModalProps {
-    onClose: () => void,
-    hidden: boolean;
+		onClose: () => void,
+		hidden: boolean;
 }
 
 export function VisualizationGroupsModal({onClose, hidden}: VisualizationGroupsModalProps) {
@@ -28,7 +28,7 @@ export function VisualizationGroupsModal({onClose, hidden}: VisualizationGroupsM
         () => {
             form.reset({});
             resetGroupUpdate();
-            onClose()
+            onClose();
         },
         [onClose],
     );
@@ -36,7 +36,7 @@ export function VisualizationGroupsModal({onClose, hidden}: VisualizationGroupsM
     const onSubmit = useCallback(
         async (data: VisualizationGroup) => {
             await save(data);
-            onCloseClick()
+            onCloseClick();
         },
         [onCloseClick],
     );
@@ -53,13 +53,13 @@ export function VisualizationGroupsModal({onClose, hidden}: VisualizationGroupsM
                 <FormProvider {...form}>
                     <div className="column gap-16">
                         <RHFTextInputField label={i18n.t("Name")} name="name" required
-                                           validations={{required: i18n.t("Name is required")}}/>
+																					 validations={{required: i18n.t("Name is required")}}/>
                         <RHFVisualizationSelector
                             required
-                            name={'visualizations'}
+                            name={"visualizations"}
                             validations={{
                                 validate: (value: string[]) => {
-                                    return !isEmpty(value) || i18n.t("Select at least one visualization")
+                                    return !isEmpty(value) || i18n.t("Select at least one visualization");
                                 }
                             }}
                             label={i18n.t("Visualizations")}/>
@@ -70,9 +70,9 @@ export function VisualizationGroupsModal({onClose, hidden}: VisualizationGroupsM
                 <ButtonStrip>
                     <Button onClick={onCloseClick}>{i18n.t("Cancel")}</Button>
                     <Button loading={creating || updating} onClick={form.handleSubmit(onSubmit)}
-                            primary>{group ? updating ? i18n.t("Updating...") : i18n.t("Update") : creating ? i18n.t("Saving...") : i18n.t("Save")}</Button>
+                        primary>{group ? updating ? i18n.t("Updating...") : i18n.t("Update") : creating ? i18n.t("Saving...") : i18n.t("Save")}</Button>
                 </ButtonStrip>
             </ModalActions>
         </Modal>
-    )
+    );
 }

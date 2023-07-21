@@ -1,9 +1,9 @@
-import {useCallback, useMemo} from "react";
-import {uid} from "@hisptz/dhis2-utils";
 import {useAlert, useDataMutation} from "@dhis2/app-runtime";
-import i18n from '@dhis2/d2-i18n';
-import {GATEWAY_DATASTORE_KEY} from "../../../../../../../shared/constants/dataStore";
+import i18n from "@dhis2/d2-i18n";
+import {uid} from "@hisptz/dhis2-utils";
+import {useCallback, useMemo} from "react";
 import {atom, useRecoilValue} from "recoil";
+import {GATEWAY_DATASTORE_KEY} from "../../../../../../../shared/constants/dataStore";
 import {Gateway} from "../../../schema";
 
 
@@ -11,33 +11,33 @@ const generateGatewayCreateMutation = (id: string): any => ({
     type: "create",
     resource: `dataStore/${GATEWAY_DATASTORE_KEY}/${id}`,
     data: ({data}: any) => data
-})
+});
 
 const updateGatewayMutation: any = {
     type: "update",
     resource: `dataStore/${GATEWAY_DATASTORE_KEY}`,
     id: ({data}: any) => data.key,
     data: ({data}: any) => data
-}
+};
 
 
 export const GatewayUpdateState = atom<Gateway | null>({
     key: "gateway-update-state",
     default: null,
-})
+});
 
 export function useSaveGateway() {
     const gateway = useRecoilValue(GatewayUpdateState);
     const id = useMemo(() => uid(), []);
     const {show, hide} = useAlert(({message}: { message: string }) => message, ({type}: {
-        type: Record<string, any>
-    }) => ({
+				type: Record<string, any>
+		}) => ({
         ...type,
         duration: 3000
-    }))
+    }));
     const [create, {loading: creating}] = useDataMutation(generateGatewayCreateMutation(id), {
         onComplete: () => {
-            show({message: i18n.t("Gateway config saved successfully"), type: {success: true}})
+            show({message: i18n.t("Gateway config saved successfully"), type: {success: true}});
         },
         onError: (error) => {
             show({
@@ -49,7 +49,7 @@ export function useSaveGateway() {
     });
     const [update, {loading: updating}] = useDataMutation(updateGatewayMutation, {
         onComplete: () => {
-            show({message: i18n.t("Gateway config updated successfully"), type: {success: true}})
+            show({message: i18n.t("Gateway config updated successfully"), type: {success: true}});
         },
         onError: (error) => {
             show({
@@ -64,7 +64,7 @@ export function useSaveGateway() {
         if (gateway || config.id) {
             return await update({
                 data: config
-            })
+            });
         } else {
             return await create({
                 data: {
@@ -72,7 +72,7 @@ export function useSaveGateway() {
                     id,
                     ...config,
                 }
-            })
+            });
         }
     }, [gateway, id]);
 
@@ -80,5 +80,5 @@ export function useSaveGateway() {
         save,
         creating,
         updating
-    }
+    };
 }
