@@ -13,11 +13,17 @@ export function PredefinedSelector() {
         return {
             label: cronstrue.toString(schedule.value),
             value: schedule.value
-        }
-    })
+        };
+    });
 
     return (
-        <RHFSingleSelectField label={i18n.t("Select time")} options={options} name={"cron"}/>
-    )
+        <RHFSingleSelectField
+            required
+            validations={{required: i18n.t("This field is required")}}
+            label={i18n.t("Select time")}
+            options={options}
+            name={"cron"}
+        />
+    );
 
 }

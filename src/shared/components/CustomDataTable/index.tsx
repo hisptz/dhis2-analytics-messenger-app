@@ -20,8 +20,6 @@ import {ActionButton} from "./components/ActionButton";
 import classes from "./CustomDataTable.module.css";
 import {CustomDataTableProps, DataTableColumn, DataTableRow as DataTableRowInterface,} from "./interfaces";
 
-const heightOffset = 380;
-
 export default function CustomDataTable({
     columns,
     rows,
@@ -114,7 +112,7 @@ export default function CustomDataTable({
                                         );
                                     } else {
                                         return (
-                                            <DataTableCell backgroundColor={row.background}/>
+                                            <DataTableCell key={`${key}-actions`} backgroundColor={row.background}/>
                                         );
                                     }
                                 }

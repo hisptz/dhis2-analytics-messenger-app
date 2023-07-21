@@ -17,10 +17,10 @@ export function CronInput() {
         } catch (e) {
             return "";
         }
-    }, [cron])
+    }, [cron]);
 
 
     return (
         <RHFTextInputField helpText={text} required name="cron" label={i18n.t("Cron expression")}/>
-    )
+    );
 }

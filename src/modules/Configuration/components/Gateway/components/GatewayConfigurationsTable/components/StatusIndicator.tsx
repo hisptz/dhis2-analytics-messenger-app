@@ -3,7 +3,7 @@ import React, {useMemo} from "react";
 import {usePushServiceClient} from "../../../../../../../shared/hooks/pushService";
 import {useQuery} from "@tanstack/react-query";
 import {CircularLoader, IconSync16, Tag, Tooltip} from "@dhis2/ui";
-import i18n from '@dhis2/d2-i18n';
+import i18n from "@dhis2/d2-i18n";
 import {IconButton} from "@mui/material";
 import {capitalize} from "lodash";
 import {DateTime} from "luxon";
@@ -32,7 +32,7 @@ const Wrapper = ({children, refetch, data, isRefetching, customMessage}: {
             content={customMessage ?? <div style={{gap: 2}} className="column ">
                 <span><b>{i18n.t("Status")}:</b> {capitalize(data?.status) ?? i18n.t("unknown")}</span>
                 <span><b>{i18n.t("Message")}:</b> {capitalize(data?.message) ?? ""}</span>
-                <span><b>{i18n.t("Last synced at")}:</b> {DateTime.fromJSDate(new Date(data?.timestamp ?? '')).toFormat('yyyy-MM-dd HH:mm:ss') ?? ""}</span>
+                <span><b>{i18n.t("Last synced at")}:</b> {DateTime.fromJSDate(new Date(data?.timestamp ?? "")).toFormat("yyyy-MM-dd HH:mm:ss") ?? ""}</span>
             </div>}>
             {children}
         </Tooltip>
@@ -44,16 +44,16 @@ const Wrapper = ({children, refetch, data, isRefetching, customMessage}: {
             </IconButton>
         </Tooltip>
     </div>
-)
+);
 
 export function StatusIndicator({value}: StatusIndicatorProps) {
     const getClient = usePushServiceClient();
     const client = useMemo(() => getClient(value.id), [value.id]);
     const getStatus = async () => {
-        const endpoint = `/whatsapp/ping`
+        const endpoint = "/whatsapp/ping";
         const response = await client.get(endpoint);
         return response.data ?? null;
-    }
+    };
 
     const {
         isError,
@@ -68,18 +68,18 @@ export function StatusIndicator({value}: StatusIndicatorProps) {
     if (isError) {
         return (
             <Wrapper customMessage={<span>{error?.message}</span>} isRefetching={isRefetching} data={data}
-                     refetch={refetch}>
+                refetch={refetch}>
                 <Tag negative bold>
                     {i18n.t("Error")}
                 </Tag>
             </Wrapper>
-        )
+        );
     }
 
     if (isLoading) {
         return (
             <CircularLoader extrasmall/>
-        )
+        );
     }
 
 
@@ -90,7 +90,7 @@ export function StatusIndicator({value}: StatusIndicatorProps) {
                     {i18n.t("Online")}
                 </Tag>
             </Wrapper>
-        )
+        );
     }
 
 
@@ -101,11 +101,11 @@ export function StatusIndicator({value}: StatusIndicatorProps) {
                     {i18n.t("Offline")}
                 </Tag>
             </Wrapper>
-        )
+        );
     }
 
 
     return (
         <></>
-    )
+    );
 }

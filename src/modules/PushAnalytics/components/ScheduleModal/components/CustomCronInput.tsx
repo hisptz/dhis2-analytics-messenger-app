@@ -9,9 +9,9 @@ import {
     useFormContext,
     useWatch
 } from "react-hook-form";
-import React, {useMemo, useState} from "react";
-import {useEffectOnce, useUpdateEffect} from "usehooks-ts";
-import {isEmpty, padStart, range} from "lodash";
+import React, {useEffect, useMemo, useState} from "react";
+import {useUpdateEffect} from "usehooks-ts";
+import {isEmpty, padStart, range, set} from "lodash";
 import {RHFMultiSelectField} from "../../../../../shared/components/Fields/RHFMultiSelectField";
 import {RHFSingleSelectField} from "@hisptz/dhis2-ui";
 import cronstrue from "cronstrue";
@@ -20,192 +20,172 @@ import {Field, SingleSelectField, SingleSelectOption} from "@dhis2/ui";
 const daysOfWeek = [
     {
         label: i18n.t("Monday"),
-        value: 'mon'
+        value: "mon"
     },
     {
         label: i18n.t("Tuesday"),
-        value: 'tue'
+        value: "tue"
     },
     {
         label: i18n.t("Wednesday"),
-        value: 'wed'
+        value: "wed"
     },
     {
         label: i18n.t("Thursday"),
-        value: 'thu'
+        value: "thu"
     },
     {
         label: i18n.t("Friday"),
-        value: 'fri'
+        value: "fri"
     },
     {
         label: i18n.t("Saturday"),
-        value: 'sat'
+        value: "sat"
     },
     {
         label: i18n.t("Sunday"),
-        value: 'sun'
+        value: "sun"
     }
-]
+];
 
 const monthsOfYear = [
     {
         label: i18n.t("January"),
-        value: 'jan'
+        value: "jan"
     },
     {
         label: i18n.t("February"),
-        value: 'feb'
+        value: "feb"
     },
     {
         label: i18n.t("March"),
-        value: 'mar'
+        value: "mar"
     },
     {
         label: i18n.t("April"),
-        value: 'apr'
+        value: "apr"
     },
     {
         label: i18n.t("May"),
-        value: 'may'
+        value: "may"
     },
     {
         label: i18n.t("June"),
-        value: 'jun'
+        value: "jun"
     },
     {
         label: i18n.t("July"),
-        value: 'jul'
+        value: "jul"
     },
     {
         label: i18n.t("August"),
-        value: 'aug'
+        value: "aug"
     },
     {
         label: i18n.t("September"),
-        value: 'sep'
+        value: "sep"
     },
     {
         label: i18n.t("October"),
-        value: 'oct'
+        value: "oct"
     },
     {
         label: i18n.t("November"),
-        value: 'nov'
+        value: "nov"
     },
     {
         label: i18n.t("December"),
-        value: 'dec'
+        value: "dec"
     }
-]
+];
+
+const minuteConfig = {
+    label: i18n.t("Minute"),
+    min: 0,
+    max: 59,
+    initial: 0
+};
+
+const hourConfig = {
+    label: i18n.t("Hour"),
+    min: 0,
+    max: 23,
+    initial: 0
+};
+const weekDayConfig = {
+    label: i18n.t("Day"),
+    multiple: true,
+    options: daysOfWeek,
+    required: true
+};
+
+const monthDayConfig = {
+    label: i18n.t("Day"),
+    min: 1,
+    max: 31,
+    initial: 1
+};
 
 const fields = [
     {
         label: i18n.t("Hour"),
-        id: 'hour',
+        id: "hour",
         conjunction: i18n.t("At"),
         fn: CronTime.everyHourAt,
         fields: [
-            {
-                label: i18n.t("Minute"),
-                min: 0,
-                max: 59
-            }
+            minuteConfig
         ] as any[]
     },
     {
         label: i18n.t("Day"),
-        id: 'day',
+        id: "day",
         fn: CronTime.everyDayAt,
         conjunction: i18n.t("At"),
         fields: [
-            {
-                label: i18n.t("Hour"),
-                min: 0,
-                max: 23
-            },
-            {
-                label: i18n.t("Minute"),
-                min: 0,
-                max: 59
-            }
+            hourConfig,
+            minuteConfig
         ] as any[]
     },
     {
         label: i18n.t("Week"),
-        id: 'week',
+        id: "week",
         fn: CronTime.everyWeekAt,
         conjunction: i18n.t("On"),
         fields: [
-            {
-                label: i18n.t("Day"),
-                multiple: true,
-                options: daysOfWeek
-            },
-            {
-                label: i18n.t("Hour"),
-                min: 0,
-                max: 23
-            },
-            {
-                label: i18n.t("Minute"),
-                min: 0,
-                max: 59
-            }
+            weekDayConfig,
+            hourConfig,
+            minuteConfig
         ] as any[]
     },
     {
         label: i18n.t("Month"),
-        id: 'month',
+        id: "month",
         fn: CronTime.everyMonthOn,
         conjunction: i18n.t("On"),
         fields: [
-            {
-                label: i18n.t("Day"),
-                min: 1,
-                max: 31
-            },
-            {
-                label: i18n.t("Hour"),
-                min: 0,
-                max: 23
-            },
-            {
-                label: i18n.t("Minute"),
-                min: 0,
-                max: 59
-            }
+            monthDayConfig,
+            hourConfig,
+            minuteConfig
         ]
     },
     {
         label: i18n.t("Year"),
-        id: 'year',
+        id: "year",
         fn: CronTime.everyYearIn,
         conjunction: i18n.t("On"),
         fields: [
             {
                 label: i18n.t("Month"),
+                required: true,
                 multiple: true,
                 options: monthsOfYear
             },
-            {
-                label: i18n.t("Day"),
-                min: 1,
-                max: 31
-            },
-            {
-                label: i18n.t("Hour"),
-                min: 0,
-                max: 23
-            },
-            {
-                label: i18n.t("Minute"),
-                min: 0,
-                max: 59
-            }
+            monthDayConfig,
+            hourConfig,
+            minuteConfig
         ]
     }
-]
+];
 
 function CustomSelector({type}: { type?: string | null }) {
     const {reset} = useFormContext();
@@ -214,8 +194,14 @@ function CustomSelector({type}: { type?: string | null }) {
     }, [type]);
 
     useUpdateEffect(() => {
-        reset();
-    }, [selectedConfig])
+        if (selectedConfig) {
+            const defaultValues = {};
+            selectedConfig?.fields?.forEach(({initial}, index) => {
+                set(defaultValues, index.toString(), initial);
+            });
+            reset(defaultValues);
+        }
+    }, [selectedConfig]);
 
     return (
         <>
@@ -227,33 +213,50 @@ function CustomSelector({type}: { type?: string | null }) {
                 alignItems: "end"
             }} className="w-100">
                 {
-                    selectedConfig?.fields?.map(({options, min, max, label, multiple}, index) => {
+                    selectedConfig?.fields?.map(({options, min, max, label, multiple, required}, index) => {
                         if (!isEmpty(options)) {
                             if (multiple) {
                                 return (
-                                    <RHFMultiSelectField name={index.toString()} label={label} options={options}/>
-                                )
+                                    <RHFMultiSelectField
+                                        key={`${index}-${label}`}
+                                        validations={{
+                                            required: {
+                                                value: required,
+                                                message: i18n.t("This field is required")
+                                            }
+                                        }} required={required} name={index.toString()} label={label} options={options}/>
+                                );
                             }
                             return (
-                                <RHFSingleSelectField label={label} fullWidth options={options}
-                                                      name={index.toString()}/>
-                            )
+                                <RHFSingleSelectField
+                                    key={`${index}-${label}`}
+                                    validations={{
+                                        required: {
+                                            value: required,
+                                            message: i18n.t("This field is required")
+                                        }
+                                    }} required={required} label={label} fullWidth options={options}
+                                    name={index.toString()}/>
+                            );
                         }
 
                         const generatedOptions = range(min, max + 1).map((value) => ({
                             label: padStart(value.toString(), 2),
                             value: padStart(value.toString(), 2)
-                        }))
+                        }));
 
                         return (
-                            <RHFSingleSelectField label={label} fullWidth options={generatedOptions}
-                                                  name={index.toString()}/>
-                        )
+                            <RHFSingleSelectField
+                                key={`${index}-${label}`}
+                                validations={{required: {value: required, message: i18n.t("This field is required")}}}
+                                required={required} label={label} fullWidth options={generatedOptions}
+                                name={index.toString()}/>
+                        );
                     })
                 }
             </div>
         </>
-    )
+    );
 }
 
 
@@ -264,22 +267,20 @@ function Submitter({field, type}: { field: ControllerRenderProps<FieldValues, "c
         const config = fields.find((config) => config.id === type);
         if (config) {
             if (isEmpty(values)) return;
-            let params: any = Object.values(values) as any[];
-            console.log(params)
+            const params: any = Object.values(values) as any[];
             if (config.fields.length === params.length) {
                 const cron = config.fn(...params);
-                console.log(cron)
                 field.onChange(cron);
             }
         }
-    }, [values])
+    }, [values]);
 
     return null;
 }
 
 export function CustomCronInput() {
-    const [type, setType] = useState<string | null>(null)
-    const {field, formState, fieldState} = useController({
+    const [type, setType] = useState<string | null>(null);
+    const {field, fieldState} = useController({
         name: "cron"
     });
     const form = useForm();
@@ -298,25 +299,26 @@ export function CustomCronInput() {
         return "";
     }, [field.value]);
 
-
-    useEffectOnce(() => () => {
-        form.reset()
-    })
+    useEffect(() => {
+        return () => {
+            setType(null);
+            form.reset();
+        };
+    }, []);
 
 
     return (
-        <Field helpText={text} error={fieldState.error?.message}>
+        <Field helpText={text} validationText={fieldState.error?.message} error={!!fieldState.error}>
             <FormProvider {...form}>
                 <div className="column gap-16 w-100">
                     <Submitter type={type} field={field}/>
                     <div className="w-100">
                         <SingleSelectField selected={type}
-                                           onChange={({selected}: { selected: string }) => {
-                                               setType(selected);
-                                               form.reset();
-                                               field.onChange(null);
-                                           }}
-                                           label={i18n.t("Every")} options={mainOptions} name="type">
+                            onChange={({selected}: { selected: string }) => {
+                                setType(selected);
+                                field.onChange(null);
+                            }}
+                            label={i18n.t("Every")} options={mainOptions} name="type">
                             {
                                 mainOptions.map((option) => (
                                     <SingleSelectOption key={`${option.value}-option`} {...option} />))
@@ -327,5 +329,5 @@ export function CustomCronInput() {
                 </div>
             </FormProvider>
         </Field>
-    )
+    );
 }

@@ -36,5 +36,9 @@ module.exports = {
             "always"
         ],
         "@typescript-eslint/no-explicit-any": "off"
-    }
+    },
+    ignorePatterns: [
+        "node_modules",
+        "**/*.css"
+    ]
 };

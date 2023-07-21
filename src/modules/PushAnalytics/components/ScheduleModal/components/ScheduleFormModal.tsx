@@ -7,7 +7,7 @@ import {PushSchedule, useManagePushSchedule} from "../hooks/schedule";
 import {PredefinedSelector} from "./PredefinedSelector";
 import {CustomCronInput} from "./CustomCronInput";
 import {z} from "zod";
-import {zodResolver} from "@hookform/resolvers/zod"
+import {zodResolver} from "@hookform/resolvers/zod";
 import {CronInput} from "./CronInput";
 import cronstrue from "cronstrue";
 
@@ -37,16 +37,18 @@ export function ScheduleFormModal({onClose, hide, config, defaultValue}: Schedul
         shouldFocusError: false,
         resolver: zodResolver(cronSchema),
     });
-    const [type, setType] = useState('predefined');
-    const {onAdd, saving} = useManagePushSchedule(config, defaultValue, onClose);
-    const onSubmit = (data: { cron: string }) => {
-        onAdd(data)
-    };
+    const [type, setType] = useState("predefined");
 
     const onCloseClick = () => {
+        setType("predefined");
         form.reset();
-        onClose()
-    }
+        onClose();
+    };
+    const {onAdd, saving} = useManagePushSchedule(config, defaultValue, onCloseClick);
+    const onSubmit = (data: { cron: string }) => {
+        onAdd(data);
+    };
+
 
     return (
         <Modal position="middle" hide={hide} onClose={onCloseClick}>
@@ -57,7 +59,11 @@ export function ScheduleFormModal({onClose, hide, config, defaultValue}: Schedul
                         {i18n.t("Scheduling to send")}<b>{config.name}</b>
                         <SegmentedControl
                             selected={type}
-                            onChange={({value}: { value: string }) => setType(value)}
+                            onChange={({value}: { value: string }) => {
+                                form.reset();
+                                setType(value);
+
+                            }}
                             options={[
                                 {label: i18n.t("Predefined"), value: "predefined"},
                                 {label: i18n.t("Custom"), value: "custom"},
@@ -66,24 +72,24 @@ export function ScheduleFormModal({onClose, hide, config, defaultValue}: Schedul
                         />
 
                         {
-                            type === 'predefined' && <PredefinedSelector/>
+                            type === "predefined" && <PredefinedSelector/>
                         }
                         {
-                            type === 'custom' && <CustomCronInput/>
+                            type === "custom" && <CustomCronInput/>
                         }
                         {
-                            type === 'cron' && <CronInput/>
+                            type === "cron" && <CronInput/>
                         }
                     </div>
                 </FormProvider>
             </ModalContent>
             <ModalActions>
                 <ButtonStrip>
-                    <Button onClick={onCloseClick}>Cancel</Button>
+                    <Button onClick={onCloseClick}>{i18n.t("Cancel")}</Button>
                     <Button onClick={form.handleSubmit(onSubmit)} loading={saving}
-                            primary>{saving ? i18n.t("Adding...") : i18n.t("Add")}</Button>
+                        primary>{saving ? i18n.t("Adding...") : i18n.t("Add")}</Button>
                 </ButtonStrip>
             </ModalActions>
         </Modal>
-    )
+    );
 }
