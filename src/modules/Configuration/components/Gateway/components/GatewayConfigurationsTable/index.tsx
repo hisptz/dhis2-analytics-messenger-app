@@ -11,6 +11,7 @@ import {GatewayUpdateState} from "../GatewayConfigurationModal/hooks/save";
 import {useBoolean} from "usehooks-ts";
 import {GatewayConfigurationModal} from "../GatewayConfigurationModal";
 import FullPageLoader from "../../../../../../shared/components/Loaders";
+import {StatusIndicator} from "./components/StatusIndicator";
 
 const tableColumns: Column[] = [
     {
@@ -20,6 +21,10 @@ const tableColumns: Column[] = [
     {
         label: i18n.t("Name"),
         key: "name",
+    },
+    {
+        label: i18n.t("Status"),
+        key: "status"
     },
     {
         label: i18n.t("Actions"),
@@ -38,6 +43,7 @@ export default function GatewayConfigurationsTable(): React.ReactElement {
             return {
                 index: index + 1,
                 ...value,
+                status: <StatusIndicator value={value}/>,
                 actions: <ActionButton
                     actions={[
                         {

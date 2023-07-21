@@ -1,8 +1,8 @@
-import {useWhatsappData} from "../../hooks/whatsapp";
-import {find} from "lodash";
 import {Chip, IconUser24, IconUserGroup24} from "@dhis2/ui";
+import {find} from "lodash";
 import React from "react";
 import {useDHIS2Users} from "../../hooks/users";
+import {useWhatsappData} from "../../hooks/whatsapp";
 
 
 export interface ContactNameProps {
@@ -27,7 +27,7 @@ export function ContactName({gatewayId, type, number}: ContactNameProps) {
     if (type === "group") {
         return <>{getGroup(number)}</>;
     }
-    return <>{getUser(number)}</>
+    return <>{getUser(number)}</>;
 }
 
 export interface ContactChipProps {
@@ -45,6 +45,6 @@ export function ContactChip({onRemove, type, ...props}: ContactChipProps) {
             icon={type === "group" ? <IconUserGroup24/> : <IconUser24/>}>
             <ContactName type={type} {...props}/>
         </Chip>
-    )
+    );
 
 }

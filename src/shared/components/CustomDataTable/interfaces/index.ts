@@ -1,18 +1,18 @@
-import { Pagination } from '../../../../../../../shared/interfaces';
-import React from 'react';
+import React from "react";
+import {Pagination} from "../../../../../../../shared/interfaces";
 
 export interface DataTableColumn {
-    label: string;
-    key: string;
-    visible: boolean;
-    sortable?: boolean;
-    width?: number;
-    mandatory?: boolean;
+		label: string;
+		key: string;
+		visible: boolean;
+		sortable?: boolean;
+		width?: number;
+		mandatory?: boolean;
 }
 
 export interface SortConfig {
-    name: string;
-    direction: 'asc' | 'desc' | 'default';
+		name: string;
+		direction: "asc" | "desc" | "default";
 }
 
 export interface DataTableRow {

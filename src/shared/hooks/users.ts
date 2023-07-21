@@ -3,20 +3,20 @@ import {useMemo} from "react";
 
 const userQuery = {
     users: {
-        resource: `users`,
+        resource: "users",
         params: {
             paging: false,
             filter: [
-                `whatsApp:!null`
+                "whatsApp:!null"
             ],
             fields: [
-                'id',
-                'displayName',
-                'whatsApp'
+                "id",
+                "displayName",
+                "whatsApp"
             ]
         }
     }
-}
+};
 
 
 export function useDHIS2Users() {
@@ -27,13 +27,13 @@ export function useDHIS2Users() {
     }>(userQuery);
 
     const users = useMemo(() => {
-        return data?.users?.users?.map((user) => ({...user, whatsApp: user.whatsApp.replace('+', '')})) ?? []
+        return data?.users?.users?.map((user) => ({...user, whatsApp: user.whatsApp.replace("+", "")})) ?? [];
     }, [data]);
 
     return {
         users,
         loading,
         error
-    }
+    };
 
 }

@@ -1,6 +1,6 @@
 {
   "name": "dhis2-analytics-messenger-app",
-  "version": "1.0.2-alpha.02",
+  "version": "1.0.2-alpha.01",
   "description": "A DHIS2 web application that allows sending of analytics data to messaging applications",
   "license": "BSD-3-Clause",
   "private": true,
@@ -8,16 +8,26 @@
     "build": "d2-app-scripts build",
     "start": "dotenv -- cross-var d2-app-scripts start --proxy %REACT_APP_DHIS2_PROXY%",
     "test": "d2-app-scripts test",
-    "deploy": "d2-app-scripts deploy"
+    "deploy": "d2-app-scripts deploy",
+    "lint": "yarn d2-style check",
+    "lint:staged": "yarn lint --staged",
+    "format": "npx eslint src/* --fix"
   },
   "devDependencies": {
     "@dhis2/cli-app-scripts": "^10.3.8",
+    "@dhis2/cli-style": "^10.5.1",
     "@types/async": "^3.2.20",
     "@types/lodash": "^4.14.194",
+    "@types/luxon": "^3.3.1",
     "@types/react-helmet": "^6.1.6",
+    "@typescript-eslint/eslint-plugin": "^6.1.0",
+    "@typescript-eslint/parser": "^6.1.0",
     "cross-var": "^1.1.0",
     "dotenv": "^16.3.1",
     "dotenv-cli": "^7.2.1",
+    "eslint": "^8.45.0",
+    "eslint-import-resolver-typescript": "^3.5.5",
+    "eslint-plugin-react": "^7.32.2",
     "typescript": "^5.1.6"
   },
   "dependencies": {

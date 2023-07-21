@@ -1,5 +1,5 @@
-import React, {useMemo} from "react";
 import {RHFSingleSelectField} from "@hisptz/dhis2-ui";
+import React, {useMemo} from "react";
 import {useGateways} from "../../../../Configuration/components/Gateway/hooks/data";
 import {Gateway} from "../../../../Configuration/components/Gateway/schema";
 
@@ -18,7 +18,7 @@ export function RHFGatewaySelector({validations, name, label, required}: RHFGate
         return (gateways as Gateway[]).map((value: any) => ({
             label: value.name,
             value: value.id
-        }))
+        }));
     }, [gateways]);
 
     return (
@@ -30,5 +30,5 @@ export function RHFGatewaySelector({validations, name, label, required}: RHFGate
             options={options}
             name={name}
         />
-    )
+    );
 }

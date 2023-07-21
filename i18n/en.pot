@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2023-07-20T12:36:43.295Z\n"
-"PO-Revision-Date: 2023-07-20T12:36:43.295Z\n"
+"POT-Creation-Date: 2023-07-21T06:59:01.802Z\n"
+"PO-Revision-Date: 2023-07-21T06:59:01.802Z\n"
 
 msgid "Fetching App configurations..."
 msgstr "Fetching App configurations..."
@@ -70,6 +70,27 @@ msgstr "Saving..."
 
 msgid "Save"
 msgstr "Save"
+
+msgid "Status"
+msgstr "Status"
+
+msgid "unknown"
+msgstr "unknown"
+
+msgid "Message"
+msgstr "Message"
+
+msgid "Last synced at"
+msgstr "Last synced at"
+
+msgid "Error"
+msgstr "Error"
+
+msgid "Online"
+msgstr "Online"
+
+msgid "Offline"
+msgstr "Offline"
 
 msgid "S/N"
 msgstr "S/N"
