@@ -9,11 +9,11 @@ import {PushAnalytics} from "../../../../../shared/interfaces";
 
 
 export interface PushSchedule {
-		cron: string;
-		enabled: boolean;
-		id?: string
-		job?: {
-				id: string
+    cron: string;
+    enabled: boolean;
+    id?: string
+    job?: {
+        id: string
     }
 }
 
@@ -93,30 +93,25 @@ export function useManagePushSchedule(config: PushAnalytics, defaultValue?: Push
     const {show} = useAlert(({message}) => message, ({type}) => ({...type, duration: 3000}));
     const {mutateAsync: onAdd, isLoading} = useMutation([config.id, "schedule"], async (data: { cron: string }) => {
         if (defaultValue) {
-            const response = await update({
+            return await update({
                 ...defaultValue,
                 ...data
             }, client);
-            queryClient.invalidateQueries([config.id]);
-
-            return response;
         } else {
-            const response = await create({
+            return await create({
                 ...data,
                 enabled: true,
                 job: {
                     id: config.id
                 }
             }, client);
-            queryClient.invalidateQueries([config.id]);
-            return response;
         }
     }, {
         onError: (error: any) => {
             show({message: `${i18n.t("Error scheduling push")}: ${error.message}`, type: {info: true}});
         },
         onSuccess: async () => {
-            await queryClient.invalidateQueries({queryKey: [config.id, "job"]});
+            await queryClient.invalidateQueries({queryKey: [config.id]});
             if (defaultValue) {
                 show({message: i18n.t("Schedule updated successfully"), type: {success: true}});
             } else {
@@ -127,9 +122,9 @@ export function useManagePushSchedule(config: PushAnalytics, defaultValue?: Push
             }
         }
     });
-    const {mutateAsync: onDelete} = useMutation(["schedule", config.id], async (id: string) => {
+    const {mutateAsync: onDelete} = useMutation([config.id], async (id: string) => {
         const response = await remove(id, client);
-        queryClient.invalidateQueries([config.id]);
+        await queryClient.invalidateQueries([config.id]);
         return response;
     });
 

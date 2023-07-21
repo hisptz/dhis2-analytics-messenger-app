@@ -17,7 +17,8 @@ export function PredefinedSelector() {
     })
 
     return (
-        <RHFSingleSelectField label={i18n.t("Select time")} options={options} name={"cron"}/>
+        <RHFSingleSelectField required validations={{required: i18n.t("This field is required")}}
+                              label={i18n.t("Select time")} options={options} name={"cron"}/>
     )
 
 }

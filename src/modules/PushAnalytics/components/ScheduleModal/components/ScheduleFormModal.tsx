@@ -59,7 +59,11 @@ export function ScheduleFormModal({onClose, hide, config, defaultValue}: Schedul
                         {i18n.t("Scheduling to send")}<b>{config.name}</b>
                         <SegmentedControl
                             selected={type}
-                            onChange={({value}: { value: string }) => setType(value)}
+                            onChange={({value}: { value: string }) => {
+                                form.reset();
+                                setType(value);
+
+                            }}
                             options={[
                                 {label: i18n.t("Predefined"), value: "predefined"},
                                 {label: i18n.t("Custom"), value: "custom"},

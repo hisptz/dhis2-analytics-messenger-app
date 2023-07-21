@@ -115,7 +115,8 @@ const hourConfig = {
 const weekDayConfig = {
     label: i18n.t("Day"),
     multiple: true,
-    options: daysOfWeek
+    options: daysOfWeek,
+    required: true
 }
 
 const monthDayConfig = {
@@ -175,6 +176,7 @@ const fields = [
         fields: [
             {
                 label: i18n.t("Month"),
+                required: true,
                 multiple: true,
                 options: monthsOfYear
             },
@@ -192,11 +194,13 @@ function CustomSelector({type}: { type?: string | null }) {
     }, [type]);
 
     useUpdateEffect(() => {
-        const defaultValues = {};
-        selectedConfig?.fields?.forEach(({initial}, index) => {
-            set(defaultValues, index.toString(), initial)
-        })
-        reset(defaultValues);
+        if (selectedConfig) {
+            const defaultValues = {};
+            selectedConfig?.fields?.forEach(({initial}, index) => {
+                set(defaultValues, index.toString(), initial)
+            })
+            reset(defaultValues);
+        }
     }, [selectedConfig])
 
     return (
@@ -209,15 +213,25 @@ function CustomSelector({type}: { type?: string | null }) {
                 alignItems: "end"
             }} className="w-100">
                 {
-                    selectedConfig?.fields?.map(({options, min, max, label, multiple}, index) => {
+                    selectedConfig?.fields?.map(({options, min, max, label, multiple, required}, index) => {
                         if (!isEmpty(options)) {
                             if (multiple) {
                                 return (
-                                    <RHFMultiSelectField name={index.toString()} label={label} options={options}/>
+                                    <RHFMultiSelectField validations={{
+                                        required: {
+                                            value: required,
+                                            message: i18n.t("This field is required")
+                                        }
+                                    }} required={required} name={index.toString()} label={label} options={options}/>
                                 )
                             }
                             return (
-                                <RHFSingleSelectField label={label} fullWidth options={options}
+                                <RHFSingleSelectField validations={{
+                                    required: {
+                                        value: required,
+                                        message: i18n.t("This field is required")
+                                    }
+                                }} required={required} label={label} fullWidth options={options}
                                                       name={index.toString()}/>
                             )
                         }
@@ -228,8 +242,10 @@ function CustomSelector({type}: { type?: string | null }) {
                         }))
 
                         return (
-                            <RHFSingleSelectField label={label} fullWidth options={generatedOptions}
-                                                  name={index.toString()}/>
+                            <RHFSingleSelectField
+                                validations={{required: {value: required, message: i18n.t("This field is required")}}}
+                                required={required} label={label} fullWidth options={generatedOptions}
+                                name={index.toString()}/>
                         )
                     })
                 }
@@ -280,13 +296,14 @@ export function CustomCronInput() {
 
     useEffect(() => {
         return () => {
+            setType(null);
             form.reset()
         }
     }, [])
 
 
     return (
-        <Field helpText={text} error={fieldState.error?.message}>
+        <Field helpText={text} validationText={fieldState.error?.message} error={!!fieldState.error}>
             <FormProvider {...form}>
                 <div className="column gap-16 w-100">
                     <Submitter type={type} field={field}/>
@@ -294,7 +311,6 @@ export function CustomCronInput() {
                         <SingleSelectField selected={type}
                                            onChange={({selected}: { selected: string }) => {
                                                setType(selected);
-                                               form.reset();
                                                field.onChange(null);
                                            }}
                                            label={i18n.t("Every")} options={mainOptions} name="type">
