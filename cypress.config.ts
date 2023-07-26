@@ -5,7 +5,7 @@ async function setupNodeEvents(on: any, config: any) {
     chromeAllowXSiteCookies(on, config);
     await cucumberPreprocessor(on, config);
     networkShim(on, config);
-
+    return config;
 }
 
 export default defineConfig({

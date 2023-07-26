@@ -8,3 +8,4 @@ build
 .env
 /cypress/downloads/
 cypress.env.json
+/cypress/videos/
