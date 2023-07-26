@@ -14,7 +14,7 @@ export default function NavBar(): React.ReactElement {
                     const Icon = icon;
                     return (
                         <Tab
-                            dataTest={`${label}-tab`}
+                            dataTest={`dhis2-analytics-messenger-${label}-tab`}
                             onClick={() => navigate(path)}
                             key={`${path}-nav-tab`}
                             selected={Boolean(location.pathname.match(path))}
