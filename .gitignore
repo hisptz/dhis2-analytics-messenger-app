@@ -6,3 +6,5 @@ build
 
 # enviroments
 .env
+/cypress/downloads/
+cypress.env.json
