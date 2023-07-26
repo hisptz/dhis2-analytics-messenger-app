@@ -1,6 +1,6 @@
 {
   "name": "dhis2-analytics-messenger-app",
-  "version": "1.0.2",
+  "version": "1.0.0-beta.00",
   "description": "A DHIS2 web application that allows sending of analytics data to messaging applications",
   "license": "BSD-3-Clause",
   "private": true,
