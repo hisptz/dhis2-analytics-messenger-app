@@ -1,10 +1,6 @@
 import i18n from "@dhis2/d2-i18n";
 import React from "react";
-import {
-    AnalyticsIcon16,
-    ChatBotIcon16,
-    SettingsIcon16,
-} from "../components/Icons/Icons";
+import {AnalyticsIcon16, SettingsIcon16,} from "../components/Icons/Icons";
 import {NavigationItem} from "../interfaces";
 
 // Main pages
@@ -55,12 +51,12 @@ export const NAVIGATION_ITEMS: Array<NavigationItem> = [
         icon: AnalyticsIcon16,
         element: PushAnalyticsPage,
     },
-    {
-        label: i18n.t("Chat Bot"),
-        path: "chat-bot",
-        icon: ChatBotIcon16,
-        element: ChatBotPage,
-    },
+    // {
+    //     label: i18n.t("Chat Bot"),
+    //     path: "chat-bot",
+    //     icon: ChatBotIcon16,
+    //     element: ChatBotPage,
+    // },
     {
         label: i18n.t("Configuration"),
         path: "configuration",
