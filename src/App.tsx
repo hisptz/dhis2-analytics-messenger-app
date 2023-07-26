@@ -7,7 +7,12 @@ import "./main.css";
 import "./common.css";
 import {ConfirmDialogProvider} from "@hisptz/dhis2-ui";
 import {RecoilRoot} from "recoil";
-import {Helmet} from "react-helmet"
+import {Helmet} from "react-helmet";
+import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
+import {predefinedSchedules} from "./shared/constants/dataStore";
+
+
+const queryClient = new QueryClient();
 
 const App = () => (
     <>
@@ -17,28 +22,33 @@ const App = () => (
             <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"/>
             <link rel="manifest" href="/site.webmanifest"/>
         </Helmet>
-        <DataStoreProvider
-            namespace="hisptz-analytics-messenger"
-            loadingComponent={
-                <FullPageLoader message={i18n.t("Fetching App configurations...")}/>
-            }
-        >
-            <div>
-                <RecoilRoot>
-                    <Suspense
-                        fallback={
-                            <FullPageLoader
-                                message={i18n.t("Please wait this might take a while...")}
-                            />
-                        }
-                    >
-                        <ConfirmDialogProvider>
-                            <AppRouter/>
-                        </ConfirmDialogProvider>
-                    </Suspense>
-                </RecoilRoot>
-            </div>
-        </DataStoreProvider>
+        <QueryClientProvider client={queryClient}>
+            <DataStoreProvider
+                namespace="hisptz-analytics-messenger"
+                defaultGlobalSettings={{
+                    predefinedSchedules
+                }}
+                loadingComponent={
+                    <FullPageLoader message={i18n.t("Fetching App configurations...")}/>
+                }
+            >
+                <div>
+                    <RecoilRoot>
+                        <Suspense
+                            fallback={
+                                <FullPageLoader
+                                    message={i18n.t("Please wait this might take a while...")}
+                                />
+                            }
+                        >
+                            <ConfirmDialogProvider>
+                                <AppRouter/>
+                            </ConfirmDialogProvider>
+                        </Suspense>
+                    </RecoilRoot>
+                </div>
+            </DataStoreProvider>
+        </QueryClientProvider>
     </>
 );
 

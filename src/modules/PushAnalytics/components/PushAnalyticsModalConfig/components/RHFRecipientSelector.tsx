@@ -1,78 +1,114 @@
-import React, {useCallback, useEffect, useMemo, useState} from "react";
-import {Controller, FormProvider, useForm, useWatch} from "react-hook-form";
-import axios from "axios"
-import {filter, find, head, uniqBy} from "lodash";
-import i18n from '@dhis2/d2-i18n';
-import {Button, Chip, Field, IconUser24, IconUserGroup24} from "@dhis2/ui"
+import i18n from "@dhis2/d2-i18n";
+import {Button, Field} from "@dhis2/ui";
 import {RHFSingleSelectField, RHFTextInputField} from "@hisptz/dhis2-ui";
+import {filter, uniqBy} from "lodash";
+import React, {useCallback} from "react";
+import {Controller, FormProvider, useForm, useWatch} from "react-hook-form";
+import {useUpdateEffect} from "usehooks-ts";
+import {ContactChip} from "../../../../../shared/components/ContactChip";
+import {useDHIS2Users} from "../../../../../shared/hooks/users";
+import {useWhatsappData} from "../../../../../shared/hooks/whatsapp";
 import {Contact} from "../../../../../shared/interfaces";
-import {useGateways} from "../../../../Configuration/components/Gateway/hooks/data";
-import {Gateway} from "../../../../Configuration/components/Gateway/schema";
 
 export interface RHFRecipientSelectorProps {
-    name: string;
-    validations?: Record<string, any>;
-    label: string;
-    required?: boolean;
+		name: string;
+		validations?: Record<string, any>;
+		label: string;
+		required?: boolean;
 }
 
-
-async function getGroups(gateway: string): Promise<{ id: string, name: string }[]> {
-    try {
-        const response = await axios.get(`${gateway}/groups`,);
-        if (response.status === 200) {
-            return response.data.groups;
-        } else {
-            return []
-        }
-    } catch (e) {
-        return [];
-    }
-}
-
-
-function AddRecipient({onChange, groups}: { onChange: (recipient: Contact) => void, groups: any }) {
-    const form = useForm<Contact>({
+function AddRecipient({onChange}: {
+		loading?: boolean;
+		onChange: (recipient: Contact) => void,
+}) {
+    const gateway = useWatch({
+        name: "gateway"
+    });
+    const {groups, loading} = useWhatsappData(gateway);
+    const {users, loading: usersLoading} = useDHIS2Users();
+    const form = useForm<Omit<Contact, "type"> & { type: "user" | "individual" | "group" }>({
         defaultValues: {
             type: "individual"
-        }
+        },
+        reValidateMode: "onBlur",
+        mode: "onBlur",
+        shouldFocusError: false
     });
 
-    const [type] = form.watch(['type']);
+    const [type] = form.watch(["type"]);
 
     const onSubmit = useCallback(
-        (data: Contact) => {
-            onChange(data)
+        (data: Omit<Contact, "type"> & { type: "user" | "individual" | "group" }) => {
+            onChange({
+                ...data,
+                type: type === "user" ? "individual" : type,
+            });
             form.reset({});
         },
         [form, onChange],
     );
 
+    useUpdateEffect(() => {
+        form.unregister("number");
+        form.clearErrors("number");
+        form.resetField("number");
+    }, [type]);
 
     return (
-        <Field label={i18n.t("Add new recipient")}>
-            <div style={{display: "grid", gridTemplateColumns: "2fr 3fr 1fr", gap: 16, alignItems: 'end'}}>
+        <Field
+            label={i18n.t("Add new recipient")}
+            helpText={type === "individual" ? i18n.t("Start with country code without the + sign. Example 255XXXXXXXXX") : type === "user" && (i18n.t("Only users with whatsApp contacts will be listed"))}
+        >
+            <div style={{display: "grid", gridTemplateColumns: "2fr 3fr 1fr", gap: 16, alignItems: "end"}}>
                 <FormProvider {...form}>
                     <RHFSingleSelectField
                         label={i18n.t("Type")}
                         options={[
                             {
                                 label: i18n.t("Group"),
-                                value: 'group'
+                                value: "group"
                             },
                             {
                                 label: i18n.t("Phone Number"),
                                 value: "individual"
+                            },
+                            {
+                                label: i18n.t("Users"),
+                                value: "user"
                             }
                         ]}
-                        name={'type'}
+                        name={"type"}
                     />
                     {
                         type === "group" &&
-                        <RHFSingleSelectField label={i18n.t("Group")} options={groups} name={'number'}/>
+                        <RHFSingleSelectField
+                            loading={loading} label={i18n.t("Group")}
+                            options={groups.map((group: any) => ({
+                                value: group.id,
+                                label: group.name
+                            }))}
+                            name={"number"}/>
                     }
                     {
-                        type === "individual" && (<RHFTextInputField label={i18n.t("Number")} name={'number'}/>)
+                        type === "user" &&
+                        <RHFSingleSelectField
+                            loading={usersLoading}
+                            label={i18n.t("User")}
+                            options={users.map((user: any) => ({
+                                value: user.whatsApp,
+                                label: user.displayName
+                            }))}
+                            name={"number"}/>
+                    }
+                    {
+                        type === "individual" && (<RHFTextInputField
+                            placeholder={"255XXXXXXXXX"}
+                            validations={{
+                                pattern: {
+                                    value: /^\d{1,3}\d{9}$/,
+                                    message: i18n.t("Invalid phone number")
+                                }
+                            }} label={i18n.t("Number")} name={"number"}/>)
                     }
                     <Button onClick={form.handleSubmit(onSubmit)}>
                         {i18n.t("Add")}
@@ -80,37 +116,14 @@ function AddRecipient({onChange, groups}: { onChange: (recipient: Contact) => vo
                 </FormProvider>
             </div>
         </Field>
-    )
+    );
 }
 
 
 export function RHFRecipientSelector({validations, name, label, required}: RHFRecipientSelectorProps) {
-    const [groups, setGroups] = useState<Array<{ label: string, value: string }>>([]);
-    const {gateways} = useGateways();
-    const [selectedGateway] = useWatch({
-        name: ['gateway']
+    const gateway = useWatch({
+        name: "gateway"
     });
-
-    useEffect(() => {
-        async function get() {
-            if (selectedGateway) {
-                const gateway = find(gateways as Gateway[], ['id', selectedGateway]);
-                if (!gateway) {
-                    return;
-                }
-                const groups = await getGroups(gateway?.whatsappURL);
-                setGroups(groups?.map(({id, name}: any) => ({label: name, value: head(id.split('@')) ?? ''})) ?? [])
-            }
-        }
-
-        get();
-    }, [selectedGateway]);
-
-    const options = useMemo(() => {
-        return []
-    }, []);
-
-
     return (
         <Controller
             rules={validations}
@@ -122,24 +135,23 @@ export function RHFRecipientSelector({validations, name, label, required}: RHFRe
                             <div style={{flexWrap: "wrap", gap: 8}} className="row">
                                 {
                                     recipients.map(({number, type}: Contact) => (
-                                        <Chip key={`${number}-recipient`} onRemove={() => {
-                                            field.onChange(filter(recipients, (recipient) => number !== recipient.number))
-                                        }} icon={type === 'group' ? <IconUserGroup24/> :
-                                            <IconUser24/>}>{number}</Chip>))
+                                        <ContactChip gatewayId={gateway} key={`${number}-recipient`} onRemove={() => {
+                                            field.onChange(filter(recipients, (recipient) => number !== recipient.number));
+                                        }} number={number} type={type}/>))
                                 }
                             </div>
                             <AddRecipient onChange={(contact) => {
                                 field.onChange(uniqBy([
                                     ...recipients,
                                     contact
-                                ], 'number'))
-                            }} groups={groups}/>
+                                ], "number"));
+                            }}/>
                         </div>
                     </Field>
-                )
+                );
             }}
             name={name}
         />
-    )
+    );
 }
 

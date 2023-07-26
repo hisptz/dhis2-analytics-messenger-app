@@ -1,7 +1,7 @@
-import React, {useMemo} from "react";
-import {RHFSingleSelectField} from "@hisptz/dhis2-ui";
-import {ANALYTICS_GROUPS_DATASTORE_KEY} from "../../../../../shared/constants/dataStore";
 import {useDataQuery} from "@dhis2/app-runtime";
+import {RHFSingleSelectField} from "@hisptz/dhis2-ui";
+import React, {useMemo} from "react";
+import {ANALYTICS_GROUPS_DATASTORE_KEY} from "../../../../../shared/constants/dataStore";
 
 export interface RHFGroupSelectorProps {
     name: string;
@@ -15,22 +15,22 @@ const groupQuery = {
         resource: `dataStore/${ANALYTICS_GROUPS_DATASTORE_KEY}`,
         params: {
             fields: [
-                'id',
-                'name',
-                'visualizations'
+                "id",
+                "name",
+                "visualizations"
             ]
         }
     }
-}
+};
 
 
 export function useGroups() {
-    const {data, loading} = useDataQuery(groupQuery);
+    const {data, loading} = useDataQuery<{ groups: { page: any; entries: Array<any> } }>(groupQuery);
 
     return {
         data: data?.groups?.entries,
         loading
-    }
+    };
 }
 
 
@@ -41,7 +41,7 @@ export function RHFGroupSelector({validations, name, label, required}: RHFGroupS
         return (groups as any)?.map((value: any) => ({
             label: value.name,
             value: value.id
-        })) ?? []
+        })) ?? [];
     }, [groups]);
 
     return (
@@ -53,5 +53,5 @@ export function RHFGroupSelector({validations, name, label, required}: RHFGroupS
             options={options}
             name={name}
         />
-    )
+    );
 }

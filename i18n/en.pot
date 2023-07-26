@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2023-05-11T12:17:00.233Z\n"
-"PO-Revision-Date: 2023-05-11T12:17:00.233Z\n"
+"POT-Creation-Date: 2023-07-21T08:16:05.504Z\n"
+"PO-Revision-Date: 2023-07-21T08:16:05.504Z\n"
 
 msgid "Fetching App configurations..."
 msgstr "Fetching App configurations..."
@@ -47,20 +47,17 @@ msgstr "Name"
 msgid "Name is required"
 msgstr "Name is required"
 
-msgid "Whatsapp URL"
-msgstr "Whatsapp URL"
+msgid "URL"
+msgstr "URL"
 
 msgid "Whatsapp URL is required"
 msgstr "Whatsapp URL is required"
 
-msgid "Visualizer URL"
-msgstr "Visualizer URL"
+msgid "API Key"
+msgstr "API Key"
 
-msgid "Chat bot URL"
-msgstr "Chat bot URL"
-
-msgid "Visualizer URL is required"
-msgstr "Visualizer URL is required"
+msgid "API key is required"
+msgstr "API key is required"
 
 msgid "Cancel"
 msgstr "Cancel"
@@ -74,17 +71,32 @@ msgstr "Saving..."
 msgid "Save"
 msgstr "Save"
 
+msgid "Status"
+msgstr "Status"
+
+msgid "unknown"
+msgstr "unknown"
+
+msgid "Message"
+msgstr "Message"
+
+msgid "Last synced at"
+msgstr "Last synced at"
+
+msgid "Refresh"
+msgstr "Refresh"
+
+msgid "Error"
+msgstr "Error"
+
+msgid "Online"
+msgstr "Online"
+
+msgid "Offline"
+msgstr "Offline"
+
 msgid "S/N"
 msgstr "S/N"
-
-msgid "Whatsapp Service"
-msgstr "Whatsapp Service"
-
-msgid "Visualizer Service"
-msgstr "Visualizer Service"
-
-msgid "Chat bot Service"
-msgstr "Chat bot Service"
 
 msgid "Actions"
 msgstr "Actions"
@@ -177,6 +189,30 @@ msgstr "There are no Push Analytics configured, click the below button to add ne
 msgid "Add push analytics"
 msgstr "Add push analytics"
 
+msgid "Minute"
+msgstr "Minute"
+
+msgid "Hour"
+msgstr "Hour"
+
+msgid "at"
+msgstr "at"
+
+msgid "Day"
+msgstr "Day"
+
+msgid "on"
+msgstr "on"
+
+msgid "Month"
+msgstr "Month"
+
+msgid "Day of week"
+msgstr "Day of week"
+
+msgid "Year"
+msgstr "Year"
+
 msgid ""
 "You can use different formatting conventions as per the selected gateway. "
 "(E.g * to bold for whatsapp gateway)"
@@ -187,6 +223,12 @@ msgstr ""
 msgid "Add new recipient"
 msgstr "Add new recipient"
 
+msgid "Start with country code without the + sign. Example 255XXXXXXXXX"
+msgstr "Start with country code without the + sign. Example 255XXXXXXXXX"
+
+msgid "Only users with whatsApp contacts will be listed"
+msgstr "Only users with whatsApp contacts will be listed"
+
 msgid "Type"
 msgstr "Type"
 
@@ -196,11 +238,17 @@ msgstr "Group"
 msgid "Phone Number"
 msgstr "Phone Number"
 
+msgid "Users"
+msgstr "Users"
+
+msgid "User"
+msgstr "User"
+
+msgid "Invalid phone number"
+msgstr "Invalid phone number"
+
 msgid "Number"
 msgstr "Number"
-
-msgid "Configuration saved successfully"
-msgstr "Configuration saved successfully"
 
 msgid "Error saving configuration"
 msgstr "Error saving configuration"
@@ -208,17 +256,14 @@ msgstr "Error saving configuration"
 msgid "Configuration updated successfully"
 msgstr "Configuration updated successfully"
 
-msgid "Error updating configuration"
-msgstr "Error updating configuration"
+msgid "Configuration saved successfully"
+msgstr "Configuration saved successfully"
 
-msgid "Could not send message"
-msgstr "Could not send message"
+msgid "Configuration deleted successfully"
+msgstr "Configuration deleted successfully"
 
-msgid "Could not send any visualizations to user"
-msgstr "Could not send any visualizations to user"
-
-msgid "Messages successfully sent"
-msgstr "Messages successfully sent"
+msgid "Message sent successfully"
+msgstr "Message sent successfully"
 
 msgid "Error sending message(s)"
 msgstr "Error sending message(s)"
@@ -259,8 +304,8 @@ msgstr "Description"
 msgid "Recipients"
 msgstr "Recipients"
 
-msgid "Configuration deleted successfully"
-msgstr "Configuration deleted successfully"
+msgid "Schedule"
+msgstr "Schedule"
 
 msgid "Are you sure you want to delete the configuration {{name}}?"
 msgstr "Are you sure you want to delete the configuration {{name}}?"
@@ -271,8 +316,143 @@ msgstr "Send"
 msgid "Confirm sending"
 msgstr "Confirm sending"
 
+msgid "Sending visualizations to"
+msgstr "Sending visualizations to"
+
 msgid "Add push analytics configuration"
 msgstr "Add push analytics configuration"
+
+msgid "Cron expression"
+msgstr "Cron expression"
+
+msgid "Monday"
+msgstr "Monday"
+
+msgid "Tuesday"
+msgstr "Tuesday"
+
+msgid "Wednesday"
+msgstr "Wednesday"
+
+msgid "Thursday"
+msgstr "Thursday"
+
+msgid "Friday"
+msgstr "Friday"
+
+msgid "Saturday"
+msgstr "Saturday"
+
+msgid "Sunday"
+msgstr "Sunday"
+
+msgid "January"
+msgstr "January"
+
+msgid "February"
+msgstr "February"
+
+msgid "March"
+msgstr "March"
+
+msgid "April"
+msgstr "April"
+
+msgid "May"
+msgstr "May"
+
+msgid "June"
+msgstr "June"
+
+msgid "July"
+msgstr "July"
+
+msgid "August"
+msgstr "August"
+
+msgid "September"
+msgstr "September"
+
+msgid "October"
+msgstr "October"
+
+msgid "November"
+msgstr "November"
+
+msgid "December"
+msgstr "December"
+
+msgid "At"
+msgstr "At"
+
+msgid "Week"
+msgstr "Week"
+
+msgid "On"
+msgstr "On"
+
+msgid "This field is required"
+msgstr "This field is required"
+
+msgid "Every"
+msgstr "Every"
+
+msgid "Select time"
+msgstr "Select time"
+
+msgid "Cron is required"
+msgstr "Cron is required"
+
+msgid "Invalid cron expression"
+msgstr "Invalid cron expression"
+
+msgid "Add new schedule"
+msgstr "Add new schedule"
+
+msgid "Scheduling to send"
+msgstr "Scheduling to send"
+
+msgid "Predefined"
+msgstr "Predefined"
+
+msgid "Custom"
+msgstr "Custom"
+
+msgid "Cron"
+msgstr "Cron"
+
+msgid "Adding..."
+msgstr "Adding..."
+
+msgid "Error scheduling push"
+msgstr "Error scheduling push"
+
+msgid "Schedule updated successfully"
+msgstr "Schedule updated successfully"
+
+msgid "Schedule added successfully"
+msgstr "Schedule added successfully"
+
+msgid "Schedules for {{name}}"
+msgstr "Schedules for {{name}}"
+
+msgid "Click on add schedule to start"
+msgstr "Click on add schedule to start"
+
+msgid "Add Schedule"
+msgstr "Add Schedule"
+
+msgid "When"
+msgstr "When"
+
+msgid "Next run"
+msgstr "Next run"
+
+msgid "Confirm schedule delete"
+msgstr "Confirm schedule delete"
+
+msgid "Are you sure you want to delete this schedule?"
+msgstr "Are you sure you want to delete this schedule?"
 
 msgid "Page not Found"
 msgstr "Page not Found"

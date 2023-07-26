@@ -1,5 +1,4 @@
-import React, {useRef} from 'react';
-import {CustomDataTableProps, DataTableColumn, DataTableRow as DataTableRowInterface,} from './interfaces';
+import i18n from "@dhis2/d2-i18n";
 import {
     Center,
     CircularLoader,
@@ -12,34 +11,33 @@ import {
     DataTableToolbar,
     Pagination,
     TableHead,
-} from '@dhis2/ui';
-import {uid} from '@hisptz/dhis2-utils';
-import classes from './CustomDataTable.module.css';
-import cx from 'classnames';
-import {isEmpty} from 'lodash';
-import {ActionButton} from './components/ActionButton';
-import i18n from '@dhis2/d2-i18n';
-
-const heightOffset = 380;
+} from "@dhis2/ui";
+import {uid} from "@hisptz/dhis2-utils";
+import cx from "classnames";
+import {isEmpty} from "lodash";
+import React, {useRef} from "react";
+import {ActionButton} from "./components/ActionButton";
+import classes from "./CustomDataTable.module.css";
+import {CustomDataTableProps, DataTableColumn, DataTableRow as DataTableRowInterface,} from "./interfaces";
 
 export default function CustomDataTable({
-                                            columns,
-                                            rows,
-                                            pagination,
-                                            onSort,
-                                            sort,
-                                            loading,
-                                            onRowClick,
-                                            actions,
-                                        }: CustomDataTableProps): React.ReactElement {
+    columns,
+    rows,
+    pagination,
+    onSort,
+    sort,
+    loading,
+    onRowClick,
+    actions,
+}: CustomDataTableProps): React.ReactElement {
     const tableRef = useRef(uid());
 
-    const height = 800
+    const height = 800;
 
     return (
-        <div style={{position: 'relative', minHeight: height}} className="column">
+        <div style={{position: "relative", minHeight: height}} className="column">
             {loading && (
-                <Cover className={classes['loading-cover']} translucent>
+                <Cover className={classes["loading-cover"]} translucent>
                     <Center>
                         <CircularLoader small/>
                     </Center>
@@ -61,7 +59,7 @@ export default function CustomDataTable({
                         {columns.map(({label, key, sortable}: DataTableColumn) => (
                             <DataTableColumnHeader
                                 fixed
-                                top={'0'}
+                                top={"0"}
                                 key={`${key}-column-header`}
                                 name={key}
                                 onSortIconClick={sortable ? onSort : undefined}
@@ -69,7 +67,7 @@ export default function CustomDataTable({
                                     sortable
                                         ? sort?.name === key
                                             ? sort?.direction
-                                            : 'default'
+                                            : "default"
                                         : undefined
                                 }
                             >
@@ -88,7 +86,7 @@ export default function CustomDataTable({
                                 >
                                     <h3 style={{color: colors.grey700}}>
                                         {i18n.t(
-                                            'There are no bookings for the specified filters'
+                                            "There are no bookings for the specified filters"
                                         )}
                                     </h3>
                                 </div>
@@ -99,11 +97,11 @@ export default function CustomDataTable({
                     {rows.map((row: DataTableRowInterface, index) => (
                         <tr key={`${index}-${tableRef.current}-row`}>
                             {columns.map(({key}: DataTableColumn, columIndex) => {
-                                if (key === 'actions') {
+                                if (key === "actions") {
                                     if (row.fullyVaccinated) {
                                         return (
                                             <DataTableCell
-                                                className={classes['actions-cell']}
+                                                className={classes["actions-cell"]}
                                                 backgroundColor={row.background}
                                                 align="center"
                                                 key={`${key}-actions`}
@@ -114,7 +112,7 @@ export default function CustomDataTable({
                                         );
                                     } else {
                                         return (
-                                            <DataTableCell backgroundColor={row.background}/>
+                                            <DataTableCell key={`${key}-actions`} backgroundColor={row.background}/>
                                         );
                                     }
                                 }
@@ -150,7 +148,7 @@ export default function CustomDataTable({
                     ))}
                 </DataTableBody>
             </DataTable>
-            <DataTableToolbar className={classes['pagination-area']} position="bottom">
+            <DataTableToolbar className={classes["pagination-area"]} position="bottom">
                 {pagination && (
                     <div className="w-100">
                         <Pagination {...pagination} />

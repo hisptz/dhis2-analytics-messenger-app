@@ -1,13 +1,13 @@
 import {useAlert, useDataMutation, useDataQuery} from "@dhis2/app-runtime";
-import {VisualizationGroup} from "../../../../../shared/interfaces";
-import {ANALYTICS_GROUPS_DATASTORE_KEY} from "../../../../../shared/constants/dataStore";
-import {ActionButton} from "../../../../../shared/components/CustomDataTable/components/ActionButton";
-import React from "react";
-import i18n from '@dhis2/d2-i18n';
-import {useSetRecoilState} from "recoil";
-import {VisGroupUpdateState} from "../components/VisualizationGroupsModal/hooks/save";
+import i18n from "@dhis2/d2-i18n";
+import {Tag} from "@dhis2/ui";
 import {useConfirmDialog} from "@hisptz/dhis2-ui";
-import {Tag} from "@dhis2/ui"
+import React from "react";
+import {useSetRecoilState} from "recoil";
+import {ActionButton} from "../../../../../shared/components/CustomDataTable/components/ActionButton";
+import {ANALYTICS_GROUPS_DATASTORE_KEY} from "../../../../../shared/constants/dataStore";
+import {VisualizationGroup} from "../../../../../shared/interfaces";
+import {VisGroupUpdateState} from "../components/VisualizationGroupsModal/hooks/save";
 // TODO add mechanism for pagination
 const query = {
     visualizationGroups: {
@@ -26,10 +26,10 @@ const query = {
 
 
 const deleteMutation: any = {
-    type: 'delete',
+    type: "delete",
     resource: `dataStore/${ANALYTICS_GROUPS_DATASTORE_KEY}`,
     id: ({id}: { id: string }) => id
-}
+};
 
 export function useVisualizationGroups(onEdit: () => void): {
     loading: boolean;
@@ -42,18 +42,18 @@ export function useVisualizationGroups(onEdit: () => void): {
     const {show} = useAlert(({message}) => message, ({type}) => ({...type, duration: 3000}));
     const {confirm} = useConfirmDialog();
     const {data, loading, error, refetch} = useDataQuery<{
-        visualizationGroups: { pager: any; entries: (VisualizationGroup & { key: string })[] }
-    }>(query);
+				visualizationGroups: { pager: any; entries: (VisualizationGroup & { key: string })[] }
+				    }>(query);
 
     const [deleteGroup] = useDataMutation(deleteMutation, {
         onComplete: () => {
             show({message: i18n.t("Visualization group deleted successfully"), type: {success: true}});
-            refetch()
+            refetch();
         },
         onError: (err) => {
-            show({message: `${i18n.t("Error deleting group")}: ${err.message}`, type: {critical: true}})
+            show({message: `${i18n.t("Error deleting group")}: ${err.message}`, type: {critical: true}});
         }
-    })
+    });
 
     const {entries, pager} = data?.visualizationGroups ?? {};
 
@@ -62,7 +62,7 @@ export function useVisualizationGroups(onEdit: () => void): {
             entry: any,
             index: number
         ): any => {
-            const {id, name, visualizations} = entry ?? {}
+            const {id, name, visualizations} = entry ?? {};
             return {
                 index: index + 1,
                 id: id ?? "" as string,
@@ -101,7 +101,7 @@ export function useVisualizationGroups(onEdit: () => void): {
                                             id: entry.key
                                         });
                                     }
-                                })
+                                });
                             }
                         },
                     ]}

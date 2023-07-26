@@ -11,6 +11,7 @@ import {GatewayUpdateState} from "../GatewayConfigurationModal/hooks/save";
 import {useBoolean} from "usehooks-ts";
 import {GatewayConfigurationModal} from "../GatewayConfigurationModal";
 import FullPageLoader from "../../../../../../shared/components/Loaders";
+import {StatusIndicator} from "./components/StatusIndicator";
 
 const tableColumns: Column[] = [
     {
@@ -22,16 +23,8 @@ const tableColumns: Column[] = [
         key: "name",
     },
     {
-        label: i18n.t("Whatsapp Service"),
-        key: "whatsappURL",
-    },
-    {
-        label: i18n.t("Visualizer Service"),
-        key: "visualizerURL",
-    },
-    {
-        label: i18n.t("Chat bot Service"),
-        key: "chatBotURL",
+        label: i18n.t("Status"),
+        key: "status"
     },
     {
         label: i18n.t("Actions"),
@@ -40,7 +33,7 @@ const tableColumns: Column[] = [
 ];
 
 export default function GatewayConfigurationsTable(): React.ReactElement {
-    const {value: hidden, setTrue: hide, setFalse: open} = useBoolean(true)
+    const {value: hidden, setTrue: hide, setFalse: open} = useBoolean(true);
     const {gateways, loading, error, refetch, deleteGateway} = useGateways();
     const setGatewayUpdate = useSetRecoilState(GatewayUpdateState);
     const {confirm} = useConfirmDialog();
@@ -50,10 +43,11 @@ export default function GatewayConfigurationsTable(): React.ReactElement {
             return {
                 index: index + 1,
                 ...value,
+                status: <StatusIndicator value={value}/>,
                 actions: <ActionButton
                     actions={[
                         {
-                            key: `edit-config`,
+                            key: "edit-config",
                             label: i18n.t("Edit"),
                             icon: <IconEdit24/>,
                             onClick: () => {
@@ -62,7 +56,7 @@ export default function GatewayConfigurationsTable(): React.ReactElement {
                             }
                         },
                         {
-                            key: `delete-config`,
+                            key: "delete-config",
                             label: i18n.t("Delete"),
                             icon: <IconDelete24/>,
                             onClick: () => {
@@ -81,19 +75,19 @@ export default function GatewayConfigurationsTable(): React.ReactElement {
                                         });
                                         await refetch();
                                     }
-                                })
+                                });
                             }
                         },
                     ]} row={value}/>
-            }
-        })
+            };
+        });
     }, [gateways]);
 
 
     const onClose = useCallback(
         () => {
             refetch();
-            hide()
+            hide();
         },
         [],
     );
