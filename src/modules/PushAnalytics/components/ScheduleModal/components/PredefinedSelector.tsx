@@ -9,12 +9,12 @@ export function PredefinedSelector() {
     const [predefinedSchedules] = useSetting("predefinedSchedules", {global: true});
 
 
-    const options = predefinedSchedules.map((schedule: { value: string }) => {
+    const options = predefinedSchedules?.map((schedule: { value: string }) => {
         return {
             label: cronstrue.toString(schedule.value),
             value: schedule.value
         };
-    });
+    }) ?? [];
 
     return (
         <RHFSingleSelectField

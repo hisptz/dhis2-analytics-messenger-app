@@ -14,7 +14,7 @@
     "format": "npx eslint src/* --fix"
   },
   "devDependencies": {
-    "@dhis2/cli-app-scripts": "^10.3.8",
+    "@dhis2/cli-app-scripts": "^10.3.9",
     "@dhis2/cli-style": "^10.5.1",
     "@types/async": "^3.2.20",
     "@types/lodash": "^4.14.194",
@@ -31,8 +31,9 @@
     "typescript": "^5.1.6"
   },
   "dependencies": {
-    "@dhis2/app-runtime": "^3.9.2",
+    "@dhis2/app-runtime": "^3.9.4",
     "@dhis2/app-service-datastore": "^1.0.0-beta.3",
+    "@dhis2/ui": "^8.13.14",
     "@hisptz/dhis2-ui": "^1.0.42",
     "@hisptz/dhis2-utils": "^1.0.42",
     "@hookform/resolvers": "^3.1.1",
