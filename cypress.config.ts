@@ -17,7 +17,7 @@ export default defineConfig({
         env: {
             dhis2DataTestPrefix: "dhis2-analytics-messenger",
             networkMode: "live",
-            dhis2ApiVersion: "36"
+            dhis2ApiVersion: "40"
         },
         experimentalInteractiveRunEvents: true
     },
