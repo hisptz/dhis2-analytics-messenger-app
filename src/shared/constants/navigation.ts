@@ -7,7 +7,7 @@ import {NavigationItem} from "../interfaces";
 const PushAnalyticsPage = React.lazy(
     () => import("../../modules/PushAnalytics")
 );
-const ChatBotPage = React.lazy(() => import("../../modules/ChatBot"));
+// const ChatBotPage = React.lazy(() => import("../../modules/ChatBot"));
 const ConfigurationPage = React.lazy(
     () => import("../../modules/Configuration")
 );
