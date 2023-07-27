@@ -6,6 +6,8 @@ import {FormProvider, useForm} from "react-hook-form";
 import {useRecoilValue, useResetRecoilState} from "recoil";
 import {Gateway} from "../../schema";
 import {GatewayUpdateState, useSaveGateway} from "./hooks/save";
+import {useQueryClient} from "@tanstack/react-query";
+import {useGateways} from "../../hooks/data";
 
 
 export interface GatewayConfigurationModalProps {
@@ -14,6 +16,8 @@ export interface GatewayConfigurationModalProps {
 }
 
 export function GatewayConfigurationModal({onClose, hidden}: GatewayConfigurationModalProps) {
+    const {refetch} = useGateways();
+    const statusClient = useQueryClient();
     const resetConfig = useResetRecoilState(GatewayUpdateState);
     const config = useRecoilValue(GatewayUpdateState);
     const form = useForm<Gateway>({
@@ -33,6 +37,8 @@ export function GatewayConfigurationModal({onClose, hidden}: GatewayConfiguratio
     const onSubmit = useCallback(
         async (data: Gateway) => {
             await save(data);
+            refetch();
+            statusClient.invalidateQueries([data.id]);
             onCloseClick();
         },
         [onCloseClick],

@@ -15,7 +15,7 @@ async function getWhatsappData(client: AxiosInstance) {
 }
 
 export function useWhatsappData(gatewayId?: string) {
-    const getClient = usePushServiceClient();
+    const {getClientById: getClient} = usePushServiceClient();
     const {
         data,
         isLoading,
@@ -32,7 +32,7 @@ export function useWhatsappData(gatewayId?: string) {
         id: group.id.replace("@g.us", "")
     })) ?? [], [data]);
 
-    const fetchGroups = useCallback(async (gatewayId) => {
+    const fetchGroups = useCallback(async (gatewayId: unknown) => {
         return refetch({queryKey: [gatewayId, "whatsapp"]});
     }, []);
 
