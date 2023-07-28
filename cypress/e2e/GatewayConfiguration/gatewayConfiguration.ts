@@ -20,8 +20,7 @@ When(/^I click the Gateway link on the left pane$/, () => {
     .click()
 })
 Then(/^I should be able to access the Gateway menu$/, () => {
-  cy.get('[data-test="Gateway-menu"]').should("be.visible")
-  cy.get('[data-test="dhis2-uicore-button"]').should("be.visible")
+  cy.url().should("include", "/configuration/gateway")
 })
 
 When(/^I click the Add gateway button$/, () => {

@@ -1,4 +1,4 @@
-Feature: Testing Gateway Configuration
+Feature: Testing Visualization groups
 
   Scenario: Testing if creating a new visualization group works
     Given an authorized user

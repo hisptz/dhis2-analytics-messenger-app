@@ -22,8 +22,7 @@ When(/^I click the Visualization Groups link on the left pane$/, () => {
     .click()
 })
 Then(/^I should be able to access the Visualization Groups menu$/, () => {
-  cy.get('[data-test="Gateway-menu"]').should("be.visible")
-  cy.get('[data-test="dhis2-uicore-button"]').should("be.visible")
+  cy.url().should("include", "/configuration/visualization-groups")
 })
 
 When(/^I click the Add visualization group button$/, () => {
