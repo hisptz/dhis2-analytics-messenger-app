@@ -14,46 +14,63 @@ Then(/^I should be able to access the app confiuration$/, function () {
   cy.url().should("include", "/configuration/gateway")
 })
 
-When(/^I click the Gateway link on the left pane$/, () => {
-  cy.get('[data-test="Gateway-menu"] > a.jsx-2002348738 > .jsx-2002348738')
+When(/^I click the Visualization Groups link on the left pane$/, () => {
+  cy.get(
+    '[data-test="Visualization groups-menu"] > a.jsx-2002348738 > .jsx-2002348738'
+  )
     .should("be.visible")
     .click()
 })
-Then(/^I should be able to access the Gateway menu$/, () => {
+Then(/^I should be able to access the Visualization Groups menu$/, () => {
   cy.get('[data-test="Gateway-menu"]').should("be.visible")
   cy.get('[data-test="dhis2-uicore-button"]').should("be.visible")
 })
 
-When(/^I click the Add gateway button$/, () => {
+When(/^I click the Add visualization group button$/, () => {
   cy.get('[data-test="dhis2-uicore-button"]').should("be.visible").click()
 })
-Then(/^I should be able to access the gateway configuration window$/, () => {
+Then(/^I should be able to access the Add group window$/, () => {
   cy.get('[data-test="dhis2-uicore-card"]').should("be.visible")
 })
 
-When(/^I enter the Name$/, () => {
+When(/^I enter the Name for the visualization group$/, () => {
   cy.get(
     ':nth-child(1) > [data-test="dhis2-uiwidgets-inputfield-content"] > [data-test="dhis2-uicore-box"] > [data-test="dhis2-uicore-input"]'
   )
     .should("be.visible")
-    .type("Test Gateway")
+    .type("Test Visualization Group")
 })
 
-When(/^I enter the URL$/, () => {
+When(/^I search for appropriate visualization in the search bar$/, () => {
   cy.get(
-    ':nth-child(2) > [data-test="dhis2-uiwidgets-inputfield-content"] > [data-test="dhis2-uicore-box"] > [data-test="dhis2-uicore-input"]'
-  )
-    .should("be.visible")
-    .type("https://test.gateway.com/config/api")
+    '[data-test="dhis2-uicore-transfer-filter-input"] > .jsx-3353877153'
+  ).type("RMNCAH")
 })
 
-When(/^I enter the API Key$/, () => {
-  cy.get(
-    ':nth-child(3) > [data-test="dhis2-uiwidgets-inputfield-content"] > [data-test="dhis2-uicore-box"] > [data-test="dhis2-uicore-input"]'
-  )
+Then(/^Matching visualizations should appear in the list below$/, () => {
+  cy.get('[data-test="dhis2-uicore-transfer-leftside"] > .optionsContainer')
     .should("be.visible")
-    .type("7aef99a9-8fb4-4fc3-a878-735b58ef962c")
+    .contains("RMNCAH")
 })
+
+When(/^I select one or more visualizations$/, () => {
+  cy.get('[data-value="tS2gIIWVf6K"]').click({ shiftKey: true })
+  cy.get('[data-value="epDMnD25ywG"]').click({ shiftKey: true })
+  cy.get('[data-value="DAcHlw4KYPS"]').click({ shiftKey: true })
+})
+
+When(/^I click the side arrow to move items to left$/, () => {
+  cy.get('[data-test="dhis2-uicore-transfer-actions-addindividual"]').click()
+})
+
+When(
+  /^I should be able to see the visualizations that are going to be saved in the group$/,
+  () => {
+    cy.get('[data-test="dhis2-uicore-transfer-pickedoptions"]')
+      .should("not.be.NaN")
+      .contains("RMNCAH")
+  }
+)
 
 When(/^I click the Save button$/, () => {
   cy.get(':nth-child(2) > [data-test="dhis2-uicore-button"]')
@@ -61,7 +78,7 @@ When(/^I click the Save button$/, () => {
     .click()
 })
 
-Then(/^I should be  able to save the new configuration$/, () => {})
+Then(/^I should be  able to save the new Visualization Group$/, () => {})
 Then(/^I should be able to get an alert bar$/, () => {
   cy.get('[data-test="dhis2-uicore-alertbar"]').should("be.visible")
 })
@@ -82,41 +99,29 @@ When(/^I click on the Edit action$/, () => {
   ).click()
 })
 
-Then(/^I should be able to edit the selected gateway$/, () => {
+Then(/^I should be able to edit the selected visualization group$/, () => {
   cy.get('[data-test="dhis2-uicore-card"]').should("be.visible")
 })
 
-When(/^I edit the values of the input fields$/, () => {
-  cy.get(
-    ':nth-child(1) > [data-test="dhis2-uiwidgets-inputfield-content"] > [data-test="dhis2-uicore-box"] > [data-test="dhis2-uicore-input"] > .jsx-3353877153'
-  )
+When(/^I edit the name of the visualization group$/, () => {
+  cy.get('[data-test="dhis2-uicore-input"] > .jsx-3353877153')
     .should("exist")
     .clear()
     .type("UpdatedName")
 
-  cy.get(
-    ':nth-child(2) > [data-test="dhis2-uiwidgets-inputfield-content"] > [data-test="dhis2-uicore-box"] > [data-test="dhis2-uicore-input"] > .jsx-3353877153'
+  cy.get('[data-test="dhis2-uicore-input"] > .jsx-3353877153').should(
+    "have.value",
+    "UpdatedName"
   )
-    .should("exist")
-    .clear()
-    .type("UpdatedURL")
+})
 
-  cy.get(
-    ':nth-child(3) > [data-test="dhis2-uiwidgets-inputfield-content"] > [data-test="dhis2-uicore-box"] > [data-test="dhis2-uicore-input"] > .jsx-3353877153'
-  )
-    .should("exist")
-    .clear()
-    .type("UpdatedAPIKey")
-
-  cy.get(
-    ':nth-child(1) > [data-test="dhis2-uiwidgets-inputfield-content"] > [data-test="dhis2-uicore-box"] > [data-test="dhis2-uicore-input"] > .jsx-3353877153'
-  ).should("have.value", "UpdatedName")
-  cy.get(
-    ':nth-child(2) > [data-test="dhis2-uiwidgets-inputfield-content"] > [data-test="dhis2-uicore-box"] > [data-test="dhis2-uicore-input"] > .jsx-3353877153'
-  ).should("have.value", "UpdatedURL")
-  cy.get(
-    ':nth-child(3) > [data-test="dhis2-uiwidgets-inputfield-content"] > [data-test="dhis2-uicore-box"] > [data-test="dhis2-uicore-input"] > .jsx-3353877153'
-  ).should("have.value", "UpdatedAPIKey")
+When(/^I change the selection of visualization by removing and adding$/, () => {
+  cy.get('[data-value="dxRdII7wS6j"]').click({ shiftKey: true })
+  cy.get('[data-value="DAcHlw4KYPS"]').click({ shiftKey: true })
+  cy.get('[data-test="dhis2-uicore-transfer-actions-removeindividual"]').click()
+  cy.get('[data-value="V06KKMj8k8H"]').click({ shiftKey: true })
+  cy.get('[data-value="dR0AIXF98ds"]').click({ shiftKey: true })
+  cy.get('[data-test="dhis2-uicore-transfer-actions-addindividual"]').click()
 })
 
 When(/^I click on the update button$/, () => {
@@ -141,4 +146,4 @@ When(/^I click on the Delete button$/, () => {
     .click()
 })
 
-Then(/^I should be able to delete the gateway configuration$/, () => {})
+Then(/^I should be able to delete the visualization group$/, () => {})
