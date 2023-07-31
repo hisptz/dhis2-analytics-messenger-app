@@ -51,7 +51,7 @@ When(
       ':nth-child(3) > [data-test="dhis2-uiwidgets-singleselectfield-content"] > [data-test="dhis2-uicore-box"] > [data-test="dhis2-uicore-singleselect"] > .jsx-114080822 > [data-test="dhis2-uicore-select"] > [data-test="dhis2-uicore-select-input"]'
     )
       .click()
-      .get('[data-test="dhis2-uicore-singleselectoption"]')
+      .get('[data-value="epV3Qp00rKN"]')
       .click()
   }
 )
@@ -63,15 +63,18 @@ When(
       '[data-test="dhis2-uicore-multiselect"] > .jsx-114080822 > [data-test="dhis2-uicore-select"] > [data-test="dhis2-uicore-select-input"]'
     )
       .click()
-      .get('[data-value="dR0AIXF98ds"] > [data-test="dhis2-uicore-checkbox"]')
+      .get('[data-value="tS2gIIWVf6K"] > [data-test="dhis2-uicore-checkbox"]')
       .click()
-      .get('[data-value="V06KKMj8k8H"] > [data-test="dhis2-uicore-checkbox"]')
+
+      .get('[data-value="epDMnD25ywG"] > [data-test="dhis2-uicore-checkbox"]')
+      .click()
+      .get("body")
       .click()
   }
 )
 
 When(/^I enter the Description for the push analytics$/, () => {
-  cy.get("#description").type("Testing Testing Testing", { force: true })
+  cy.get("#description").type("Testing Testing Testing").get("body").click()
 })
 
 Then(
@@ -83,14 +86,20 @@ Then(
       .click()
       .get('[data-value="individual"]')
       .click()
+      .get("body")
+      .click()
       .get(
         '[style="display: grid; grid-template-columns: 2fr 3fr 1fr; gap: 16px; align-items: end;"] > [data-test="dhis2-uiwidgets-inputfield"] > [data-test="dhis2-uiwidgets-inputfield-content"] > [data-test="dhis2-uicore-box"] > [data-test="dhis2-uicore-input"] > .jsx-3353877153'
       )
-      .type("255693134744", { force: true })
+      .type("255693134744")
+      .get("body")
+      .click()
       .get(
         '[style="display: grid; grid-template-columns: 2fr 3fr 1fr; gap: 16px; align-items: end;"] > [data-test="dhis2-uicore-button"]'
       )
-      .click({ force: true })
+      .click()
+      .get("body")
+      .click()
   }
 )
 
@@ -149,7 +158,9 @@ When(/^I change the Visualization group selection$/, () => {
     ':nth-child(3) > [data-test="dhis2-uiwidgets-singleselectfield-content"] > [data-test="dhis2-uicore-box"] > [data-test="dhis2-uicore-singleselect"] > .jsx-114080822 > [data-test="dhis2-uicore-select"] > [data-test="dhis2-uicore-select-input"]'
   )
     .click()
-    .get('[data-test="dhis2-uicore-singleselectoption"]')
+    .get('[data-value="imOJTqQRrHk"]')
+    .click()
+    .get("body")
     .click()
 })
 When(/^I change the selected visualizations selection$/, () => {
@@ -157,13 +168,13 @@ When(/^I change the selected visualizations selection$/, () => {
     '[data-test="dhis2-uicore-multiselect"] > .jsx-114080822 > [data-test="dhis2-uicore-select"] > [data-test="dhis2-uicore-select-input"]'
   )
     .click()
-    .get('[data-value="dR0AIXF98ds"] > [data-test="dhis2-uicore-checkbox"]')
+    .get('[data-value="IpXoNSy2NKn"] > [data-test="dhis2-uicore-checkbox"]')
     .click()
-    .get('[data-value="V06KKMj8k8H"] > [data-test="dhis2-uicore-checkbox"]')
+    .get('[data-value="wleqcZVkF9U"] > [data-test="dhis2-uicore-checkbox"]')
     .click()
-    .get('[data-value="tS2gIIWVf6K"] > [data-test="dhis2-uicore-checkbox"]')
+    .get("body")
     .click()
-    .get('[data-value="oWk64tUP5Dk"] > [data-test="dhis2-uicore-checkbox"]')
+    .get("body")
     .click()
 })
 
@@ -183,14 +194,18 @@ Then(/^I change the selected recipients$/, () => {
     .click()
     .get('[data-value="individual"]')
     .click()
+    .get("body")
+    .click()
     .get(
       '[style="display: grid; grid-template-columns: 2fr 3fr 1fr; gap: 16px; align-items: end;"] > [data-test="dhis2-uiwidgets-inputfield"] > [data-test="dhis2-uiwidgets-inputfield-content"] > [data-test="dhis2-uicore-box"] > [data-test="dhis2-uicore-input"] > .jsx-3353877153'
     )
-    .type("255693134744", { force: true })
+    .type("255693134744")
+    .get("body")
+    .click()
     .get(
       '[style="display: grid; grid-template-columns: 2fr 3fr 1fr; gap: 16px; align-items: end;"] > [data-test="dhis2-uicore-button"]'
     )
-    .click({ force: true })
+    .click()
 })
 
 When(/^I click on the update button$/, () => {
@@ -204,7 +219,7 @@ When(/^I should be able to save the changes made$/, () => {})
 
 When(/^I click on the Delete action$/, () => {
   cy.get(
-    '[data-test="dhis2-uicore-menu"] > [data-test="dhis2-uicore-menulist"] > :nth-child(2)'
+    '[data-test="dhis2-uicore-menu"] > [data-test="dhis2-uicore-menulist"] > :nth-child(3)'
   ).click()
 })
 
@@ -218,4 +233,19 @@ When(/^I click on the Delete button$/, () => {
     .click()
 })
 
-Then(/^I should be able to delete the visualization group$/, () => {})
+Then(/^I should be able to delete the push analytic configuration$/, () => {})
+
+When(/^I click on the Send action$/, () => {
+  cy.get(
+    '[data-test="dhis2-uicore-menu"] > [data-test="dhis2-uicore-menulist"] > :nth-child(4)'
+  ).click()
+})
+
+When(/^I click on the Send button$/, () => {
+  cy.get(':nth-child(3) > [data-test="dhis2-uicore-button"]').click()
+})
+
+Then(
+  /^I should be able to send the selected push analytics configuration$/,
+  () => {}
+)
