@@ -51,7 +51,7 @@ When(
       ':nth-child(3) > [data-test="dhis2-uiwidgets-singleselectfield-content"] > [data-test="dhis2-uicore-box"] > [data-test="dhis2-uicore-singleselect"] > .jsx-114080822 > [data-test="dhis2-uicore-select"] > [data-test="dhis2-uicore-select-input"]'
     )
       .click()
-      .get('[data-value="epV3Qp00rKN"]')
+      .get('[data-value="SqnfWtIGhg1"]')
       .click()
   }
 )
@@ -69,7 +69,7 @@ When(
       .get('[data-value="epDMnD25ywG"] > [data-test="dhis2-uicore-checkbox"]')
       .click()
       .get("body")
-      .click()
+      .dblclick()
   }
 )
 
