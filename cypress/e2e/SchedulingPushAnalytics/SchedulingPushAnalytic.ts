@@ -31,23 +31,10 @@ When(/^I click on the Schedule action$/, () => {
 })
 
 When(/^I click on Add Schedule$/, () => {
-  if (
-    cy
-      .get(
-        '.jsx-3079864901 > [data-test="dhis2-uicore-centeredcontent"] > .jsx-498096601 > [data-test="dhis2-uicore-modal"] > [data-test="dhis2-uicore-card"] > .jsx-1532202667 > [data-test="dhis2-uicore-modalcontent"] > .column'
-      )
-      .should("be.visible")
-  ) {
-    cy.get('.column > [data-test="dhis2-uicore-button"]').click()
-  } else if (
-    cy
-      .get(
-        '[data-test="dhis2-uicore-modalcontent"] > .column > [data-test="dhis2-uicore-datatable"]'
-      )
-      .should("be.visible")
-  ) {
-    cy.get('.row > [data-test="dhis2-uicore-button"]').click()
-  }
+  cy.get('.row > [data-test="dhis2-uicore-button"]').should("exist").click()
+})
+When(/^I click on Add Predefined Schedule$/, () => {
+  cy.get('.column > [data-test="dhis2-uicore-button"]').should("exist").click()
 })
 
 When(/^I select a predefined time$/, () => {

@@ -8,7 +8,7 @@ Scenario: Testing if scheduling using a Predefined setting works
     When I click on the three dots for actions
     Then I should be able to access the available actions
     When I click on the Schedule action
-    When I click on Add Schedule
+    When I click on Add Predefined Schedule
     When I select a predefined time
     When I click on Add button
     Then I should be able to schedule the selected push analytics configuration 
