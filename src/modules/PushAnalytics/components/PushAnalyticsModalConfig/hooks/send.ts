@@ -14,7 +14,7 @@ async function sendMessage({id, client}: { id: string, client: AxiosInstance }) 
 
 export function useSendAnalytics() {
     const {show} = useAlert(({message}: { message: string }) => message, ({type}: any) => ({...type, duration: 3000}));
-    const getClient = usePushServiceClient();
+    const {getClientById: getClient} = usePushServiceClient();
     const mutation = useMutation([], {
         mutationFn: sendMessage
     });

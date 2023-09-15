@@ -39,7 +39,7 @@ export function useGateways() {
         }
     });
 
-    const {entries, pager} = data?.gateways ?? {};
+    const {entries} = data?.gateways ?? {};
 
     return {
         loading,

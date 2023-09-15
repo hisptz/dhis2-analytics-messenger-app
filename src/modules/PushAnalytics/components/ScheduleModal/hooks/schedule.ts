@@ -63,7 +63,7 @@ async function update(updatedValue: PushSchedule, client: AxiosInstance) {
 }
 
 export function usePushJobData({gatewayId, jobId}: { gatewayId: string, jobId: string }) {
-    const getClient = usePushServiceClient();
+    const {getClientById: getClient} = usePushServiceClient();
 
     const client = useMemo(() => getClient(gatewayId), [gatewayId, getClient]);
 
@@ -87,7 +87,7 @@ export function usePushJobData({gatewayId, jobId}: { gatewayId: string, jobId: s
 }
 
 export function useManagePushSchedule(config: PushAnalytics, defaultValue?: PushSchedule, onComplete?: () => void) {
-    const getClient = usePushServiceClient();
+    const {getClientById: getClient} = usePushServiceClient();
     const client = useMemo(() => getClient(config.gateway), [config.gateway, getClient]);
     const queryClient = useQueryClient();
     const {show} = useAlert(({message}) => message, ({type}) => ({...type, duration: 3000}));

@@ -36,7 +36,8 @@ function SendActions({actions}: { actions: { label: string; action: () => void }
     return (
         <FlyoutMenu>
             {
-                actions.map(({label, action}) => (<MenuItem label={label} onClick={action}/>))
+                actions.map(({label, action}) => (
+                    <MenuItem key={`${label}-menu-item`} label={label} onClick={action}/>))
             }
         </FlyoutMenu>
     );
@@ -138,8 +139,9 @@ export function PushAnalyticsModalConfig({hidden, onClose}: PushAnalyticsModalCo
             <ModalContent>
                 <FormProvider {...form}>
                     <div className="column gap-16">
-                        <RHFTextInputField required validations={{required: i18n.t("Name is required")}} name="name"
-																					 label={i18n.t("Name")}/>
+                        <RHFTextInputField
+                            required validations={{required: i18n.t("Name is required")}} name="name"
+                            label={i18n.t("Name")}/>
                         <RHFGatewaySelector
                             required validations={{required: i18n.t("Gateway is required")}}
                             name="gateway"
@@ -153,7 +155,8 @@ export function PushAnalyticsModalConfig({hidden, onClose}: PushAnalyticsModalCo
                             validations={{required: i18n.t("At least one visualization is required")}}
                             name="visualizations"
                             label={i18n.t("Visualizations")}/>
-                        <RHFDescription label={i18n.t("Description")} name="description"/>
+                        <RHFDescription required validations={{required: i18n.t("Description is required")}}
+                            label={i18n.t("Description")} name="description"/>
                         <RHFRecipientSelector label={i18n.t("Recipients")} name="contacts"/>
                     </div>
                 </FormProvider>
@@ -170,7 +173,10 @@ export function PushAnalyticsModalConfig({hidden, onClose}: PushAnalyticsModalCo
                             label: config ? i18n.t("Update") : i18n.t("Save"),
                             action: form.handleSubmit(onSaveAndSend(false))
                         }
-                    ]}/>} loading={sending || creating || updating} onClick={form.handleSubmit(onSaveAndSend(true))}
+                    ]}/>}
+                    disabled={creating || updating || sending}
+                    loading={sending || creating || updating}
+                    onClick={form.handleSubmit(onSaveAndSend(true))}
 																 primary>{getButtonLabel(creating, updating, sending, config)}</SplitButton>
                 </ButtonStrip>
             </ModalActions>

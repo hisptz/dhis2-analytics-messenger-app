@@ -59,7 +59,7 @@ async function deleteJob(data: PushAnalytics, client: AxiosInstance) {
 }
 
 export function useManageConfig(id: string, defaultConfig?: PushAnalytics | null) {
-    const getClient = usePushServiceClient();
+    const {getClientById: getClient} = usePushServiceClient();
     const {show} = useAlert(({message}) => message, ({type}) => ({...type, duration: 3000}));
     const [create, {loading: creating}] = useDataMutation(generateCreateMutation(id), {});
     const [update, {loading: updating}] = useDataMutation(updateMutation, {});

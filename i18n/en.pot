@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2023-07-21T08:16:05.504Z\n"
-"PO-Revision-Date: 2023-07-21T08:16:05.504Z\n"
+"POT-Creation-Date: 2023-07-26T13:27:35.714Z\n"
+"PO-Revision-Date: 2023-07-26T13:27:35.714Z\n"
 
 msgid "Fetching App configurations..."
 msgstr "Fetching App configurations..."
@@ -297,6 +297,9 @@ msgstr "Group is required"
 
 msgid "Visualization group"
 msgstr "Visualization group"
+
+msgid "Description is required"
+msgstr "Description is required"
 
 msgid "Description"
 msgstr "Description"

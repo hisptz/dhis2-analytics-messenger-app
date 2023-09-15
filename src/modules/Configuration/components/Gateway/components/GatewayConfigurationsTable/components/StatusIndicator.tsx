@@ -47,8 +47,8 @@ const Wrapper = ({children, refetch, data, isRefetching, customMessage}: {
 );
 
 export function StatusIndicator({value}: StatusIndicatorProps) {
-    const getClient = usePushServiceClient();
-    const client = useMemo(() => getClient(value.id), [value.id]);
+    const {getClient} = usePushServiceClient();
+    const client = useMemo(() => getClient(value), [value]);
     const getStatus = async () => {
         const endpoint = "/whatsapp/ping";
         const response = await client.get(endpoint);
@@ -62,7 +62,7 @@ export function StatusIndicator({value}: StatusIndicatorProps) {
         refetch,
         isRefetching,
         error
-    } = useQuery<StatusData, AxiosError>([value.id], getStatus);
+    } = useQuery<StatusData, AxiosError>([value], getStatus);
 
 
     if (isError) {
