@@ -41,7 +41,7 @@ function AddRecipient({onChange}: {
         (data: Omit<Contact, "type"> & { type: "user" | "individual" | "group" }) => {
             onChange({
                 ...data,
-                type: type === "user" ? "individual" : type,
+                type: data.type === "user" ? "individual" : data.type as "group" | "individual",
             });
             form.reset({});
         },
@@ -127,7 +127,7 @@ export function RHFRecipientSelector({validations, name, label, required}: RHFRe
     return (
         <Controller
             rules={validations}
-            render={({field, fieldState}) => {
+            render={({field}) => {
                 const recipients = field.value ?? [];
                 return (
                     <Field required={required} label={label}>

@@ -39,6 +39,8 @@ export interface ContactChipProps {
 
 export function ContactChip({onRemove, type, ...props}: ContactChipProps) {
 
+    console.log({type});
+
     return (
         <Chip
             onRemove={onRemove}
