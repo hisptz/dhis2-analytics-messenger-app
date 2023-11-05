@@ -10,15 +10,14 @@ import {RecoilRoot} from "recoil";
 import {Helmet} from "react-helmet";
 import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
 import {predefinedSchedules} from "./shared/constants/dataStore";
-import Parse from "parse";
+import {initializeParse} from "./shared/utils/parse";
+import {ParseProvider} from "./shared/components/ParseProvider";
 
 
 const queryClient = new QueryClient();
 
 
-Parse.initialize(process.env.REACT_APP_SAAS_APP_ID ?? "DAM-AUTH");
-Parse.serverURL = process.env.REACT_APP_SAAS_BASE_URL ?? "http://localhost:3001/api";
-
+initializeParse();
 
 const App = () => (
     <>
@@ -28,6 +27,7 @@ const App = () => (
             <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"/>
             <link rel="manifest" href="/site.webmanifest"/>
         </Helmet>
+
         <QueryClientProvider client={queryClient}>
             <DataStoreProvider
                 namespace="hisptz-analytics-messenger"
@@ -38,21 +38,23 @@ const App = () => (
                     <FullPageLoader message={i18n.t("Fetching App configurations...")}/>
                 }
             >
-                <div>
-                    <RecoilRoot>
-                        <Suspense
-                            fallback={
-                                <FullPageLoader
-                                    message={i18n.t("Please wait this might take a while...")}
-                                />
-                            }
-                        >
-                            <ConfirmDialogProvider>
-                                <AppRouter/>
-                            </ConfirmDialogProvider>
-                        </Suspense>
-                    </RecoilRoot>
-                </div>
+                <ParseProvider>
+                    <div>
+                        <RecoilRoot>
+                            <Suspense
+                                fallback={
+                                    <FullPageLoader
+                                        message={i18n.t("Please wait this might take a while...")}
+                                    />
+                                }
+                            >
+                                <ConfirmDialogProvider>
+                                    <AppRouter/>
+                                </ConfirmDialogProvider>
+                            </Suspense>
+                        </RecoilRoot>
+                    </div>
+                </ParseProvider>
             </DataStoreProvider>
         </QueryClientProvider>
     </>
