@@ -10,9 +10,15 @@ import {RecoilRoot} from "recoil";
 import {Helmet} from "react-helmet";
 import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
 import {predefinedSchedules} from "./shared/constants/dataStore";
+import Parse from "parse";
 
 
 const queryClient = new QueryClient();
+
+
+Parse.initialize(process.env.REACT_APP_SAAS_APP_ID ?? "DAM-AUTH");
+Parse.serverURL = process.env.REACT_APP_SAAS_BASE_URL ?? "http://localhost:3001/api";
+
 
 const App = () => (
     <>
