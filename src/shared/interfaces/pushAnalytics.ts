@@ -19,40 +19,32 @@ export const pushAnalyticsJobSchema = z.object({
 	name: z.string({ required_error: i18n.t("Name is required") }),
 	contacts: z
 		.array(contactSchema, {
-			required_error: i18n.t("Contacts are required),
+			required_error: i18n.t("Contacts are required"),
 		})
 		.min(1, i18n.t("At least one contact is required")),
 	dhis2Instance: z.instanceof(Parse.Object),
 	description: z.string().optional(),
 	visualizations: z
 		.array(visualizationSchema)
-		.min(1, i18n.t("At least one visualization is required"),
+		.min(1, i18n.t("At least one visualization is required")),
 });
 export const pushAnalyticsJobFormDataSchema = pushAnalyticsJobSchema
 	.omit({
-		dhis2Instance: tre,
+		dhis2Instance: true,
 	})
 	.extend({
 		contacts: z.array(contactSchema),
 		visualizations: z.array(visualizationSchema),
-		visualizationGroup: z.string),
+		visualizationGroup: z.string(),
 	});
 export type PushAnalyticsJob = z.infer<typeof pushAnalyticsJobSchema>;
 export type PushAnalyticsJobFormData = z.infer<
 	typeof pushAnalyticsJobFormDataSchema
 >;
 export const pushAnalyticsScheduleSchema = z.object({
-	job: z.instanceof(Parse.Object),
 	enabled: z.boolean(),
-	cron: z.string),
+	cron: z.string(),
 });
 export type PushAnalyticsJobSchedule = z.infer<
 	typeof pushAnalyticsScheduleSchema
->;
-export const pushAnalyticsJobScheduleFormDataSchema =
-	pushAnalyticsScheduleSchema.extend({
-		job: pushAnalyticsJobFormDataSchea,
-	});
-export type PushAnalyticsJobScheduleFormData = z.infer<
-	typeof pushAnalyticsJobScheduleFormDataSchema
 >;

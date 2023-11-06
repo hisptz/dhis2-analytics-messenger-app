@@ -14,13 +14,23 @@ import { useConfirmDialog } from "@hisptz/dhis2-ui";
 import { Contact } from "../../../../../shared/interfaces";
 import { useManageConfig } from "../../PushAnalyticsModalConfig/hooks/save";
 import { useQueryClient } from "@tanstack/react-query";
+import { ScheduleModal } from "../../ScheduleModal";
 
 export interface JobActionAreaProps {
 	config: Parse.Object;
 }
 
 export function JobActionArea({ config }: JobActionAreaProps) {
-	const { value: hide, setTrue: onHide, setFalse: onShow } = useBoolean(true);
+	const {
+		value: hideEdit,
+		setTrue: onHideEdit,
+		setFalse: onShowEdit,
+	} = useBoolean(true);
+	const {
+		value: hideSchedule,
+		setTrue: onHideSchedule,
+		setFalse: onShowSchedule,
+	} = useBoolean(true);
 	const { confirm } = useConfirmDialog();
 	const queryClient = useQueryClient();
 
@@ -33,12 +43,19 @@ export function JobActionArea({ config }: JobActionAreaProps) {
 
 	return (
 		<>
-			{!hide && (
+			{!hideEdit && (
 				<PushAnalyticsModalConfig
 					key={config.id}
 					config={config}
-					hidden={hide}
-					onClose={onHide}
+					hidden={hideEdit}
+					onClose={onHideEdit}
+				/>
+			)}
+			{!hideSchedule && (
+				<ScheduleModal
+					onClose={onHideSchedule}
+					hide={hideSchedule}
+					config={config}
 				/>
 			)}
 			<ActionButton
@@ -47,15 +64,13 @@ export function JobActionArea({ config }: JobActionAreaProps) {
 						key: "edit-config",
 						label: i18n.t("Edit"),
 						icon: <IconEdit24 />,
-						onClick: () => {
-							onShow();
-						},
+						onClick: onShowEdit,
 					},
 					{
 						key: "edit-config",
 						label: i18n.t("Schedule"),
 						icon: <IconClockHistory24 />,
-						onClick: () => {},
+						onClick: onShowSchedule,
 					},
 					{
 						key: "delete-config",
