@@ -9,7 +9,7 @@ export function useManageConfig({
 	onComplete,
 	defaultConfig,
 }: {
-	onComplete: (job: Parse.Object) => void;
+	onComplete: (job?: Parse.Object) => void;
 	defaultConfig?: Parse.Object | null;
 }) {
 	const currentUser = Parse.User.current();
@@ -67,6 +67,30 @@ export function useManageConfig({
 		},
 	);
 
+	const { mutateAsync: deleteConfig, isLoading: deleting } = useMutation({
+		mutationKey: [defaultConfig?.id],
+		mutationFn: async (config: Parse.Object) => {
+			if (config) {
+				return await config.destroy();
+			}
+		},
+		onError: (error: any) => {
+			show({
+				message: `${i18n.t("Error saving configuration")}: ${
+					error.message
+				}`,
+				type: { critical: true },
+			});
+		},
+		onSuccess: () => {
+			show({
+				message: i18n.t("Configuration deleted successfully"),
+				type: { success: true },
+			});
+			onComplete();
+		},
+	});
+
 	const save = useCallback(
 		async (data: PushAnalyticsJobFormData): Promise<Parse.Object> => {
 			return manageJob(data);
@@ -76,7 +100,8 @@ export function useManageConfig({
 
 	return {
 		isLoading,
-		deleteConfig: () => {},
+		deleteConfig,
+		deleting,
 		save,
 	};
 }

@@ -12,6 +12,8 @@ import { useBoolean } from "usehooks-ts";
 import { PushAnalyticsModalConfig } from "../../PushAnalyticsModalConfig";
 import { useConfirmDialog } from "@hisptz/dhis2-ui";
 import { Contact } from "../../../../../shared/interfaces";
+import { useManageConfig } from "../../PushAnalyticsModalConfig/hooks/save";
+import { useQueryClient } from "@tanstack/react-query";
 
 export interface JobActionAreaProps {
 	config: Parse.Object;
@@ -20,6 +22,14 @@ export interface JobActionAreaProps {
 export function JobActionArea({ config }: JobActionAreaProps) {
 	const { value: hide, setTrue: onHide, setFalse: onShow } = useBoolean(true);
 	const { confirm } = useConfirmDialog();
+	const queryClient = useQueryClient();
+
+	const { deleteConfig } = useManageConfig({
+		defaultConfig: config,
+		onComplete: () => {
+			queryClient.invalidateQueries(["analyticsJobs"]);
+		},
+	});
 
 	return (
 		<>
@@ -63,7 +73,9 @@ export function JobActionArea({ config }: JobActionAreaProps) {
 									},
 								),
 								onCancel: () => {},
-								onConfirm: async () => {},
+								onConfirm: async () => {
+									await deleteConfig(config);
+								},
 							});
 						},
 					},
