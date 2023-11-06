@@ -116,18 +116,24 @@ export function PushAnalyticsModalConfig({
 		},
 		[onClose],
 	);
+
+	const onSaveComplete = async (job?: Parse.Object) => {
+		if (!job) {
+			return;
+		}
+		if (shouldSend) {
+			await send(job);
+			onCloseClick(true);
+			queryClient.invalidateQueries(["analyticsJobs"]);
+		} else {
+			queryClient.invalidateQueries(["analyticsJobs"]);
+			onCloseClick(true);
+		}
+	};
+
 	const { save, isLoading } = useManageConfig({
 		defaultConfig: config,
-		onComplete: async (job: Parse.Object) => {
-			if (shouldSend) {
-				await send(job);
-				onCloseClick(true);
-				queryClient.invalidateQueries(["analyticsJobs"]);
-			} else {
-				queryClient.invalidateQueries(["analyticsJobs"]);
-				onCloseClick(true);
-			}
-		},
+		onComplete: onSaveComplete,
 	});
 
 	const creating = useMemo(() => !config && isLoading, [config]);
@@ -138,7 +144,7 @@ export function PushAnalyticsModalConfig({
 			setShouldSend(shouldSend);
 			await save(data);
 		},
-		[send, id],
+		[id],
 	);
 
 	return (

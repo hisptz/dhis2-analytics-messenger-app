@@ -56,6 +56,7 @@ export function useManageConfig({
 						message: i18n.t("Configuration updated successfully"),
 						type: { success: true },
 					});
+					onComplete(job);
 				} else {
 					show({
 						message: i18n.t("Configuration saved successfully"),

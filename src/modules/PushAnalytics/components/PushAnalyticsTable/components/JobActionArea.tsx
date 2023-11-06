@@ -15,6 +15,7 @@ import { Contact } from "../../../../../shared/interfaces";
 import { useManageConfig } from "../../PushAnalyticsModalConfig/hooks/save";
 import { useQueryClient } from "@tanstack/react-query";
 import { ScheduleModal } from "../../ScheduleModal";
+import { useSendAnalytics } from "../../PushAnalyticsModalConfig/hooks/send";
 
 export interface JobActionAreaProps {
 	config: Parse.Object;
@@ -40,6 +41,8 @@ export function JobActionArea({ config }: JobActionAreaProps) {
 			queryClient.invalidateQueries(["analyticsJobs"]);
 		},
 	});
+
+	const { send } = useSendAnalytics();
 
 	return (
 		<>
@@ -123,7 +126,9 @@ export function JobActionArea({ config }: JobActionAreaProps) {
 									</>
 								),
 								onCancel: () => {},
-								onConfirm: async () => {},
+								onConfirm: async () => {
+									await send(config);
+								},
 							});
 						},
 					},
