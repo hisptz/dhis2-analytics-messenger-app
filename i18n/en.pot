@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2023-11-05T06:50:57.151Z\n"
-"PO-Revision-Date: 2023-11-05T06:50:57.151Z\n"
+"POT-Creation-Date: 2023-11-06T09:42:34.536Z\n"
+"PO-Revision-Date: 2023-11-06T09:42:34.536Z\n"
 
 msgid "Fetching App configurations..."
 msgstr "Fetching App configurations..."
@@ -32,44 +32,8 @@ msgstr "Gateway config updated successfully"
 msgid "Could not update gateway information"
 msgstr "Could not update gateway information"
 
-msgid "{{operation}} gateway"
-msgstr "{{operation}} gateway"
-
-msgid "Update"
-msgstr "Update"
-
-msgid "Add"
-msgstr "Add"
-
-msgid "Name"
-msgstr "Name"
-
-msgid "Name is required"
-msgstr "Name is required"
-
-msgid "URL"
-msgstr "URL"
-
-msgid "Whatsapp URL is required"
-msgstr "Whatsapp URL is required"
-
-msgid "API Key"
-msgstr "API Key"
-
-msgid "API key is required"
-msgstr "API key is required"
-
-msgid "Cancel"
-msgstr "Cancel"
-
-msgid "Updating..."
-msgstr "Updating..."
-
-msgid "Saving..."
-msgstr "Saving..."
-
-msgid "Save"
-msgstr "Save"
+msgid "Token"
+msgstr "Token"
 
 msgid "Status"
 msgstr "Status"
@@ -95,8 +59,11 @@ msgstr "Online"
 msgid "Offline"
 msgstr "Offline"
 
-msgid "Token"
-msgstr "Token"
+msgid "Save"
+msgstr "Save"
+
+msgid "Update"
+msgstr "Update"
 
 msgid "Gateway deleted successfully"
 msgstr "Gateway deleted successfully"
@@ -125,11 +92,29 @@ msgstr "Error updating visualization group"
 msgid "{{operation}} group"
 msgstr "{{operation}} group"
 
+msgid "Add"
+msgstr "Add"
+
+msgid "Name"
+msgstr "Name"
+
+msgid "Name is required"
+msgstr "Name is required"
+
 msgid "Select at least one visualization"
 msgstr "Select at least one visualization"
 
 msgid "Visualizations"
 msgstr "Visualizations"
+
+msgid "Cancel"
+msgstr "Cancel"
+
+msgid "Updating..."
+msgstr "Updating..."
+
+msgid "Saving..."
+msgstr "Saving..."
 
 msgid "S/N"
 msgstr "S/N"
@@ -219,6 +204,9 @@ msgstr "Start with country code without the + sign. Example 255XXXXXXXXX"
 msgid "Only users with whatsApp contacts will be listed"
 msgstr "Only users with whatsApp contacts will be listed"
 
+msgid "Only groups within which your whatsapp contact is in will be listed"
+msgstr "Only groups within which your whatsapp contact is in will be listed"
+
 msgid "Type"
 msgstr "Type"
 
@@ -249,9 +237,6 @@ msgstr "Configuration updated successfully"
 msgid "Configuration saved successfully"
 msgstr "Configuration saved successfully"
 
-msgid "Configuration deleted successfully"
-msgstr "Configuration deleted successfully"
-
 msgid "Message sent successfully"
 msgstr "Message sent successfully"
 
@@ -279,17 +264,8 @@ msgstr "Close"
 msgid "Send push analytics"
 msgstr "Send push analytics"
 
-msgid "Gateway is required"
-msgstr "Gateway is required"
-
-msgid "Group is required"
-msgstr "Group is required"
-
 msgid "Visualization group"
 msgstr "Visualization group"
-
-msgid "Description is required"
-msgstr "Description is required"
 
 msgid "Description"
 msgstr "Description"
@@ -459,6 +435,12 @@ msgstr "There are no bookings for the specified filters"
 msgid "There are no data available!"
 msgstr "There are no data available!"
 
+msgid "Could not connect to DHIS2 analytics messenger service"
+msgstr "Could not connect to DHIS2 analytics messenger service"
+
+msgid "Change configuration"
+msgstr "Change configuration"
+
 msgid "Push Analytics"
 msgstr "Push Analytics"
 
@@ -467,3 +449,9 @@ msgstr "Chat Bot"
 
 msgid "Configuration"
 msgstr "Configuration"
+
+msgid "Contacts are required"
+msgstr "Contacts are required"
+
+msgid "At least one contact is required"
+msgstr "At least one contact is required"
