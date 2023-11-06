@@ -8,13 +8,16 @@ import {
 	ModalActions,
 	ModalContent,
 	ModalTitle,
-	SplitButton
+	SplitButton,
 } from "@dhis2/ui";
 import { RHFTextInputField, useConfirmDialog } from "@hisptz/dhis2-ui";
 import { uid } from "@hisptz/dhis2-utils";
 import React, { useCallback, useMemo } from "react";
 import { FormProvider, useForm } from "react-hook-form";
-import { PushAnalyticsJobFormData } from "../../../../shared/interfaces";
+import {
+	PushAnalyticsJobFormData,
+	pushAnalyticsJobFormDataSchema,
+} from "../../../../shared/interfaces";
 import { RHFDescription } from "./components/RHFDescription";
 import { RHFGroupSelector } from "./components/RHFGroupSelector";
 import { RHFRecipientSelector } from "./components/RHFRecipientSelector";
@@ -54,7 +57,7 @@ function getButtonLabel(
 	creating: boolean,
 	updating: boolean,
 	sending: boolean,
-	config?: Parse.Object | nul,
+	config?: Parse.Object | null,
 ) {
 	if (config) {
 		if (updating) {
@@ -182,17 +185,17 @@ export function PushAnalyticsModalConfig({
 											? i18n.t("Update and send")
 											: i18n.t("Save and send"),
 										action: form.handleSubmit(
-											onSaveAndSend(true,
-										,
+											onSaveAndSend(true),
+										),
 									},
 									{
 										label: config
 											? i18n.t("Update")
 											: i18n.t("Save"),
 										action: form.handleSubmit(
-											onSaveAndSend(false,
-										,
-									,
+											onSaveAndSend(false),
+										),
+									},
 								]}
 							/>
 						}

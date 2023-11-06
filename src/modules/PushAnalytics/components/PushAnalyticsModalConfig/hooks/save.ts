@@ -18,14 +18,14 @@ export function useManageConfig({
 
 	const { show } = useAlert(
 		({ message }) => message,
-		({ type }) => ({ ...type, duration: 3000 },
+		({ type }) => ({ ...type, duration: 3000 }),
 	);
 	const { mutateAsync: manageJob, isLoading } = useMutation(
 		["job", defaultConfig],
 		async (data: PushAnalyticsJobFormData) => {
 			if (defaultConfig) {
 				return await defaultConfig.save({
-					...dat,
+					...data,
 				});
 			} else {
 				const newJob = new Parse.Object("AnalyticsPushJob");
@@ -34,8 +34,8 @@ export function useManageConfig({
 					dhis2Instance: {
 						__type: "Pointer",
 						className: "DHIS2Instance",
-						objectId: instanceI,
-					,
+						objectId: instanceId,
+					},
 				});
 
 				return await createdObject.fetch();
@@ -47,36 +47,36 @@ export function useManageConfig({
 					message: `${i18n.t("Error saving configuration")}: ${
 						error.message
 					}`,
-					type: { critical: true ,
+					type: { critical: true },
 				});
 			},
 			onSuccess: (job) => {
 				if (defaultConfig) {
 					show({
 						message: i18n.t("Configuration updated successfully"),
-						type: { success: true ,
+						type: { success: true },
 					});
 				} else {
 					show({
 						message: i18n.t("Configuration saved successfully"),
-						type: { success: true ,
+						type: { success: true },
 					});
 				}
 				onComplete(job);
-			,
-		,
+			},
+		},
 	);
 
 	const save = useCallback(
 		async (data: PushAnalyticsJobFormData): Promise<Parse.Object> => {
 			return manageJob(data);
 		},
-		[manageJob]
+		[manageJob],
 	);
 
 	return {
 		isLoading,
 		deleteConfig: () => {},
-		save
+		save,
 	};
 }
