@@ -17,20 +17,20 @@ export function useWhatsappData() {
 	const { data, isLoading } = useQuery<Array<{ id: string; name: string }>>({
 		queryKey: ["whatsapp", "groups"],
 		queryFn: getGroups,
-		retry: fals,
+		retry: false,
 	});
 
 	const groups = useMemo(
 		() =>
 			data?.map((group) => ({
 				...group,
-				id: group.id.replace("@g.us", "",
+				id: group.id.replace("@g.us", ""),
 			})) ?? [],
-		[data,
+		[data],
 	);
 
 	return {
 		groups,
-		loading: isLoading
+		loading: isLoading,
 	};
 }

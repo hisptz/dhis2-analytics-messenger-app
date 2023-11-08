@@ -1,7 +1,12 @@
 import { MultiSelectField, MultiSelectOption } from "@dhis2/ui";
 import { find, intersectionWith, isEmpty } from "lodash";
 import React, { useMemo } from "react";
-import { Controller, ControllerFieldState, ControllerRenderProps, useWatch } from "react-hook-form";
+import {
+	Controller,
+	ControllerFieldState,
+	ControllerRenderProps,
+	useWatch,
+} from "react-hook-form";
 import { useGroups } from "./RHFGroupSelector";
 
 export function Field({
@@ -10,7 +15,7 @@ export function Field({
 	options,
 	loading,
 	required,
-	labe,
+	label,
 }: {
 	label: string;
 	field: ControllerRenderProps;
@@ -40,9 +45,9 @@ export function Field({
 						}
 						return {
 							id: option.value,
-							name: option.labe,
+							name: option.label,
 						};
-					},
+					}),
 				);
 			}}
 			selected={
@@ -75,12 +80,12 @@ export function RHFVisSelector({
 	validations,
 	name,
 	label,
-	required
+	required,
 }: RHFVisSelectorProps) {
 	const { data: groups, loading } = useGroups();
 
 	const [selectedGroup] = useWatch({
-		name: ["visualizationGroup"]
+		name: ["visualizationGroup"],
 	});
 
 	const group = useMemo(() => {
@@ -94,7 +99,7 @@ export function RHFVisSelector({
 		return (
 			group?.visualizations?.map((vis: any) => ({
 				label: vis.name,
-				value: vis.id
+				value: vis.id,
 			})) ?? []
 		);
 	}, [group]);

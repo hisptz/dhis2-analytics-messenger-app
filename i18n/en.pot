@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2023-11-06T09:42:34.536Z\n"
-"PO-Revision-Date: 2023-11-06T09:42:34.536Z\n"
+"POT-Creation-Date: 2023-11-08T05:12:26.300Z\n"
+"PO-Revision-Date: 2023-11-08T05:12:26.300Z\n"
 
 msgid "Fetching App configurations..."
 msgstr "Fetching App configurations..."
@@ -237,11 +237,14 @@ msgstr "Configuration updated successfully"
 msgid "Configuration saved successfully"
 msgstr "Configuration saved successfully"
 
-msgid "Message sent successfully"
-msgstr "Message sent successfully"
+msgid "Configuration deleted successfully"
+msgstr "Configuration deleted successfully"
 
-msgid "Error sending message(s)"
-msgstr "Error sending message(s)"
+msgid "Error sending push"
+msgstr "Error sending push"
+
+msgid "Push sent successfully"
+msgstr "Push sent successfully"
 
 msgid "Sending..."
 msgstr "Sending..."
@@ -401,6 +404,9 @@ msgstr "Schedule updated successfully"
 
 msgid "Schedule added successfully"
 msgstr "Schedule added successfully"
+
+msgid "Schedule deleted successfully"
+msgstr "Schedule deleted successfully"
 
 msgid "Schedules for {{name}}"
 msgstr "Schedules for {{name}}"

@@ -31,12 +31,12 @@ function AddRecipient({
 	>({
 		defaultValues: {
 			type: "individual",
-			clientType: "whatsapp,
+			clientType: "whatsapp",
 		},
 		reValidateMode: "onBlur",
 		mode: "onBlur",
 		shouldFocusError: false,
-		resolver: zodResolver(contactSchema,
+		resolver: zodResolver(contactSchema),
 	});
 
 	const [type] = form.watch(["type"]);
@@ -45,20 +45,20 @@ function AddRecipient({
 		(
 			data: Omit<Contact, "type"> & {
 				type: "user" | "individual" | "group";
-			}
+			},
 		) => {
 			onChange({
 				...data,
 				type:
 					data.type === "user"
 						? "individual"
-						: (data.type as "group" | "individual")
+						: (data.type as "group" | "individual"),
 			});
 			form.reset({
-				clientType: "whatsapp"
+				clientType: "whatsapp",
 			});
 		},
-		[form, onChange]
+		[form, onChange],
 	);
 
 	useUpdateEffect(() => {
@@ -73,12 +73,12 @@ function AddRecipient({
 			helpText={
 				type === "individual"
 					? i18n.t(
-							"Start with country code without the + sign. Example 255XXXXXXXXX"
+							"Start with country code without the + sign. Example 255XXXXXXXXX",
 					  )
 					: type === "user"
 					? i18n.t("Only users with whatsApp contacts will be listed")
 					: i18n.t(
-							"Only groups within which your whatsapp contact is in will be listed"
+							"Only groups within which your whatsapp contact is in will be listed",
 					  )
 			}
 		>
@@ -87,7 +87,7 @@ function AddRecipient({
 					display: "grid",
 					gridTemplateColumns: "2fr 3fr 1fr",
 					gap: 16,
-					alignItems: "end"
+					alignItems: "end",
 				}}
 			>
 				<FormProvider {...form}>
@@ -96,16 +96,16 @@ function AddRecipient({
 						options={[
 							{
 								label: i18n.t("Group"),
-								value: "group"
+								value: "group",
 							},
 							{
 								label: i18n.t("Phone Number"),
-								value: "individual"
+								value: "individual",
 							},
 							{
 								label: i18n.t("Users"),
-								value: "user"
-							}
+								value: "user",
+							},
 						]}
 						name={"type"}
 					/>
@@ -115,7 +115,7 @@ function AddRecipient({
 							label={i18n.t("Group")}
 							options={groups.map((group) => ({
 								value: group.id,
-								label: group.name
+								label: group.name,
 							}))}
 							name={"identifier"}
 						/>
@@ -126,7 +126,7 @@ function AddRecipient({
 							label={i18n.t("User")}
 							options={users.map((user: any) => ({
 								value: user.whatsApp,
-								label: user.displayName
+								label: user.displayName,
 							}))}
 							name={"identifier"}
 						/>
@@ -137,8 +137,8 @@ function AddRecipient({
 							validations={{
 								pattern: {
 									value: /^\d{1,3}\d{9}$/,
-									message: i18n.t("Invalid phone number")
-								}
+									message: i18n.t("Invalid phone number"),
+								},
 							}}
 							label={i18n.t("Number")}
 							name={"identifier"}
@@ -157,7 +157,7 @@ export function RHFRecipientSelector({
 	validations,
 	name,
 	label,
-	required
+	required,
 }: RHFRecipientSelectorProps) {
 	return (
 		<Controller
@@ -175,7 +175,7 @@ export function RHFRecipientSelector({
 									({
 										type,
 										identifier,
-										clientType
+										clientType,
 									}: Contact) => (
 										<ContactChip
 											clientType={clientType}
@@ -186,14 +186,14 @@ export function RHFRecipientSelector({
 														recipients,
 														(recipient) =>
 															identifier !==
-															recipient.identifier
-													)
+															recipient.identifier,
+													),
 												);
 											}}
 											identifier={identifier}
 											type={type}
 										/>
-									)
+									),
 								)}
 							</div>
 							<AddRecipient
@@ -201,8 +201,8 @@ export function RHFRecipientSelector({
 									field.onChange(
 										uniqBy(
 											[...recipients, contact],
-											"identifier"
-										)
+											"identifier",
+										),
 									);
 								}}
 							/>
