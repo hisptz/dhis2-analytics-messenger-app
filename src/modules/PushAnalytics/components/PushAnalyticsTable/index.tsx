@@ -7,6 +7,8 @@ import { Column } from "../../../../shared/interfaces";
 import EmptyPushAnalyticsList from "../EmptyPushAnalyticsList";
 import FullPageLoader from "../../../../shared/components/Loaders";
 import { usePushAnalyticsConfig } from "./hooks/data";
+import { PushAnalyticsModalConfig } from "../PushAnalyticsModalConfig";
+import { useBoolean } from "usehooks-ts";
 
 const tableColumns: Column[] = [
 	{
@@ -29,6 +31,7 @@ const tableColumns: Column[] = [
 
 export default function PushAnalyticsTable(): React.ReactElement {
 	const { data, loading } = usePushAnalyticsConfig();
+	const { value: hidden, setTrue: hide, setFalse: open } = useBoolean(true);
 
 	if (loading) {
 		return <FullPageLoader />;
@@ -41,6 +44,12 @@ export default function PushAnalyticsTable(): React.ReactElement {
 			) : (
 				<div className="column gap-16" style={{ width: "100%" }}>
 					<div>
+						{!hidden && (
+							<PushAnalyticsModalConfig
+								hidden={hidden}
+								onClose={hide}
+							/>
+						)}
 						<Button onClick={open} primary icon={<IconAdd24 />}>
 							{i18n.t("Add push analytics configuration")}
 						</Button>

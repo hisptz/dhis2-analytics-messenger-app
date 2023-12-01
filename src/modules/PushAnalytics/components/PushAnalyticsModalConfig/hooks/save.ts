@@ -26,6 +26,7 @@ export function useManageConfig({
 			if (defaultConfig) {
 				return await defaultConfig.save({
 					...data,
+					schedules: [],
 				});
 			} else {
 				const newJob = new Parse.Object("AnalyticsPushJob");
