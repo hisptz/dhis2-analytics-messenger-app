@@ -1,11 +1,11 @@
 {
   "sidebar": {
     "Getting Started": [
-      "pid/intro",
-      "pid/installation"
+      "analytics-messenger/intro",
+      "analytics-messenger/installation"
     ],
     "Setting Up Configuration": [
-      "pid/configuration"
+      "analytics-messenger/configuration"
     ]
   }
 }
