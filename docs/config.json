@@ -1,0 +1,11 @@
+{
+  "sidebar": {
+    "Getting Started": [
+      "pid/intro",
+      "pid/installation"
+    ],
+    "Setting Up Configuration": [
+      "pid/configuration"
+    ]
+  }
+}
