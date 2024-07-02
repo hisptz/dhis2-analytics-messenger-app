@@ -1,48 +1,36 @@
-import {useQuery} from "@tanstack/react-query";
-import {AxiosInstance} from "axios";
-import {head} from "lodash";
-import {useCallback, useEffect, useMemo} from "react";
-import {usePushServiceClient} from "./pushService";
+import { useQuery } from "@tanstack/react-query";
+import { useMemo } from "react";
+import Parse from "parse";
 
+export function useWhatsappData() {
+	const currentUser = Parse.User.current();
+	const instanceId =
+		currentUser?.attributes.authDataResponse?.dhis2Auth?.instance?.objectId;
 
-async function getWhatsappData(client: AxiosInstance) {
-    if (!client) {
-        return;
-    }
-    const endpoint = "/whatsapp/groups";
-    const {data} = await client.get(endpoint);
-    return data;
-}
+	const getGroups = async () => {
+		const response = await Parse.Cloud.run("getGroups", {
+			instanceId,
+		});
+		return (response as Array<{ id: string; name: string }>) ?? null;
+	};
 
-export function useWhatsappData(gatewayId?: string) {
-    const {getClientById: getClient} = usePushServiceClient();
-    const {
-        data,
-        isLoading,
-        refetch,
-    } = useQuery<{
-        groups: Array<{ id: string; name: string }>
-    }>([gatewayId, "whatsapp"], async ({queryKey}) => getWhatsappData(getClient(head(queryKey) as string)), {
-        enabled: !!gatewayId,
-        refetchOnWindowFocus: false,
-        keepPreviousData: true
-    });
-    const groups = useMemo(() => data?.groups.map((group) => ({
-        ...group,
-        id: group.id.replace("@g.us", "")
-    })) ?? [], [data]);
+	const { data, isLoading } = useQuery<Array<{ id: string; name: string }>>({
+		queryKey: ["whatsapp", "groups"],
+		queryFn: getGroups,
+		retry: false,
+	});
 
-    const fetchGroups = useCallback(async (gatewayId: unknown) => {
-        return refetch({queryKey: [gatewayId, "whatsapp"]});
-    }, []);
+	const groups = useMemo(
+		() =>
+			data?.map((group) => ({
+				...group,
+				id: group.id.replace("@g.us", ""),
+			})) ?? [],
+		[data],
+	);
 
-    useEffect(() => {
-        refetch();
-    }, [gatewayId]);
-
-    return {
-        groups,
-        fetchGroups,
-        loading: isLoading
-    };
+	return {
+		groups,
+		loading: isLoading,
+	};
 }

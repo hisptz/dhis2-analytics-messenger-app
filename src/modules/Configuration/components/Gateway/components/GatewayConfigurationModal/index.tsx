@@ -1,80 +1,45 @@
 import i18n from "@dhis2/d2-i18n";
-import {Button, ButtonStrip, Modal, ModalActions, ModalContent, ModalTitle} from "@dhis2/ui";
-import {RHFTextInputField} from "@hisptz/dhis2-ui";
-import React, {useCallback, useEffect} from "react";
-import {FormProvider, useForm} from "react-hook-form";
-import {useRecoilValue, useResetRecoilState} from "recoil";
-import {Gateway} from "../../schema";
-import {GatewayUpdateState, useSaveGateway} from "./hooks/save";
-import {useQueryClient} from "@tanstack/react-query";
-import {useGateways} from "../../hooks/data";
+import {Button, ButtonStrip, InputField, Modal, ModalActions, ModalContent, ModalTitle} from "@dhis2/ui";
+import React, {useState} from "react";
+import {useSetting} from "@dhis2/app-service-datastore";
 
 
 export interface GatewayConfigurationModalProps {
 		onClose: () => void,
-		hidden: boolean;
+    hide: boolean;
 }
 
-export function GatewayConfigurationModal({onClose, hidden}: GatewayConfigurationModalProps) {
-    const {refetch} = useGateways();
-    const statusClient = useQueryClient();
-    const resetConfig = useResetRecoilState(GatewayUpdateState);
-    const config = useRecoilValue(GatewayUpdateState);
-    const form = useForm<Gateway>({
-        defaultValues: config || {}
-    });
-    const {save, creating, updating} = useSaveGateway();
+export function GatewayConfigurationModal({onClose, hide}: GatewayConfigurationModalProps) {
+    const [defaultValue, {set}] = useSetting("gatewayConfig", {global: true});
+    const [token, setToken] = useState(defaultValue?.token);
 
-    const onCloseClick = useCallback(
-        () => {
-            resetConfig();
-            form.reset({});
-            onClose();
-        },
-        [onClose, form.reset],
-    );
-
-    const onSubmit = useCallback(
-        async (data: Gateway) => {
-            await save(data);
-            refetch();
-            statusClient.invalidateQueries([data.id]);
-            onCloseClick();
-        },
-        [onCloseClick],
-    );
-
-    useEffect(() => {
-        if (config) {
-            form.reset(config);
-        }
-    }, [config, form.reset]);
-
+    const onSave = () => {
+        set({
+            ...defaultValue,
+            token
+        });
+        onClose();
+    };
 
     return (
-        <Modal position="middle" hide={hidden} onClose={onCloseClick}>
+        <Modal position="middle" hide={hide}>
             <ModalTitle>
-                {i18n.t("{{operation}} gateway", {
-                    operation: config ? i18n.t("Update") : i18n.t("Add")
-                })}
+                DHIS2 Analytics Messenger Token
             </ModalTitle>
             <ModalContent>
-                <FormProvider {...form}>
-                    <div className="column gap-16">
-                        <RHFTextInputField label={i18n.t("Name")} name="name" required
-																					 validations={{required: i18n.t("Name is required")}}/>
-                        <RHFTextInputField label={i18n.t("URL")} type="url" name="url" required
-																					 validations={{required: i18n.t("Whatsapp URL is required")}}/>
-                        <RHFTextInputField label={i18n.t("API Key")} type="url" name="apiKey" required
-																					 validations={{required: i18n.t("API key is required")}}/>
-                    </div>
-                </FormProvider>
+                <InputField
+                    label={i18n.t("Token")} name="token" value={token}
+                    onChange={({value}: { value: string }) => setToken(value)}
+                />
+                <div>
+
+                </div>
             </ModalContent>
             <ModalActions>
                 <ButtonStrip>
-                    <Button onClick={onCloseClick}>{i18n.t("Cancel")}</Button>
-                    <Button loading={updating || creating} onClick={form.handleSubmit(onSubmit)}
-                        primary>{config ? updating ? i18n.t("Updating...") : i18n.t("Update") : creating ? i18n.t("Saving...") : i18n.t("Save")}</Button>
+                    <Button primary onClick={onSave}>
+                        Save
+                    </Button>
                 </ButtonStrip>
             </ModalActions>
         </Modal>
