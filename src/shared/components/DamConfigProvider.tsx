@@ -35,30 +35,21 @@ export function DamConfigProvider({
 		[systemInfo],
 	);
 
-	const {
-		isLoading,
-		data: damConfig,
-		error: damConfigError,
-	} = useQuery({
+	const { isLoading, data: damConfig } = useQuery({
 		queryKey: [systemId],
 		queryFn: getDamConfig,
 		enabled: !!systemInfo,
+		retry: false,
+		retryOnMount: false,
+		refetchOnWindowFocus: false,
 	});
 
 	if (isLoading) {
 		return loadingComponent;
 	}
 
-	if (damConfigError) {
-		throw damConfigError;
-	}
-
-	if (damConfig === undefined) {
-		throw "Error getting analytics messenger configuration";
-	}
-
 	return (
-		<DamConfigContext.Provider value={damConfig}>
+		<DamConfigContext.Provider value={damConfig ?? null}>
 			{children}
 		</DamConfigContext.Provider>
 	);

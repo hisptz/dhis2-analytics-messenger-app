@@ -1,7 +1,8 @@
 import { useDamConfig } from "../../../../../../../shared/components/DamConfigProvider";
 import { QueryKey, useQueries } from "@tanstack/react-query";
-import { ParseClass } from "../../../../../../../shared/constants/parse";
 import { useMemo } from "react";
+import Parse from "parse";
+import { channels } from "../../../constants/channels";
 
 function getClients({ clientClassName }: { clientClassName: string }) {
 	return async ({ queryKey }: { queryKey: QueryKey }) => {
@@ -11,17 +12,6 @@ function getClients({ clientClassName }: { clientClassName: string }) {
 		return query.find();
 	};
 }
-
-const channels = [
-	{
-		name: "whatsapp",
-		className: ParseClass.WHATSAPP_CLIENT,
-	},
-	{
-		name: "telegram",
-		className: ParseClass.TELEGRAM_CLIENT,
-	},
-];
 
 export function useGateways() {
 	const damConfig = useDamConfig();
@@ -34,7 +24,7 @@ export function useGateways() {
 		})),
 	});
 
-	const { data, loading, error } = useMemo(() => {
+	return useMemo(() => {
 		return {
 			data: results
 				.map((clientResults, index) => {
@@ -54,10 +44,4 @@ export function useGateways() {
 				.filter((error) => error !== null) as Error[],
 		};
 	}, [results]);
-
-	return {
-		data,
-		loading,
-		error,
-	};
 }

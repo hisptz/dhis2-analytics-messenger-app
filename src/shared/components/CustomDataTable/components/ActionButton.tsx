@@ -34,6 +34,7 @@ export function ActionButton({
 					<FlyoutMenu dense>
 						{actions?.map((action) => (
 							<MenuItem
+								suffix={<div />}
 								onClick={() => {
 									setButtonRef(null);
 									action.onClick(row);

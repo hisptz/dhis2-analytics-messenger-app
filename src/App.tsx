@@ -52,31 +52,31 @@ const App = () => (
 					/>
 				}
 			>
-				<DamConfigProvider
-					loadingComponent={
-						<FullPageLoader
-							message={i18n.t("Fetching App configurations...")}
-						/>
-					}
-				>
-					<div>
-						<RecoilRoot>
-							<Suspense
-								fallback={
+				<RecoilRoot>
+					<Suspense
+						fallback={
+							<FullPageLoader
+								message={i18n.t(
+									"Please wait this might take a while...",
+								)}
+							/>
+						}
+					>
+						<ConfirmDialogProvider>
+							<DamConfigProvider
+								loadingComponent={
 									<FullPageLoader
 										message={i18n.t(
-											"Please wait this might take a while...",
+											"Fetching App configurations...",
 										)}
 									/>
 								}
 							>
-								<ConfirmDialogProvider>
-									<AppRouter />
-								</ConfirmDialogProvider>
-							</Suspense>
-						</RecoilRoot>
-					</div>
-				</DamConfigProvider>
+								<AppRouter />
+							</DamConfigProvider>
+						</ConfirmDialogProvider>
+					</Suspense>
+				</RecoilRoot>
 			</DataStoreProvider>
 		</QueryClientProvider>
 	</>

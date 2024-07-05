@@ -1,9 +1,11 @@
 import React, { useMemo } from "react";
-import { CircularLoader } from "@dhis2/ui";
+import { Button, CircularLoader, IconAdd24 } from "@dhis2/ui";
 import { CustomDataTable, CustomDataTableRow } from "@hisptz/dhis2-ui";
 import i18n from "@dhis2/d2-i18n";
 import { useGateways } from "./hooks/data";
 import { isEmpty } from "lodash";
+import { useBoolean } from "usehooks-ts";
+import { GatewayConfigurationModal } from "../GatewayConfigurationModal";
 
 const columns = [
 	{
@@ -29,7 +31,27 @@ const columns = [
 ];
 
 export default function GatewayConfigurationsTable(): React.ReactElement {
+	const {
+		setFalse: onOpen,
+		setTrue: onClose,
+		value: hide,
+	} = useBoolean(true);
 	const { data, loading, error } = useGateways();
+
+	const rows = useMemo(
+		() =>
+			data
+				?.map((row) => {
+					if (!row) return null;
+					return {
+						id: row.data.id,
+						...row,
+						...(row?.data.attributes ?? {}),
+					};
+				})
+				.filter((value) => !!value) as CustomDataTableRow[],
+		[data],
+	);
 
 	if (loading) {
 		return (
@@ -54,29 +76,24 @@ export default function GatewayConfigurationsTable(): React.ReactElement {
 		);
 	}
 
-	const rows = useMemo(
-		() =>
-			data
-				?.map((row) => {
-					if (!row) return null;
-					return {
-						id: row.data.id,
-						...row,
-						...(row?.data.attributes ?? {}),
-					};
-				})
-				.filter((value) => !!value) as CustomDataTableRow[],
-		[data],
-	);
-
 	return (
-		<div className="w-100 h-100">
-			<CustomDataTable
-				loading={loading}
-				emptyLabel={i18n.t("There are no configured gateways")}
-				columns={columns}
-				rows={rows}
-			/>
+		<div className="w-100 h-100 column">
+			<div>
+				<Button onClick={onOpen} icon={<IconAdd24 />} primary>
+					{i18n.t("Add gateway")}
+				</Button>
+				{!hide && (
+					<GatewayConfigurationModal onClose={onClose} hide={hide} />
+				)}
+			</div>
+			<div className="flex-1">
+				<CustomDataTable
+					loading={loading}
+					emptyLabel={i18n.t("There are no configured gateways")}
+					columns={columns}
+					rows={rows}
+				/>
+			</div>
 		</div>
 	);
 }
