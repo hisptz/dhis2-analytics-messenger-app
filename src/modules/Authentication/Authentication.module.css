@@ -1,0 +1,19 @@
+.page-container {
+	height: 100%;
+	text-align: center;
+	align-items: center;
+	justify-content: center;
+	display: flex;
+	flex-direction: column;
+}
+
+.link {
+	color: #1565c0;
+	cursor: pointer;
+	text-decoration: underline;
+}
+
+.link-separator {
+	color: #b3c6de;
+	margin: 0 0.5rem;
+}
