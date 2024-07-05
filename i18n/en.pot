@@ -5,14 +5,67 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2023-11-08T05:12:26.300Z\n"
-"PO-Revision-Date: 2023-11-08T05:12:26.300Z\n"
+"POT-Creation-Date: 2024-07-05T11:28:00.216Z\n"
+"PO-Revision-Date: 2024-07-05T11:28:00.216Z\n"
 
 msgid "Fetching App configurations..."
 msgstr "Fetching App configurations..."
 
 msgid "Please wait this might take a while..."
 msgstr "Please wait this might take a while..."
+
+msgid "You will received the approval email soon! If it is taking too long, contact"
+msgstr "You will received the approval email soon! If it is taking too long, contact"
+
+msgid "dev@hisptanzania.org"
+msgstr "dev@hisptanzania.org"
+
+msgid ""
+"Check your email inbox to verify your account! If you haven't recived the "
+"email, contact"
+msgstr ""
+"Check your email inbox to verify your account! If you haven't recived the "
+"email, contact"
+
+msgid "Connect to Analytics Messaging Service"
+msgstr "Connect to Analytics Messaging Service"
+
+msgid "Username"
+msgstr "Username"
+
+msgid "Password"
+msgstr "Password"
+
+msgid "Cancel"
+msgstr "Cancel"
+
+msgid "Connect"
+msgstr "Connect"
+
+msgid ""
+"You need the Analytics Messaging Service to get started. Register or "
+"connect your account below."
+msgstr ""
+"You need the Analytics Messaging Service to get started. Register or "
+"connect your account below."
+
+msgid "Register"
+msgstr "Register"
+
+msgid "Register to Analytics Messaging Service"
+msgstr "Register to Analytics Messaging Service"
+
+msgid "Full Name"
+msgstr "Full Name"
+
+msgid "Phone Number"
+msgstr "Phone Number"
+
+msgid "Email"
+msgstr "Email"
+
+msgid "I have read and consent to the privacy policy"
+msgstr "I have read and consent to the privacy policy"
 
 msgid "Coming soon"
 msgstr "Coming soon"
@@ -106,9 +159,6 @@ msgstr "Select at least one visualization"
 
 msgid "Visualizations"
 msgstr "Visualizations"
-
-msgid "Cancel"
-msgstr "Cancel"
 
 msgid "Updating..."
 msgstr "Updating..."
@@ -212,9 +262,6 @@ msgstr "Type"
 
 msgid "Group"
 msgstr "Group"
-
-msgid "Phone Number"
-msgstr "Phone Number"
 
 msgid "Users"
 msgstr "Users"
@@ -440,12 +487,6 @@ msgstr "There are no bookings for the specified filters"
 
 msgid "There are no data available!"
 msgstr "There are no data available!"
-
-msgid "Could not connect to DHIS2 analytics messenger service"
-msgstr "Could not connect to DHIS2 analytics messenger service"
-
-msgid "Change configuration"
-msgstr "Change configuration"
 
 msgid "Push Analytics"
 msgstr "Push Analytics"
