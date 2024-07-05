@@ -1,4 +1,4 @@
-This project was bootstrapped with [DHIS2 Application Platform](https://github.com/dhis2/app-platform).
+This project was bootstrapped with [DHIS2_INSTANCE Application Platform](https://github.com/dhis2/app-platform).
 
 ## Available Scripts
 
@@ -30,16 +30,16 @@ See the section about [building](https://platform.dhis2.nu/#/scripts/build) for 
 
 ### `yarn deploy`
 
-Deploys the built app in the `build` folder to a running DHIS2 instance.<br />
-This command will prompt you to enter a server URL as well as the username and password of a DHIS2 user with the App Management authority.<br/>
+Deploys the built app in the `build` folder to a running DHIS2_INSTANCE instance.<br />
+This command will prompt you to enter a server URL as well as the username and password of a DHIS2_INSTANCE user with the App Management authority.<br/>
 You must run `yarn build` before running `yarn deploy`.<br />
 
 See the section about [deploying](https://platform.dhis2.nu/#/scripts/deploy) for more information.
 
 ## Learn More
 
-You can learn more about the platform in the [DHIS2 Application Platform Documentation](https://platform.dhis2.nu/).
+You can learn more about the platform in the [DHIS2_INSTANCE Application Platform Documentation](https://platform.dhis2.nu/).
 
-You can learn more about the runtime in the [DHIS2 Application Runtime Documentation](https://runtime.dhis2.nu/).
+You can learn more about the runtime in the [DHIS2_INSTANCE Application Runtime Documentation](https://runtime.dhis2.nu/).
 
 To learn React, check out the [React documentation](https://reactjs.org/).

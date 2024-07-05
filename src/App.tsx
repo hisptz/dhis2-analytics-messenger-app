@@ -11,7 +11,7 @@ import { Helmet } from "react-helmet";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { predefinedSchedules } from "./shared/constants/dataStore";
 import { initializeParse } from "./shared/utils/parse";
-import { ParseProvider } from "./shared/components/ParseProvider";
+import { DamConfigProvider } from "./shared/components/DamConfigProvider";
 
 const queryClient = new QueryClient();
 
@@ -52,7 +52,13 @@ const App = () => (
 					/>
 				}
 			>
-				<ParseProvider>
+				<DamConfigProvider
+					loadingComponent={
+						<FullPageLoader
+							message={i18n.t("Fetching App configurations...")}
+						/>
+					}
+				>
 					<div>
 						<RecoilRoot>
 							<Suspense
@@ -70,7 +76,7 @@ const App = () => (
 							</Suspense>
 						</RecoilRoot>
 					</div>
-				</ParseProvider>
+				</DamConfigProvider>
 			</DataStoreProvider>
 		</QueryClientProvider>
 	</>

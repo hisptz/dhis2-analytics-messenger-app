@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2023-11-08T05:12:26.300Z\n"
-"PO-Revision-Date: 2023-11-08T05:12:26.300Z\n"
+"POT-Creation-Date: 2024-07-05T08:50:15.356Z\n"
+"PO-Revision-Date: 2024-07-05T08:50:15.356Z\n"
 
 msgid "Fetching App configurations..."
 msgstr "Fetching App configurations..."
@@ -17,8 +17,8 @@ msgstr "Please wait this might take a while..."
 msgid "Coming soon"
 msgstr "Coming soon"
 
-msgid "Here is where you can configure different flows for the DHIS2 chat bot"
-msgstr "Here is where you can configure different flows for the DHIS2 chat bot"
+msgid "Here is where you can configure different flows for the DHIS2_INSTANCE chat bot"
+msgstr "Here is where you can configure different flows for the DHIS2_INSTANCE chat bot"
 
 msgid "Gateway config saved successfully"
 msgstr "Gateway config saved successfully"
@@ -59,11 +59,17 @@ msgstr "Online"
 msgid "Offline"
 msgstr "Offline"
 
-msgid "Save"
-msgstr "Save"
+msgid "S/N"
+msgstr "S/N"
 
-msgid "Update"
-msgstr "Update"
+msgid "Gateway Name"
+msgstr "Gateway Name"
+
+msgid "Messaging Channel"
+msgstr "Messaging Channel"
+
+msgid "Actions"
+msgstr "Actions"
 
 msgid "Gateway deleted successfully"
 msgstr "Gateway deleted successfully"
@@ -92,6 +98,9 @@ msgstr "Error updating visualization group"
 msgid "{{operation}} group"
 msgstr "{{operation}} group"
 
+msgid "Update"
+msgstr "Update"
+
 msgid "Add"
 msgstr "Add"
 
@@ -116,14 +125,11 @@ msgstr "Updating..."
 msgid "Saving..."
 msgstr "Saving..."
 
-msgid "S/N"
-msgstr "S/N"
+msgid "Save"
+msgstr "Save"
 
 msgid "Group name"
 msgstr "Group name"
-
-msgid "Actions"
-msgstr "Actions"
 
 msgid "Visualization groups"
 msgstr "Visualization groups"
@@ -441,11 +447,8 @@ msgstr "There are no bookings for the specified filters"
 msgid "There are no data available!"
 msgstr "There are no data available!"
 
-msgid "Could not connect to DHIS2 analytics messenger service"
-msgstr "Could not connect to DHIS2 analytics messenger service"
-
-msgid "Change configuration"
-msgstr "Change configuration"
+msgid "Messaging Gateway"
+msgstr "Messaging Gateway"
 
 msgid "Push Analytics"
 msgstr "Push Analytics"
