@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2024-07-05T08:50:15.356Z\n"
-"PO-Revision-Date: 2024-07-05T08:50:15.356Z\n"
+"POT-Creation-Date: 2024-07-05T10:01:20.478Z\n"
+"PO-Revision-Date: 2024-07-05T10:01:20.478Z\n"
 
 msgid "Fetching App configurations..."
 msgstr "Fetching App configurations..."
@@ -17,8 +17,8 @@ msgstr "Please wait this might take a while..."
 msgid "Coming soon"
 msgstr "Coming soon"
 
-msgid "Here is where you can configure different flows for the DHIS2_INSTANCE chat bot"
-msgstr "Here is where you can configure different flows for the DHIS2_INSTANCE chat bot"
+msgid "Here is where you can configure different flows for the DHIS2 chat bot"
+msgstr "Here is where you can configure different flows for the DHIS2 chat bot"
 
 msgid "Gateway config saved successfully"
 msgstr "Gateway config saved successfully"
@@ -70,6 +70,12 @@ msgstr "Messaging Channel"
 
 msgid "Actions"
 msgstr "Actions"
+
+msgid "We encountered some errors while retrieving your gateways"
+msgstr "We encountered some errors while retrieving your gateways"
+
+msgid "There are no configured gateways"
+msgstr "There are no configured gateways"
 
 msgid "Gateway deleted successfully"
 msgstr "Gateway deleted successfully"

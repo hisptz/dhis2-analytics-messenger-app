@@ -24,29 +24,17 @@
     </treeState>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="45e8eb8e-5803-456a-9857-5a6354e88f5c" name="Changes" comment="fix(*): Fixes&#10;&#10;- Fixed issues raised from code reformat">
-      <change afterPath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationsTable/GatewayConfigurationsTable.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationsTable/hooks/data.ts" afterDir="false" />
+    <list default="true" id="45e8eb8e-5803-456a-9857-5a6354e88f5c" name="Changes" comment="feat: dam config&#10;&#10;Implemented the dam config provider">
+      <change beforePath="$PROJECT_DIR$/.eslintrc.json" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintrc.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/i18n/en.pot" beforeDir="false" afterPath="$PROJECT_DIR$/i18n/en.pot" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/@types/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/@types/index.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modules/Configuration/components/Gateway/Gateway.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/Channels/Channels.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modules/Configuration/components/Gateway/components/GatewayConfigurationModal/hooks/save.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationModal/hooks/save.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modules/Configuration/components/Gateway/components/GatewayConfigurationModal/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationModal/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modules/Configuration/components/Gateway/components/GatewayConfigurationsTable/GatewayConfigurationsTable.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/Gateway.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modules/Configuration/components/Gateway/components/GatewayConfigurationsTable/components/StatusIndicator.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationsTable/components/StatusIndicator.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modules/Configuration/components/Gateway/components/GatewayConfigurationsTable/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationsTable/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modules/Configuration/components/Gateway/hooks/data.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/hooks/data.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modules/Configuration/components/Gateway/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modules/Configuration/components/Gateway/schema/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/schema/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modules/PushAnalytics/components/PushAnalyticsModalConfig/components/RHFGatewaySelector.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/PushAnalytics/components/PushAnalyticsModalConfig/components/RHFGatewaySelector.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modules/PushAnalytics/components/PushAnalyticsTable/hooks/data.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/PushAnalytics/components/PushAnalyticsTable/hooks/data.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modules/Router/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/Router/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/components/ParseProvider.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/components/DamConfigProvider.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/constants/navigation.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/constants/navigation.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/hooks/pushService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/hooks/pushService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/Channels/Channels.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationsTable/hooks/data.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationsTable/hooks/data.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationsTable/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationsTable/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/components/CustomDataTable/components/ActionButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/components/CustomDataTable/components/ActionButton.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/components/CustomTable/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/components/CustomTable/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/constants/parse.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/constants/parse.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -547,7 +535,15 @@
       <option name="project" value="LOCAL" />
       <updated>1699420579058</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="feat: dam config&#10;&#10;Implemented the dam config provider">
+      <option name="closed" value="true" />
+      <created>1720170665449</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1720170665449</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -598,7 +594,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="fix(custom scheduling): Fixes&#10;&#10;- Fixed issues with closing scheduling form does not clear it's state" />
     <MESSAGE value="fix(custom scheduling): Fixes&#10;&#10;- Fixed issues with error messages in custom input not showing &#10; - Cleared input value when changing from one type of scheduling to another" />
     <MESSAGE value="chore(*): Code styling&#10;&#10;- Run eslint fix" />
     <MESSAGE value="chore(*): Code styling&#10;&#10;- Es lint manual fixes" />
@@ -623,7 +618,8 @@
     <MESSAGE value="feat(push analytics config): Implementation&#10;&#10;- Implemented send analytics feature" />
     <MESSAGE value="chore(d2 config): Name update&#10;&#10;- Updated app name to add saas" />
     <MESSAGE value="fix(*): Fixes&#10;&#10;- Fixed issues raised from code reformat" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix(*): Fixes&#10;&#10;- Fixed issues raised from code reformat" />
+    <MESSAGE value="feat: dam config&#10;&#10;Implemented the dam config provider" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: dam config&#10;&#10;Implemented the dam config provider" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">

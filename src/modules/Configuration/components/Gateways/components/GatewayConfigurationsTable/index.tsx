@@ -1,36 +1,82 @@
-import React from "react";
-import {
-	DataTable,
-	DataTableColumnHeader,
-	DataTableHead,
-	DataTableRow,
-} from "@dhis2/ui";
+import React, { useMemo } from "react";
+import { CircularLoader } from "@dhis2/ui";
+import { CustomDataTable, CustomDataTableRow } from "@hisptz/dhis2-ui";
 import i18n from "@dhis2/d2-i18n";
+import { useGateways } from "./hooks/data";
+import { isEmpty } from "lodash";
+
+const columns = [
+	{
+		label: i18n.t("S/N"),
+		key: "sn",
+	},
+	{
+		label: i18n.t("Gateway Name"),
+		key: "name",
+	},
+	{
+		label: i18n.t("Messaging Channel"),
+		key: "channel",
+	},
+	{
+		label: i18n.t("Status"),
+		key: "status",
+	},
+	{
+		label: i18n.t("Actions"),
+		key: "actions",
+	},
+];
 
 export default function GatewayConfigurationsTable(): React.ReactElement {
+	const { data, loading, error } = useGateways();
+
+	if (loading) {
+		return (
+			<div className="w-100 h-100 center column align-center">
+				<CircularLoader small />
+			</div>
+		);
+	}
+
+	if (!isEmpty(error)) {
+		return (
+			<div className="w-100 h-100 center column align-center">
+				<h3>
+					{i18n.t(
+						"We encountered some errors while retrieving your gateways",
+					)}
+				</h3>
+				{error.map((error) => (
+					<span key={error.name}>{error.message}</span>
+				))}
+			</div>
+		);
+	}
+
+	const rows = useMemo(
+		() =>
+			data
+				?.map((row) => {
+					if (!row) return null;
+					return {
+						id: row.data.id,
+						...row,
+						...(row?.data.attributes ?? {}),
+					};
+				})
+				.filter((value) => !!value) as CustomDataTableRow[],
+		[data],
+	);
+
 	return (
 		<div className="w-100 h-100">
-			<DataTable>
-				<DataTableHead>
-					<DataTableRow>
-						<DataTableColumnHeader>
-							{i18n.t("S/N")}
-						</DataTableColumnHeader>
-						<DataTableColumnHeader>
-							{i18n.t("Gateway Name")}
-						</DataTableColumnHeader>
-						<DataTableColumnHeader>
-							{i18n.t("Messaging Channel")}
-						</DataTableColumnHeader>
-						<DataTableColumnHeader>
-							{i18n.t("Status")}
-						</DataTableColumnHeader>
-						<DataTableColumnHeader>
-							{i18n.t("Actions")}
-						</DataTableColumnHeader>
-					</DataTableRow>
-				</DataTableHead>
-			</DataTable>
+			<CustomDataTable
+				loading={loading}
+				emptyLabel={i18n.t("There are no configured gateways")}
+				columns={columns}
+				rows={rows}
+			/>
 		</div>
 	);
 }
