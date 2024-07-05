@@ -51,6 +51,7 @@ export function RegistrationFormModal({
 }: RegistrationFormModalProps): React.ReactElement {
 	const registrationForm = useForm<SignUpData>({
 		resolver: zodResolver(signUpSchema),
+		shouldFocusError: false,
 	});
 
 	const onRegister = () => {

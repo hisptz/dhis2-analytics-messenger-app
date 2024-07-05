@@ -39,6 +39,7 @@ export function ConnectFormModal({
 	const [, setCookie] = useCookies(["sessionToken"]);
 	const connectionForm = useForm<ConnectFormData>({
 		resolver: zodResolver(ConnectFormSchema),
+		shouldFocusError: false,
 	});
 	const { show: showAlert, hide: hideAlert } = useAlert(
 		({ message }: { message: string }) => message,
@@ -48,8 +49,7 @@ export function ConnectFormModal({
 		}),
 	);
 
-	const onConnect = async () => {
-		const data = connectionForm.getValues();
+	const onConnect = async (data: ConnectFormData) => {
 		try {
 			const user = await Parse.User.logIn(
 				data?.username ?? "",
@@ -58,6 +58,7 @@ export function ConnectFormModal({
 			setCookie("sessionToken", user.getSessionToken());
 			if (user) {
 				setCookie("sessionToken", user.getSessionToken());
+				connectionForm.reset();
 				onClose(true);
 			}
 		} catch (error: any) {
@@ -107,8 +108,7 @@ export function ConnectFormModal({
 						primary
 						type="submit"
 						loading={connectionForm.formState.isSubmitting}
-						// onClick={connectionForm.handleSubmit(onConnect)}
-						onClick={onConnect}
+						onClick={connectionForm.handleSubmit(onConnect)}
 					>
 						{i18n.t("Connect")}
 					</Button>
