@@ -32,18 +32,8 @@
     </treeState>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="45e8eb8e-5803-456a-9857-5a6354e88f5c" name="Changes" comment="feat: gateways&#10;&#10;Implemented gateways listing">
-      <change afterPath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationModal/components/BaseGatewayInfoForm.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationModal/components/ChannelButtonSelector.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationModal/components/WhatsAppSetupModal.tsx" afterDir="false" />
+    <list default="true" id="45e8eb8e-5803-456a-9857-5a6354e88f5c" name="Changes" comment="feat: gateways&#10;&#10;Implemented whatsapp setup support">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationModal/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationModal/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationsTable/hooks/data.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationsTable/hooks/data.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationsTable/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationsTable/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/components/CustomDataTable/components/ActionButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/components/CustomDataTable/components/ActionButton.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/components/DamConfigProvider.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/components/DamConfigProvider.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -54,8 +44,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="TypeScript File" />
         <option value="TypeScript JSX File" />
+        <option value="TypeScript File" />
       </list>
     </option>
   </component>
@@ -149,6 +139,9 @@
     "settings.editor.selected.configurable": "ImportCost",
     "ts.external.directory.path": "/Users/gnnko/projects/hisptz/dhis2-analytics-messenger-app/node_modules/typescript/lib",
     "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "stardust.markdown.MarkdownSplitEditorSuppressor:keyList": []
   }
 }]]></component>
   <component name="RecentsManager">
@@ -560,7 +553,15 @@
       <option name="project" value="LOCAL" />
       <updated>1720178989263</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="feat: gateways&#10;&#10;Implemented whatsapp setup support">
+      <option name="closed" value="true" />
+      <created>1720192534398</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1720192534398</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -611,7 +612,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="chore(*): Code styling&#10;&#10;- Run eslint fix" />
     <MESSAGE value="chore(*): Code styling&#10;&#10;- Es lint manual fixes" />
     <MESSAGE value="chore(package.json): Version update&#10;&#10;- Updated version to v1.0.2" />
     <MESSAGE value="fix(scheduling): Fixes&#10;&#10;- Fixed issues with scheduling modal throwing errors&#10; - Upgraded DHIS2 deps" />
@@ -636,7 +636,8 @@
     <MESSAGE value="fix(*): Fixes&#10;&#10;- Fixed issues raised from code reformat" />
     <MESSAGE value="feat: dam config&#10;&#10;Implemented the dam config provider" />
     <MESSAGE value="feat: gateways&#10;&#10;Implemented gateways listing" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: gateways&#10;&#10;Implemented gateways listing" />
+    <MESSAGE value="feat: gateways&#10;&#10;Implemented whatsapp setup support" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: gateways&#10;&#10;Implemented whatsapp setup support" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
