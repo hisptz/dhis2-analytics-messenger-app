@@ -1,13 +1,29 @@
-import React, { createContext, useContext, useMemo } from "react";
+import React, { createContext, useContext, useEffect, useMemo } from "react";
 import { useConfig } from "@dhis2/app-runtime";
 import Parse from "parse";
-import { QueryKey, useQuery } from "@tanstack/react-query";
+import { QueryKey, useQuery, UseQueryResult } from "@tanstack/react-query";
 import { ParseClass } from "../constants/parse";
+import { useBoolean } from "usehooks-ts";
+import { AccessConfigModal } from "./AccessConfigModal";
 
 const DamConfigContext = createContext<Parse.Object | null>(null);
+const DamConfigRefreshContext = createContext<UseQueryResult["refetch"] | null>(
+	null,
+);
 
 export function useDamConfig() {
 	return useContext(DamConfigContext);
+}
+
+export function useRefreshDamConfig() {
+	const refresh = useContext(DamConfigRefreshContext);
+	if (!refresh) {
+		throw new Error(
+			"The useRefreshDamConfig must be used within the DamConfigProvider",
+		);
+	}
+
+	return refresh;
 }
 
 async function getDamConfig({
@@ -29,13 +45,23 @@ export function DamConfigProvider({
 	loadingComponent: React.ReactNode;
 }) {
 	const { systemInfo } = useConfig();
+	const {
+		value: hide,
+		setTrue: onClose,
+		setFalse: onOpen,
+	} = useBoolean(true);
 
 	const systemId = useMemo(
 		() => (systemInfo as Record<string, any>).systemId,
 		[systemInfo],
 	);
 
-	const { isLoading, data: damConfig } = useQuery({
+	const {
+		isLoading,
+		data: damConfig,
+		refetch,
+		isError,
+	} = useQuery({
 		queryKey: [systemId],
 		queryFn: getDamConfig,
 		enabled: !!systemInfo,
@@ -44,13 +70,24 @@ export function DamConfigProvider({
 		refetchOnWindowFocus: false,
 	});
 
+	useEffect(() => {
+		if (damConfig === null && Parse.User.current()) {
+			//This means the user is logged in but doesn't have existing dhis2 configuration.
+			//We need to prompt the user to enter the PAT and expiry date
+			onOpen();
+		}
+	}, [damConfig]);
+
 	if (isLoading) {
 		return loadingComponent;
 	}
 
 	return (
-		<DamConfigContext.Provider value={damConfig ?? null}>
-			{children}
-		</DamConfigContext.Provider>
+		<DamConfigRefreshContext.Provider value={refetch}>
+			<DamConfigContext.Provider value={damConfig ?? null}>
+				{!hide && <AccessConfigModal hide={hide} onClose={onClose} />}
+				{children}
+			</DamConfigContext.Provider>
+		</DamConfigRefreshContext.Provider>
 	);
 }

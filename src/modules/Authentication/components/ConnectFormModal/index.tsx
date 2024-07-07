@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import i18n from "@dhis2/d2-i18n";
 import { useAlert } from "@dhis2/app-runtime";
 import {
@@ -10,11 +10,11 @@ import {
 	ModalTitle,
 } from "@dhis2/ui";
 import { z } from "zod";
-import { useForm, FormProvider } from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useCookies } from "react-cookie";
 import { RHFDHIS2FormField } from "@hisptz/dhis2-ui";
 import Parse from "parse";
+import { useNavigate } from "react-router-dom";
 
 const ConnectFormSchema = z.object({
 	username: z.string({ required_error: "Username is required" }),
@@ -28,7 +28,7 @@ const ConnectFormSchema = z.object({
 export type ConnectFormData = z.infer<typeof ConnectFormSchema>;
 
 export interface ConnectFormModalProps {
-	onClose: (reshresh: boolean) => void;
+	onClose: (refresh: boolean) => void;
 	hide: boolean;
 }
 
@@ -36,7 +36,7 @@ export function ConnectFormModal({
 	onClose,
 	hide,
 }: ConnectFormModalProps): React.ReactElement {
-	const [, setCookie] = useCookies(["sessionToken"]);
+	const navigate = useNavigate();
 	const connectionForm = useForm<ConnectFormData>({
 		resolver: zodResolver(ConnectFormSchema),
 		shouldFocusError: false,
@@ -55,11 +55,10 @@ export function ConnectFormModal({
 				data?.username ?? "",
 				data?.password ?? "",
 			);
-			setCookie("sessionToken", user.getSessionToken());
 			if (user) {
-				setCookie("sessionToken", user.getSessionToken());
 				connectionForm.reset();
 				onClose(true);
+				navigate("/");
 			}
 		} catch (error: any) {
 			if (error.code === 205) {
@@ -70,6 +69,8 @@ export function ConnectFormModal({
 					message: error.message,
 					type: { critical: true },
 				});
+				await new Promise((resolve) => setTimeout(resolve, 5000));
+				hideAlert();
 			}
 		}
 	};
@@ -103,12 +104,14 @@ export function ConnectFormModal({
 			</ModalContent>
 			<ModalActions>
 				<ButtonStrip>
-					<Button onClick={onClose}>{i18n.t("Cancel")}</Button>
+					<Button onClick={() => onClose(false)}>
+						{i18n.t("Cancel")}
+					</Button>
 					<Button
 						primary
 						type="submit"
 						loading={connectionForm.formState.isSubmitting}
-						onClick={connectionForm.handleSubmit(onConnect)}
+						onClick={() => connectionForm.handleSubmit(onConnect)()}
 					>
 						{i18n.t("Connect")}
 					</Button>
