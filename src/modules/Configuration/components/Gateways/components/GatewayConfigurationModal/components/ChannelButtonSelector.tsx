@@ -1,6 +1,7 @@
 import { useWatch } from "react-hook-form";
 import { WhatsAppSetupButton } from "./WhatsAppSetupModal";
 import React from "react";
+import { TelegramSetupButton } from "./TelegramSetupModal";
 
 export function ChannelButtonSelector({
 	onComplete,
@@ -19,4 +20,10 @@ export function ChannelButtonSelector({
 	if (channel === "whatsapp") {
 		return <WhatsAppSetupButton onComplete={onComplete} />;
 	}
+
+	if (channel === "telegram") {
+		return <TelegramSetupButton onComplete={onComplete} />;
+	}
+
+	return null;
 }

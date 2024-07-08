@@ -18,6 +18,7 @@ import Parse from "parse";
 import { channels } from "../../constants/channels";
 import { useAlert } from "@dhis2/app-runtime";
 import { useDamConfig } from "../../../../../../shared/components/DamConfigProvider";
+import { TelegramForm } from "./components/TelegramForm";
 
 export interface GatewayConfigurationModalProps {
 	onClose: () => void;
@@ -29,9 +30,10 @@ const gatewayConfigFormDataSchema = z.object({
 	channel: z.enum(["whatsapp", "telegram"]),
 	sessionId: z.string(),
 	enabled: z.boolean(),
+	phoneNumber: z.string().optional(),
 });
 
-type GatewayConfigFormData = z.infer<typeof gatewayConfigFormDataSchema>;
+export type GatewayConfigFormData = z.infer<typeof gatewayConfigFormDataSchema>;
 
 export function GatewayConfigurationModal({
 	onClose,
@@ -77,7 +79,6 @@ export function GatewayConfigurationModal({
 				message: i18n.t("Gateway created successfully"),
 				type: { success: true },
 			});
-
 			onClose();
 		} catch (e) {
 			show({
@@ -94,6 +95,7 @@ export function GatewayConfigurationModal({
 				<ModalContent>
 					<div className="column gap-16">
 						<BaseGatewayInfoForm />
+						<TelegramForm />
 					</div>
 				</ModalContent>
 				<ModalActions>

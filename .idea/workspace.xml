@@ -32,13 +32,13 @@
     </treeState>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="45e8eb8e-5803-456a-9857-5a6354e88f5c" name="Changes" comment="chore: access config&#10;&#10;Refactored the implementation of access configuration">
-      <change beforePath="$PROJECT_DIR$/.idea/dhis2-analytics-messenger-app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dhis2-analytics-messenger-app.iml" afterDir="false" />
+    <list default="true" id="45e8eb8e-5803-456a-9857-5a6354e88f5c" name="Changes" comment="fix: gateways &#10;&#10;Fixed some issues with whatsapp gateway config and listing of gateways">
+      <change afterPath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationModal/components/TelegramForm.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationModal/components/TelegramSetupModal.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/i18n/en.pot" beforeDir="false" afterPath="$PROJECT_DIR$/i18n/en.pot" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationModal/components/WhatsAppSetupModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationModal/components/WhatsAppSetupModal.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationModal/components/ChannelButtonSelector.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationModal/components/ChannelButtonSelector.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationModal/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationModal/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationsTable/hooks/data.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationsTable/hooks/data.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationsTable/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationsTable/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,8 +48,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="TypeScript JSX File" />
         <option value="TypeScript File" />
+        <option value="TypeScript JSX File" />
       </list>
     </option>
   </component>
@@ -135,33 +135,34 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;feature/channels&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/gnnko/projects/hisptz/dhis2-analytics-messenger-app/src/shared/components&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;yarn&quot;,
-    &quot;npm.start.executor&quot;: &quot;Run&quot;,
-    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/Users/gnnko/projects/hisptz/dhis2-analytics-messenger-app/node_modules/prettier&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;ImportCost&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/Users/gnnko/projects/hisptz/dhis2-analytics-messenger-app/node_modules/typescript/lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "dart.analysis.tool.window.visible": "false",
+    "git-widget-placeholder": "feature/channels",
+    "last_opened_file_path": "/Users/gnnko/projects/hisptz/dhis2-analytics-messenger-app/src/modules/Configuration/components/Gateways/components/GatewayConfigurationModal/components",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.standard": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.standard": "",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "yarn",
+    "npm.start.executor": "Run",
+    "prettierjs.PrettierConfiguration.Package": "/Users/gnnko/projects/hisptz/dhis2-analytics-messenger-app/node_modules/prettier",
+    "settings.editor.selected.configurable": "ImportCost",
+    "ts.external.directory.path": "/Users/gnnko/projects/hisptz/dhis2-analytics-messenger-app/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;stardust.markdown.MarkdownSplitEditorSuppressor:keyList&quot;: []
+  "keyToStringList": {
+    "stardust.markdown.MarkdownSplitEditorSuppressor:keyList": []
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationModal/components" />
       <recent name="$PROJECT_DIR$/src/shared/components" />
       <recent name="$PROJECT_DIR$" />
     </key>
@@ -281,7 +282,7 @@
       <workItem from="1699789100644" duration="598000" />
       <workItem from="1699847820463" duration="4000" />
       <workItem from="1720335358974" duration="9547000" />
-      <workItem from="1720418064129" duration="12069000" />
+      <workItem from="1720418064129" duration="15708000" />
     </task>
     <task id="LOCAL-00001" summary="feat(custom scheduling): Implementation&#10;&#10;- Implemented custom schedule form">
       <option name="closed" value="true" />
@@ -611,7 +612,15 @@
       <option name="project" value="LOCAL" />
       <updated>1720344621825</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="fix: gateways &#10;&#10;Fixed some issues with whatsapp gateway config and listing of gateways">
+      <option name="closed" value="true" />
+      <created>1720434778777</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1720434778777</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -662,7 +671,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="feat(tests): Implementation&#10;&#10;- Setup cypress using DHIS2 cypress tooling" />
     <MESSAGE value="feat(tests): Implementation&#10;&#10;- Implemented an example test" />
     <MESSAGE value="fix(tests): Fixes&#10;&#10;- Fixed some issues with test config" />
     <MESSAGE value="fix(env): Fixes&#10;&#10;- Included proxy and cypress keys config examples in env example" />
@@ -687,7 +695,8 @@
     <MESSAGE value="feat: routes&#10;&#10;Improved routes to add auth routes when user is not logged in" />
     <MESSAGE value="feat: access config&#10;&#10;Implemented access configuration for Dam to access DHIS2" />
     <MESSAGE value="chore: access config&#10;&#10;Refactored the implementation of access configuration" />
-    <option name="LAST_COMMIT_MESSAGE" value="chore: access config&#10;&#10;Refactored the implementation of access configuration" />
+    <MESSAGE value="fix: gateways &#10;&#10;Fixed some issues with whatsapp gateway config and listing of gateways" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: gateways &#10;&#10;Fixed some issues with whatsapp gateway config and listing of gateways" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="WfRunsListSearchHistory">{

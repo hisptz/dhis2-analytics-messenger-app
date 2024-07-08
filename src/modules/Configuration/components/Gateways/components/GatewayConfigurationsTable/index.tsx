@@ -77,7 +77,7 @@ export default function GatewayConfigurationsTable(): React.ReactElement {
 	}
 
 	return (
-		<div className="w-100 h-100 column">
+		<div className="w-100 h-100 column gap-16">
 			<div>
 				<Button onClick={onOpen} icon={<IconAdd24 />} primary>
 					{i18n.t("Add gateway")}
