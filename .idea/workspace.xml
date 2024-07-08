@@ -32,9 +32,13 @@
     </treeState>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="45e8eb8e-5803-456a-9857-5a6354e88f5c" name="Changes" comment="feat: gateways&#10;&#10;Implemented whatsapp setup support">
+    <list default="true" id="45e8eb8e-5803-456a-9857-5a6354e88f5c" name="Changes" comment="chore: access config&#10;&#10;Refactored the implementation of access configuration">
+      <change beforePath="$PROJECT_DIR$/.idea/dhis2-analytics-messenger-app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dhis2-analytics-messenger-app.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/i18n/en.pot" beforeDir="false" afterPath="$PROJECT_DIR$/i18n/en.pot" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationModal/components/WhatsAppSetupModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationModal/components/WhatsAppSetupModal.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationModal/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationModal/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationsTable/hooks/data.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationsTable/hooks/data.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,6 +74,12 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;nnkogift&quot;
+  }
+}</component>
   <component name="GitToolBoxStore">
     <option name="projectConfigVersion" value="5" />
     <option name="recentBranches">
@@ -104,6 +114,12 @@
       </RecentBranches>
     </option>
   </component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;git@github.com:hisptz/dhis2-analytics-messenger-app.git&quot;,
+    &quot;accountId&quot;: &quot;f679fa9b-ab38-4bdf-a5ca-34bb54cd9b95&quot;
+  }
+}</component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -119,33 +135,34 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "dart.analysis.tool.window.visible": "false",
-    "git-widget-placeholder": "feature/channels",
-    "last_opened_file_path": "/Users/gnnko/projects/hisptz/dhis2-analytics-messenger-app",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.standard": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.standard": "",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "yarn",
-    "npm.start.executor": "Run",
-    "prettierjs.PrettierConfiguration.Package": "/Users/gnnko/projects/hisptz/dhis2-analytics-messenger-app/node_modules/prettier",
-    "settings.editor.selected.configurable": "ImportCost",
-    "ts.external.directory.path": "/Users/gnnko/projects/hisptz/dhis2-analytics-messenger-app/node_modules/typescript/lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feature/channels&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/gnnko/projects/hisptz/dhis2-analytics-messenger-app/src/shared/components&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;yarn&quot;,
+    &quot;npm.start.executor&quot;: &quot;Run&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/Users/gnnko/projects/hisptz/dhis2-analytics-messenger-app/node_modules/prettier&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;ImportCost&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Users/gnnko/projects/hisptz/dhis2-analytics-messenger-app/node_modules/typescript/lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "stardust.markdown.MarkdownSplitEditorSuppressor:keyList": []
+  &quot;keyToStringList&quot;: {
+    &quot;stardust.markdown.MarkdownSplitEditorSuppressor:keyList&quot;: []
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/shared/components" />
       <recent name="$PROJECT_DIR$" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -213,6 +230,13 @@
       </list>
     </recent_temporary>
   </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-WS-241.18034.50" />
+      </set>
+    </attachedChunks>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
@@ -256,6 +280,8 @@
       <workItem from="1699773689932" duration="1571000" />
       <workItem from="1699789100644" duration="598000" />
       <workItem from="1699847820463" duration="4000" />
+      <workItem from="1720335358974" duration="9547000" />
+      <workItem from="1720418064129" duration="12069000" />
     </task>
     <task id="LOCAL-00001" summary="feat(custom scheduling): Implementation&#10;&#10;- Implemented custom schedule form">
       <option name="closed" value="true" />
@@ -561,7 +587,31 @@
       <option name="project" value="LOCAL" />
       <updated>1720192534398</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="feat: routes&#10;&#10;Improved routes to add auth routes when user is not logged in">
+      <option name="closed" value="true" />
+      <created>1720342383915</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1720342383916</updated>
+    </task>
+    <task id="LOCAL-00040" summary="feat: access config&#10;&#10;Implemented access configuration for Dam to access DHIS2">
+      <option name="closed" value="true" />
+      <created>1720343050046</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1720343050046</updated>
+    </task>
+    <task id="LOCAL-00041" summary="chore: access config&#10;&#10;Refactored the implementation of access configuration">
+      <option name="closed" value="true" />
+      <created>1720344621825</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1720344621825</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -612,9 +662,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="chore(*): Code styling&#10;&#10;- Es lint manual fixes" />
-    <MESSAGE value="chore(package.json): Version update&#10;&#10;- Updated version to v1.0.2" />
-    <MESSAGE value="fix(scheduling): Fixes&#10;&#10;- Fixed issues with scheduling modal throwing errors&#10; - Upgraded DHIS2 deps" />
     <MESSAGE value="feat(tests): Implementation&#10;&#10;- Setup cypress using DHIS2 cypress tooling" />
     <MESSAGE value="feat(tests): Implementation&#10;&#10;- Implemented an example test" />
     <MESSAGE value="fix(tests): Fixes&#10;&#10;- Fixed some issues with test config" />
@@ -637,9 +684,28 @@
     <MESSAGE value="feat: dam config&#10;&#10;Implemented the dam config provider" />
     <MESSAGE value="feat: gateways&#10;&#10;Implemented gateways listing" />
     <MESSAGE value="feat: gateways&#10;&#10;Implemented whatsapp setup support" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: gateways&#10;&#10;Implemented whatsapp setup support" />
+    <MESSAGE value="feat: routes&#10;&#10;Improved routes to add auth routes when user is not logged in" />
+    <MESSAGE value="feat: access config&#10;&#10;Implemented access configuration for Dam to access DHIS2" />
+    <MESSAGE value="chore: access config&#10;&#10;Refactored the implementation of access configuration" />
+    <option name="LAST_COMMIT_MESSAGE" value="chore: access config&#10;&#10;Refactored the implementation of access configuration" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
+  <component name="WfRunsListSearchHistory">{
+  &quot;history&quot;: [
+    {
+      &quot;branch&quot;: &quot;feature/channels&quot;,
+      &quot;currentBranchFilter&quot;: true
+    },
+    {
+      &quot;branch&quot;: &quot;feature/channels&quot;,
+      &quot;currentBranchFilter&quot;: true
+    }
+  ],
+  &quot;lastFilter&quot;: {
+    &quot;branch&quot;: &quot;feature/channels&quot;,
+    &quot;currentBranchFilter&quot;: true
+  }
+}</component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
     <select />

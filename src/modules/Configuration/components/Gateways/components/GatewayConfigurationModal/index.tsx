@@ -17,6 +17,7 @@ import { uid } from "@hisptz/dhis2-utils";
 import Parse from "parse";
 import { channels } from "../../constants/channels";
 import { useAlert } from "@dhis2/app-runtime";
+import { useDamConfig } from "../../../../../../shared/components/DamConfigProvider";
 
 export interface GatewayConfigurationModalProps {
 	onClose: () => void;
@@ -45,6 +46,8 @@ export function GatewayConfigurationModal({
 		},
 	});
 
+	const dhis2Instance = useDamConfig();
+
 	const { show } = useAlert(
 		({ message }) => message,
 		({ type }) => ({ ...type, duration: 3000 }),
@@ -53,7 +56,6 @@ export function GatewayConfigurationModal({
 	const onSave = async (data: GatewayConfigFormData) => {
 		try {
 			const channel = channels.find(({ name }) => name === data.channel);
-
 			if (!channel) {
 				show({
 					message: i18n.t("Invalid channel {{channel}}", {
@@ -65,11 +67,24 @@ export function GatewayConfigurationModal({
 			}
 			const gateway = new Parse.Object(channel.className);
 			await gateway.save({
-				...data,
+				sessionId: data.sessionId,
+				enabled: data.enabled,
+				name: data.name,
+				dhis2Instance,
+			});
+
+			show({
+				message: i18n.t("Gateway created successfully"),
+				type: { success: true },
 			});
 
 			onClose();
-		} catch (e) {}
+		} catch (e) {
+			show({
+				message: i18n.t("Error saving gateway"),
+				type: { critical: true },
+			});
+		}
 	};
 
 	return (

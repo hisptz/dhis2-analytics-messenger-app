@@ -4,8 +4,11 @@ import { io } from "socket.io-client";
 import i18n from "@dhis2/d2-i18n";
 import {
 	Button,
+	ButtonStrip,
+	CircularLoader,
 	LinearLoader,
 	Modal,
+	ModalActions,
 	ModalContent,
 	ModalTitle,
 } from "@dhis2/ui";
@@ -27,6 +30,9 @@ export function WhatsAppSetup({
 	sessionId: string;
 	onComplete: () => void;
 }) {
+	const name = useWatch({
+		name: "name",
+	});
 	const [qrCode, setQrCode] = useState<string | undefined>();
 	const [error, setError] = useState<unknown>();
 	const [loadingStatus, setLoadingStatus] = useState<
@@ -42,22 +48,20 @@ export function WhatsAppSetup({
 	const setupWebsocket = () => {
 		const token = sessionId;
 		const user = Parse.User.current();
-		const url = `${process.env.REACT_APP_SAAS_BASE_URL}/channels/whatsapp/socket.io/${token}/init`;
+		const url = `${process.env.REACT_APP_SAAS_BASE_URL}channels/whatsapp/socket.io/${token}/init`;
 		const socket = io(url, {
-			path: "/api/channels/whatsapp/socket.io",
+			path: "/dam/core/api/channels/whatsapp/socket.io",
 			extraHeaders: {
-				["set-cookie"]: `token=${user?.getSessionToken()}`,
+				"X-Parse-Session-Token": user!.getSessionToken()!,
+				"X-Parse-Application-Id": process.env.REACT_APP_SAAS_APP_ID!,
 			},
 			query: {
-				name: "Test session",
+				name,
 				session: token,
 			},
 			reconnectionAttempts: 5,
 			retries: 5,
-			requestTimeout: 10000,
 			upgrade: true,
-			secure: true,
-			withCredentials: true,
 		});
 
 		const onConnect = () => {
@@ -142,9 +146,34 @@ export function WhatsAppSetup({
 					<span>{loadingStatus.message}</span>
 				</div>
 			) : null}
+			{!qrCode && !loadingStatus && <CircularLoader small />}
 			{!!error && <div>{error.toString()}</div>}
 			{qrCode && !error ? (
-				<img height={300} width={300} src={qrCode} alt="QR Code Code" />
+				<div className="w-100 h-100">
+					<p>
+						{i18n.t(
+							"Scan the QR code below with your WhatsApp mobile account",
+						)}
+					</p>
+					<div
+						style={{
+							width: "100%",
+							height: "100%",
+							display: "flex",
+							flexDirection: "column",
+							alignItems: "center",
+							justifyContent: "center",
+							padding: 16,
+						}}
+					>
+						<img
+							height={300}
+							width={300}
+							src={qrCode}
+							alt="QR Code Code"
+						/>
+					</div>
+				</div>
 			) : null}
 		</div>
 	);
@@ -156,17 +185,17 @@ export function WhatsAppSetupModal({
 	hide,
 	sessionId,
 }: WhatsAppSetupModalProps) {
-	const onDone = () => {
-		onClose();
-		onComplete();
-	};
-
 	return (
-		<Modal position="middle" hide={hide} onClose={onClose}>
+		<Modal position="middle" hide={hide}>
 			<ModalTitle>{i18n.t("Setup WhatsApp")}</ModalTitle>
 			<ModalContent>
-				<WhatsAppSetup sessionId={sessionId} onComplete={onDone} />
+				<WhatsAppSetup sessionId={sessionId} onComplete={onComplete} />
 			</ModalContent>
+			<ModalActions>
+				<ButtonStrip>
+					<Button onClick={onClose}>{i18n.t("Cancel")}</Button>
+				</ButtonStrip>
+			</ModalActions>
 		</Modal>
 	);
 }
@@ -187,10 +216,18 @@ export function WhatsAppSetupButton({
 		setFalse: onOpen,
 	} = useBoolean(true);
 
+	const onDone = () => {
+		onClose();
+		onComplete();
+	};
+
 	const onConnect = async () => {
 		try {
-			await trigger();
-			onOpen();
+			if (await trigger()) {
+				onOpen();
+			} else {
+				console.error("Form has errors");
+			}
 		} catch (error) {
 			console.error(error);
 		}
@@ -202,7 +239,7 @@ export function WhatsAppSetupButton({
 				<WhatsAppSetupModal
 					onClose={onClose}
 					hide={hide}
-					onComplete={onComplete}
+					onComplete={onDone}
 					sessionId={sessionId}
 				/>
 			)}

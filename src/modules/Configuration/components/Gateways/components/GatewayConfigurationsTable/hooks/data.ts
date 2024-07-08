@@ -1,12 +1,18 @@
 import { useDamConfig } from "../../../../../../../shared/components/DamConfigProvider";
-import { QueryKey, useQueries } from "@tanstack/react-query";
+import { useQueries } from "@tanstack/react-query";
 import { useMemo } from "react";
 import Parse from "parse";
 import { channels } from "../../../constants/channels";
+import { capitalize } from "lodash";
 
-function getClients({ clientClassName }: { clientClassName: string }) {
-	return async ({ queryKey }: { queryKey: QueryKey }) => {
-		const [dhis2Instance] = queryKey;
+function getClients({
+	clientClassName,
+	dhis2Instance,
+}: {
+	clientClassName: string;
+	dhis2Instance: Parse.Object;
+}) {
+	return async () => {
 		const query = new Parse.Query(clientClassName);
 		query.equalTo("dhis2Instance", dhis2Instance);
 		return query.find();
@@ -17,9 +23,10 @@ export function useGateways() {
 	const damConfig = useDamConfig();
 	const results = useQueries({
 		queries: channels.map(({ className }) => ({
-			queryKey: [damConfig],
+			queryKey: [className],
 			queryFn: getClients({
 				clientClassName: className,
+				dhis2Instance: damConfig!,
 			}),
 		})),
 	});
@@ -30,7 +37,7 @@ export function useGateways() {
 				.map((clientResults, index) => {
 					return clientResults.data?.map((data) => ({
 						data,
-						channel: channels[index].name,
+						channel: capitalize(channels[index].name),
 					}));
 				})
 				.flat()

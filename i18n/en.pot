@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2024-07-07T08:37:43.744Z\n"
-"PO-Revision-Date: 2024-07-07T08:37:43.744Z\n"
+"POT-Creation-Date: 2024-07-08T05:56:16.221Z\n"
+"PO-Revision-Date: 2024-07-08T05:56:16.221Z\n"
 
 msgid "Fetching App configurations..."
 msgstr "Fetching App configurations..."
@@ -521,20 +521,14 @@ msgstr "Page not Found"
 msgid "Go to home"
 msgstr "Go to home"
 
-msgid "The personal access token must start with d2"
-msgstr "The personal access token must start with d2"
-
-msgid "Could not save configuration {{reason}}"
-msgstr "Could not save configuration {{reason}}"
-
-msgid "DHIS2 Access Config"
-msgstr "DHIS2 Access Config"
-
 msgid "Personal access token"
 msgstr "Personal access token"
 
 msgid "Expires on"
 msgstr "Expires on"
+
+msgid "DHIS2 Access Config"
+msgstr "DHIS2 Access Config"
 
 msgid "There are no bookings for the specified filters"
 msgstr "There are no bookings for the specified filters"
@@ -553,6 +547,12 @@ msgstr "Chat Bot"
 
 msgid "Configuration"
 msgstr "Configuration"
+
+msgid "The personal access token must start with d2"
+msgstr "The personal access token must start with d2"
+
+msgid "Could not save configuration {{reason}}"
+msgstr "Could not save configuration {{reason}}"
 
 msgid "Contacts are required"
 msgstr "Contacts are required"
