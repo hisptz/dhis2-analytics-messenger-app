@@ -6,31 +6,24 @@ import Parse from "parse";
 import { useQuery } from "@tanstack/react-query";
 import { JobActionArea } from "../components/JobActionArea";
 import { ParseClass } from "../../../../../shared/constants/parse";
-import { useParseLogin } from "../../../../../shared/components/ParseProvider";
-import { logoutParseUser } from "../../../../../shared/utils/parse";
+import { useDamConfig } from "../../../../../shared/components/DamConfigProvider";
 
 export function usePushAnalyticsConfig() {
-	const loginParse = useParseLogin();
-	const currentUser = Parse.User.current();
-	const instanceId =
-		currentUser?.attributes.authDataResponse.dhis2Auth.instance.objectId;
+	const dhis2Instance = useDamConfig();
 
-	async function fetchData(): Promise<Parse.Object[]> {
+	async function fetchData(): Promise<Parse.Object[] | null> {
 		try {
-			const query = new Parse.Query(ParseClass.ANALYTICS_PUSH_JOB);
-			query.equalTo("dhis2Instance", {
-				__type: "Pointer",
-				className: ParseClass.ANALYTICS_PUSH_JOB,
-				objectId: instanceId,
-			});
-			return await query.find();
+			if (dhis2Instance) {
+				const query = new Parse.Query(ParseClass.ANALYTICS_PUSH_JOB);
+				query.equalTo("dhis2Instance", dhis2Instance);
+				return await query.find();
+			} else {
+				return null;
+			}
 		} catch (e: Parse.Error | unknown) {
 			const error = e as Parse.Error;
 			if (error.code === Parse.Error.INVALID_SESSION_TOKEN) {
 				//Refresh the user token by logging out and in again
-				await logoutParseUser();
-				await loginParse();
-				return await fetchData();
 			}
 			throw e;
 		}
@@ -47,7 +40,6 @@ export function usePushAnalyticsConfig() {
 		if (!data) return [] as Record<string, unknown>[];
 		return data?.map((config, index) => {
 			const contacts = config?.get("contacts");
-
 			return {
 				name: config?.get("name"),
 				index: index + 1,

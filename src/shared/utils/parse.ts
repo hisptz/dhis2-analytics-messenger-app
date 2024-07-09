@@ -10,16 +10,6 @@ export async function logoutParseUser() {
 	return await Parse.User.logOut();
 }
 
-export async function loginToParse(token: string) {
-	const user = await Parse.User.currentAsync();
-	if (user?.attributes.authDataResponse.dhis2Auth.instance.objectId) {
-		return;
-	}
-	const [userId, authToken] = token.split("/");
-	return await Parse.User.logInWith("dhis2Auth", {
-		authData: {
-			id: userId,
-			token: authToken,
-		},
-	});
+export async function loginParseUser(username: string, password: string) {
+	return await Parse.User.logIn(username, password);
 }

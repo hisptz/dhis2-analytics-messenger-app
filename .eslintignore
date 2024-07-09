@@ -13,7 +13,7 @@ psd
 thumb
 sketch
 
-# DHIS2 Platform
+# DHIS2_INSTANCE Platform
 .d2
 src/locales
 build

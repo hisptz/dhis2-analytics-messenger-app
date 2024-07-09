@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2023-11-08T05:12:26.300Z\n"
-"PO-Revision-Date: 2023-11-08T05:12:26.300Z\n"
+"POT-Creation-Date: 2024-07-09T12:39:42.453Z\n"
+"PO-Revision-Date: 2024-07-09T12:39:42.453Z\n"
 
 msgid "Fetching App configurations..."
 msgstr "Fetching App configurations..."
@@ -14,11 +14,97 @@ msgstr "Fetching App configurations..."
 msgid "Please wait this might take a while..."
 msgstr "Please wait this might take a while..."
 
+msgid "You will received the approval email soon! If it is taking too long, contact"
+msgstr "You will received the approval email soon! If it is taking too long, contact"
+
+msgid "dev@hisptanzania.org"
+msgstr "dev@hisptanzania.org"
+
+msgid ""
+"Check your email inbox to verify your account! If you haven't recived the "
+"email, contact"
+msgstr ""
+"Check your email inbox to verify your account! If you haven't recived the "
+"email, contact"
+
+msgid "Connect to Analytics Messaging Service"
+msgstr "Connect to Analytics Messaging Service"
+
+msgid "Username"
+msgstr "Username"
+
+msgid "Password"
+msgstr "Password"
+
+msgid "Cancel"
+msgstr "Cancel"
+
+msgid "Connect"
+msgstr "Connect"
+
+msgid ""
+"You need the Analytics Messaging Service to get started. Register or "
+"connect your account below."
+msgstr ""
+"You need the Analytics Messaging Service to get started. Register or "
+"connect your account below."
+
+msgid "Register"
+msgstr "Register"
+
+msgid "Register to Analytics Messaging Service"
+msgstr "Register to Analytics Messaging Service"
+
+msgid "Full Name"
+msgstr "Full Name"
+
+msgid "Phone Number"
+msgstr "Phone Number"
+
+msgid "Email"
+msgstr "Email"
+
+msgid "I have read and consent to the privacy policy"
+msgstr "I have read and consent to the privacy policy"
+
 msgid "Coming soon"
 msgstr "Coming soon"
 
 msgid "Here is where you can configure different flows for the DHIS2 chat bot"
 msgstr "Here is where you can configure different flows for the DHIS2 chat bot"
+
+msgid "Name"
+msgstr "Name"
+
+msgid "Messaging channel"
+msgstr "Messaging channel"
+
+msgid "Phone number"
+msgstr "Phone number"
+
+msgid "Could not connect to the server"
+msgstr "Could not connect to the server"
+
+msgid "Could not connect to telegram"
+msgstr "Could not connect to telegram"
+
+msgid "Telegram session connected successfully"
+msgstr "Telegram session connected successfully"
+
+msgid "Connect to Telegram"
+msgstr "Connect to Telegram"
+
+msgid "WhatsApp session connected successfully"
+msgstr "WhatsApp session connected successfully"
+
+msgid "Scan the QR code below with your WhatsApp mobile account"
+msgstr "Scan the QR code below with your WhatsApp mobile account"
+
+msgid "Setup WhatsApp"
+msgstr "Setup WhatsApp"
+
+msgid "Connect to WhatsApp"
+msgstr "Connect to WhatsApp"
 
 msgid "Gateway config saved successfully"
 msgstr "Gateway config saved successfully"
@@ -32,8 +118,53 @@ msgstr "Gateway config updated successfully"
 msgid "Could not update gateway information"
 msgstr "Could not update gateway information"
 
-msgid "Token"
-msgstr "Token"
+msgid "Invalid channel {{channel}}"
+msgstr "Invalid channel {{channel}}"
+
+msgid "Gateway created successfully"
+msgstr "Gateway created successfully"
+
+msgid "Error saving gateway"
+msgstr "Error saving gateway"
+
+msgid "Setup Gateway"
+msgstr "Setup Gateway"
+
+msgid "Could not connect the gateway"
+msgstr "Could not connect the gateway"
+
+msgid "Gateway connected successfully"
+msgstr "Gateway connected successfully"
+
+msgid "Confirm gateway deletion"
+msgstr "Confirm gateway deletion"
+
+msgid "Are you sure you want to delete the gateway"
+msgstr "Are you sure you want to delete the gateway"
+
+msgid "Could not delete the gateway"
+msgstr "Could not delete the gateway"
+
+msgid "Gateway deleted successfully"
+msgstr "Gateway deleted successfully"
+
+msgid "Could not disconnect the gateway"
+msgstr "Could not disconnect the gateway"
+
+msgid "Gateway disconnected successfully"
+msgstr "Gateway disconnected successfully"
+
+msgid "Remove gateway"
+msgstr "Remove gateway"
+
+msgid "Connect gateway"
+msgstr "Connect gateway"
+
+msgid "Disconnect gateway"
+msgstr "Disconnect gateway"
+
+msgid "Unknown"
+msgstr "Unknown"
 
 msgid "Status"
 msgstr "Status"
@@ -59,14 +190,32 @@ msgstr "Online"
 msgid "Offline"
 msgstr "Offline"
 
-msgid "Save"
-msgstr "Save"
+msgid "S/N"
+msgstr "S/N"
 
-msgid "Update"
-msgstr "Update"
+msgid "Gateway Name"
+msgstr "Gateway Name"
 
-msgid "Gateway deleted successfully"
-msgstr "Gateway deleted successfully"
+msgid "Messaging Channel"
+msgstr "Messaging Channel"
+
+msgid "Actions"
+msgstr "Actions"
+
+msgid "We encountered some errors while retrieving your gateways"
+msgstr "We encountered some errors while retrieving your gateways"
+
+msgid "Add gateway"
+msgstr "Add gateway"
+
+msgid "There are no configured gateways"
+msgstr "There are no configured gateways"
+
+msgid "WhatsApp"
+msgstr "WhatsApp"
+
+msgid "Telegram"
+msgstr "Telegram"
 
 msgid "Error deleting gateway"
 msgstr "Error deleting gateway"
@@ -92,11 +241,11 @@ msgstr "Error updating visualization group"
 msgid "{{operation}} group"
 msgstr "{{operation}} group"
 
+msgid "Update"
+msgstr "Update"
+
 msgid "Add"
 msgstr "Add"
-
-msgid "Name"
-msgstr "Name"
 
 msgid "Name is required"
 msgstr "Name is required"
@@ -107,23 +256,17 @@ msgstr "Select at least one visualization"
 msgid "Visualizations"
 msgstr "Visualizations"
 
-msgid "Cancel"
-msgstr "Cancel"
-
 msgid "Updating..."
 msgstr "Updating..."
 
 msgid "Saving..."
 msgstr "Saving..."
 
-msgid "S/N"
-msgstr "S/N"
+msgid "Save"
+msgstr "Save"
 
 msgid "Group name"
 msgstr "Group name"
-
-msgid "Actions"
-msgstr "Actions"
 
 msgid "Visualization groups"
 msgstr "Visualization groups"
@@ -212,9 +355,6 @@ msgstr "Type"
 
 msgid "Group"
 msgstr "Group"
-
-msgid "Phone Number"
-msgstr "Phone Number"
 
 msgid "Users"
 msgstr "Users"
@@ -435,17 +575,23 @@ msgstr "Page not Found"
 msgid "Go to home"
 msgstr "Go to home"
 
+msgid "Personal access token"
+msgstr "Personal access token"
+
+msgid "Expires on"
+msgstr "Expires on"
+
+msgid "DHIS2 Access Config"
+msgstr "DHIS2 Access Config"
+
 msgid "There are no bookings for the specified filters"
 msgstr "There are no bookings for the specified filters"
 
 msgid "There are no data available!"
 msgstr "There are no data available!"
 
-msgid "Could not connect to DHIS2 analytics messenger service"
-msgstr "Could not connect to DHIS2 analytics messenger service"
-
-msgid "Change configuration"
-msgstr "Change configuration"
+msgid "Messaging Gateway"
+msgstr "Messaging Gateway"
 
 msgid "Push Analytics"
 msgstr "Push Analytics"
@@ -455,6 +601,12 @@ msgstr "Chat Bot"
 
 msgid "Configuration"
 msgstr "Configuration"
+
+msgid "The personal access token must start with d2"
+msgstr "The personal access token must start with d2"
+
+msgid "Could not save configuration {{reason}}"
+msgstr "Could not save configuration {{reason}}"
 
 msgid "Contacts are required"
 msgstr "Contacts are required"
