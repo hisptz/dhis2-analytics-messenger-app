@@ -5,6 +5,7 @@ import { useBoolean } from "usehooks-ts";
 import { useManageUser } from "../hooks/user";
 import { DAMUserConfigForm } from "./DAMUserConfigForm";
 import { ChangePasswordModal } from "./ChangePasswordModal";
+import { LogoutButton } from "./LogoutButton";
 
 export function DAMUserConfig() {
 	const {
@@ -45,6 +46,8 @@ export function DAMUserConfig() {
 				</Button>
 				<Button onClick={onShow}>{i18n.t("Change password")}</Button>
 			</ButtonStrip>
+
+			<LogoutButton />
 		</div>
 	);
 }

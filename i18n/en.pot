@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2024-07-09T14:22:21.310Z\n"
-"PO-Revision-Date: 2024-07-09T14:22:21.310Z\n"
+"POT-Creation-Date: 2024-07-09T17:13:53.508Z\n"
+"PO-Revision-Date: 2024-07-09T17:13:53.508Z\n"
 
 msgid "Fetching App configurations..."
 msgstr "Fetching App configurations..."
@@ -83,11 +83,69 @@ msgstr ""
 "Configure the access level the analytics messenger has on your DHIS2 "
 "instance"
 
-msgid "Update"
-msgstr "Update"
+msgid "Analytics Messenger Account"
+msgstr "Analytics Messenger Account"
+
+msgid "Configure your analytics messenger account"
+msgstr "Configure your analytics messenger account"
+
+msgid "Invalid current password"
+msgstr "Invalid current password"
+
+msgid "Passwords do not match"
+msgstr "Passwords do not match"
+
+msgid ""
+"Could not find details about the connected in user. Refresh this page and "
+"try again"
+msgstr ""
+"Could not find details about the connected in user. Refresh this page and "
+"try again"
+
+msgid "Password changed successfully"
+msgstr "Password changed successfully"
+
+msgid "Error changing password"
+msgstr "Error changing password"
+
+msgid "Checking..."
+msgstr "Checking..."
+
+msgid "Saving..."
+msgstr "Saving..."
+
+msgid "Save"
+msgstr "Save"
+
+msgid "Change Password"
+msgstr "Change Password"
+
+msgid "Current password"
+msgstr "Current password"
+
+msgid "New password"
+msgstr "New password"
+
+msgid "Confirm new password"
+msgstr "Confirm new password"
 
 msgid "Save Changes"
 msgstr "Save Changes"
+
+msgid "Update"
+msgstr "Update"
+
+msgid "Change password"
+msgstr "Change password"
+
+msgid "Disconnect from analytics messenger"
+msgstr "Disconnect from analytics messenger"
+
+msgid "Profile changed successfully"
+msgstr "Profile changed successfully"
+
+msgid "Could not update the profile"
+msgstr "Could not update the profile"
 
 msgid "Name"
 msgstr "Name"
@@ -274,12 +332,6 @@ msgstr "Visualizations"
 
 msgid "Updating..."
 msgstr "Updating..."
-
-msgid "Saving..."
-msgstr "Saving..."
-
-msgid "Save"
-msgstr "Save"
 
 msgid "Group name"
 msgstr "Group name"
