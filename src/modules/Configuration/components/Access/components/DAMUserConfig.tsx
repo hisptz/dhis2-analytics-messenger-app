@@ -4,6 +4,7 @@ import { Button, ButtonStrip } from "@dhis2/ui";
 import { useBoolean } from "usehooks-ts";
 import { useManageUser } from "../hooks/user";
 import { DAMUserConfigForm } from "./DAMUserConfigForm";
+import { ChangePasswordModal } from "./ChangePasswordModal";
 
 export function DAMUserConfig() {
 	const {
@@ -11,6 +12,8 @@ export function DAMUserConfig() {
 		setTrue: onUpdate,
 		setFalse: onDisableUpdate,
 	} = useBoolean(false);
+
+	const { value: hide, setTrue: onHide, setFalse: onShow } = useBoolean(true);
 
 	const { onSave, form } = useManageUser({
 		onComplete: onDisableUpdate,
@@ -31,6 +34,7 @@ export function DAMUserConfig() {
 			style={{ minWidth: "fit-content", width: 400 }}
 			className="column gap-16"
 		>
+			{!hide && <ChangePasswordModal hide={hide} onClose={onHide} />}
 			<DAMUserConfigForm editable={allowUpdate} form={form} />
 			<ButtonStrip>
 				<Button
@@ -39,7 +43,7 @@ export function DAMUserConfig() {
 				>
 					{buttonLabel}
 				</Button>
-				<Button>{i18n.t("Change password")}</Button>
+				<Button onClick={onShow}>{i18n.t("Change password")}</Button>
 			</ButtonStrip>
 		</div>
 	);
