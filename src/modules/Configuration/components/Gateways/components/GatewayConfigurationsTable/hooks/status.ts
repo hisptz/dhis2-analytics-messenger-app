@@ -8,8 +8,8 @@ export function useGatewayStatus({
 	channel: string;
 }) {
 	const sessionId = gateway.get("sessionId") as string;
-	const { isLoading, data, isError } = useQuery({
-		queryKey: [sessionId],
+	return useQuery({
+		queryKey: [channel, sessionId],
 		queryFn: async (): Promise<{ status: string } | null> => {
 			const url = `${
 				process.env.REACT_APP_SAAS_BASE_URL
@@ -20,15 +20,15 @@ export function useGatewayStatus({
 			if (response.status === 200) {
 				return await response.json();
 			}
-
-			console.log(response.statusText);
+			if (response.status === 500) {
+				const error = await response.json();
+				if (error.error.includes("Could not find active client")) {
+					return {
+						status: "NOT STARTED",
+					};
+				}
+			}
 			return null;
 		},
 	});
-
-	return {
-		isLoading,
-		data,
-		isError,
-	};
 }

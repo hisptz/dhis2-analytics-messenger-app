@@ -43,9 +43,10 @@ export default function GatewayConfigurationsTable(): React.ReactElement {
 	const rows = useMemo(
 		() =>
 			data
-				?.map((row) => {
+				?.map((row, index) => {
 					if (!row) return null;
 					return {
+						sn: index + 1,
 						id: row.data.id,
 						...row,
 						...(row?.data.attributes ?? {}),

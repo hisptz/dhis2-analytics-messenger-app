@@ -50,7 +50,9 @@ export function WhatsAppSetup({
 		const user = Parse.User.current();
 		const url = `${process.env.REACT_APP_SAAS_BASE_URL}channels/whatsapp/socket.io/${token}/init`;
 		const socket = io(url, {
-			path: "/dam/core/api/channels/whatsapp/socket.io",
+			path: `${
+				new URL(process.env.REACT_APP_SAAS_BASE_URL!).pathname
+			}/channels/whatsapp/socket.io`,
 			extraHeaders: {
 				"X-Parse-Session-Token": user!.getSessionToken()!,
 				"X-Parse-Application-Id": process.env.REACT_APP_SAAS_APP_ID!,

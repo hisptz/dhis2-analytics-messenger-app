@@ -1,9 +1,10 @@
 import { useDamConfig } from "../../../../../../../shared/components/DamConfigProvider";
-import { useQueries } from "@tanstack/react-query";
+import { useQueries, useQueryClient } from "@tanstack/react-query";
 import { useMemo } from "react";
 import Parse from "parse";
 import { channels } from "../../../constants/channels";
 import { capitalize } from "lodash";
+import { forEach } from "async";
 
 function getClients({
 	clientClassName,
@@ -30,7 +31,6 @@ export function useGateways() {
 			}),
 		})),
 	});
-
 	return useMemo(() => {
 		return {
 			data: results
@@ -51,4 +51,15 @@ export function useGateways() {
 				.filter((error) => error !== null) as Error[],
 		};
 	}, [results]);
+}
+
+export function useRefetchGateways() {
+	const queryClient = useQueryClient();
+	return async () => {
+		await forEach(channels, async ({ className }) => {
+			await queryClient.refetchQueries({
+				queryKey: [className],
+			});
+		});
+	};
 }

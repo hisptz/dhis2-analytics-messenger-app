@@ -1,6 +1,10 @@
 import React from "react";
 import { useGatewayStatus } from "../hooks/status";
-import { Button, ButtonStrip, CircularLoader, IconDelete24 } from "@dhis2/ui";
+import { CircularLoader, Tooltip } from "@dhis2/ui";
+import i18n from "@dhis2/d2-i18n";
+import { GatewayConnectButton } from "./ConnectButton";
+import { GatewayDisconnectButton } from "./DisconnectButton";
+import { GatewayDeleteButton } from "./DeleteButton";
 
 export interface GatewayActionsProps {
 	gateway: Parse.Object;
@@ -8,7 +12,10 @@ export interface GatewayActionsProps {
 }
 
 export function GatewayActions({ gateway, channel }: GatewayActionsProps) {
-	const { isLoading, isError } = useGatewayStatus({ gateway, channel });
+	const { isLoading, isError, data, refetch } = useGatewayStatus({
+		gateway,
+		channel,
+	});
 
 	if (isError) {
 		return <span>Error</span>;
@@ -23,8 +30,28 @@ export function GatewayActions({ gateway, channel }: GatewayActionsProps) {
 	}
 
 	return (
-		<ButtonStrip>
-			<Button icon={<IconDelete24 />} />
-		</ButtonStrip>
+		<div className="row gap-8 align-center">
+			<Tooltip content={i18n.t("Remove gateway")}>
+				<GatewayDeleteButton channel={channel} gateway={gateway} />
+			</Tooltip>
+			{data?.status === "NOT STARTED" ? (
+				<Tooltip content={i18n.t("Connect gateway")}>
+					<GatewayConnectButton
+						refetch={refetch}
+						channel={channel}
+						gateway={gateway}
+					/>
+				</Tooltip>
+			) : null}
+			{data?.status.toUpperCase() === "CONNECTED" ? (
+				<Tooltip content={i18n.t("Disconnect gateway")}>
+					<GatewayDisconnectButton
+						refetch={refetch}
+						gateway={gateway}
+						channel={channel}
+					/>
+				</Tooltip>
+			) : null}
+		</div>
 	);
 }

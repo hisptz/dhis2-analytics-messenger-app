@@ -19,7 +19,7 @@ import { useAlert } from "@dhis2/app-runtime";
 import { useDamConfig } from "../../../../../../shared/components/DamConfigProvider";
 import { TelegramForm } from "./components/TelegramForm";
 import { uid } from "@hisptz/dhis2-utils";
-import { useQueryClient } from "@tanstack/react-query";
+import { useRefetchGateways } from "../GatewayConfigurationsTable/hooks/data";
 
 export interface GatewayConfigurationModalProps {
 	onClose: () => void;
@@ -41,7 +41,8 @@ export function GatewayConfigurationModal({
 	hide,
 }: GatewayConfigurationModalProps) {
 	const dhis2Instance = useDamConfig();
-	const { invalidateQueries } = useQueryClient();
+
+	const refetch = useRefetchGateways();
 
 	const form = useForm<GatewayConfigFormData>({
 		resolver: zodResolver(gatewayConfigFormDataSchema),
@@ -81,7 +82,7 @@ export function GatewayConfigurationModal({
 				message: i18n.t("Gateway created successfully"),
 				type: { success: true },
 			});
-			await invalidateQueries(channels.map(({ className }) => className));
+			refetch();
 			onClose();
 		} catch (e) {
 			show({
