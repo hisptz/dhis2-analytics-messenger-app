@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import { useMemo } from "react";
 
 export function useGatewayStatus({
 	gateway,
@@ -7,7 +8,9 @@ export function useGatewayStatus({
 	gateway: Parse.Object;
 	channel: string;
 }) {
-	const sessionId = gateway.get("sessionId") as string;
+	const sessionId = useMemo(() => {
+		return gateway.get("sessionId") as string;
+	}, []);
 	return useQuery({
 		queryKey: [channel, sessionId],
 		queryFn: async (): Promise<{ status: string } | null> => {
@@ -30,5 +33,7 @@ export function useGatewayStatus({
 			}
 			return null;
 		},
+		refetchInterval: 1000,
+		refetchIntervalInBackground: 60 * 1000,
 	});
 }
