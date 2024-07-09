@@ -148,12 +148,17 @@ label > span:nth-child(2) {
     overflow-x: scroll;
 }
 
+.sub-module-title-container{
+    padding-bottom: 16px;
+}
+
 .sub-module-title {
     font-size: 1.5rem !important;
-    margin: 16px 0;
+    margin: 0;
 }
 
 .sub-module-subtitle {
     font-size: 0.8rem;
+    margin: 8px 0;
     opacity: 0.6;
 }

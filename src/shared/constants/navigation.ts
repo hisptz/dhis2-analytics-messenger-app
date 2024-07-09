@@ -2,6 +2,7 @@ import i18n from "@dhis2/d2-i18n";
 import React from "react";
 import { AnalyticsIcon16, SettingsIcon16 } from "../components/Icons/Icons";
 import { NavigationItem } from "../interfaces";
+import { AccessConfig } from "../../modules/Configuration/components/Access/Access";
 
 // Main pages
 const PushAnalyticsPage = React.lazy(
@@ -36,6 +37,11 @@ export const CONFIGURATION_NAVIGATION_ITEMS: Array<NavigationItem> = [
 		label: i18n.t("Messaging Gateway"),
 		path: "gateway",
 		element: GatewayConfiguration,
+	},
+	{
+		label: i18n.t("Access"),
+		path: "access",
+		element: AccessConfig,
 	},
 	{
 		path: "",

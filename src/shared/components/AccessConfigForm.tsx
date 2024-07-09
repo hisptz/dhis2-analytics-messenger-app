@@ -6,18 +6,21 @@ import { AccessConfigData } from "../hooks/saveDHIS2Config";
 
 export interface AccessConfigFormProps {
 	form: ReturnType<typeof useForm<AccessConfigData>>;
+	editable: boolean;
 }
 
-export function AccessConfigForm({ form }: AccessConfigFormProps) {
+export function AccessConfigForm({ form, editable }: AccessConfigFormProps) {
 	return (
 		<FormProvider {...form}>
 			<div className="column gap-8">
 				<RHFTextInputField
+					disabled={!editable}
 					type="password"
 					name="pat"
 					label={i18n.t("Personal access token")}
 				/>
 				<RHFTextInputField
+					disabled={!editable}
 					type="date"
 					name="expiresOn"
 					label={i18n.t("Expires on")}

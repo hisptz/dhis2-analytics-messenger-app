@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2024-07-09T12:39:42.453Z\n"
-"PO-Revision-Date: 2024-07-09T12:39:42.453Z\n"
+"POT-Creation-Date: 2024-07-09T14:22:21.310Z\n"
+"PO-Revision-Date: 2024-07-09T14:22:21.310Z\n"
 
 msgid "Fetching App configurations..."
 msgstr "Fetching App configurations..."
@@ -73,6 +73,22 @@ msgstr "Coming soon"
 msgid "Here is where you can configure different flows for the DHIS2 chat bot"
 msgstr "Here is where you can configure different flows for the DHIS2 chat bot"
 
+msgid "DHIS2 Access"
+msgstr "DHIS2 Access"
+
+msgid ""
+"Configure the access level the analytics messenger has on your DHIS2 "
+"instance"
+msgstr ""
+"Configure the access level the analytics messenger has on your DHIS2 "
+"instance"
+
+msgid "Update"
+msgstr "Update"
+
+msgid "Save Changes"
+msgstr "Save Changes"
+
 msgid "Name"
 msgstr "Name"
 
@@ -90,6 +106,9 @@ msgstr "Could not connect to telegram"
 
 msgid "Telegram session connected successfully"
 msgstr "Telegram session connected successfully"
+
+msgid "Phone number is required for telegram connection"
+msgstr "Phone number is required for telegram connection"
 
 msgid "Connect to Telegram"
 msgstr "Connect to Telegram"
@@ -240,9 +259,6 @@ msgstr "Error updating visualization group"
 
 msgid "{{operation}} group"
 msgstr "{{operation}} group"
-
-msgid "Update"
-msgstr "Update"
 
 msgid "Add"
 msgstr "Add"
@@ -592,6 +608,9 @@ msgstr "There are no data available!"
 
 msgid "Messaging Gateway"
 msgstr "Messaging Gateway"
+
+msgid "Access"
+msgstr "Access"
 
 msgid "Push Analytics"
 msgstr "Push Analytics"
