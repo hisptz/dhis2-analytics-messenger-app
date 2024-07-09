@@ -1,11 +1,12 @@
-import React, { Suspense } from "react";
-import { HashRouter, Navigate, Route, Routes } from "react-router-dom";
+import React, { Suspense, useEffect } from "react";
+import { HashRouter, Route, Routes, useNavigate } from "react-router-dom";
 import classes from "../../App.module.css";
 import PageNotFound from "../../shared/components/404Page";
 import FullPageLoader from "../../shared/components/Loaders";
 import { NAVIGATION_ITEMS } from "../../shared/constants/navigation";
 import { MainApp } from "./components/MainApp";
 import { Authentication } from "../Authentication";
+import { CircularLoader } from "@dhis2/ui";
 import Parse from "parse";
 
 export default function AppRouter(): React.ReactElement {
@@ -58,10 +59,32 @@ export default function AppRouter(): React.ReactElement {
 }
 
 export function Navigator(): React.ReactElement {
-	const user = Parse.User.current();
+	const navigate = useNavigate();
 
-	if (!user) {
-		return <Navigate to="landing" />;
-	}
-	return <Navigate to={"/app/push-analytics"} />;
+	useEffect(() => {
+		async function getAuth() {
+			const user = Parse.User.current();
+			if (!user) {
+				navigate("/landing");
+			} else {
+				try {
+					await user.fetch();
+					navigate("/app/push-analytics");
+				} catch (e) {
+					navigate("/landing");
+				}
+			}
+		}
+
+		getAuth();
+	}, []);
+
+	return (
+		<div
+			className="column center align-center"
+			style={{ width: "100vw", height: "100vh" }}
+		>
+			<CircularLoader small />
+		</div>
+	);
 }

@@ -6,6 +6,8 @@ import { useGateways } from "./hooks/data";
 import { isEmpty } from "lodash";
 import { useBoolean } from "usehooks-ts";
 import { GatewayConfigurationModal } from "../GatewayConfigurationModal";
+import { GatewayStatus } from "./components/GatewayStatus";
+import { GatewayActions } from "./components/GatewayActions";
 
 const columns = [
 	{
@@ -47,6 +49,19 @@ export default function GatewayConfigurationsTable(): React.ReactElement {
 						id: row.data.id,
 						...row,
 						...(row?.data.attributes ?? {}),
+						status: (
+							<GatewayStatus
+								key={row.data.id}
+								gateway={row?.data}
+								channel={row.channel}
+							/>
+						),
+						actions: (
+							<GatewayActions
+								gateway={row.data}
+								channel={row.channel}
+							/>
+						),
 					};
 				})
 				.filter((value) => !!value) as CustomDataTableRow[],

@@ -13,12 +13,13 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { BaseGatewayInfoForm } from "./components/BaseGatewayInfoForm";
 import i18n from "@dhis2/d2-i18n";
 import { ChannelButtonSelector } from "./components/ChannelButtonSelector";
-import { uid } from "@hisptz/dhis2-utils";
 import Parse from "parse";
 import { channels } from "../../constants/channels";
 import { useAlert } from "@dhis2/app-runtime";
 import { useDamConfig } from "../../../../../../shared/components/DamConfigProvider";
 import { TelegramForm } from "./components/TelegramForm";
+import { uid } from "@hisptz/dhis2-utils";
+import { useQueryClient } from "@tanstack/react-query";
 
 export interface GatewayConfigurationModalProps {
 	onClose: () => void;
@@ -39,16 +40,17 @@ export function GatewayConfigurationModal({
 	onClose,
 	hide,
 }: GatewayConfigurationModalProps) {
+	const dhis2Instance = useDamConfig();
+	const { invalidateQueries } = useQueryClient();
+
 	const form = useForm<GatewayConfigFormData>({
 		resolver: zodResolver(gatewayConfigFormDataSchema),
 		shouldFocusError: false,
 		defaultValues: {
-			sessionId: uid(),
+			sessionId: `${dhis2Instance!.id}-${uid()}`,
 			enabled: true,
 		},
 	});
-
-	const dhis2Instance = useDamConfig();
 
 	const { show } = useAlert(
 		({ message }) => message,
@@ -79,6 +81,7 @@ export function GatewayConfigurationModal({
 				message: i18n.t("Gateway created successfully"),
 				type: { success: true },
 			});
+			await invalidateQueries(channels.map(({ className }) => className));
 			onClose();
 		} catch (e) {
 			show({

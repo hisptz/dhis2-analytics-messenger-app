@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2024-07-08T05:56:16.221Z\n"
-"PO-Revision-Date: 2024-07-08T05:56:16.221Z\n"
+"POT-Creation-Date: 2024-07-08T13:30:22.992Z\n"
+"PO-Revision-Date: 2024-07-08T13:30:22.992Z\n"
 
 msgid "Fetching App configurations..."
 msgstr "Fetching App configurations..."
@@ -79,11 +79,29 @@ msgstr "Name"
 msgid "Messaging channel"
 msgstr "Messaging channel"
 
-msgid "WhatsApp session connected successfully"
-msgstr "WhatsApp session connected successfully"
+msgid "Phone number"
+msgstr "Phone number"
+
+msgid "Telegram session connected successfully"
+msgstr "Telegram session connected successfully"
+
+msgid "Could not connect to the server"
+msgstr "Could not connect to the server"
+
+msgid "Telegram connected successfully"
+msgstr "Telegram connected successfully"
 
 msgid "Could not connect to telegram"
 msgstr "Could not connect to telegram"
+
+msgid "Connect to Telegram"
+msgstr "Connect to Telegram"
+
+msgid "WhatsApp session connected successfully"
+msgstr "WhatsApp session connected successfully"
+
+msgid "Scan the QR code below with your WhatsApp mobile account"
+msgstr "Scan the QR code below with your WhatsApp mobile account"
 
 msgid "Setup WhatsApp"
 msgstr "Setup WhatsApp"
@@ -106,8 +124,17 @@ msgstr "Could not update gateway information"
 msgid "Invalid channel {{channel}}"
 msgstr "Invalid channel {{channel}}"
 
+msgid "Gateway created successfully"
+msgstr "Gateway created successfully"
+
+msgid "Error saving gateway"
+msgstr "Error saving gateway"
+
 msgid "Setup Gateway"
 msgstr "Setup Gateway"
+
+msgid "Unknown"
+msgstr "Unknown"
 
 msgid "Status"
 msgstr "Status"

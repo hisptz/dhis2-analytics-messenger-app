@@ -32,13 +32,16 @@
     </treeState>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="45e8eb8e-5803-456a-9857-5a6354e88f5c" name="Changes" comment="fix: gateways &#10;&#10;Fixed some issues with whatsapp gateway config and listing of gateways">
-      <change afterPath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationModal/components/TelegramForm.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationModal/components/TelegramSetupModal.tsx" afterDir="false" />
+    <list default="true" id="45e8eb8e-5803-456a-9857-5a6354e88f5c" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationsTable/components/GatewayActions.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationsTable/components/GatewayStatus.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationsTable/hooks/status.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationModal/components/ChannelButtonSelector.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationModal/components/ChannelButtonSelector.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/i18n/en.pot" beforeDir="false" afterPath="$PROJECT_DIR$/i18n/en.pot" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationModal/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationModal/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationsTable/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationsTable/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/Router/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/Router/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/components/DamConfigProvider.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/components/DamConfigProvider.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -282,7 +285,7 @@
       <workItem from="1699789100644" duration="598000" />
       <workItem from="1699847820463" duration="4000" />
       <workItem from="1720335358974" duration="9547000" />
-      <workItem from="1720418064129" duration="15708000" />
+      <workItem from="1720418064129" duration="25536000" />
     </task>
     <task id="LOCAL-00001" summary="feat(custom scheduling): Implementation&#10;&#10;- Implemented custom schedule form">
       <option name="closed" value="true" />
@@ -620,7 +623,15 @@
       <option name="project" value="LOCAL" />
       <updated>1720434778777</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="feat: telegram config&#10;&#10;Implemented telegram config">
+      <option name="closed" value="true" />
+      <created>1720440864394</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1720440864394</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -671,7 +682,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="feat(tests): Implementation&#10;&#10;- Implemented an example test" />
     <MESSAGE value="fix(tests): Fixes&#10;&#10;- Fixed some issues with test config" />
     <MESSAGE value="fix(env): Fixes&#10;&#10;- Included proxy and cypress keys config examples in env example" />
     <MESSAGE value="fix(push analytics config): Fixes&#10;&#10;- Set description as required" />
@@ -696,7 +706,8 @@
     <MESSAGE value="feat: access config&#10;&#10;Implemented access configuration for Dam to access DHIS2" />
     <MESSAGE value="chore: access config&#10;&#10;Refactored the implementation of access configuration" />
     <MESSAGE value="fix: gateways &#10;&#10;Fixed some issues with whatsapp gateway config and listing of gateways" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: gateways &#10;&#10;Fixed some issues with whatsapp gateway config and listing of gateways" />
+    <MESSAGE value="feat: telegram config&#10;&#10;Implemented telegram config" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: telegram config&#10;&#10;Implemented telegram config" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="WfRunsListSearchHistory">{
@@ -715,6 +726,18 @@
     &quot;currentBranchFilter&quot;: true
   }
 }</component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/modules/Router/index.tsx</url>
+          <line>45</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
     <select />

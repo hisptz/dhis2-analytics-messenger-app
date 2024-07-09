@@ -60,7 +60,6 @@ export function DamConfigProvider({
 		isLoading,
 		data: damConfig,
 		refetch,
-		isError,
 	} = useQuery({
 		queryKey: [systemId],
 		queryFn: getDamConfig,
