@@ -9,6 +9,7 @@ import i18n from "@dhis2/d2-i18n";
 import { z } from "zod";
 import Parse from "parse";
 import { ParseClass } from "../constants/parse";
+import { DateTime } from "luxon";
 
 const accessConfigSchema = z.object({
 	pat: z.string().startsWith("d2", {
@@ -46,8 +47,15 @@ export function useManageDHIS2Config({ onClose }: { onClose: () => void }) {
 	const { systemInfo } = useConfig();
 	const config = useDamConfig();
 	const refresh = useRefreshDamConfig();
+
 	const form = useForm<AccessConfigData>({
 		resolver: zodResolver(accessConfigSchema),
+		defaultValues: {
+			pat: config?.get("pat"),
+			expiresOn: DateTime.fromJSDate(
+				config?.get("expiresOn") as Date,
+			).toFormat("yyyy-MM-dd"),
+		},
 	});
 	const { show } = useAlert(
 		({ message }) => message,
