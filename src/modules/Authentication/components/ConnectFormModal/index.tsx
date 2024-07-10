@@ -15,6 +15,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { RHFDHIS2FormField } from "@hisptz/dhis2-ui";
 import Parse from "parse";
 import { useNavigate } from "react-router-dom";
+import { useRefreshDamConfig } from "../../../../shared/components/DamConfigProvider";
 
 const ConnectFormSchema = z.object({
 	username: z.string({ required_error: "Username is required" }),
@@ -37,6 +38,7 @@ export function ConnectFormModal({
 	hide,
 }: ConnectFormModalProps): React.ReactElement {
 	const navigate = useNavigate();
+	const refresh = useRefreshDamConfig();
 	const connectionForm = useForm<ConnectFormData>({
 		resolver: zodResolver(ConnectFormSchema),
 		shouldFocusError: false,
@@ -58,6 +60,7 @@ export function ConnectFormModal({
 			if (user) {
 				connectionForm.reset();
 				onClose(true);
+				await refresh();
 				navigate("/");
 			}
 		} catch (error: any) {

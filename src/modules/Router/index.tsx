@@ -60,7 +60,6 @@ export default function AppRouter(): React.ReactElement {
 
 export function Navigator(): React.ReactElement {
 	const navigate = useNavigate();
-
 	useEffect(() => {
 		async function getAuth() {
 			const user = Parse.User.current();
@@ -69,6 +68,7 @@ export function Navigator(): React.ReactElement {
 			} else {
 				try {
 					await user.fetch();
+
 					navigate("/app/push-analytics");
 				} catch (e) {
 					navigate("/landing");
