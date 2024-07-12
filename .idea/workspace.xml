@@ -32,7 +32,20 @@
     </treeState>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="45e8eb8e-5803-456a-9857-5a6354e88f5c" name="Changes" comment="feat: gateways&#10;&#10;Implemented gateway basic actions" />
+    <list default="true" id="45e8eb8e-5803-456a-9857-5a6354e88f5c" name="Changes" comment="fix: login&#10;&#10;Fixed issues with login not refreshing the dam config">
+      <change afterPath="$PROJECT_DIR$/src/modules/PushAnalytics/components/PushAnalyticsModalConfig/components/RHFRecipientSelector/components/Group/Group.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/PushAnalytics/components/PushAnalyticsModalConfig/components/RHFRecipientSelector/components/Group/hooks/data.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/PushAnalytics/components/PushAnalyticsModalConfig/components/RHFRecipientSelector/components/PhoneNumber.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/PushAnalytics/components/PushAnalyticsModalConfig/hooks/recipientOptions.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/i18n/en.pot" beforeDir="false" afterPath="$PROJECT_DIR$/i18n/en.pot" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/PushAnalytics/components/PushAnalyticsModalConfig/components/RHFGatewaySelector.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/PushAnalytics/components/PushAnalyticsModalConfig/components/RHFGatewaySelector.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/PushAnalytics/components/PushAnalyticsModalConfig/components/RHFRecipientSelector.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/PushAnalytics/components/PushAnalyticsModalConfig/components/RHFRecipientSelector/RHFRecipientSelector.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/PushAnalytics/components/PushAnalyticsModalConfig/hooks/save.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/PushAnalytics/components/PushAnalyticsModalConfig/hooks/save.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/PushAnalytics/components/PushAnalyticsModalConfig/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/PushAnalytics/components/PushAnalyticsModalConfig/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/PushAnalytics/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/PushAnalytics/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/interfaces/pushAnalytics.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/interfaces/pushAnalytics.ts" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -41,8 +54,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="TypeScript File" />
         <option value="TypeScript JSX File" />
+        <option value="TypeScript File" />
       </list>
     </option>
   </component>
@@ -83,8 +96,12 @@
               <option name="branches">
                 <list>
                   <RecentBranch>
+                    <option name="branchName" value="feature/messaging" />
+                    <option name="lastUsedInstant" value="1720598464" />
+                  </RecentBranch>
+                  <RecentBranch>
                     <option name="branchName" value="develop" />
-                    <option name="lastUsedInstant" value="1720530952" />
+                    <option name="lastUsedInstant" value="1720545576" />
                   </RecentBranch>
                   <RecentBranch>
                     <option name="branchName" value="v1" />
@@ -128,31 +145,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "dart.analysis.tool.window.visible": "false",
-    "git-widget-placeholder": "develop",
-    "last_opened_file_path": "/Users/gnnko/projects/hisptz/dhis2-analytics-messenger-app/src/modules/Configuration/components/Gateways/components/GatewayConfigurationsTable/components",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.standard": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.standard": "",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "yarn",
-    "npm.start.executor": "Run",
-    "prettierjs.PrettierConfiguration.Package": "/Users/gnnko/projects/hisptz/dhis2-analytics-messenger-app/node_modules/prettier",
-    "settings.editor.selected.configurable": "ImportCost",
-    "ts.external.directory.path": "/Users/gnnko/projects/hisptz/dhis2-analytics-messenger-app/node_modules/typescript/lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feature/messaging&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/gnnko/projects/hisptz/dhis2-analytics-messenger-app/src/modules/Configuration/components/Gateways/components/GatewayConfigurationsTable/components&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;yarn&quot;,
+    &quot;npm.start.executor&quot;: &quot;Run&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/Users/gnnko/projects/hisptz/dhis2-analytics-messenger-app/node_modules/prettier&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;ImportCost&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Users/gnnko/projects/hisptz/dhis2-analytics-messenger-app/node_modules/typescript/lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "stardust.markdown.MarkdownSplitEditorSuppressor:keyList": []
+  &quot;keyToStringList&quot;: {
+    &quot;stardust.markdown.MarkdownSplitEditorSuppressor:keyList&quot;: []
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationsTable/components" />
@@ -161,6 +178,8 @@
       <recent name="$PROJECT_DIR$" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/modules/PushAnalytics/components/PushAnalyticsModalConfig/components/RHFRecipientSelector/components/Group" />
+      <recent name="$PROJECT_DIR$/src/modules/PushAnalytics/components/PushAnalyticsModalConfig/components/RHFRecipientSelector" />
       <recent name="$PROJECT_DIR$/cypress/specs" />
     </key>
   </component>
@@ -277,14 +296,10 @@
       <workItem from="1699847820463" duration="4000" />
       <workItem from="1720335358974" duration="9547000" />
       <workItem from="1720418064129" duration="25536000" />
-    </task>
-    <task id="LOCAL-00001" summary="feat(custom scheduling): Implementation&#10;&#10;- Implemented custom schedule form">
-      <option name="closed" value="true" />
-      <created>1689828456606</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1689828456606</updated>
+      <workItem from="1720533952389" duration="10536000" />
+      <workItem from="1720593244697" duration="9154000" />
+      <workItem from="1720607413516" duration="2008000" />
+      <workItem from="1720677245161" duration="66000" />
     </task>
     <task id="LOCAL-00002" summary="refactor(scheduling): Refactors&#10;&#10;- Refactored scheduling components to individual files">
       <option name="closed" value="true" />
@@ -638,7 +653,47 @@
       <option name="project" value="LOCAL" />
       <updated>1720531023565</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="feat: access config&#10;&#10;Implemented DHIS2 access config">
+      <option name="closed" value="true" />
+      <created>1720536113336</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1720536113336</updated>
+    </task>
+    <task id="LOCAL-00047" summary="feat: access config&#10;&#10;Implemented User profile editing">
+      <option name="closed" value="true" />
+      <created>1720541110783</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1720541110783</updated>
+    </task>
+    <task id="LOCAL-00048" summary="feat: access config&#10;&#10;Implemented change password feature">
+      <option name="closed" value="true" />
+      <created>1720544417001</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1720544417001</updated>
+    </task>
+    <task id="LOCAL-00049" summary="Add LogoutButton component to DAMUserConfig and update translations.&#10;&#10;A new LogoutButton component is added to the DAMUserConfig file, allowing users to disconnect from the analytics messenger. Corresponding translations are also updated, providing multi-language support for new and modified text entries in the User Interface.">
+      <option name="closed" value="true" />
+      <created>1720545661214</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1720545661214</updated>
+    </task>
+    <task id="LOCAL-00050" summary="fix: login&#10;&#10;Fixed issues with login not refreshing the dam config">
+      <option name="closed" value="true" />
+      <created>1720598431369</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1720598431369</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -689,12 +744,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="fix(env): Fixes&#10;&#10;- Included proxy and cypress keys config examples in env example" />
-    <MESSAGE value="fix(push analytics config): Fixes&#10;&#10;- Set description as required" />
-    <MESSAGE value="fix(chatbot config): Fixes&#10;&#10;- Removed chat bot tab" />
-    <MESSAGE value="chore(package.json): Version update&#10;&#10;- Updated version v1.0.0-beta.00" />
-    <MESSAGE value="fix(gateway status): Fixes&#10;&#10;- Fixed issues with gateway status not updating after updating gateway until you refresh the whole page" />
-    <MESSAGE value="fix(push analytics config): Fixes&#10;&#10;- Fixed issues with groups being identified as normal phone numbers" />
     <MESSAGE value="chore(package.json): Version update&#10;&#10;- Updated app version to v1.0.0-beta.01" />
     <MESSAGE value="chore(*): Setup parse&#10;&#10;- Installed and initialized parse" />
     <MESSAGE value="feat(gateway config): Implementation&#10;&#10;- Modified gateway config for SaaS implementation" />
@@ -714,7 +763,13 @@
     <MESSAGE value="fix: gateways &#10;&#10;Fixed some issues with whatsapp gateway config and listing of gateways" />
     <MESSAGE value="feat: telegram config&#10;&#10;Implemented telegram config" />
     <MESSAGE value="feat: gateways&#10;&#10;Implemented gateway basic actions" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: gateways&#10;&#10;Implemented gateway basic actions" />
+    <MESSAGE value="feat: access config&#10;&#10;Implemented DHIS2 access config" />
+    <MESSAGE value="feat: access config&#10;&#10;Implemented User profile editing" />
+    <MESSAGE value="feat: access config&#10;&#10;Implemented change password feature" />
+    <MESSAGE value="feat: logout&#10;" />
+    <MESSAGE value="Add LogoutButton component to DAMUserConfig and update translations.&#10;&#10;A new LogoutButton component is added to the DAMUserConfig file, allowing users to disconnect from the analytics messenger. Corresponding translations are also updated, providing multi-language support for new and modified text entries in the User Interface." />
+    <MESSAGE value="fix: login&#10;&#10;Fixed issues with login not refreshing the dam config" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: login&#10;&#10;Fixed issues with login not refreshing the dam config" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="WfRunsListSearchHistory"><![CDATA[{
@@ -730,10 +785,38 @@
     {
       "branch": "develop",
       "currentBranchFilter": true
+    },
+    {
+      "branch": "develop",
+      "currentBranchFilter": true
+    },
+    {
+      "branch": "feature/access",
+      "currentBranchFilter": true
+    },
+    {
+      "branch": "develop",
+      "currentBranchFilter": true
+    },
+    {
+      "branch": "develop",
+      "currentBranchFilter": true
+    },
+    {
+      "branch": "feature/messaging",
+      "currentBranchFilter": true
+    },
+    {
+      "branch": "feature/messaging",
+      "currentBranchFilter": true
+    },
+    {
+      "branch": "feature/messaging",
+      "currentBranchFilter": true
     }
   ],
   "lastFilter": {
-    "branch": "develop",
+    "branch": "feature/messaging",
     "currentBranchFilter": true
   }
 }]]></component>

@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2024-07-09T17:13:53.508Z\n"
-"PO-Revision-Date: 2024-07-09T17:13:53.508Z\n"
+"POT-Creation-Date: 2024-07-10T11:29:04.235Z\n"
+"PO-Revision-Date: 2024-07-10T11:29:04.235Z\n"
 
 msgid "Fetching App configurations..."
 msgstr "Fetching App configurations..."
@@ -409,32 +409,29 @@ msgstr ""
 msgid "Add new recipient"
 msgstr "Add new recipient"
 
-msgid "Start with country code without the + sign. Example 255XXXXXXXXX"
-msgstr "Start with country code without the + sign. Example 255XXXXXXXXX"
-
-msgid "Only users with whatsApp contacts will be listed"
-msgstr "Only users with whatsApp contacts will be listed"
-
-msgid "Only groups within which your whatsapp contact is in will be listed"
-msgstr "Only groups within which your whatsapp contact is in will be listed"
-
 msgid "Type"
 msgstr "Type"
-
-msgid "Group"
-msgstr "Group"
-
-msgid "Users"
-msgstr "Users"
-
-msgid "User"
-msgstr "User"
 
 msgid "Invalid phone number"
 msgstr "Invalid phone number"
 
 msgid "Number"
 msgstr "Number"
+
+msgid "Whatsapp Group"
+msgstr "Whatsapp Group"
+
+msgid "Telegram Group"
+msgstr "Telegram Group"
+
+msgid "WhatsApp Phone Number"
+msgstr "WhatsApp Phone Number"
+
+msgid "Telegram Phone Number/Username"
+msgstr "Telegram Phone Number/Username"
+
+msgid "Users"
+msgstr "Users"
 
 msgid "Error saving configuration"
 msgstr "Error saving configuration"
@@ -474,6 +471,9 @@ msgstr "Close"
 
 msgid "Send push analytics"
 msgstr "Send push analytics"
+
+msgid "Gateway(s)"
+msgstr "Gateway(s)"
 
 msgid "Visualization group"
 msgstr "Visualization group"

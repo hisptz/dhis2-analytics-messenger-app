@@ -45,11 +45,22 @@ export function ConnectFormModal({
 	});
 	const { show: showAlert, hide: hideAlert } = useAlert(
 		({ message }: { message: string }) => message,
-		({ type }: { type: Record<string, any> }) => ({
+		({ type, actions }: { type: Record<string, any>; actions: any[] }) => ({
 			...type,
+			actions,
 			duration: 3000,
 		}),
 	);
+
+	const resendEmailVerification = async (username: string) => {
+		await Parse.Cloud.run("requestEmailVerification", {
+			username,
+		});
+		showAlert({
+			message: i18n.t("A verification email has been sent to your email"),
+			type: { success: true },
+		});
+	};
 
 	const onConnect = async (data: ConnectFormData) => {
 		try {
@@ -66,6 +77,21 @@ export function ConnectFormModal({
 		} catch (error: any) {
 			if (error.code === 205) {
 				console.log("Verify your email first");
+				showAlert({
+					message: i18n.t(
+						"You need to verify your email to continue",
+					),
+					actions: [
+						{
+							label: i18n.t("Resend email verification"),
+							onClick: () => {
+								hideAlert();
+								resendEmailVerification(data.username);
+							},
+						},
+					],
+					type: { critical: true },
+				});
 				return;
 			} else {
 				showAlert({

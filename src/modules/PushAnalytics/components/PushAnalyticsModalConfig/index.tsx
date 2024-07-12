@@ -20,7 +20,7 @@ import {
 } from "../../../../shared/interfaces";
 import { RHFDescription } from "./components/RHFDescription";
 import { RHFGroupSelector } from "./components/RHFGroupSelector";
-import { RHFRecipientSelector } from "./components/RHFRecipientSelector";
+import { RHFRecipientSelector } from "./components/RHFRecipientSelector/RHFRecipientSelector";
 import { RHFVisSelector } from "./components/RHFVisSelector";
 import { useManageConfig } from "./hooks/save";
 import { useSendAnalytics } from "./hooks/send";
@@ -28,6 +28,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import Parse from "parse";
 import { useBoolean } from "usehooks-ts";
 import { useQueryClient } from "@tanstack/react-query";
+import { RHFGatewaySelector } from "./components/RHFGatewaySelector";
 
 export interface PushAnalyticsModalConfigProps {
 	config?: Parse.Object | null;
@@ -44,6 +45,7 @@ function SendActions({
 		<FlyoutMenu>
 			{actions.map(({ label, action }) => (
 				<MenuItem
+					suffix={null}
 					key={`${label}-menu-item`}
 					label={label}
 					onClick={action}
@@ -87,7 +89,18 @@ export function PushAnalyticsModalConfig({
 	const { confirm } = useConfirmDialog();
 	const queryClient = useQueryClient();
 	const form = useForm<PushAnalyticsJobFormData>({
-		defaultValues: config?.attributes || {},
+		defaultValues:
+			{
+				...(config?.attributes ?? {}),
+				gateways: config
+					?.get("gateways")
+					.map(
+						(gateway: {
+							data: Parse.Object;
+							channel: "whatsapp" | "telegram";
+						}) => gateway.data.id,
+					),
+			} || {},
 		shouldFocusError: false,
 		resolver: zodResolver(pushAnalyticsJobFormDataSchema),
 	});
@@ -124,9 +137,9 @@ export function PushAnalyticsModalConfig({
 		if (shouldSend) {
 			await send(job);
 			onCloseClick(true);
-			queryClient.invalidateQueries(["analyticsJobs"]);
+			await queryClient.invalidateQueries(["analyticsJobs"]);
 		} else {
-			queryClient.invalidateQueries(["analyticsJobs"]);
+			await queryClient.invalidateQueries(["analyticsJobs"]);
 			onCloseClick(true);
 		}
 	};
@@ -148,7 +161,7 @@ export function PushAnalyticsModalConfig({
 	);
 
 	return (
-		<Modal position="middle" hide={hidden} onClose={onCloseClick}>
+		<Modal position="middle" hide={hidden} onClose={() => onCloseClick()}>
 			<ModalTitle>{i18n.t("Send push analytics")}</ModalTitle>
 			<ModalContent>
 				<FormProvider {...form}>
@@ -157,6 +170,11 @@ export function PushAnalyticsModalConfig({
 							required
 							name="name"
 							label={i18n.t("Name")}
+						/>
+						<RHFGatewaySelector
+							required
+							name="gateways"
+							label={i18n.t("Gateway(s)")}
 						/>
 						<RHFGroupSelector
 							required
@@ -181,7 +199,9 @@ export function PushAnalyticsModalConfig({
 			</ModalContent>
 			<ModalActions>
 				<ButtonStrip>
-					<Button onClick={onCloseClick}>{i18n.t("Cancel")}</Button>
+					<Button onClick={() => onCloseClick()}>
+						{i18n.t("Cancel")}
+					</Button>
 					<SplitButton
 						component={
 							<SendActions
@@ -207,7 +227,7 @@ export function PushAnalyticsModalConfig({
 						}
 						disabled={creating || updating || sending}
 						loading={sending || creating || updating}
-						onClick={form.handleSubmit(onSaveAndSend(true))}
+						onClick={() => form.handleSubmit(onSaveAndSend(true))()}
 						primary
 					>
 						{getButtonLabel(creating, updating, sending, config)}
