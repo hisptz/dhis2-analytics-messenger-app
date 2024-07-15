@@ -33,7 +33,7 @@ export default function AppRouter(): React.ReactElement {
 													element: subElement,
 												}) => {
 													const SubElement =
-														subElement as any;
+														subElement;
 													return (
 														<Route
 															key={`${path}-${subPath}-route`}
@@ -68,7 +68,6 @@ export function Navigator(): React.ReactElement {
 			} else {
 				try {
 					await user.fetch();
-
 					navigate("/app/push-analytics");
 				} catch (e) {
 					navigate("/landing");

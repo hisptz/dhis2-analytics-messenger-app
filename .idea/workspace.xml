@@ -17,7 +17,7 @@
     <treeState key="project">
       <selectedPath>
         <pathElement>
-          <option name="myNodeId" value="project12" />
+          <option name="myNodeId" value="project82" />
           <option name="myNodeType" value="jetbrains.buildServer.tree.descriptors.ProjectDescriptor" />
         </pathElement>
       </selectedPath>
@@ -32,19 +32,10 @@
     </treeState>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="45e8eb8e-5803-456a-9857-5a6354e88f5c" name="Changes" comment="fix: login&#10;&#10;Fixed issues with login not refreshing the dam config">
-      <change afterPath="$PROJECT_DIR$/src/modules/PushAnalytics/components/PushAnalyticsModalConfig/components/RHFRecipientSelector/components/Group/Group.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/modules/PushAnalytics/components/PushAnalyticsModalConfig/components/RHFRecipientSelector/components/Group/hooks/data.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/modules/PushAnalytics/components/PushAnalyticsModalConfig/components/RHFRecipientSelector/components/PhoneNumber.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/modules/PushAnalytics/components/PushAnalyticsModalConfig/hooks/recipientOptions.ts" afterDir="false" />
+    <list default="true" id="45e8eb8e-5803-456a-9857-5a6354e88f5c" name="Changes" comment="feat: Push analytics&#10;&#10;Implemented new flow of sending push analytics">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/i18n/en.pot" beforeDir="false" afterPath="$PROJECT_DIR$/i18n/en.pot" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modules/PushAnalytics/components/PushAnalyticsModalConfig/components/RHFGatewaySelector.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/PushAnalytics/components/PushAnalyticsModalConfig/components/RHFGatewaySelector.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modules/PushAnalytics/components/PushAnalyticsModalConfig/components/RHFRecipientSelector.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/PushAnalytics/components/PushAnalyticsModalConfig/components/RHFRecipientSelector/RHFRecipientSelector.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modules/PushAnalytics/components/PushAnalyticsModalConfig/hooks/save.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/PushAnalytics/components/PushAnalyticsModalConfig/hooks/save.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modules/PushAnalytics/components/PushAnalyticsModalConfig/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/PushAnalytics/components/PushAnalyticsModalConfig/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modules/PushAnalytics/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/PushAnalytics/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/interfaces/pushAnalytics.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/interfaces/pushAnalytics.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/Router/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/Router/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -162,7 +153,7 @@
     &quot;nodejs_package_manager_path&quot;: &quot;yarn&quot;,
     &quot;npm.start.executor&quot;: &quot;Run&quot;,
     &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/Users/gnnko/projects/hisptz/dhis2-analytics-messenger-app/node_modules/prettier&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;ImportCost&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;settings.javascript.linters.eslint&quot;,
     &quot;ts.external.directory.path&quot;: &quot;/Users/gnnko/projects/hisptz/dhis2-analytics-messenger-app/node_modules/typescript/lib&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
@@ -300,14 +291,8 @@
       <workItem from="1720593244697" duration="9154000" />
       <workItem from="1720607413516" duration="2008000" />
       <workItem from="1720677245161" duration="66000" />
-    </task>
-    <task id="LOCAL-00002" summary="refactor(scheduling): Refactors&#10;&#10;- Refactored scheduling components to individual files">
-      <option name="closed" value="true" />
-      <created>1689828831253</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1689828831253</updated>
+      <workItem from="1720677655805" duration="15342000" />
+      <workItem from="1721020185149" duration="329000" />
     </task>
     <task id="LOCAL-00003" summary="feat(scheduling): Implementation&#10;&#10;- Implemented cron input &#10; - Implemented validation on scheduling form">
       <option name="closed" value="true" />
@@ -693,7 +678,15 @@
       <option name="project" value="LOCAL" />
       <updated>1720598431369</updated>
     </task>
-    <option name="localTasksCounter" value="51" />
+    <task id="LOCAL-00051" summary="feat: Push analytics&#10;&#10;Implemented new flow of sending push analytics">
+      <option name="closed" value="true" />
+      <created>1720774627843</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1720774627843</updated>
+    </task>
+    <option name="localTasksCounter" value="52" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -744,7 +737,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="chore(package.json): Version update&#10;&#10;- Updated app version to v1.0.0-beta.01" />
     <MESSAGE value="chore(*): Setup parse&#10;&#10;- Installed and initialized parse" />
     <MESSAGE value="feat(gateway config): Implementation&#10;&#10;- Modified gateway config for SaaS implementation" />
     <MESSAGE value="feat(parse): Implementation&#10;&#10;- Added support for logging in parse server" />
@@ -769,7 +761,8 @@
     <MESSAGE value="feat: logout&#10;" />
     <MESSAGE value="Add LogoutButton component to DAMUserConfig and update translations.&#10;&#10;A new LogoutButton component is added to the DAMUserConfig file, allowing users to disconnect from the analytics messenger. Corresponding translations are also updated, providing multi-language support for new and modified text entries in the User Interface." />
     <MESSAGE value="fix: login&#10;&#10;Fixed issues with login not refreshing the dam config" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: login&#10;&#10;Fixed issues with login not refreshing the dam config" />
+    <MESSAGE value="feat: Push analytics&#10;&#10;Implemented new flow of sending push analytics" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: Push analytics&#10;&#10;Implemented new flow of sending push analytics" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="WfRunsListSearchHistory"><![CDATA[{
@@ -800,6 +793,14 @@
     },
     {
       "branch": "develop",
+      "currentBranchFilter": true
+    },
+    {
+      "branch": "feature/messaging",
+      "currentBranchFilter": true
+    },
+    {
+      "branch": "feature/messaging",
       "currentBranchFilter": true
     },
     {
