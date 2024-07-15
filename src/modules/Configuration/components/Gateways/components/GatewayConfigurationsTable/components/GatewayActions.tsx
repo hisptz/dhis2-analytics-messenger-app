@@ -1,0 +1,57 @@
+import React from "react";
+import { useGatewayStatus } from "../hooks/status";
+import { CircularLoader, Tooltip } from "@dhis2/ui";
+import i18n from "@dhis2/d2-i18n";
+import { GatewayConnectButton } from "./ConnectButton";
+import { GatewayDisconnectButton } from "./DisconnectButton";
+import { GatewayDeleteButton } from "./DeleteButton";
+
+export interface GatewayActionsProps {
+	gateway: Parse.Object;
+	channel: string;
+}
+
+export function GatewayActions({ gateway, channel }: GatewayActionsProps) {
+	const { isLoading, isError, data, refetch } = useGatewayStatus({
+		gateway,
+		channel,
+	});
+
+	if (isError) {
+		return <span>Error</span>;
+	}
+
+	if (isLoading) {
+		return (
+			<>
+				<CircularLoader extrasmall />
+			</>
+		);
+	}
+
+	return (
+		<div className="row gap-8 align-center">
+			<Tooltip content={i18n.t("Remove gateway")}>
+				<GatewayDeleteButton channel={channel} gateway={gateway} />
+			</Tooltip>
+			{data?.status === "NOT STARTED" ? (
+				<Tooltip content={i18n.t("Connect gateway")}>
+					<GatewayConnectButton
+						refetch={refetch}
+						channel={channel}
+						gateway={gateway}
+					/>
+				</Tooltip>
+			) : null}
+			{data?.status.toUpperCase() === "CONNECTED" ? (
+				<Tooltip content={i18n.t("Disconnect gateway")}>
+					<GatewayDisconnectButton
+						refetch={refetch}
+						gateway={gateway}
+						channel={channel}
+					/>
+				</Tooltip>
+			) : null}
+		</div>
+	);
+}

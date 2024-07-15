@@ -11,7 +11,7 @@ import { Helmet } from "react-helmet";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { predefinedSchedules } from "./shared/constants/dataStore";
 import { initializeParse } from "./shared/utils/parse";
-import { ParseProvider } from "./shared/components/ParseProvider";
+import { DamConfigProvider } from "./shared/components/DamConfigProvider";
 
 const queryClient = new QueryClient();
 
@@ -52,25 +52,31 @@ const App = () => (
 					/>
 				}
 			>
-				<ParseProvider>
-					<div>
-						<RecoilRoot>
-							<Suspense
-								fallback={
+				<RecoilRoot>
+					<Suspense
+						fallback={
+							<FullPageLoader
+								message={i18n.t(
+									"Please wait this might take a while...",
+								)}
+							/>
+						}
+					>
+						<ConfirmDialogProvider>
+							<DamConfigProvider
+								loadingComponent={
 									<FullPageLoader
 										message={i18n.t(
-											"Please wait this might take a while...",
+											"Fetching App configurations...",
 										)}
 									/>
 								}
 							>
-								<ConfirmDialogProvider>
-									<AppRouter />
-								</ConfirmDialogProvider>
-							</Suspense>
-						</RecoilRoot>
-					</div>
-				</ParseProvider>
+								<AppRouter />
+							</DamConfigProvider>
+						</ConfirmDialogProvider>
+					</Suspense>
+				</RecoilRoot>
 			</DataStoreProvider>
 		</QueryClientProvider>
 	</>

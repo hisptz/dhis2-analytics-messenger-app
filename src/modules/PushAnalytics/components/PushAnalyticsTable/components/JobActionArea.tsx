@@ -70,7 +70,7 @@ export function JobActionArea({ config }: JobActionAreaProps) {
 						onClick: onShowEdit,
 					},
 					{
-						key: "edit-config",
+						key: "schedule-config",
 						label: i18n.t("Schedule"),
 						icon: <IconClockHistory24 />,
 						onClick: onShowSchedule,

@@ -1,4 +1,4 @@
-# DHIS2 Platform
+# DHIS2_INSTANCE Platform
 node_modules
 .d2
 src/locales
