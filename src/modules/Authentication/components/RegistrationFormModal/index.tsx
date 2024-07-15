@@ -54,8 +54,8 @@ export function RegistrationFormModal({
 		shouldFocusError: false,
 	});
 
-	const onRegister = () => {
-		console.log("Connecting...");
+	const onRegister = (data: SignUpData) => {
+		console.log("Connecting...", data);
 		onClose();
 	};
 
@@ -122,7 +122,12 @@ export function RegistrationFormModal({
 			<ModalActions>
 				<ButtonStrip>
 					<Button onClick={onClose}>{i18n.t("Cancel")}</Button>
-					<Button primary onClick={onRegister}>
+					<Button
+						type="submit"
+						primary
+						loading={registrationForm.formState.isSubmitting}
+						onClick={registrationForm.handleSubmit(onRegister)}
+					>
 						{i18n.t("Register")}
 					</Button>
 				</ButtonStrip>
