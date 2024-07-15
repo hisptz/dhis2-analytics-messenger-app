@@ -5,27 +5,14 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2024-07-12T09:23:18.730Z\n"
-"PO-Revision-Date: 2024-07-12T09:23:18.730Z\n"
+"POT-Creation-Date: 2024-07-15T12:14:30.986Z\n"
+"PO-Revision-Date: 2024-07-15T12:14:30.986Z\n"
 
 msgid "Fetching App configurations..."
 msgstr "Fetching App configurations..."
 
 msgid "Please wait this might take a while..."
 msgstr "Please wait this might take a while..."
-
-msgid "You will received the approval email soon! If it is taking too long, contact"
-msgstr "You will received the approval email soon! If it is taking too long, contact"
-
-msgid "dev@hisptanzania.org"
-msgstr "dev@hisptanzania.org"
-
-msgid ""
-"Check your email inbox to verify your account! If you haven't recived the "
-"email, contact"
-msgstr ""
-"Check your email inbox to verify your account! If you haven't recived the "
-"email, contact"
 
 msgid "A verification email has been sent to your email"
 msgstr "A verification email has been sent to your email"
@@ -60,6 +47,9 @@ msgstr ""
 
 msgid "Register"
 msgstr "Register"
+
+msgid "Registration successful. Check your email to verify your account."
+msgstr "Registration successful. Check your email to verify your account."
 
 msgid "Register to Analytics Messaging Service"
 msgstr "Register to Analytics Messaging Service"
