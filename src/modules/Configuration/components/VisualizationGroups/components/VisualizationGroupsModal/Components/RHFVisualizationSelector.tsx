@@ -5,133 +5,147 @@ import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { Controller } from "react-hook-form";
 
 export interface RHFVisualizationSelectorProps {
-  name: string;
-  validations: Record<string, any>;
-  label: string;
-  required?: boolean;
+	name: string;
+	validations: Record<string, any>;
+	label: string;
+	required?: boolean;
 }
 
 const visualizationQuery = {
-  vis: {
-    resource: "visualizations",
-    params: ({ page, keyword }: any) => {
-      return {
-        fields: ["id", "displayName"],
-        page,
-        pageSize: 50,
-        totalPages: true,
-        filter: keyword ? [`name:ilike:${keyword}`] : undefined,
-      };
-    },
-  },
+	vis: {
+		resource: "visualizations",
+		params: ({ page, keyword }: any) => {
+			return {
+				fields: ["id", "displayName"],
+				page,
+				pageSize: 50,
+				totalPages: true,
+				filter: keyword ? [`identifiable:token:${keyword}`] : undefined,
+			};
+		},
+	},
 };
 
 export function RHFVisualizationSelector({
-  name,
-  label,
-  validations,
-  required,
+	name,
+	label,
+	validations,
+	required,
 }: RHFVisualizationSelectorProps) {
-  const [options, setOptions] = useState<
-    Array<{ label: string; value: string }>
-  >([]);
-  const { data, loading, refetch } = useDataQuery<{
-    vis: { pager: any; visualizations: any[] };
-  }>(visualizationQuery, {
-    variables: {
-      page: 1,
-    },
-  });
+	const [options, setOptions] = useState<
+		Array<{ label: string; value: string }>
+	>([]);
+	const { data, loading, refetch } = useDataQuery<{
+		vis: { pager: any; visualizations: any[] };
+	}>(visualizationQuery, {
+		variables: {
+			page: 1,
+		},
+	});
 
-  useEffect(() => {
-    if (data) {
-      const newData: any[] = data?.vis?.visualizations?.map(
-        (visualization: any) => {
-          return {
-            label: visualization.displayName,
-            value: visualization.id,
-          };
-        },
-      );
-      setOptions((prevState) => uniqBy([...prevState, ...newData], "value"));
-    }
-  }, [data]);
+	useEffect(() => {
+		if (data) {
+			const newData: any[] = data?.vis?.visualizations?.map(
+				(visualization: any) => {
+					return {
+						label: visualization.displayName,
+						value: visualization.id,
+					};
+				},
+			);
+			setOptions((prevState) =>
+				uniqBy([...prevState, ...newData], "value"),
+			);
+		}
+	}, [data]);
 
-  const onNextPage = useCallback(() => {
-    const page = parseInt(data?.vis?.pager?.page);
-    const totalPages = parseInt(data?.vis?.pager?.pageCount);
-    if (page !== totalPages) {
-      refetch({
-        page: parseInt(data?.vis?.pager?.page) + 1,
-      });
-    }
-  }, [refetch, data]);
+	const onNextPage = useCallback(() => {
+		const page = parseInt(data?.vis?.pager?.page);
+		const totalPages = parseInt(data?.vis?.pager?.pageCount);
+		if (page !== totalPages) {
+			refetch({
+				page: parseInt(data?.vis?.pager?.page) + 1,
+			});
+		}
+	}, [refetch, data]);
 
-  const onFilter = useCallback(
-    (keyword: string) => {
-      return refetch({
-        keyword,
-        page: 1,
-      });
-    },
-    [refetch],
-  );
+	const onFilter = useCallback(
+		(keyword: string) => {
+			return refetch({
+				keyword,
+				page: 1,
+			});
+		},
+		[refetch],
+	);
 
-  const onFilterChange = debounce(async ({ value }) => {
-    const { vis: visualizationResponse } = await onFilter(value);
-    const visualizations = (visualizationResponse as any)?.visualizations ?? [];
-    setOptions(
-      uniqBy(
-        [
-          ...visualizations.map((visualization: any) => ({
-            label: visualization.displayName,
-            value: visualization.id,
-          })),
-        ],
-        "value",
-      ),
-    );
-  }, 1000);
+	const onFilterChange = debounce(async ({ value }) => {
+		const { vis: visualizationResponse } = await onFilter(value);
+		const visualizations =
+			(visualizationResponse as any)?.visualizations ?? [];
+		setOptions(
+			uniqBy(
+				[
+					...visualizations.map((visualization: any) => ({
+						label: visualization.displayName,
+						value: visualization.id,
+					})),
+				],
+				"value",
+			),
+		);
+	}, 1000);
 
-  return (
-    <Controller
-      rules={validations}
-      render={({ field, fieldState }) => {
-        const updatedOptions = useMemo(() => {
-          return uniqBy(
-            [
-              ...(options ?? []),
-              ...(field.value?.map(({ id, name }: any) => ({
-                label: name,
-                value: id,
-              })) ?? []),
-            ],
-            "value",
-          );
-        }, [options]);
+	return (
+		<Controller
+			rules={validations}
+			render={({ field, fieldState }) => {
+				const updatedOptions = useMemo(() => {
+					return uniqBy(
+						[
+							...(options ?? []),
+							...(field.value?.map(({ id, name }: any) => ({
+								label: name,
+								value: id,
+							})) ?? []),
+						],
+						"value",
+					);
+				}, [options]);
 
-        return (
-          <Field required={required} label={label}>
-            <Transfer
-              onEndReached={onNextPage}
-              filterable
-              loading={loading}
-              options={updatedOptions}
-              onFilterChange={onFilterChange}
-              selected={field?.value?.map(({ id }: { id: string }) => id) ?? []}
-              onChange={({ selected }: { selected: string[] }) => {
-                field.onChange(
-                  selected?.map((value) => ({
-                    id: value,
-                    name: find(updatedOptions, ["value", value])?.label,
-                  })),
-                );
-              }}
-            />
-          </Field>
-        );
-      }}
-      name={name}
-    />
-  );
+				return (
+					<Field required={required} label={label}>
+						<Transfer
+							onEndReached={onNextPage}
+							filterable
+							loading={loading}
+							options={updatedOptions}
+							onFilterChange={onFilterChange}
+							selected={
+								field?.value?.map(
+									({ id }: { id: string }) => id,
+								) ?? []
+							}
+							onChange={({
+								selected,
+							}: {
+								selected: string[];
+							}) => {
+								field.onChange(
+									selected?.map((value) => ({
+										id: value,
+										name: find(updatedOptions, [
+											"value",
+											value,
+										])?.label,
+									})),
+								);
+							}}
+						/>
+					</Field>
+				);
+			}}
+			name={name}
+		/>
+	);
 }
