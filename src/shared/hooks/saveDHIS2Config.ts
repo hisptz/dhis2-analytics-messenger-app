@@ -11,12 +11,29 @@ import Parse from "parse";
 import { ParseClass } from "../constants/parse";
 import { DateTime } from "luxon";
 
-const accessConfigSchema = z.object({
-	pat: z.string().startsWith("d2", {
-		message: i18n.t("The personal access token must start with d2"),
-	}),
-	expiresOn: z.string().date("Invalid expiry date"),
-});
+const accessConfigSchema = z
+	.object({
+		url: z.string().url(),
+		pat: z.string().startsWith("d2pat_", {
+			message: i18n.t("The personal access token must start with d2pat_"),
+		}),
+		expiresOn: z.string().date("Invalid expiry date"),
+	})
+	.superRefine(async (value, context) => {
+		const response = await fetch(`${value.url}/api/me`, {
+			headers: {
+				Authorization: `Api Token ${value.pat}`,
+			},
+		});
+		if (!response.ok) {
+			context.addIssue({
+				code: z.ZodIssueCode.custom,
+				path: ["pat"],
+				message: i18n.t("The personal access token is invalid"),
+				fatal: true,
+			});
+		}
+	});
 
 export type AccessConfigData = z.infer<typeof accessConfigSchema>;
 
@@ -51,6 +68,7 @@ export function useManageDHIS2Config({ onClose }: { onClose: () => void }) {
 	const form = useForm<AccessConfigData>({
 		resolver: zodResolver(accessConfigSchema),
 		defaultValues: {
+			url: systemInfo?.contextPath,
 			pat: config?.get("pat"),
 			expiresOn: DateTime.fromJSDate(
 				config?.get("expiresOn") as Date,

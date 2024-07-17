@@ -25,7 +25,7 @@ export function AccessConfigModal({ hide, onClose }: AccessConfigModalProps) {
 			<Modal position="middle" hide={hide} onClose={onClose}>
 				<ModalTitle>{i18n.t("DHIS2 Access Config")}</ModalTitle>
 				<ModalContent>
-					<AccessConfigForm form={form} />
+					<AccessConfigForm editable form={form} />
 				</ModalContent>
 				<ModalActions>
 					<ButtonStrip>
