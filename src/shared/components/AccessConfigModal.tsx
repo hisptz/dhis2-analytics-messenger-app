@@ -19,22 +19,24 @@ export interface AccessConfigModalProps {
 
 export function AccessConfigModal({ hide, onClose }: AccessConfigModalProps) {
 	const { form, onSave } = useManageDHIS2Config({ onClose });
+	const loading = form.formState.isSubmitting || form.formState.isValidating;
 
 	return (
 		<FormProvider {...form}>
 			<Modal position="middle" hide={hide} onClose={onClose}>
 				<ModalTitle>{i18n.t("DHIS2 Access Config")}</ModalTitle>
 				<ModalContent>
-					<AccessConfigForm form={form} />
+					<AccessConfigForm editable form={form} />
 				</ModalContent>
 				<ModalActions>
 					<ButtonStrip>
 						<Button onClick={onClose}>{i18n.t("Cancel")}</Button>
 						<Button
+							loading={loading}
 							primary
 							onClick={() => form.handleSubmit(onSave)()}
 						>
-							{i18n.t("Save")}
+							{loading ? i18n.t("Saving...") : i18n.t("Save")}
 						</Button>
 					</ButtonStrip>
 				</ModalActions>

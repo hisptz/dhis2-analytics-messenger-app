@@ -9,7 +9,10 @@ export interface AccessConfigFormProps {
 	editable: boolean;
 }
 
-export function AccessConfigForm({ form, editable }: AccessConfigFormProps) {
+export function AccessConfigForm({
+	form,
+	editable = true,
+}: AccessConfigFormProps) {
 	return (
 		<FormProvider {...form}>
 			<div className="column gap-8">

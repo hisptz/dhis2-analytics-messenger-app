@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Parse from "parse";
 import i18n from "@dhis2/d2-i18n";
 import {
 	Button,
@@ -13,6 +14,9 @@ import { useForm, FormProvider } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { RHFDHIS2FormField } from "@hisptz/dhis2-ui";
+import { useNavigate } from "react-router-dom";
+import { useRefreshDamConfig } from "../../../../shared/components/DamConfigProvider";
+import { useAlert } from "@dhis2/app-runtime";
 
 const signUpSchema = z.object({
 	fullName: z
@@ -49,14 +53,50 @@ export function RegistrationFormModal({
 	onClose,
 	hide,
 }: RegistrationFormModalProps): React.ReactElement {
+	const navigate = useNavigate();
+	const refresh = useRefreshDamConfig();
+	const { show: showAlert, hide: hideAlert } = useAlert(
+		({ message }: { message: string }) => message,
+		({ type, actions }: { type: Record<string, any>; actions: any[] }) => ({
+			...type,
+			actions,
+			duration: 3000,
+		}),
+	);
 	const registrationForm = useForm<SignUpData>({
 		resolver: zodResolver(signUpSchema),
 		shouldFocusError: false,
 	});
 
-	const onRegister = () => {
-		console.log("Connecting...");
-		onClose();
+	const onRegister = async (data: SignUpData) => {
+		try {
+			const { fullName, username, phoneNumber, email, password } = data;
+			const user = await Parse.User.signUp(username, password, {
+				fullName,
+				email,
+				phoneNumber,
+			});
+
+			if (user) {
+				showAlert({
+					message: i18n.t(
+						"Registration successful. Check your email to verify your account.",
+					),
+					type: { success: true },
+				});
+				registrationForm.reset();
+				onClose();
+				refresh();
+				navigate("/");
+			}
+		} catch (error: any) {
+			showAlert({
+				message: error.message,
+				type: { critical: true },
+			});
+			await new Promise((resolve) => setTimeout(resolve, 5000));
+			hideAlert();
+		}
 	};
 
 	return (
@@ -122,7 +162,12 @@ export function RegistrationFormModal({
 			<ModalActions>
 				<ButtonStrip>
 					<Button onClick={onClose}>{i18n.t("Cancel")}</Button>
-					<Button primary onClick={onRegister}>
+					<Button
+						type="submit"
+						primary
+						loading={registrationForm.formState.isSubmitting}
+						onClick={registrationForm.handleSubmit(onRegister)}
+					>
 						{i18n.t("Register")}
 					</Button>
 				</ButtonStrip>

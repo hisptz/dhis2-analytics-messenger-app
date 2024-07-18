@@ -1,7 +1,6 @@
-import { RHFSingleSelectField } from "@hisptz/dhis2-ui";
 import React, { useMemo } from "react";
-import { useGateways } from "../../../../Configuration/components/Gateways/hooks/data";
-import { Gateway } from "../../../../Configuration/components/Gateways/schema";
+import { useGateways } from "../../../../Configuration/components/Gateways/components/GatewayConfigurationsTable/hooks/data";
+import { RHFMultiSelectField } from "../../../../../shared/components/Fields/RHFMultiSelectField";
 
 export interface RHFGatewaySelectorProps {
 	name: string;
@@ -16,17 +15,19 @@ export function RHFGatewaySelector({
 	label,
 	required,
 }: RHFGatewaySelectorProps) {
-	const { gateways, loading } = useGateways();
+	const { data, loading } = useGateways();
 
 	const options = useMemo(() => {
-		return (gateways as Gateway[]).map((value: any) => ({
-			label: value.name,
-			value: value.id,
-		}));
-	}, [gateways]);
+		return (
+			data?.map((value) => ({
+				label: value?.data?.get("name"),
+				value: value?.data?.id,
+			})) ?? []
+		);
+	}, [data]);
 
 	return (
-		<RHFSingleSelectField
+		<RHFMultiSelectField
 			loading={loading}
 			required={required}
 			validations={validations}

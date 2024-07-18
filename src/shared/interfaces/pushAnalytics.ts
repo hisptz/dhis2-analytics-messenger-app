@@ -2,13 +2,32 @@ import { z } from "zod";
 import Parse from "parse";
 import i18n from "@dhis2/d2-i18n";
 
-export const contactSchema = z.object({
-	id: z.string().optional(),
-	type: z.enum(["individual", "group", "user"]),
-	clientType: z.enum(["whatsapp"]),
+export enum ContactType {
+	INDIVIDUAL = "individual",
+	GROUP = "group",
+}
+
+export const channelSchema = z.enum(["whatsapp", "telegram"]);
+
+export const ToContactSchema = z.object({
 	identifier: z.string(),
+	type: z.nativeEnum(ContactType),
+	channel: channelSchema,
 });
-export type Contact = z.infer<typeof contactSchema>;
+export type Contact = z.infer<typeof ToContactSchema>;
+
+export const ToContactFormSchema = ToContactSchema.omit({
+	type: true,
+	channel: true,
+}).extend({
+	type: z.enum([
+		"whatsappPhoneNumber",
+		"whatsappGroup",
+		"telegramPhoneNumber",
+		"telegramGroup",
+		"user",
+	]),
+});
 export const visualizationSchema = z.object({
 	id: z.string().optional(),
 	name: z.string(),
@@ -18,7 +37,7 @@ export type Visualization = z.infer<typeof visualizationSchema>;
 export const pushAnalyticsJobSchema = z.object({
 	name: z.string({ required_error: i18n.t("Name is required") }),
 	contacts: z
-		.array(contactSchema, {
+		.array(ToContactSchema, {
 			required_error: i18n.t("Contacts are required"),
 		})
 		.min(1, i18n.t("At least one contact is required")),
@@ -33,7 +52,8 @@ export const pushAnalyticsJobFormDataSchema = pushAnalyticsJobSchema
 		dhis2Instance: true,
 	})
 	.extend({
-		contacts: z.array(contactSchema),
+		contacts: z.array(ToContactSchema),
+		gateways: z.array(z.string()),
 		visualizations: z.array(visualizationSchema),
 		visualizationGroup: z.string(),
 	});

@@ -31,9 +31,10 @@ async function getDamConfig({
 }: {
 	queryKey: QueryKey;
 }): Promise<Parse.Object | null> {
-	const [systemId] = queryKey;
+	const [systemId, contextPath] = queryKey;
 	const query = new Parse.Query(ParseClass.DHIS2_INSTANCE);
 	query.equalTo("systemId", systemId);
+	query.equalTo("url", contextPath);
 	return (await query.first()) ?? null;
 }
 
@@ -45,14 +46,18 @@ export function DamConfigProvider({
 	loadingComponent: React.ReactNode;
 }) {
 	const { systemInfo } = useConfig();
+
 	const {
 		value: hide,
 		setTrue: onClose,
 		setFalse: onOpen,
 	} = useBoolean(true);
 
-	const systemId = useMemo(
-		() => (systemInfo as Record<string, any>).systemId,
+	const queryKey = useMemo(
+		() => [
+			(systemInfo as Record<string, any>).systemId,
+			(systemInfo as Record<string, any>).contextPath,
+		],
 		[systemInfo],
 	);
 
@@ -61,7 +66,7 @@ export function DamConfigProvider({
 		data: damConfig,
 		refetch,
 	} = useQuery({
-		queryKey: [systemId],
+		queryKey,
 		queryFn: getDamConfig,
 		enabled: !!systemInfo,
 		retry: false,

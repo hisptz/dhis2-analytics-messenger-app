@@ -1,13 +1,13 @@
 {
   "name": "dhis2-analytics-messenger-app",
-  "version": "1.0.0-beta.02",
+  "version": "1.0.0-beta.03",
   "description": "A DHIS2 web application that allows sending of analytics data to messaging applications",
   "license": "BSD-3-Clause",
   "private": true,
   "scripts": {
     "cy:start": "REACT_APP_NODE_ENV=test BROWSER=none yarn start",
     "cy:prepare": "start-server-and-test 'yarn cy:start' http://localhost:3000",
-    "build": "d2-app-scripts build",
+    "build": "d2-app-scripts build --no-verify",
     "start": "dotenv -- cross-var d2-app-scripts start --proxy %REACT_APP_DHIS2_PROXY% --port 3000",
     "test:open": "yarn cy:prepare 'yarn cypress open --env networkMode=live'",
     "_cy:live": "dotenv -- cross-var yarn cypress run --env networkMode=live --key %CYPRESS_RECORD_KEY%",
