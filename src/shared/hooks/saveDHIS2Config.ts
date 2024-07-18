@@ -41,6 +41,7 @@ async function saveDamConfig(
 	variables: ReturnType<typeof useConfig>["systemInfo"] & {
 		systemId: string;
 		systemName: string;
+		instanceBaseUrl?: string;
 		pat: string;
 		expiresOn: Date;
 		config: Parse.Object | null;
@@ -51,11 +52,15 @@ async function saveDamConfig(
 	if (!variables.config) {
 		dhis2Instance.set("systemId", variables.systemId);
 		dhis2Instance.set("name", variables.systemName);
-		dhis2Instance.set("url", variables.contextPath);
+		dhis2Instance.set(
+			"url",
+			variables.instanceBaseUrl ?? variables.contextPath,
+		);
 		dhis2Instance.set("version", variables.version);
 	}
 	dhis2Instance.set("pat", variables.pat);
 	dhis2Instance.set("expiresOn", new Date(variables.expiresOn));
+	dhis2Instance.set("timezone", variables.serverTimeZoneId);
 
 	return await dhis2Instance.save();
 }
