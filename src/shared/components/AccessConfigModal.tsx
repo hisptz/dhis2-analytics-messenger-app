@@ -19,6 +19,7 @@ export interface AccessConfigModalProps {
 
 export function AccessConfigModal({ hide, onClose }: AccessConfigModalProps) {
 	const { form, onSave } = useManageDHIS2Config({ onClose });
+	const loading = form.formState.isSubmitting || form.formState.isValidating;
 
 	return (
 		<FormProvider {...form}>
@@ -31,10 +32,11 @@ export function AccessConfigModal({ hide, onClose }: AccessConfigModalProps) {
 					<ButtonStrip>
 						<Button onClick={onClose}>{i18n.t("Cancel")}</Button>
 						<Button
+							loading={loading}
 							primary
 							onClick={() => form.handleSubmit(onSave)()}
 						>
-							{i18n.t("Save")}
+							{loading ? i18n.t("Saving...") : i18n.t("Save")}
 						</Button>
 					</ButtonStrip>
 				</ModalActions>

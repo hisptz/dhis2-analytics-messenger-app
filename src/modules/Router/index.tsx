@@ -68,6 +68,11 @@ export function Navigator(): React.ReactElement {
 			} else {
 				try {
 					await user.fetch();
+					if (!user.get("approved")) {
+						await Parse.User.logOut();
+						navigate("/landing");
+						return;
+					}
 					navigate("/app/push-analytics");
 				} catch (e) {
 					navigate("/landing");

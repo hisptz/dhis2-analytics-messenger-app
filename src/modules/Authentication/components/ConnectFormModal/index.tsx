@@ -17,8 +17,6 @@ import Parse from "parse";
 import { useNavigate } from "react-router-dom";
 import { useRefreshDamConfig } from "../../../../shared/components/DamConfigProvider";
 
-const CONTACT_EMAIL = "dev@hisptanzania.org";
-
 const ConnectFormSchema = z.object({
 	username: z.string({ required_error: "Username is required" }),
 	password: z
@@ -66,25 +64,10 @@ export function ConnectFormModal({
 
 	const onConnect = async (data: ConnectFormData) => {
 		try {
-			const user = await Parse.User.logIn(
-				data?.username ?? "",
-				data?.password ?? "",
-			);
-
-			if (user) {
-				if (user.get("approved")) {
-					onClose(true);
-					await refresh();
-					navigate("/");
-				} else {
-					showAlert({
-						message: i18n.t(
-							`Your account is not approved yet. Please contact ${CONTACT_EMAIL} for more information.`,
-						),
-						type: { critical: true },
-					});
-				}
-			}
+			await Parse.User.logIn(data?.username ?? "", data?.password ?? "");
+			onClose(true);
+			await refresh();
+			navigate("/");
 		} catch (error: any) {
 			if (error.code === 205) {
 				console.log("Verify your email first");
