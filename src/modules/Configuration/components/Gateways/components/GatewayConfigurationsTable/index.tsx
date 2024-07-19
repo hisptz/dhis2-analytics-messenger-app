@@ -3,7 +3,7 @@ import { Button, CircularLoader, IconAdd24 } from "@dhis2/ui";
 import { CustomDataTable, CustomDataTableRow } from "@hisptz/dhis2-ui";
 import i18n from "@dhis2/d2-i18n";
 import { useGateways } from "./hooks/data";
-import { isEmpty } from "lodash";
+import { capitalize, isEmpty } from "lodash";
 import { useBoolean } from "usehooks-ts";
 import { GatewayConfigurationModal } from "../GatewayConfigurationModal";
 import { GatewayStatus } from "./components/GatewayStatus";
@@ -48,7 +48,7 @@ export default function GatewayConfigurationsTable(): React.ReactElement {
 					return {
 						sn: index + 1,
 						id: row.data.id,
-						...row,
+						channel: capitalize(row.channel),
 						...(row?.data.attributes ?? {}),
 						status: (
 							<GatewayStatus
