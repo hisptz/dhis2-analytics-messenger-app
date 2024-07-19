@@ -3,7 +3,6 @@ import { useQueries, useQueryClient } from "@tanstack/react-query";
 import { useMemo } from "react";
 import Parse from "parse";
 import { channels } from "../../../constants/channels";
-import { capitalize } from "lodash";
 import { forEach } from "async";
 
 function getClients({
@@ -37,7 +36,7 @@ export function useGateways() {
 				.map((clientResults, index) => {
 					return clientResults.data?.map((data) => ({
 						data,
-						channel: capitalize(channels[index].name),
+						channel: channels[index].name,
 					}));
 				})
 				.flat()

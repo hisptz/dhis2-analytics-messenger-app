@@ -11,7 +11,7 @@ export interface GatewayConnectButtonProps {
 	refetch: () => void;
 }
 
-export function GatewayConnectButton({
+export function GatewayStartButton({
 	gateway,
 	channel,
 	refetch,
