@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2024-07-19T06:57:45.000Z\n"
-"PO-Revision-Date: 2024-07-19T06:57:45.000Z\n"
+"POT-Creation-Date: 2024-07-19T07:41:49.638Z\n"
+"PO-Revision-Date: 2024-07-19T07:41:49.638Z\n"
 
 msgid "Fetching App configurations..."
 msgstr "Fetching App configurations..."
@@ -420,6 +420,15 @@ msgstr "Phone Number / Username"
 msgid "WhatsApp Phone Number"
 msgstr "WhatsApp Phone Number"
 
+msgid "Select recipients"
+msgstr "Select recipients"
+
+msgid "Channel"
+msgstr "Channel"
+
+msgid "Type"
+msgstr "Type"
+
 msgid "Whatsapp Group"
 msgstr "Whatsapp Group"
 
@@ -431,15 +440,6 @@ msgstr "Telegram Phone Number/Username"
 
 msgid "Users"
 msgstr "Users"
-
-msgid "Channel"
-msgstr "Channel"
-
-msgid "Type"
-msgstr "Type"
-
-msgid "Select recipients"
-msgstr "Select recipients"
 
 msgid "Error saving configuration"
 msgstr "Error saving configuration"

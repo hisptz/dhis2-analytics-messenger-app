@@ -31,7 +31,8 @@ const allOptions = [
 	// },
 ];
 
-export function useRecipientOptions(channel?: string) {
+export function useRecipientOptions() {
+	const channel = useWatch({ name: "channel" });
 	return useMemo(
 		() =>
 			map(

@@ -18,10 +18,8 @@ import {
 	ContactType,
 	ToContactFormSchema,
 } from "../../../../../../shared/interfaces";
-import { useRecipientOptions } from "../../hooks/recipientOptions";
-import { Group } from "../RHFRecipientSelector/components/Group/Group";
-import { PhoneNumber } from "../RHFRecipientSelector/components/PhoneNumber";
 import { useGatewayChannelOptions } from "../../hooks/gatewayChanelOptions";
+import { ContactSelector } from "./components/ContactSelector";
 
 export interface RecipientSelectorModalConfigProps {
 	hidden: boolean;
@@ -47,10 +45,10 @@ export function RecipientSelectorModalConfig({
 		shouldFocusError: false,
 		resolver: zodResolver(ToContactFormSchema),
 	});
-	const recipientOptions = useRecipientOptions(form.watch("channel"));
+
 	const gatewayChannelOptions = useGatewayChannelOptions();
 
-	const [type, channel] = form.watch(["type", "channel"]);
+	const [type] = form.watch(["type"]);
 
 	const onSubmit = useCallback(
 		(data: RecipientData) => {
@@ -96,27 +94,7 @@ export function RecipientSelectorModalConfig({
 								options={gatewayChannelOptions}
 								name={"channel"}
 							/>
-
-							<RHFSingleSelectField
-								disabled={!channel}
-								label={i18n.t("Type")}
-								options={recipientOptions}
-								name={"type"}
-							/>
-
-							{type === "user" && <></>}
-							{type === "whatsappGroup" && (
-								<Group gatewayType="whatsapp" />
-							)}
-							{type === "telegramGroup" && (
-								<Group gatewayType="telegram" />
-							)}
-							{type === "whatsappPhoneNumber" && (
-								<PhoneNumber gatewayType="whatsapp" />
-							)}
-							{type === "telegramPhoneNumber" && (
-								<PhoneNumber gatewayType="telegram" />
-							)}
+							<ContactSelector />
 						</div>
 					</Field>
 				</ModalContent>
