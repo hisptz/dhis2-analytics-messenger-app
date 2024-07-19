@@ -1,6 +1,6 @@
 import { useAlert, useDataMutation, useDataQuery } from "@dhis2/app-runtime";
 import i18n from "@dhis2/d2-i18n";
-import { Tag } from "@dhis2/ui";
+import { Tag, Tooltip } from "@dhis2/ui";
 import { useConfirmDialog } from "@hisptz/dhis2-ui";
 import React from "react";
 import { useSetRecoilState } from "recoil";
@@ -80,8 +80,13 @@ export function useVisualizationGroups(onEdit: () => void): {
 						}}
 					>
 						{(visualizations ?? []).map(({ name, id }: any) => (
-							<div key={`${id}-tag`}>
-								<Tag>{name}</Tag>
+							<div
+								style={{ cursor: "pointer" }}
+								key={`${id}-tag`}
+							>
+								<Tooltip content={name}>
+									<Tag>{name}</Tag>
+								</Tooltip>
 							</div>
 						))}
 					</div>
