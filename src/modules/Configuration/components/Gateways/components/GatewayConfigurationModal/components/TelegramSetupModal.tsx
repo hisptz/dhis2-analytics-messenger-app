@@ -75,7 +75,7 @@ export function TelegramSetupButton({
 						callback(code);
 					} else {
 						socket.disconnect();
-						throw "Invalid code";
+						reject("Connection cancelled");
 					}
 				});
 				socket.on("success", onSuccess);

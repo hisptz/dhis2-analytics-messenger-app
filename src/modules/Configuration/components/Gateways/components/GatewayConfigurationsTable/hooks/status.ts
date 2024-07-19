@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { useMemo } from "react";
+import Parse from "parse";
 
 export function useGatewayStatus({
 	gateway,
@@ -11,6 +12,7 @@ export function useGatewayStatus({
 	const sessionId = useMemo(() => {
 		return gateway.get("sessionId") as string;
 	}, []);
+	const user = Parse.User.current();
 	return useQuery({
 		queryKey: [channel, sessionId],
 		queryFn: async (): Promise<{ status: string } | null> => {
@@ -18,7 +20,11 @@ export function useGatewayStatus({
 				process.env.REACT_APP_SAAS_BASE_URL
 			}/channels/${channel.toLowerCase()}/sessions/${sessionId}/status`;
 			const response = await fetch(url, {
-				headers: {},
+				headers: {
+					"X-Parse-Session-Token": user!.getSessionToken()!,
+					"X-Parse-Application-Id":
+						process.env.REACT_APP_SAAS_APP_ID!,
+				},
 			});
 			if (response.status === 200) {
 				return await response.json();
@@ -33,7 +39,7 @@ export function useGatewayStatus({
 			}
 			return null;
 		},
-		refetchInterval: 1000,
-		refetchIntervalInBackground: 60 * 1000,
+		refetchInterval: 10000,
+		refetchIntervalInBackground: 60 * 60 * 1000,
 	});
 }

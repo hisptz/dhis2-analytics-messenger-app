@@ -56,6 +56,7 @@ export function WhatsAppSetup({
 			extraHeaders: {
 				"X-Parse-Session-Token": user!.getSessionToken()!,
 				"X-Parse-Application-Id": process.env.REACT_APP_SAAS_APP_ID!,
+				"Authorization": `Token ${user?.getSessionToken()}`,
 			},
 			query: {
 				name,
@@ -148,7 +149,7 @@ export function WhatsAppSetup({
 					<span>{loadingStatus.message}</span>
 				</div>
 			) : null}
-			{!qrCode && !loadingStatus && <CircularLoader small />}
+			{!qrCode && !loadingStatus && !error && <CircularLoader small />}
 			{!!error && <div>{error.toString()}</div>}
 			{qrCode && !error ? (
 				<div className="w-100 h-100">

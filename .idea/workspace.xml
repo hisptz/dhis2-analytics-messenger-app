@@ -33,8 +33,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="45e8eb8e-5803-456a-9857-5a6354e88f5c" name="Changes" comment="feat: connect button&#10;&#10;Implemented whatsapp connect button for disconnected gateways">
-      <change afterPath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationsTable/components/TelegramConnectButton.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/i18n/en.pot" beforeDir="false" afterPath="$PROJECT_DIR$/i18n/en.pot" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationModal/components/TelegramSetupModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationModal/components/TelegramSetupModal.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationModal/components/WhatsAppSetupModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationModal/components/WhatsAppSetupModal.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationsTable/components/WhatsAppGatewayConnectButton/components/WhatsAppConnectModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationsTable/components/WhatsAppGatewayConnectButton/components/WhatsAppConnectModal.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationsTable/hooks/status.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationsTable/hooks/status.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/interfaces/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/interfaces/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/interfaces/visualization.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/interfaces/visualization.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,6 +75,7 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="SIGN_OFF_COMMIT" value="true" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -86,12 +93,8 @@
               <option name="branches">
                 <list>
                   <RecentBranch>
-                    <option name="branchName" value="feature/connect-buttons" />
-                    <option name="lastUsedInstant" value="1721381855" />
-                  </RecentBranch>
-                  <RecentBranch>
                     <option name="branchName" value="develop" />
-                    <option name="lastUsedInstant" value="1721278147" />
+                    <option name="lastUsedInstant" value="1721383141" />
                   </RecentBranch>
                   <RecentBranch>
                     <option name="branchName" value="v1" />
@@ -141,7 +144,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "dart.analysis.tool.window.visible": "false",
-    "git-widget-placeholder": "feature/connect-buttons",
+    "git-widget-placeholder": "develop",
     "last_opened_file_path": "/Users/gnnko/projects/hisptz/dhis2-analytics-messenger-app/src/modules/Configuration/components/Gateways/components/GatewayConfigurationsTable/components",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.standard": "true",
@@ -867,10 +870,14 @@
     {
       "branch": "feature/connect-buttons",
       "currentBranchFilter": true
+    },
+    {
+      "branch": "develop",
+      "currentBranchFilter": true
     }
   ],
   "lastFilter": {
-    "branch": "feature/connect-buttons",
+    "branch": "develop",
     "currentBranchFilter": true
   }
 }]]></component>

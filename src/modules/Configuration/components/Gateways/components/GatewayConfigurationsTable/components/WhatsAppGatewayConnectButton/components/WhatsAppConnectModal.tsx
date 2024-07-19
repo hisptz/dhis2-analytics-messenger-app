@@ -11,6 +11,7 @@ import i18n from "@dhis2/d2-i18n";
 import React, { useMemo } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useRefetchGateways } from "../../../hooks/data";
+import Parse from "parse";
 
 export interface WhatsAppConnectModalProps {
 	hide: boolean;
@@ -33,13 +34,17 @@ export function WhatsAppConnectModal({
 	}, []);
 
 	const refetch = useRefetchGateways();
+	const user = Parse.User.current();
 
 	async function getQR() {
 		const url = `${
 			process.env.REACT_APP_SAAS_BASE_URL
 		}/channels/whatsapp/sessions/${sessionId}/qrCode`;
 		const response = await fetch(url, {
-			headers: {},
+			headers: {
+				"X-Parse-Session-Token": user!.getSessionToken()!,
+				"X-Parse-Application-Id": process.env.REACT_APP_SAAS_APP_ID!,
+			},
 		});
 		if (response.status === 200) {
 			return (await response.json()) as {
