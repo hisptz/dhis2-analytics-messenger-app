@@ -1,4 +1,5 @@
 import React, { useMemo } from "react";
+import { sortBy } from "lodash";
 import { useDHIS2Users } from "../../../../../shared/hooks/users";
 import { Contact } from "../../../../../shared/interfaces";
 import { ContactChip } from "../../../../../shared/components/ContactChip";
@@ -38,30 +39,37 @@ export function usePushAnalyticsConfig() {
 
 	const configs = useMemo(() => {
 		if (!data) return [] as Record<string, unknown>[];
-		return data?.map((config, index) => {
-			const contacts = config?.get("contacts");
-			return {
-				name: config?.get("name"),
-				index: index + 1,
-				contacts: (
-					<div style={{ gap: 8, flexWrap: "wrap" }} className="row">
-						{contacts?.map(({ identifier, ...rest }: Contact) => (
-							<ContactChip
-								key={`${identifier}-recipient`}
-								identifier={identifier}
-								{...rest}
-							/>
-						))}
-					</div>
-				),
-				actions: (
-					<JobActionArea
-						key={`${config.id}-action-area`}
-						config={config}
-					/>
-				),
-			};
-		});
+		return sortBy(
+			data?.map((config) => {
+				const contacts = config?.get("contacts");
+				return {
+					name: config?.get("name"),
+					contacts: (
+						<div
+							style={{ gap: 8, flexWrap: "wrap" }}
+							className="row"
+						>
+							{contacts?.map(
+								({ identifier, ...rest }: Contact) => (
+									<ContactChip
+										key={`${identifier}-recipient`}
+										identifier={identifier}
+										{...rest}
+									/>
+								),
+							)}
+						</div>
+					),
+					actions: (
+						<JobActionArea
+							key={`${config.id}-action-area`}
+							config={config}
+						/>
+					),
+				};
+			}),
+			["name"],
+		).map((config, index) => ({ ...config, index: index + 1 }));
 	}, [data]);
 
 	return {
