@@ -18,7 +18,6 @@ export type Contact = z.infer<typeof ToContactSchema>;
 
 export const ToContactFormSchema = ToContactSchema.omit({
 	type: true,
-	channel: true,
 }).extend({
 	type: z.enum([
 		"whatsappPhoneNumber",

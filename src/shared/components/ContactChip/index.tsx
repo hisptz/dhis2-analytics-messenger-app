@@ -1,9 +1,11 @@
 import { Chip, IconUser24, IconUserGroup24 } from "@dhis2/ui";
 import { find } from "lodash";
 import React from "react";
+import classNames from "classnames";
 import { useDHIS2Users } from "../../hooks/users";
 import { useWhatsappData } from "../../hooks/whatsapp";
 import { Contact } from "../../interfaces";
+import "./ContactChip.css";
 
 export interface ContactNameProps extends Contact {}
 
@@ -36,8 +38,16 @@ export interface ContactChipProps extends Contact {
 }
 
 export function ContactChip({ onRemove, type, ...props }: ContactChipProps) {
+	const { channel } = props;
+
+	const chipStyle = classNames({
+		"chip--telegram": (channel ?? "").toLowerCase() === "telegram",
+		"chip--whatsapp": (channel ?? "").toLowerCase() === "whatsapp",
+	});
+
 	return (
 		<Chip
+			className={chipStyle}
 			onRemove={onRemove}
 			icon={type === "group" ? <IconUserGroup24 /> : <IconUser24 />}
 		>
