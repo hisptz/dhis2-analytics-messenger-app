@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2024-07-17T08:54:04.958Z\n"
-"PO-Revision-Date: 2024-07-17T08:54:04.958Z\n"
+"POT-Creation-Date: 2024-07-19T06:57:45.000Z\n"
+"PO-Revision-Date: 2024-07-19T06:57:45.000Z\n"
 
 msgid "Fetching App configurations..."
 msgstr "Fetching App configurations..."
@@ -405,11 +405,11 @@ msgstr ""
 "You can use different formatting conventions as per the selected gateway. "
 "(E.g * to bold for whatsapp gateway)"
 
-msgid "Add new recipient"
-msgstr "Add new recipient"
+msgid "There are no selected recipients."
+msgstr "There are no selected recipients."
 
-msgid "Type"
-msgstr "Type"
+msgid "Add Recipient"
+msgstr "Add Recipient"
 
 msgid "Invalid phone number"
 msgstr "Invalid phone number"
@@ -431,6 +431,15 @@ msgstr "Telegram Phone Number/Username"
 
 msgid "Users"
 msgstr "Users"
+
+msgid "Channel"
+msgstr "Channel"
+
+msgid "Type"
+msgstr "Type"
+
+msgid "Select recipients"
+msgstr "Select recipients"
 
 msgid "Error saving configuration"
 msgstr "Error saving configuration"
