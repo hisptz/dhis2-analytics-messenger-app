@@ -4,10 +4,11 @@ import { useMutation } from "@tanstack/react-query";
 import Parse from "parse";
 import { useAlert } from "@dhis2/app-runtime";
 import i18n from "@dhis2/d2-i18n";
+import { SupportedChannels } from "../../../../../../../shared/interfaces";
 
 export interface GatewayConnectButtonProps {
 	gateway: Parse.Object;
-	channel: string;
+	channel: SupportedChannels;
 	refetch: () => void;
 }
 
@@ -26,7 +27,6 @@ export function GatewayStartButton({
 			task: "start",
 			session: gateway.get("sessionId"),
 		};
-
 		return (await Parse.Cloud.run("runChannelTask", taskRun)) ?? null;
 	};
 

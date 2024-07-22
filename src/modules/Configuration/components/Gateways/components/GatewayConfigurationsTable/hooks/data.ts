@@ -2,7 +2,7 @@ import { useDamConfig } from "../../../../../../../shared/components/DamConfigPr
 import { useQueries, useQueryClient } from "@tanstack/react-query";
 import { useMemo } from "react";
 import Parse from "parse";
-import { channels } from "../../../constants/channels";
+import { channels } from "../../../../../../../shared/constants/channels";
 import { forEach } from "async";
 
 function getClients({

@@ -84,7 +84,11 @@ export function RHFRecipientSelector({
 											field.onChange(
 												uniqBy(
 													[...recipients, contact],
-													"identifier",
+													(recipient) =>
+														recipient.identifier ===
+															contact.identifier &&
+														recipient.gatewayId ===
+															contact.gatewayId,
 												),
 											);
 										}

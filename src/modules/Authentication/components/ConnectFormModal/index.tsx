@@ -70,7 +70,6 @@ export function ConnectFormModal({
 			navigate("/");
 		} catch (error: any) {
 			if (error.code === 205) {
-				console.log("Verify your email first");
 				showAlert({
 					message: i18n.t(
 						"You need to verify your email to continue",

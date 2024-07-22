@@ -37,8 +37,6 @@ export default function VisualizationGroupsTable(): React.ReactElement {
 		refetch();
 	}, [hide, refetch]);
 
-	console.log("visualizationGroups", visualizationGroups);
-
 	return (
 		<div style={{ width: "100%" }}>
 			{!hidden && (

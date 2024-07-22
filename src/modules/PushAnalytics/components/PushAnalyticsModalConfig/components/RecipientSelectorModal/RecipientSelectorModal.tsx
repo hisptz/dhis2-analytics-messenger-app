@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React from "react";
 import i18n from "@dhis2/d2-i18n";
 import {
 	Button,
@@ -11,15 +11,14 @@ import {
 } from "@dhis2/ui";
 import { RHFSingleSelectField } from "@hisptz/dhis2-ui";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm, FormProvider } from "react-hook-form";
-import { useUpdateEffect } from "usehooks-ts";
+import { FormProvider, useForm } from "react-hook-form";
 import {
 	Contact,
-	ContactType,
 	ToContactFormSchema,
 } from "../../../../../../shared/interfaces";
 import { useGatewayChannelOptions } from "../../hooks/gatewayChanelOptions";
 import { ContactSelector } from "./components/ContactSelector";
+import { SaveButton } from "../RHFRecipientSelector/components/SaveButton";
 
 export interface RecipientSelectorModalConfigProps {
 	hidden: boolean;
@@ -45,35 +44,11 @@ export function RecipientSelectorModalConfig({
 		shouldFocusError: false,
 		resolver: zodResolver(ToContactFormSchema),
 	});
-
 	const gatewayChannelOptions = useGatewayChannelOptions();
-
-	const [type] = form.watch(["type"]);
-
-	const onSubmit = useCallback(
-		(data: RecipientData) => {
-			onClose({
-				channel: data.channel,
-				identifier: data.identifier,
-				type: data.type.includes("group")
-					? ContactType.GROUP
-					: ContactType.INDIVIDUAL,
-			});
-			form.reset({});
-		},
-		[form, onClose],
-	);
-
-	useUpdateEffect(() => {
-		form.unregister("identifier");
-		form.clearErrors("identifier");
-		form.resetField("identifier");
-	}, [type]);
-
 	return (
 		<FormProvider {...form}>
 			<Modal
-				large
+				small
 				position="middle"
 				onClose={() => onClose()}
 				hide={hidden}
@@ -90,9 +65,9 @@ export function RecipientSelectorModalConfig({
 							}}
 						>
 							<RHFSingleSelectField
-								label={i18n.t("Channel")}
+								label={i18n.t("Gateway")}
 								options={gatewayChannelOptions}
-								name={"channel"}
+								name={"gatewayId"}
 							/>
 							<ContactSelector />
 						</div>
@@ -107,9 +82,7 @@ export function RecipientSelectorModalConfig({
 						>
 							{i18n.t("Cancel")}
 						</Button>
-						<Button onClick={() => form.handleSubmit(onSubmit)()}>
-							{i18n.t("Add")}
-						</Button>
+						<SaveButton onClose={onClose} />
 					</ButtonStrip>
 				</ModalActions>
 			</Modal>

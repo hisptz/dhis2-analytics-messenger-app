@@ -24,10 +24,7 @@ export function useSendAnalytics() {
 				type: { critical: true },
 			});
 		},
-		onSuccess: (data) => {
-			console.log({
-				data,
-			});
+		onSuccess: () => {
 			show({
 				message: i18n.t("Push request sent successfully."),
 				type: { success: true },
