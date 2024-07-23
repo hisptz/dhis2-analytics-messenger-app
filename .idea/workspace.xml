@@ -32,13 +32,13 @@
     </treeState>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="45e8eb8e-5803-456a-9857-5a6354e88f5c" name="Changes" comment="feat: push config&#10;&#10;Implemented group selectors for recipients">
-      <change afterPath="$PROJECT_DIR$/src/modules/PushAnalytics/components/PushAnalyticsModalConfig/components/RHFRecipientSelector/components/RHFUserSelector/RHFUserSelector.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/modules/PushAnalytics/components/PushAnalyticsModalConfig/components/RHFRecipientSelector/components/RHFUserSelector/RHFUserSelector.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/modules/PushAnalytics/components/PushAnalyticsModalConfig/components/RHFRecipientSelector/components/RHFUserSelector/hooks/data.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/modules/PushAnalytics/components/PushAnalyticsModalConfig/components/RHFRecipientSelector/components/RHFUserSelector/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modules/PushAnalytics/components/PushAnalyticsModalConfig/components/RecipientSelectorModal/components/ContactSelector.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/PushAnalytics/components/PushAnalyticsModalConfig/components/RecipientSelectorModal/components/ContactSelector.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modules/PushAnalytics/components/PushAnalyticsModalConfig/hooks/recipientOptions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/PushAnalytics/components/PushAnalyticsModalConfig/hooks/recipientOptions.ts" afterDir="false" />
+    <list default="true" id="45e8eb8e-5803-456a-9857-5a6354e88f5c" name="Changes" comment="feat: push config&#10;&#10;Implemented group selector for whatsapp recipient&#10;Implemented users selector for all channels recipient&#10;Implemented new flow of including gatewayId in recipient">
+      <change afterPath="$PROJECT_DIR$/src/shared/components/ContactChip/hooks/data.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/i18n/en.pot" beforeDir="false" afterPath="$PROJECT_DIR$/i18n/en.pot" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/PushAnalytics/components/PushAnalyticsModalConfig/components/RHFRecipientSelector/RHFRecipientSelector.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/PushAnalytics/components/PushAnalyticsModalConfig/components/RHFRecipientSelector/RHFRecipientSelector.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/PushAnalytics/components/PushAnalyticsTable/hooks/data.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/PushAnalytics/components/PushAnalyticsTable/hooks/data.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/components/ContactChip/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/components/ContactChip/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,8 +49,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="TypeScript JSX File" />
-        <option value="TypeScript File" />
         <option value="CSS File" />
+        <option value="TypeScript File" />
       </list>
     </option>
   </component>
@@ -146,37 +146,37 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "dart.analysis.tool.window.visible": "false",
-    "git-widget-placeholder": "feature/group-selector",
-    "last_opened_file_path": "/Users/gnnko/projects/hisptz/dhis2-analytics-messenger-app/src/modules/Configuration/components/Gateways/components/GatewayConfigurationsTable/components",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.standard": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.standard": "",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "yarn",
-    "npm.build.executor": "Run",
-    "npm.deploy.executor": "Run",
-    "npm.start.executor": "Run",
-    "prettierjs.PrettierConfiguration.Package": "/Users/gnnko/projects/hisptz/dhis2-analytics-messenger-app/node_modules/prettier",
-    "settings.editor.selected.configurable": "vcs.Git",
-    "ts.external.directory.path": "/Users/gnnko/projects/hisptz/dhis2-analytics-messenger-app/node_modules/typescript/lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feature/group-selector&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/gnnko/projects/hisptz/dhis2-analytics-messenger-app/src/modules/Configuration/components/Gateways/components/GatewayConfigurationsTable/components&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;yarn&quot;,
+    &quot;npm.build.executor&quot;: &quot;Run&quot;,
+    &quot;npm.deploy.executor&quot;: &quot;Run&quot;,
+    &quot;npm.start.executor&quot;: &quot;Run&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/Users/gnnko/projects/hisptz/dhis2-analytics-messenger-app/node_modules/prettier&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;vcs.Git&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Users/gnnko/projects/hisptz/dhis2-analytics-messenger-app/node_modules/typescript/lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
-      "JSON"
+  &quot;keyToStringList&quot;: {
+    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
+      &quot;JSON&quot;
     ],
-    "stardust.markdown.MarkdownSplitEditorSuppressor:keyList": []
+    &quot;stardust.markdown.MarkdownSplitEditorSuppressor:keyList&quot;: []
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationsTable/components" />
@@ -321,14 +321,8 @@
       <workItem from="1721377173742" duration="5256000" />
       <workItem from="1721454579853" duration="524000" />
       <workItem from="1721630292180" duration="22939000" />
-    </task>
-    <task id="LOCAL-00009" summary="fix(custom scheduling): Fixes&#10;&#10;- Fixed issues with error messages in custom input not showing &#10; - Cleared input value when changing from one type of scheduling to another">
-      <option name="closed" value="true" />
-      <created>1689925661593</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1689925661593</updated>
+      <workItem from="1721740875369" duration="6308000" />
+      <workItem from="1721752339122" duration="604000" />
     </task>
     <task id="LOCAL-00010" summary="chore(*): Code styling&#10;&#10;- Run eslint fix">
       <option name="closed" value="true" />
@@ -714,7 +708,15 @@
       <option name="project" value="LOCAL" />
       <updated>1721651869361</updated>
     </task>
-    <option name="localTasksCounter" value="58" />
+    <task id="LOCAL-00058" summary="feat: push config&#10;&#10;Implemented group selector for whatsapp recipient&#10;Implemented users selector for all channels recipient&#10;Implemented new flow of including gatewayId in recipient">
+      <option name="closed" value="true" />
+      <created>1721742381955</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1721742381956</updated>
+    </task>
+    <option name="localTasksCounter" value="59" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -765,7 +767,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="feat(push analytics config): Implementation&#10;&#10;- Implemented send analytics feature" />
     <MESSAGE value="chore(d2 config): Name update&#10;&#10;- Updated app name to add saas" />
     <MESSAGE value="fix(*): Fixes&#10;&#10;- Fixed issues raised from code reformat" />
     <MESSAGE value="feat: dam config&#10;&#10;Implemented the dam config provider" />
@@ -790,121 +791,130 @@
     <MESSAGE value="feat: connect button&#10;&#10;Implemented whatsapp connect button for disconnected gateways" />
     <MESSAGE value="fix: gateway config&#10;&#10;Improved gateway configuration due to implementation of security to channels API" />
     <MESSAGE value="feat: push config&#10;&#10;Implemented group selectors for recipients" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: push config&#10;&#10;Implemented group selectors for recipients" />
+    <MESSAGE value="feat: push config&#10;&#10;Implemented group selector for whatsapp recipient&#10;Implemented users selector for all channels recipient&#10;Implemented new flow of including gatewayId in recipient" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: push config&#10;&#10;Implemented group selector for whatsapp recipient&#10;Implemented users selector for all channels recipient&#10;Implemented new flow of including gatewayId in recipient" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
-  <component name="WfRunsListSearchHistory"><![CDATA[{
-  "history": [
+  <component name="WfRunsListSearchHistory">{
+  &quot;history&quot;: [
     {
-      "branch": "feature/channels",
-      "currentBranchFilter": true
+      &quot;branch&quot;: &quot;feature/channels&quot;,
+      &quot;currentBranchFilter&quot;: true
     },
     {
-      "branch": "feature/channels",
-      "currentBranchFilter": true
+      &quot;branch&quot;: &quot;feature/channels&quot;,
+      &quot;currentBranchFilter&quot;: true
     },
     {
-      "branch": "develop",
-      "currentBranchFilter": true
+      &quot;branch&quot;: &quot;develop&quot;,
+      &quot;currentBranchFilter&quot;: true
     },
     {
-      "branch": "develop",
-      "currentBranchFilter": true
+      &quot;branch&quot;: &quot;develop&quot;,
+      &quot;currentBranchFilter&quot;: true
     },
     {
-      "branch": "feature/access",
-      "currentBranchFilter": true
+      &quot;branch&quot;: &quot;feature/access&quot;,
+      &quot;currentBranchFilter&quot;: true
     },
     {
-      "branch": "develop",
-      "currentBranchFilter": true
+      &quot;branch&quot;: &quot;develop&quot;,
+      &quot;currentBranchFilter&quot;: true
     },
     {
-      "branch": "develop",
-      "currentBranchFilter": true
+      &quot;branch&quot;: &quot;develop&quot;,
+      &quot;currentBranchFilter&quot;: true
     },
     {
-      "branch": "feature/messaging",
-      "currentBranchFilter": true
+      &quot;branch&quot;: &quot;feature/messaging&quot;,
+      &quot;currentBranchFilter&quot;: true
     },
     {
-      "branch": "feature/messaging",
-      "currentBranchFilter": true
+      &quot;branch&quot;: &quot;feature/messaging&quot;,
+      &quot;currentBranchFilter&quot;: true
     },
     {
-      "branch": "feature/messaging",
-      "currentBranchFilter": true
+      &quot;branch&quot;: &quot;feature/messaging&quot;,
+      &quot;currentBranchFilter&quot;: true
     },
     {
-      "branch": "feature/messaging",
-      "currentBranchFilter": true
+      &quot;branch&quot;: &quot;feature/messaging&quot;,
+      &quot;currentBranchFilter&quot;: true
     },
     {
-      "branch": "feature/messaging",
-      "currentBranchFilter": true
+      &quot;branch&quot;: &quot;feature/messaging&quot;,
+      &quot;currentBranchFilter&quot;: true
     },
     {
-      "branch": "feature/messaging",
-      "currentBranchFilter": true
+      &quot;branch&quot;: &quot;feature/messaging&quot;,
+      &quot;currentBranchFilter&quot;: true
     },
     {
-      "branch": "feature/messaging",
-      "currentBranchFilter": true
+      &quot;branch&quot;: &quot;feature/messaging&quot;,
+      &quot;currentBranchFilter&quot;: true
     },
     {
-      "branch": "feature/messaging",
-      "currentBranchFilter": true
+      &quot;branch&quot;: &quot;feature/messaging&quot;,
+      &quot;currentBranchFilter&quot;: true
     },
     {
-      "branch": "feature/messaging",
-      "currentBranchFilter": true
+      &quot;branch&quot;: &quot;feature/messaging&quot;,
+      &quot;currentBranchFilter&quot;: true
     },
     {
-      "branch": "develop",
-      "currentBranchFilter": true
+      &quot;branch&quot;: &quot;develop&quot;,
+      &quot;currentBranchFilter&quot;: true
     },
     {
-      "branch": "develop",
-      "currentBranchFilter": true
+      &quot;branch&quot;: &quot;develop&quot;,
+      &quot;currentBranchFilter&quot;: true
     },
     {
-      "branch": "develop",
-      "currentBranchFilter": true
+      &quot;branch&quot;: &quot;develop&quot;,
+      &quot;currentBranchFilter&quot;: true
     },
     {
-      "branch": "develop",
-      "currentBranchFilter": true
+      &quot;branch&quot;: &quot;develop&quot;,
+      &quot;currentBranchFilter&quot;: true
     },
     {
-      "branch": "develop",
-      "currentBranchFilter": true
+      &quot;branch&quot;: &quot;develop&quot;,
+      &quot;currentBranchFilter&quot;: true
     },
     {
-      "branch": "feature/connect-buttons",
-      "currentBranchFilter": true
+      &quot;branch&quot;: &quot;feature/connect-buttons&quot;,
+      &quot;currentBranchFilter&quot;: true
     },
     {
-      "branch": "develop",
-      "currentBranchFilter": true
+      &quot;branch&quot;: &quot;develop&quot;,
+      &quot;currentBranchFilter&quot;: true
     },
     {
-      "branch": "develop",
-      "currentBranchFilter": true
+      &quot;branch&quot;: &quot;develop&quot;,
+      &quot;currentBranchFilter&quot;: true
     },
     {
-      "branch": "develop",
-      "currentBranchFilter": true
+      &quot;branch&quot;: &quot;develop&quot;,
+      &quot;currentBranchFilter&quot;: true
     },
     {
-      "branch": "feature/group-selector",
-      "currentBranchFilter": true
+      &quot;branch&quot;: &quot;feature/group-selector&quot;,
+      &quot;currentBranchFilter&quot;: true
+    },
+    {
+      &quot;branch&quot;: &quot;feature/group-selector&quot;,
+      &quot;currentBranchFilter&quot;: true
+    },
+    {
+      &quot;branch&quot;: &quot;feature/group-selector&quot;,
+      &quot;currentBranchFilter&quot;: true
     }
   ],
-  "lastFilter": {
-    "branch": "feature/group-selector",
-    "currentBranchFilter": true
+  &quot;lastFilter&quot;: {
+    &quot;branch&quot;: &quot;feature/group-selector&quot;,
+    &quot;currentBranchFilter&quot;: true
   }
-}]]></component>
+}</component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
