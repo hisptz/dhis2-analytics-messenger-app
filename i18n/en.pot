@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2024-07-22T12:22:58.458Z\n"
-"PO-Revision-Date: 2024-07-22T12:22:58.458Z\n"
+"POT-Creation-Date: 2024-07-23T13:21:35.516Z\n"
+"PO-Revision-Date: 2024-07-23T13:21:35.516Z\n"
 
 msgid "Fetching App configurations..."
 msgstr "Fetching App configurations..."
@@ -422,6 +422,18 @@ msgstr "Phone Number / Username"
 
 msgid "WhatsApp Phone Number"
 msgstr "WhatsApp Phone Number"
+
+msgid "Only users with {{channel}} contacts configured will appear"
+msgstr "Only users with {{channel}} contacts configured will appear"
+
+msgid "Search for username, name, or id"
+msgstr "Search for username, name, or id"
+
+msgid "User"
+msgstr "User"
+
+msgid "Could not find any user with name or username {{keyword}}"
+msgstr "Could not find any user with name or username {{keyword}}"
 
 msgid "Select recipients"
 msgstr "Select recipients"

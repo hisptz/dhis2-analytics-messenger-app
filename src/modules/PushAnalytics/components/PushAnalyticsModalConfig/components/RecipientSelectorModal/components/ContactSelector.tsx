@@ -6,6 +6,7 @@ import { PhoneNumber } from "../../RHFRecipientSelector/components/PhoneNumber";
 import { RHFSingleSelectField } from "@hisptz/dhis2-ui";
 import { useRecipientOptions } from "../../../hooks/recipientOptions";
 import { RecipientData } from "../RecipientSelectorModal";
+import { UserSelector } from "../../RHFRecipientSelector/components/RHFUserSelector";
 
 export function ContactSelector(): React.ReactElement {
 	const { clearErrors, resetField } = useFormContext<RecipientData>();
@@ -28,7 +29,7 @@ export function ContactSelector(): React.ReactElement {
 				options={recipientOptions}
 				name={"type"}
 			/>
-			{type === "user" && <></>}
+			{type === "user" && <UserSelector />}
 			{type === "whatsappGroup" && <Group key={"whatsapp"} />}
 			{type === "telegramGroup" && <Group key={"telegram"} />}
 			{type === "whatsappPhoneNumber" && (

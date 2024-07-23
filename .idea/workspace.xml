@@ -9,8 +9,8 @@
     <treeState key="changes">
       <selectedPath>
         <pathElement>
-          <option name="myNodeId" value="helperText" />
-          <option name="myNodeType" value="jetbrains.buildServer.tree.descriptors.LinkedTextDescriptor" />
+          <option name="myNodeId" value="3" />
+          <option name="myNodeType" value="jetbrains.buildServer.tree.descriptors.ChangesGroupDescriptor" />
         </pathElement>
       </selectedPath>
     </treeState>
@@ -32,11 +32,13 @@
     </treeState>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="45e8eb8e-5803-456a-9857-5a6354e88f5c" name="Changes" comment="fix: gateway config&#10;&#10;Improved gateway configuration due to implementation of security to channels API">
-      <changelist_data name="Gift Nnko" email="nnkogift@gmail.com" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/i18n/en.pot" beforeDir="false" afterPath="$PROJECT_DIR$/i18n/en.pot" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modules/PushAnalytics/components/PushAnalyticsModalConfig/components/RecipientSelectorModal/RecipientSelectorModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/PushAnalytics/components/PushAnalyticsModalConfig/components/RecipientSelectorModal/RecipientSelectorModal.tsx" afterDir="false" />
+    <list default="true" id="45e8eb8e-5803-456a-9857-5a6354e88f5c" name="Changes" comment="feat: push config&#10;&#10;Implemented group selectors for recipients">
+      <change afterPath="$PROJECT_DIR$/src/modules/PushAnalytics/components/PushAnalyticsModalConfig/components/RHFRecipientSelector/components/RHFUserSelector/RHFUserSelector.module.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/PushAnalytics/components/PushAnalyticsModalConfig/components/RHFRecipientSelector/components/RHFUserSelector/RHFUserSelector.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/PushAnalytics/components/PushAnalyticsModalConfig/components/RHFRecipientSelector/components/RHFUserSelector/hooks/data.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/PushAnalytics/components/PushAnalyticsModalConfig/components/RHFRecipientSelector/components/RHFUserSelector/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/PushAnalytics/components/PushAnalyticsModalConfig/components/RecipientSelectorModal/components/ContactSelector.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/PushAnalytics/components/PushAnalyticsModalConfig/components/RecipientSelectorModal/components/ContactSelector.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/PushAnalytics/components/PushAnalyticsModalConfig/hooks/recipientOptions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/PushAnalytics/components/PushAnalyticsModalConfig/hooks/recipientOptions.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,8 +48,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="TypeScript File" />
         <option value="TypeScript JSX File" />
+        <option value="TypeScript File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -94,6 +97,10 @@
               <option name="branches">
                 <list>
                   <RecentBranch>
+                    <option name="branchName" value="feature/group-selector" />
+                    <option name="lastUsedInstant" value="1721631365" />
+                  </RecentBranch>
+                  <RecentBranch>
                     <option name="branchName" value="develop" />
                     <option name="lastUsedInstant" value="1721383141" />
                   </RecentBranch>
@@ -139,36 +146,37 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;develop&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/gnnko/projects/hisptz/dhis2-analytics-messenger-app/src/modules/Configuration/components/Gateways/components/GatewayConfigurationsTable/components&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;yarn&quot;,
-    &quot;npm.build.executor&quot;: &quot;Run&quot;,
-    &quot;npm.deploy.executor&quot;: &quot;Run&quot;,
-    &quot;npm.start.executor&quot;: &quot;Run&quot;,
-    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/Users/gnnko/projects/hisptz/dhis2-analytics-messenger-app/node_modules/prettier&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;vcs.Git&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/Users/gnnko/projects/hisptz/dhis2-analytics-messenger-app/node_modules/typescript/lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "dart.analysis.tool.window.visible": "false",
+    "git-widget-placeholder": "feature/group-selector",
+    "last_opened_file_path": "/Users/gnnko/projects/hisptz/dhis2-analytics-messenger-app/src/modules/Configuration/components/Gateways/components/GatewayConfigurationsTable/components",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.standard": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.standard": "",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "yarn",
+    "npm.build.executor": "Run",
+    "npm.deploy.executor": "Run",
+    "npm.start.executor": "Run",
+    "prettierjs.PrettierConfiguration.Package": "/Users/gnnko/projects/hisptz/dhis2-analytics-messenger-app/node_modules/prettier",
+    "settings.editor.selected.configurable": "vcs.Git",
+    "ts.external.directory.path": "/Users/gnnko/projects/hisptz/dhis2-analytics-messenger-app/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
-      &quot;JSON&quot;
+  "keyToStringList": {
+    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
+      "JSON"
     ],
-    &quot;stardust.markdown.MarkdownSplitEditorSuppressor:keyList&quot;: []
+    "stardust.markdown.MarkdownSplitEditorSuppressor:keyList": []
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationsTable/components" />
@@ -177,6 +185,7 @@
       <recent name="$PROJECT_DIR$" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/shared/constants" />
       <recent name="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationsTable/components/GatewayConnectButton" />
       <recent name="$PROJECT_DIR$/src/modules/PushAnalytics/components/PushAnalyticsModalConfig/components/RHFRecipientSelector/components/Group" />
       <recent name="$PROJECT_DIR$/src/modules/PushAnalytics/components/PushAnalyticsModalConfig/components/RHFRecipientSelector" />
@@ -311,14 +320,7 @@
       <workItem from="1721302844447" duration="2504000" />
       <workItem from="1721377173742" duration="5256000" />
       <workItem from="1721454579853" duration="524000" />
-    </task>
-    <task id="LOCAL-00008" summary="fix(custom scheduling): Fixes&#10;&#10;- Fixed issues with closing scheduling form does not clear it's state">
-      <option name="closed" value="true" />
-      <created>1689924515504</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1689924515504</updated>
+      <workItem from="1721630292180" duration="22939000" />
     </task>
     <task id="LOCAL-00009" summary="fix(custom scheduling): Fixes&#10;&#10;- Fixed issues with error messages in custom input not showing &#10; - Cleared input value when changing from one type of scheduling to another">
       <option name="closed" value="true" />
@@ -704,7 +706,15 @@
       <option name="project" value="LOCAL" />
       <updated>1721392543389</updated>
     </task>
-    <option name="localTasksCounter" value="57" />
+    <task id="LOCAL-00057" summary="feat: push config&#10;&#10;Implemented group selectors for recipients">
+      <option name="closed" value="true" />
+      <created>1721651869360</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1721651869361</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -755,7 +765,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="feat(push analytics config): Implementation&#10;&#10;- Implemented cron management support" />
     <MESSAGE value="feat(push analytics config): Implementation&#10;&#10;- Implemented send analytics feature" />
     <MESSAGE value="chore(d2 config): Name update&#10;&#10;- Updated app name to add saas" />
     <MESSAGE value="fix(*): Fixes&#10;&#10;- Fixed issues raised from code reformat" />
@@ -780,7 +789,8 @@
     <MESSAGE value="fix: timezone&#10;&#10;Added timezone to dhis2Instance configuration" />
     <MESSAGE value="feat: connect button&#10;&#10;Implemented whatsapp connect button for disconnected gateways" />
     <MESSAGE value="fix: gateway config&#10;&#10;Improved gateway configuration due to implementation of security to channels API" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: gateway config&#10;&#10;Improved gateway configuration due to implementation of security to channels API" />
+    <MESSAGE value="feat: push config&#10;&#10;Implemented group selectors for recipients" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: push config&#10;&#10;Implemented group selectors for recipients" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="WfRunsListSearchHistory"><![CDATA[{
@@ -880,10 +890,18 @@
     {
       "branch": "develop",
       "currentBranchFilter": true
+    },
+    {
+      "branch": "develop",
+      "currentBranchFilter": true
+    },
+    {
+      "branch": "feature/group-selector",
+      "currentBranchFilter": true
     }
   ],
   "lastFilter": {
-    "branch": "develop",
+    "branch": "feature/group-selector",
     "currentBranchFilter": true
   }
 }]]></component>

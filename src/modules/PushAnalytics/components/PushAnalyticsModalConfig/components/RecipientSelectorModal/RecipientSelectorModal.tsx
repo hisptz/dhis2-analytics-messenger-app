@@ -53,7 +53,7 @@ export function RecipientSelectorModalConfig({
 				onClose={() => onClose()}
 				hide={hidden}
 			>
-				<ModalTitle>{i18n.t("Select recipients")}</ModalTitle>
+				<ModalTitle>{i18n.t("Add recipient")}</ModalTitle>
 				<ModalContent>
 					<Field helpText="">
 						<div

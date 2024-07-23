@@ -25,11 +25,11 @@ const allOptions: Array<{ label: string; value: string; channels: string[] }> =
 			value: "telegramPhoneNumber",
 			channels: ["telegram"],
 		},
-		// {
-		// 	label: i18n.t("Users"),
-		// 	value: "user",
-		// 	channels: ["whatsapp", "telegram"],
-		// },
+		{
+			label: i18n.t("Users"),
+			value: "user",
+			channels: ["whatsapp", "telegram"],
+		},
 	];
 
 export function useRecipientOptions() {
