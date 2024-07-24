@@ -43,6 +43,7 @@ export function RHFRecipientSelector({
 								) : (
 									recipients.map((contact: Contact) => (
 										<ContactChip
+											key={`${contact.gatewayId}-${contact.identifier}`}
 											contact={contact}
 											onRemove={() => {
 												const updatedList = filter(
@@ -80,10 +81,7 @@ export function RHFRecipientSelector({
 												uniqBy(
 													[...recipients, contact],
 													(recipient) =>
-														recipient.identifier ===
-															contact.identifier &&
-														recipient.gatewayId ===
-															contact.gatewayId,
+														`${recipient.gatewayId}.${recipient.identifier}`,
 												),
 											);
 										}
