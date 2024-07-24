@@ -3,10 +3,11 @@ import { CircularLoader, Tag } from "@dhis2/ui";
 import i18n from "@dhis2/d2-i18n";
 import { capitalize } from "lodash";
 import { useGatewayStatus } from "../hooks/status";
+import { SupportedChannels } from "../../../../../../../shared/interfaces";
 
 export interface GatewayStatusProps {
 	gateway: Parse.Object;
-	channel: string;
+	channel: SupportedChannels;
 }
 
 export function GatewayStatus({ gateway, channel }: GatewayStatusProps) {

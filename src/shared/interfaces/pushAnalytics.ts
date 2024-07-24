@@ -13,11 +13,13 @@ export const ToContactSchema = z.object({
 	identifier: z.string(),
 	type: z.nativeEnum(ContactType),
 	channel: channelSchema,
+	gatewayId: z.string(),
 });
 export type Contact = z.infer<typeof ToContactSchema>;
 
 export const ToContactFormSchema = ToContactSchema.omit({
 	type: true,
+	channel: true,
 }).extend({
 	type: z.enum([
 		"whatsappPhoneNumber",

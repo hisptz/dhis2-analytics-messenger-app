@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2024-07-19T07:41:49.638Z\n"
-"PO-Revision-Date: 2024-07-19T07:41:49.638Z\n"
+"POT-Creation-Date: 2024-07-23T16:11:42.426Z\n"
+"PO-Revision-Date: 2024-07-23T16:11:42.426Z\n"
 
 msgid "Fetching App configurations..."
 msgstr "Fetching App configurations..."
@@ -206,12 +206,6 @@ msgstr "Error saving gateway"
 msgid "Setup Gateway"
 msgstr "Setup Gateway"
 
-msgid "Could not connect the gateway"
-msgstr "Could not connect the gateway"
-
-msgid "Gateway connected successfully"
-msgstr "Gateway connected successfully"
-
 msgid "Confirm gateway deletion"
 msgstr "Confirm gateway deletion"
 
@@ -233,14 +227,23 @@ msgstr "Gateway disconnected successfully"
 msgid "Remove gateway"
 msgstr "Remove gateway"
 
-msgid "Connect gateway"
-msgstr "Connect gateway"
+msgid "Start gateway"
+msgstr "Start gateway"
 
 msgid "Disconnect gateway"
 msgstr "Disconnect gateway"
 
+msgid "Connect gateway"
+msgstr "Connect gateway"
+
 msgid "Unknown"
 msgstr "Unknown"
+
+msgid "Could not connect the gateway"
+msgstr "Could not connect the gateway"
+
+msgid "Gateway connected successfully"
+msgstr "Gateway connected successfully"
 
 msgid "Status"
 msgstr "Status"
@@ -266,6 +269,9 @@ msgstr "Online"
 msgid "Offline"
 msgstr "Offline"
 
+msgid "Done"
+msgstr "Done"
+
 msgid "S/N"
 msgstr "S/N"
 
@@ -286,12 +292,6 @@ msgstr "Add gateway"
 
 msgid "There are no configured gateways"
 msgstr "There are no configured gateways"
-
-msgid "WhatsApp"
-msgstr "WhatsApp"
-
-msgid "Telegram"
-msgstr "Telegram"
 
 msgid "Error deleting gateway"
 msgstr "Error deleting gateway"
@@ -411,6 +411,9 @@ msgstr "There are no selected recipients."
 msgid "Add Recipient"
 msgstr "Add Recipient"
 
+msgid "Group"
+msgstr "Group"
+
 msgid "Invalid phone number"
 msgstr "Invalid phone number"
 
@@ -420,11 +423,20 @@ msgstr "Phone Number / Username"
 msgid "WhatsApp Phone Number"
 msgstr "WhatsApp Phone Number"
 
-msgid "Select recipients"
-msgstr "Select recipients"
+msgid "Only users with {{channel}} contacts configured will appear"
+msgstr "Only users with {{channel}} contacts configured will appear"
 
-msgid "Channel"
-msgstr "Channel"
+msgid "Search for username, name, or id"
+msgstr "Search for username, name, or id"
+
+msgid "User"
+msgstr "User"
+
+msgid "Could not find any user with name or username {{keyword}}"
+msgstr "Could not find any user with name or username {{keyword}}"
+
+msgid "Add recipient"
+msgstr "Add recipient"
 
 msgid "Type"
 msgstr "Type"
@@ -665,6 +677,12 @@ msgstr "There are no bookings for the specified filters"
 
 msgid "There are no data available!"
 msgstr "There are no data available!"
+
+msgid "WhatsApp"
+msgstr "WhatsApp"
+
+msgid "Telegram"
+msgstr "Telegram"
 
 msgid "Messaging Gateway"
 msgstr "Messaging Gateway"

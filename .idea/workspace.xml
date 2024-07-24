@@ -32,15 +32,9 @@
     </treeState>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="45e8eb8e-5803-456a-9857-5a6354e88f5c" name="Changes" comment="feat: connect button&#10;&#10;Implemented whatsapp connect button for disconnected gateways">
+    <list default="true" id="45e8eb8e-5803-456a-9857-5a6354e88f5c" name="Changes" comment="feat: push config&#10;&#10;Implemented group selector for whatsapp recipient&#10;Implemented users selector for all channels recipient&#10;Implemented new flow of including gatewayId in recipient">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/i18n/en.pot" beforeDir="false" afterPath="$PROJECT_DIR$/i18n/en.pot" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationModal/components/TelegramSetupModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationModal/components/TelegramSetupModal.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationModal/components/WhatsAppSetupModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationModal/components/WhatsAppSetupModal.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationsTable/components/WhatsAppGatewayConnectButton/components/WhatsAppConnectModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationsTable/components/WhatsAppGatewayConnectButton/components/WhatsAppConnectModal.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationsTable/hooks/status.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationsTable/hooks/status.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/interfaces/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/interfaces/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/interfaces/visualization.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/interfaces/visualization.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/components/Fields/RHFMultiSelectField.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/components/Fields/RHFMultiSelectField.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,8 +44,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="TypeScript File" />
         <option value="TypeScript JSX File" />
+        <option value="CSS File" />
+        <option value="TypeScript File" />
       </list>
     </option>
   </component>
@@ -63,6 +58,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="Gift Nnko &lt;nnkogift@gmail.com&gt;" />
+      </list>
+    </option>
     <option name="PUSH_TAGS">
       <GitPushTagMode>
         <option name="argument" value="--follow-tags" />
@@ -92,6 +92,10 @@
             <RecentBranchesForRepo>
               <option name="branches">
                 <list>
+                  <RecentBranch>
+                    <option name="branchName" value="feature/group-selector" />
+                    <option name="lastUsedInstant" value="1721631365" />
+                  </RecentBranch>
                   <RecentBranch>
                     <option name="branchName" value="develop" />
                     <option name="lastUsedInstant" value="1721383141" />
@@ -138,36 +142,37 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "dart.analysis.tool.window.visible": "false",
-    "git-widget-placeholder": "develop",
-    "last_opened_file_path": "/Users/gnnko/projects/hisptz/dhis2-analytics-messenger-app/src/modules/Configuration/components/Gateways/components/GatewayConfigurationsTable/components",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.standard": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.standard": "",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "yarn",
-    "npm.build.executor": "Run",
-    "npm.deploy.executor": "Run",
-    "npm.start.executor": "Run",
-    "prettierjs.PrettierConfiguration.Package": "/Users/gnnko/projects/hisptz/dhis2-analytics-messenger-app/node_modules/prettier",
-    "settings.editor.selected.configurable": "vcs.Git",
-    "ts.external.directory.path": "/Users/gnnko/projects/hisptz/dhis2-analytics-messenger-app/node_modules/typescript/lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feature/group-selector&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/gnnko/projects/hisptz/dhis2-analytics-messenger-app/src/modules/Configuration/components/Gateways/components/GatewayConfigurationsTable/components&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;yarn&quot;,
+    &quot;npm.build.executor&quot;: &quot;Run&quot;,
+    &quot;npm.deploy.executor&quot;: &quot;Run&quot;,
+    &quot;npm.start.executor&quot;: &quot;Run&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/Users/gnnko/projects/hisptz/dhis2-analytics-messenger-app/node_modules/prettier&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;vcs.Git&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Users/gnnko/projects/hisptz/dhis2-analytics-messenger-app/node_modules/typescript/lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
-      "JSON"
+  &quot;keyToStringList&quot;: {
+    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
+      &quot;JSON&quot;
     ],
-    "stardust.markdown.MarkdownSplitEditorSuppressor:keyList": []
+    &quot;stardust.markdown.MarkdownSplitEditorSuppressor:keyList&quot;: []
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationsTable/components" />
@@ -176,6 +181,7 @@
       <recent name="$PROJECT_DIR$" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/shared/constants" />
       <recent name="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationsTable/components/GatewayConnectButton" />
       <recent name="$PROJECT_DIR$/src/modules/PushAnalytics/components/PushAnalyticsModalConfig/components/RHFRecipientSelector/components/Group" />
       <recent name="$PROJECT_DIR$/src/modules/PushAnalytics/components/PushAnalyticsModalConfig/components/RHFRecipientSelector" />
@@ -309,38 +315,12 @@
       <workItem from="1721289618482" duration="3941000" />
       <workItem from="1721302844447" duration="2504000" />
       <workItem from="1721377173742" duration="5256000" />
-    </task>
-    <task id="LOCAL-00007" summary="fix(custom scheduling): Improvements&#10;&#10;- Added default values for some selections that require initial values">
-      <option name="closed" value="true" />
-      <created>1689924172141</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1689924172141</updated>
-    </task>
-    <task id="LOCAL-00008" summary="fix(custom scheduling): Fixes&#10;&#10;- Fixed issues with closing scheduling form does not clear it's state">
-      <option name="closed" value="true" />
-      <created>1689924515504</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1689924515504</updated>
-    </task>
-    <task id="LOCAL-00009" summary="fix(custom scheduling): Fixes&#10;&#10;- Fixed issues with error messages in custom input not showing &#10; - Cleared input value when changing from one type of scheduling to another">
-      <option name="closed" value="true" />
-      <created>1689925661593</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1689925661593</updated>
-    </task>
-    <task id="LOCAL-00010" summary="chore(*): Code styling&#10;&#10;- Run eslint fix">
-      <option name="closed" value="true" />
-      <created>1689926814172</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1689926814172</updated>
+      <workItem from="1721454579853" duration="524000" />
+      <workItem from="1721630292180" duration="22939000" />
+      <workItem from="1721740875369" duration="6308000" />
+      <workItem from="1721752339122" duration="604000" />
+      <workItem from="1721753233582" duration="2128000" />
+      <workItem from="1721802375796" duration="2911000" />
     </task>
     <task id="LOCAL-00011" summary="chore(*): Code styling&#10;&#10;- Es lint manual fixes">
       <option name="closed" value="true" />
@@ -702,7 +682,39 @@
       <option name="project" value="LOCAL" />
       <updated>1721381890769</updated>
     </task>
-    <option name="localTasksCounter" value="56" />
+    <task id="LOCAL-00056" summary="fix: gateway config&#10;&#10;Improved gateway configuration due to implementation of security to channels API">
+      <option name="closed" value="true" />
+      <created>1721392543389</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1721392543389</updated>
+    </task>
+    <task id="LOCAL-00057" summary="feat: push config&#10;&#10;Implemented group selectors for recipients">
+      <option name="closed" value="true" />
+      <created>1721651869360</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1721651869361</updated>
+    </task>
+    <task id="LOCAL-00058" summary="feat: push config&#10;&#10;Implemented group selector for whatsapp recipient&#10;Implemented users selector for all channels recipient&#10;Implemented new flow of including gatewayId in recipient">
+      <option name="closed" value="true" />
+      <created>1721742381955</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1721742381956</updated>
+    </task>
+    <task id="LOCAL-00059" summary="feat: push config&#10;&#10;Implemented group selector for whatsapp recipient&#10;Implemented users selector for all channels recipient&#10;Implemented new flow of including gatewayId in recipient">
+      <option name="closed" value="true" />
+      <created>1721753267655</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1721753267655</updated>
+    </task>
+    <option name="localTasksCounter" value="60" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -753,9 +765,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="feat(push analytics config): Implementation&#10;&#10;- Implemented delete analytics config feature" />
-    <MESSAGE value="feat(push analytics config): Implementation&#10;&#10;- Implemented cron management support" />
-    <MESSAGE value="feat(push analytics config): Implementation&#10;&#10;- Implemented send analytics feature" />
     <MESSAGE value="chore(d2 config): Name update&#10;&#10;- Updated app name to add saas" />
     <MESSAGE value="fix(*): Fixes&#10;&#10;- Fixed issues raised from code reformat" />
     <MESSAGE value="feat: dam config&#10;&#10;Implemented the dam config provider" />
@@ -778,7 +787,10 @@
     <MESSAGE value="fix: dam config&#10;&#10;Improved the dam config query to include context path" />
     <MESSAGE value="fix: timezone&#10;&#10;Added timezone to dhis2Instance configuration" />
     <MESSAGE value="feat: connect button&#10;&#10;Implemented whatsapp connect button for disconnected gateways" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: connect button&#10;&#10;Implemented whatsapp connect button for disconnected gateways" />
+    <MESSAGE value="fix: gateway config&#10;&#10;Improved gateway configuration due to implementation of security to channels API" />
+    <MESSAGE value="feat: push config&#10;&#10;Implemented group selectors for recipients" />
+    <MESSAGE value="feat: push config&#10;&#10;Implemented group selector for whatsapp recipient&#10;Implemented users selector for all channels recipient&#10;Implemented new flow of including gatewayId in recipient" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: push config&#10;&#10;Implemented group selector for whatsapp recipient&#10;Implemented users selector for all channels recipient&#10;Implemented new flow of including gatewayId in recipient" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="WfRunsListSearchHistory"><![CDATA[{
@@ -874,10 +886,38 @@
     {
       "branch": "develop",
       "currentBranchFilter": true
+    },
+    {
+      "branch": "develop",
+      "currentBranchFilter": true
+    },
+    {
+      "branch": "develop",
+      "currentBranchFilter": true
+    },
+    {
+      "branch": "feature/group-selector",
+      "currentBranchFilter": true
+    },
+    {
+      "branch": "feature/group-selector",
+      "currentBranchFilter": true
+    },
+    {
+      "branch": "feature/group-selector",
+      "currentBranchFilter": true
+    },
+    {
+      "branch": "feature/group-selector",
+      "currentBranchFilter": true
+    },
+    {
+      "branch": "feature/group-selector",
+      "currentBranchFilter": true
     }
   ],
   "lastFilter": {
-    "branch": "develop",
+    "branch": "feature/group-selector",
     "currentBranchFilter": true
   }
 }]]></component>
@@ -888,6 +928,16 @@
           <url>file://$PROJECT_DIR$/src/modules/Router/index.tsx</url>
           <line>45</line>
           <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/modules/PushAnalytics/components/PushAnalyticsModalConfig/components/RHFGatewaySelector.tsx</url>
+          <line>7</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/modules/PushAnalytics/components/PushAnalyticsModalConfig/components/RHFGatewaySelector.tsx</url>
+          <line>6</line>
+          <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

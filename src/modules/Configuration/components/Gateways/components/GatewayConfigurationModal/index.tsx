@@ -14,7 +14,7 @@ import { BaseGatewayInfoForm } from "./components/BaseGatewayInfoForm";
 import i18n from "@dhis2/d2-i18n";
 import { ChannelButtonSelector } from "./components/ChannelButtonSelector";
 import Parse from "parse";
-import { channels } from "../../constants/channels";
+import { channels } from "../../../../../../shared/constants/channels";
 import { useAlert } from "@dhis2/app-runtime";
 import { useDamConfig } from "../../../../../../shared/components/DamConfigProvider";
 import { TelegramForm } from "./components/TelegramForm";
