@@ -33,12 +33,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="45e8eb8e-5803-456a-9857-5a6354e88f5c" name="Changes" comment="feat: push config&#10;&#10;Implemented group selector for whatsapp recipient&#10;Implemented users selector for all channels recipient&#10;Implemented new flow of including gatewayId in recipient">
-      <change afterPath="$PROJECT_DIR$/src/shared/components/ContactChip/hooks/data.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/i18n/en.pot" beforeDir="false" afterPath="$PROJECT_DIR$/i18n/en.pot" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modules/PushAnalytics/components/PushAnalyticsModalConfig/components/RHFRecipientSelector/RHFRecipientSelector.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/PushAnalytics/components/PushAnalyticsModalConfig/components/RHFRecipientSelector/RHFRecipientSelector.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modules/PushAnalytics/components/PushAnalyticsTable/hooks/data.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/PushAnalytics/components/PushAnalyticsTable/hooks/data.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/components/ContactChip/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/components/ContactChip/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/components/Fields/RHFMultiSelectField.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/components/Fields/RHFMultiSelectField.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -323,14 +319,8 @@
       <workItem from="1721630292180" duration="22939000" />
       <workItem from="1721740875369" duration="6308000" />
       <workItem from="1721752339122" duration="604000" />
-    </task>
-    <task id="LOCAL-00010" summary="chore(*): Code styling&#10;&#10;- Run eslint fix">
-      <option name="closed" value="true" />
-      <created>1689926814172</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1689926814172</updated>
+      <workItem from="1721753233582" duration="2128000" />
+      <workItem from="1721802375796" duration="2911000" />
     </task>
     <task id="LOCAL-00011" summary="chore(*): Code styling&#10;&#10;- Es lint manual fixes">
       <option name="closed" value="true" />
@@ -716,7 +706,15 @@
       <option name="project" value="LOCAL" />
       <updated>1721742381956</updated>
     </task>
-    <option name="localTasksCounter" value="59" />
+    <task id="LOCAL-00059" summary="feat: push config&#10;&#10;Implemented group selector for whatsapp recipient&#10;Implemented users selector for all channels recipient&#10;Implemented new flow of including gatewayId in recipient">
+      <option name="closed" value="true" />
+      <created>1721753267655</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1721753267655</updated>
+    </task>
+    <option name="localTasksCounter" value="60" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -795,126 +793,134 @@
     <option name="LAST_COMMIT_MESSAGE" value="feat: push config&#10;&#10;Implemented group selector for whatsapp recipient&#10;Implemented users selector for all channels recipient&#10;Implemented new flow of including gatewayId in recipient" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
-  <component name="WfRunsListSearchHistory">{
-  &quot;history&quot;: [
+  <component name="WfRunsListSearchHistory"><![CDATA[{
+  "history": [
     {
-      &quot;branch&quot;: &quot;feature/channels&quot;,
-      &quot;currentBranchFilter&quot;: true
+      "branch": "feature/channels",
+      "currentBranchFilter": true
     },
     {
-      &quot;branch&quot;: &quot;feature/channels&quot;,
-      &quot;currentBranchFilter&quot;: true
+      "branch": "feature/channels",
+      "currentBranchFilter": true
     },
     {
-      &quot;branch&quot;: &quot;develop&quot;,
-      &quot;currentBranchFilter&quot;: true
+      "branch": "develop",
+      "currentBranchFilter": true
     },
     {
-      &quot;branch&quot;: &quot;develop&quot;,
-      &quot;currentBranchFilter&quot;: true
+      "branch": "develop",
+      "currentBranchFilter": true
     },
     {
-      &quot;branch&quot;: &quot;feature/access&quot;,
-      &quot;currentBranchFilter&quot;: true
+      "branch": "feature/access",
+      "currentBranchFilter": true
     },
     {
-      &quot;branch&quot;: &quot;develop&quot;,
-      &quot;currentBranchFilter&quot;: true
+      "branch": "develop",
+      "currentBranchFilter": true
     },
     {
-      &quot;branch&quot;: &quot;develop&quot;,
-      &quot;currentBranchFilter&quot;: true
+      "branch": "develop",
+      "currentBranchFilter": true
     },
     {
-      &quot;branch&quot;: &quot;feature/messaging&quot;,
-      &quot;currentBranchFilter&quot;: true
+      "branch": "feature/messaging",
+      "currentBranchFilter": true
     },
     {
-      &quot;branch&quot;: &quot;feature/messaging&quot;,
-      &quot;currentBranchFilter&quot;: true
+      "branch": "feature/messaging",
+      "currentBranchFilter": true
     },
     {
-      &quot;branch&quot;: &quot;feature/messaging&quot;,
-      &quot;currentBranchFilter&quot;: true
+      "branch": "feature/messaging",
+      "currentBranchFilter": true
     },
     {
-      &quot;branch&quot;: &quot;feature/messaging&quot;,
-      &quot;currentBranchFilter&quot;: true
+      "branch": "feature/messaging",
+      "currentBranchFilter": true
     },
     {
-      &quot;branch&quot;: &quot;feature/messaging&quot;,
-      &quot;currentBranchFilter&quot;: true
+      "branch": "feature/messaging",
+      "currentBranchFilter": true
     },
     {
-      &quot;branch&quot;: &quot;feature/messaging&quot;,
-      &quot;currentBranchFilter&quot;: true
+      "branch": "feature/messaging",
+      "currentBranchFilter": true
     },
     {
-      &quot;branch&quot;: &quot;feature/messaging&quot;,
-      &quot;currentBranchFilter&quot;: true
+      "branch": "feature/messaging",
+      "currentBranchFilter": true
     },
     {
-      &quot;branch&quot;: &quot;feature/messaging&quot;,
-      &quot;currentBranchFilter&quot;: true
+      "branch": "feature/messaging",
+      "currentBranchFilter": true
     },
     {
-      &quot;branch&quot;: &quot;feature/messaging&quot;,
-      &quot;currentBranchFilter&quot;: true
+      "branch": "feature/messaging",
+      "currentBranchFilter": true
     },
     {
-      &quot;branch&quot;: &quot;develop&quot;,
-      &quot;currentBranchFilter&quot;: true
+      "branch": "develop",
+      "currentBranchFilter": true
     },
     {
-      &quot;branch&quot;: &quot;develop&quot;,
-      &quot;currentBranchFilter&quot;: true
+      "branch": "develop",
+      "currentBranchFilter": true
     },
     {
-      &quot;branch&quot;: &quot;develop&quot;,
-      &quot;currentBranchFilter&quot;: true
+      "branch": "develop",
+      "currentBranchFilter": true
     },
     {
-      &quot;branch&quot;: &quot;develop&quot;,
-      &quot;currentBranchFilter&quot;: true
+      "branch": "develop",
+      "currentBranchFilter": true
     },
     {
-      &quot;branch&quot;: &quot;develop&quot;,
-      &quot;currentBranchFilter&quot;: true
+      "branch": "develop",
+      "currentBranchFilter": true
     },
     {
-      &quot;branch&quot;: &quot;feature/connect-buttons&quot;,
-      &quot;currentBranchFilter&quot;: true
+      "branch": "feature/connect-buttons",
+      "currentBranchFilter": true
     },
     {
-      &quot;branch&quot;: &quot;develop&quot;,
-      &quot;currentBranchFilter&quot;: true
+      "branch": "develop",
+      "currentBranchFilter": true
     },
     {
-      &quot;branch&quot;: &quot;develop&quot;,
-      &quot;currentBranchFilter&quot;: true
+      "branch": "develop",
+      "currentBranchFilter": true
     },
     {
-      &quot;branch&quot;: &quot;develop&quot;,
-      &quot;currentBranchFilter&quot;: true
+      "branch": "develop",
+      "currentBranchFilter": true
     },
     {
-      &quot;branch&quot;: &quot;feature/group-selector&quot;,
-      &quot;currentBranchFilter&quot;: true
+      "branch": "feature/group-selector",
+      "currentBranchFilter": true
     },
     {
-      &quot;branch&quot;: &quot;feature/group-selector&quot;,
-      &quot;currentBranchFilter&quot;: true
+      "branch": "feature/group-selector",
+      "currentBranchFilter": true
     },
     {
-      &quot;branch&quot;: &quot;feature/group-selector&quot;,
-      &quot;currentBranchFilter&quot;: true
+      "branch": "feature/group-selector",
+      "currentBranchFilter": true
+    },
+    {
+      "branch": "feature/group-selector",
+      "currentBranchFilter": true
+    },
+    {
+      "branch": "feature/group-selector",
+      "currentBranchFilter": true
     }
   ],
-  &quot;lastFilter&quot;: {
-    &quot;branch&quot;: &quot;feature/group-selector&quot;,
-    &quot;currentBranchFilter&quot;: true
+  "lastFilter": {
+    "branch": "feature/group-selector",
+    "currentBranchFilter": true
   }
-}</component>
+}]]></component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
@@ -922,6 +928,16 @@
           <url>file://$PROJECT_DIR$/src/modules/Router/index.tsx</url>
           <line>45</line>
           <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/modules/PushAnalytics/components/PushAnalyticsModalConfig/components/RHFGatewaySelector.tsx</url>
+          <line>7</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/modules/PushAnalytics/components/PushAnalyticsModalConfig/components/RHFGatewaySelector.tsx</url>
+          <line>6</line>
+          <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
