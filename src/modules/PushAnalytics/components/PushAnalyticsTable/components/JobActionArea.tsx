@@ -118,7 +118,7 @@ export function JobActionArea({ config }: JobActionAreaProps) {
 														key={`${contact.identifier}-list`}
 													>
 														<ContactName
-															{...contact}
+															contact={contact}
 														/>
 													</li>
 												))}

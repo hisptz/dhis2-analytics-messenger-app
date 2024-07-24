@@ -32,17 +32,8 @@
     </treeState>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="45e8eb8e-5803-456a-9857-5a6354e88f5c" name="Changes" comment="fix: push config&#10;&#10;Fixed issues with add recipient removing existing recipients of the same channel&#10;&#10;Fixed issues with the success registration banner disappearing after a while">
-      <change afterPath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationModal/components/RHFWhitelistInputField.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationsTable/components/EditButton.tsx" afterDir="false" />
+    <list default="true" id="45e8eb8e-5803-456a-9857-5a6354e88f5c" name="Changes" comment="chore: package.json&#10;&#10;Updated package version to 1.0.0-beta.04">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/i18n/en.pot" beforeDir="false" afterPath="$PROJECT_DIR$/i18n/en.pot" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationModal/components/BaseGatewayInfoForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationModal/components/BaseGatewayInfoForm.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationModal/components/ChannelButtonSelector.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationModal/components/ChannelButtonSelector.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationModal/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationModal/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationsTable/components/GatewayActions.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationsTable/components/GatewayActions.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationsTable/hooks/data.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationsTable/hooks/data.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modules/PushAnalytics/components/PushAnalyticsTable/hooks/data.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/PushAnalytics/components/PushAnalyticsTable/hooks/data.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -192,7 +183,7 @@
       <recent name="$PROJECT_DIR$/cypress/specs" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.start">
+  <component name="RunManager" selected="npm.deploy">
     <configuration name="build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
@@ -245,9 +236,9 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.start" />
         <item itemvalue="npm.deploy" />
         <item itemvalue="npm.build" />
+        <item itemvalue="npm.start" />
         <item itemvalue="npm.test:open" />
         <item itemvalue="npm.test:live" />
       </list>
@@ -326,23 +317,7 @@
       <workItem from="1721753233582" duration="2128000" />
       <workItem from="1721802375796" duration="5458000" />
       <workItem from="1721812105680" duration="1915000" />
-      <workItem from="1721821390046" duration="8157000" />
-    </task>
-    <task id="LOCAL-00015" summary="feat(tests): Implementation&#10;&#10;- Setup cypress using DHIS2 cypress tooling">
-      <option name="closed" value="true" />
-      <created>1690353600049</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1690353600049</updated>
-    </task>
-    <task id="LOCAL-00016" summary="feat(tests): Implementation&#10;&#10;- Implemented an example test">
-      <option name="closed" value="true" />
-      <created>1690354776191</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1690354776191</updated>
+      <workItem from="1721821390046" duration="8967000" />
     </task>
     <task id="LOCAL-00017" summary="fix(tests): Fixes&#10;&#10;- Fixed some issues with test config">
       <option name="closed" value="true" />
@@ -720,7 +695,23 @@
       <option name="project" value="LOCAL" />
       <updated>1721826364590</updated>
     </task>
-    <option name="localTasksCounter" value="64" />
+    <task id="LOCAL-00064" summary="feat: gateway config&#10;&#10;Added gateway edit feature">
+      <option name="closed" value="true" />
+      <created>1721832869902</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1721832869903</updated>
+    </task>
+    <task id="LOCAL-00065" summary="chore: package.json&#10;&#10;Updated package version to 1.0.0-beta.04">
+      <option name="closed" value="true" />
+      <created>1721833023963</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1721833023963</updated>
+    </task>
+    <option name="localTasksCounter" value="66" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -771,8 +762,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="feat: gateways&#10;&#10;Implemented whatsapp setup support" />
-    <MESSAGE value="feat: routes&#10;&#10;Improved routes to add auth routes when user is not logged in" />
     <MESSAGE value="feat: access config&#10;&#10;Implemented access configuration for Dam to access DHIS2" />
     <MESSAGE value="chore: access config&#10;&#10;Refactored the implementation of access configuration" />
     <MESSAGE value="fix: gateways &#10;&#10;Fixed some issues with whatsapp gateway config and listing of gateways" />
@@ -796,7 +785,9 @@
     <MESSAGE value="fix: *&#10;&#10;Fixes and improvements for demo" />
     <MESSAGE value="feat: gateway config&#10;&#10;Implemented input for enabling or disabling chatbot in a gateway" />
     <MESSAGE value="fix: push config&#10;&#10;Fixed issues with add recipient removing existing recipients of the same channel&#10;&#10;Fixed issues with the success registration banner disappearing after a while" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: push config&#10;&#10;Fixed issues with add recipient removing existing recipients of the same channel&#10;&#10;Fixed issues with the success registration banner disappearing after a while" />
+    <MESSAGE value="feat: gateway config&#10;&#10;Added gateway edit feature" />
+    <MESSAGE value="chore: package.json&#10;&#10;Updated package version to 1.0.0-beta.04" />
+    <option name="LAST_COMMIT_MESSAGE" value="chore: package.json&#10;&#10;Updated package version to 1.0.0-beta.04" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="WfRunsListSearchHistory"><![CDATA[{
