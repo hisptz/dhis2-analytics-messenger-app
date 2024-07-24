@@ -120,7 +120,7 @@ export function GatewayConfigurationModal({
 				<ModalContent>
 					<div className="column gap-16">
 						<BaseGatewayInfoForm />
-						<TelegramForm />
+						{!defaultValue && <TelegramForm />}
 					</div>
 				</ModalContent>
 				<ModalActions>
