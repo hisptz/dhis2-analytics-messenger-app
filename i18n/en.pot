@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2024-07-24T13:46:58.485Z\n"
-"PO-Revision-Date: 2024-07-24T13:46:58.485Z\n"
+"POT-Creation-Date: 2024-07-24T14:55:16.825Z\n"
+"PO-Revision-Date: 2024-07-24T14:55:16.825Z\n"
 
 msgid "Fetching App configurations..."
 msgstr "Fetching App configurations..."
@@ -155,8 +155,21 @@ msgstr "Messaging channel"
 msgid "Enable chatbot"
 msgstr "Enable chatbot"
 
+msgid "Save changes"
+msgstr "Save changes"
+
 msgid "Contacts to whitelist"
 msgstr "Contacts to whitelist"
+
+msgid ""
+"The are no configured whitelist contacts. This means the enabled chatbot "
+"will work for all individual contacts."
+msgstr ""
+"The are no configured whitelist contacts. This means the enabled chatbot "
+"will work for all individual contacts."
+
+msgid "Enter a phone number or username and click add"
+msgstr "Enter a phone number or username and click add"
 
 msgid "Add"
 msgstr "Add"
@@ -206,8 +219,14 @@ msgstr "Could not update gateway information"
 msgid "Invalid channel {{channel}}"
 msgstr "Invalid channel {{channel}}"
 
-msgid "Gateway created successfully"
-msgstr "Gateway created successfully"
+msgid "updated"
+msgstr "updated"
+
+msgid "created"
+msgstr "created"
+
+msgid "Gateway {{action}} successfully"
+msgstr "Gateway {{action}} successfully"
 
 msgid "Error saving gateway"
 msgstr "Error saving gateway"
@@ -233,8 +252,8 @@ msgstr "Could not disconnect the gateway"
 msgid "Gateway disconnected successfully"
 msgstr "Gateway disconnected successfully"
 
-msgid "Remove gateway"
-msgstr "Remove gateway"
+msgid "Edit gateway"
+msgstr "Edit gateway"
 
 msgid "Start gateway"
 msgstr "Start gateway"
@@ -244,6 +263,9 @@ msgstr "Disconnect gateway"
 
 msgid "Connect gateway"
 msgstr "Connect gateway"
+
+msgid "Remove gateway"
+msgstr "Remove gateway"
 
 msgid "Unknown"
 msgstr "Unknown"
