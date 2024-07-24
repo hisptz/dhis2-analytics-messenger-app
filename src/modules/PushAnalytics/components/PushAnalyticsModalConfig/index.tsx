@@ -26,7 +26,6 @@ import { useManageConfig } from "./hooks/save";
 import { useSendAnalytics } from "./hooks/send";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Parse from "parse";
-import { useBoolean } from "usehooks-ts";
 import { useQueryClient } from "@tanstack/react-query";
 import { RHFGatewaySelector } from "./components/RHFGatewaySelector";
 
@@ -105,7 +104,6 @@ export function PushAnalyticsModalConfig({
 		resolver: zodResolver(pushAnalyticsJobFormDataSchema),
 	});
 	const { send, loading: sending } = useSendAnalytics();
-	const { value: shouldSend, setValue: setShouldSend } = useBoolean(true);
 	const onCloseClick = useCallback(
 		(fromSave?: boolean) => {
 			if (!fromSave && form.formState.isDirty) {
@@ -134,14 +132,8 @@ export function PushAnalyticsModalConfig({
 		if (!job) {
 			return;
 		}
-		if (shouldSend) {
-			await send(job);
-			onCloseClick(true);
-			await queryClient.invalidateQueries(["analyticsJobs"]);
-		} else {
-			await queryClient.invalidateQueries(["analyticsJobs"]);
-			onCloseClick(true);
-		}
+		onCloseClick(true);
+		await queryClient.invalidateQueries(["analyticsJobs"]);
 	};
 
 	const { save, isLoading } = useManageConfig({
@@ -154,8 +146,10 @@ export function PushAnalyticsModalConfig({
 
 	const onSaveAndSend = useCallback(
 		(shouldSend: boolean) => async (data: PushAnalyticsJobFormData) => {
-			setShouldSend(shouldSend);
-			await save(data);
+			const job = await save(data);
+			if (shouldSend) {
+				await send(job);
+			}
 		},
 		[id],
 	);
@@ -225,8 +219,10 @@ export function PushAnalyticsModalConfig({
 								]}
 							/>
 						}
-						disabled={creating || updating || sending}
-						loading={sending || creating || updating}
+						disabled={
+							form.formState.isValidating ||
+							form.formState.isSubmitting
+						}
 						onClick={() => form.handleSubmit(onSaveAndSend(true))()}
 						primary
 					>

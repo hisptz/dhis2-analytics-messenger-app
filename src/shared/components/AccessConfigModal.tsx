@@ -23,14 +23,13 @@ export function AccessConfigModal({ hide, onClose }: AccessConfigModalProps) {
 
 	return (
 		<FormProvider {...form}>
-			<Modal position="middle" hide={hide} onClose={onClose}>
+			<Modal position="middle" hide={hide}>
 				<ModalTitle>{i18n.t("DHIS2 Access Config")}</ModalTitle>
 				<ModalContent>
 					<AccessConfigForm editable form={form} />
 				</ModalContent>
 				<ModalActions>
 					<ButtonStrip>
-						<Button onClick={onClose}>{i18n.t("Cancel")}</Button>
 						<Button
 							loading={loading}
 							primary

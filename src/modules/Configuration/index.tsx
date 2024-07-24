@@ -1,8 +1,9 @@
 import { Menu, MenuItem } from "@dhis2/ui";
-import React from "react";
+import React, { Suspense } from "react";
 import { Navigate, Outlet, useLocation, useNavigate } from "react-router-dom";
 import { CONFIGURATION_NAVIGATION_ITEMS } from "../../shared/constants/navigation";
 import classes from "./Configuration.module.css";
+import FullPageLoader from "../../shared/components/Loaders";
 
 export function ConfigurationOutlet(): React.ReactElement {
 	const location = useLocation();
@@ -26,9 +27,11 @@ export function ConfigurationOutlet(): React.ReactElement {
 					)}
 				</Menu>
 			</div>
-			<div className={classes["content"]}>
-				<Outlet />
-			</div>
+			<Suspense fallback={<FullPageLoader />}>
+				<div className={classes["content"]}>
+					<Outlet />
+				</div>
+			</Suspense>
 		</div>
 	);
 }
