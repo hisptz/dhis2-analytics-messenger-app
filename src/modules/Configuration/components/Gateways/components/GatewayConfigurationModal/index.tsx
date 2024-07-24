@@ -32,6 +32,7 @@ const gatewayConfigFormDataSchema = z.object({
 	sessionId: z.string(),
 	enabled: z.boolean(),
 	phoneNumber: z.string().optional(),
+	enableChatbot: z.boolean(),
 });
 
 export type GatewayConfigFormData = z.infer<typeof gatewayConfigFormDataSchema>;
@@ -50,6 +51,7 @@ export function GatewayConfigurationModal({
 		defaultValues: {
 			sessionId: `${dhis2Instance!.id}-${uid()}`,
 			enabled: true,
+			enableChatbot: true,
 		},
 	});
 
@@ -75,6 +77,7 @@ export function GatewayConfigurationModal({
 				sessionId: data.sessionId,
 				enabled: data.enabled,
 				name: data.name,
+				enableChatbot: data.enableChatbot,
 				dhis2Instance,
 			});
 

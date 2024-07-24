@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2024-07-23T16:11:42.426Z\n"
-"PO-Revision-Date: 2024-07-23T16:11:42.426Z\n"
+"POT-Creation-Date: 2024-07-24T09:22:04.013Z\n"
+"PO-Revision-Date: 2024-07-24T09:22:04.013Z\n"
 
 msgid "Fetching App configurations..."
 msgstr "Fetching App configurations..."
@@ -151,6 +151,9 @@ msgstr "Name"
 
 msgid "Messaging channel"
 msgstr "Messaging channel"
+
+msgid "Enable chatbot"
+msgstr "Enable chatbot"
 
 msgid "Phone number"
 msgstr "Phone number"
