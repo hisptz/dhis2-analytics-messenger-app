@@ -32,10 +32,17 @@
     </treeState>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="45e8eb8e-5803-456a-9857-5a6354e88f5c" name="Changes" comment="feat: gateway config&#10;&#10;Implemented input for enabling or disabling chatbot in a gateway">
+    <list default="true" id="45e8eb8e-5803-456a-9857-5a6354e88f5c" name="Changes" comment="fix: push config&#10;&#10;Fixed issues with add recipient removing existing recipients of the same channel&#10;&#10;Fixed issues with the success registration banner disappearing after a while">
+      <change afterPath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationModal/components/RHFWhitelistInputField.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationsTable/components/EditButton.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modules/Authentication/components/RegistrationFormModal/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/Authentication/components/RegistrationFormModal/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modules/PushAnalytics/components/PushAnalyticsModalConfig/components/RHFRecipientSelector/RHFRecipientSelector.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/PushAnalytics/components/PushAnalyticsModalConfig/components/RHFRecipientSelector/RHFRecipientSelector.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/i18n/en.pot" beforeDir="false" afterPath="$PROJECT_DIR$/i18n/en.pot" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationModal/components/BaseGatewayInfoForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationModal/components/BaseGatewayInfoForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationModal/components/ChannelButtonSelector.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationModal/components/ChannelButtonSelector.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationModal/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationModal/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationsTable/components/GatewayActions.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationsTable/components/GatewayActions.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationsTable/hooks/data.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationsTable/hooks/data.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/PushAnalytics/components/PushAnalyticsTable/hooks/data.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/PushAnalytics/components/PushAnalyticsTable/hooks/data.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,9 +52,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="TypeScript JSX File" />
         <option value="CSS File" />
         <option value="TypeScript File" />
+        <option value="TypeScript JSX File" />
       </list>
     </option>
   </component>
@@ -185,7 +192,7 @@
       <recent name="$PROJECT_DIR$/cypress/specs" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.deploy">
+  <component name="RunManager" selected="npm.start">
     <configuration name="build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
@@ -238,9 +245,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="npm.start" />
         <item itemvalue="npm.deploy" />
         <item itemvalue="npm.build" />
-        <item itemvalue="npm.start" />
         <item itemvalue="npm.test:open" />
         <item itemvalue="npm.test:live" />
       </list>
@@ -319,15 +326,7 @@
       <workItem from="1721753233582" duration="2128000" />
       <workItem from="1721802375796" duration="5458000" />
       <workItem from="1721812105680" duration="1915000" />
-      <workItem from="1721821390046" duration="2660000" />
-    </task>
-    <task id="LOCAL-00014" summary="fix(scheduling): Fixes&#10;&#10;- Fixed issues with scheduling modal throwing errors&#10; - Upgraded DHIS2 deps">
-      <option name="closed" value="true" />
-      <created>1690347235679</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1690347235679</updated>
+      <workItem from="1721821390046" duration="8157000" />
     </task>
     <task id="LOCAL-00015" summary="feat(tests): Implementation&#10;&#10;- Setup cypress using DHIS2 cypress tooling">
       <option name="closed" value="true" />
@@ -713,7 +712,15 @@
       <option name="project" value="LOCAL" />
       <updated>1721813629310</updated>
     </task>
-    <option name="localTasksCounter" value="63" />
+    <task id="LOCAL-00063" summary="fix: push config&#10;&#10;Fixed issues with add recipient removing existing recipients of the same channel&#10;&#10;Fixed issues with the success registration banner disappearing after a while">
+      <option name="closed" value="true" />
+      <created>1721826364589</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1721826364590</updated>
+    </task>
+    <option name="localTasksCounter" value="64" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -764,7 +771,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="feat: gateways&#10;&#10;Implemented gateways listing" />
     <MESSAGE value="feat: gateways&#10;&#10;Implemented whatsapp setup support" />
     <MESSAGE value="feat: routes&#10;&#10;Improved routes to add auth routes when user is not logged in" />
     <MESSAGE value="feat: access config&#10;&#10;Implemented access configuration for Dam to access DHIS2" />
@@ -789,7 +795,8 @@
     <MESSAGE value="fix: multi select field&#10;&#10;Fixed issues with multi select throwing error when selected is not part of options" />
     <MESSAGE value="fix: *&#10;&#10;Fixes and improvements for demo" />
     <MESSAGE value="feat: gateway config&#10;&#10;Implemented input for enabling or disabling chatbot in a gateway" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: gateway config&#10;&#10;Implemented input for enabling or disabling chatbot in a gateway" />
+    <MESSAGE value="fix: push config&#10;&#10;Fixed issues with add recipient removing existing recipients of the same channel&#10;&#10;Fixed issues with the success registration banner disappearing after a while" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: push config&#10;&#10;Fixed issues with add recipient removing existing recipients of the same channel&#10;&#10;Fixed issues with the success registration banner disappearing after a while" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="WfRunsListSearchHistory"><![CDATA[{

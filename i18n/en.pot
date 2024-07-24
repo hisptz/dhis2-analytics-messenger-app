@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2024-07-24T09:22:04.013Z\n"
-"PO-Revision-Date: 2024-07-24T09:22:04.013Z\n"
+"POT-Creation-Date: 2024-07-24T13:46:58.485Z\n"
+"PO-Revision-Date: 2024-07-24T13:46:58.485Z\n"
 
 msgid "Fetching App configurations..."
 msgstr "Fetching App configurations..."
@@ -154,6 +154,12 @@ msgstr "Messaging channel"
 
 msgid "Enable chatbot"
 msgstr "Enable chatbot"
+
+msgid "Contacts to whitelist"
+msgstr "Contacts to whitelist"
+
+msgid "Add"
+msgstr "Add"
 
 msgid "Phone number"
 msgstr "Phone number"
@@ -319,9 +325,6 @@ msgstr "Error updating visualization group"
 
 msgid "{{operation}} group"
 msgstr "{{operation}} group"
-
-msgid "Add"
-msgstr "Add"
 
 msgid "Name is required"
 msgstr "Name is required"

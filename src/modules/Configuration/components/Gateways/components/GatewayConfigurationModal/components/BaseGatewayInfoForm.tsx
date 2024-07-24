@@ -6,6 +6,7 @@ import {
 } from "@hisptz/dhis2-ui";
 import i18n from "@dhis2/d2-i18n";
 import { channels } from "../../../../../../../shared/constants/channels";
+import { RHFWhitelistInputField } from "./RHFWhitelistInputField";
 
 export function BaseGatewayInfoForm() {
 	return (
@@ -25,6 +26,7 @@ export function BaseGatewayInfoForm() {
 				name="enableChatbot"
 				label={i18n.t("Enable chatbot")}
 			/>
+			<RHFWhitelistInputField />
 		</div>
 	);
 }

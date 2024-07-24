@@ -15,6 +15,7 @@ function getClients({
 	return async () => {
 		const query = new Parse.Query(clientClassName);
 		query.equalTo("dhis2Instance", dhis2Instance);
+		query.ascending("name");
 		return query.find();
 	};
 }

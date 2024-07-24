@@ -7,6 +7,7 @@ import { GatewayDisconnectButton } from "./DisconnectButton";
 import { GatewayDeleteButton } from "./DeleteButton";
 import { GatewayConnectButton } from "./GatewayConnectButton";
 import { SupportedChannels } from "../../../../../../../shared/interfaces";
+import { GatewayEditButton } from "./EditButton";
 
 export interface GatewayActionsProps {
 	gateway: Parse.Object;
@@ -33,8 +34,8 @@ export function GatewayActions({ gateway, channel }: GatewayActionsProps) {
 
 	return (
 		<div className="row gap-8 align-center">
-			<Tooltip content={i18n.t("Remove gateway")}>
-				<GatewayDeleteButton channel={channel} gateway={gateway} />
+			<Tooltip content={i18n.t("Edit gateway")}>
+				<GatewayEditButton channel={channel} gateway={gateway} />
 			</Tooltip>
 			{data?.status === "NOT STARTED" || data?.error ? (
 				<Tooltip content={i18n.t("Start gateway")}>
@@ -59,6 +60,9 @@ export function GatewayActions({ gateway, channel }: GatewayActionsProps) {
 					<GatewayConnectButton gateway={gateway} channel={channel} />
 				</Tooltip>
 			) : null}
+			<Tooltip content={i18n.t("Remove gateway")}>
+				<GatewayDeleteButton channel={channel} gateway={gateway} />
+			</Tooltip>
 		</div>
 	);
 }

@@ -17,6 +17,7 @@ export function usePushAnalyticsConfig() {
 			if (dhis2Instance) {
 				const query = new Parse.Query(ParseClass.ANALYTICS_PUSH_JOB);
 				query.equalTo("dhis2Instance", dhis2Instance);
+				query.ascending("name");
 				return await query.find();
 			} else {
 				return null;
