@@ -69,6 +69,9 @@ export default function VisualizationGroupsTable(): React.ReactElement {
 					<CustomDataTable
 						columns={tableColumns}
 						loading={loading}
+						emptyLabel={i18n.t(
+							"There are no configured visualization groups to be accessed by Analytics Messenger",
+						)}
 						rows={visualizationGroups as any}
 						pagination={undefined}
 					/>

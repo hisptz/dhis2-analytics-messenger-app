@@ -21,12 +21,19 @@ import { useAlert } from "@dhis2/app-runtime";
 const signUpSchema = z.object({
 	fullName: z
 		.string()
+		.regex(/^[a-zA-Z ]+$/, "Only alphabets and spaces are allowed")
 		.refine(
 			(value) => value.includes(" "),
 			"A space is required between your first and last name",
 		),
 	username: z.string().min(4, "Username should have at least 4 characters"),
-	phoneNumber: z.string().optional(),
+	phoneNumber: z
+		.string()
+		.regex(
+			/^(\+?\d{1,3})?\d{7,15}$/,
+			"Invalid phone number format, Use +255XXXXXXXXX or 0XXXXXXXXX",
+		)
+		.optional(),
 	email: z.string().email(),
 	password: z
 		.string()
