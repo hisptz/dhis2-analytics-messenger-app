@@ -29,9 +29,9 @@ const GatewayConfiguration = React.lazy(
 // configuration navigation items
 export const CONFIGURATION_NAVIGATION_ITEMS: Array<NavigationItem> = [
 	{
-		label: i18n.t("Visualization groups"),
-		path: "visualization-groups",
-		element: VisualizationGroupsConfiguration,
+		label: i18n.t("Access"),
+		path: "access",
+		element: AccessConfig,
 	},
 	{
 		label: i18n.t("Messaging Gateway"),
@@ -39,9 +39,9 @@ export const CONFIGURATION_NAVIGATION_ITEMS: Array<NavigationItem> = [
 		element: GatewayConfiguration,
 	},
 	{
-		label: i18n.t("Access"),
-		path: "access",
-		element: AccessConfig,
+		label: i18n.t("Visualization groups"),
+		path: "visualization-groups",
+		element: VisualizationGroupsConfiguration,
 	},
 	{
 		path: "",

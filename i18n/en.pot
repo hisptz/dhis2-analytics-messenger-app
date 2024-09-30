@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2024-07-24T14:55:16.825Z\n"
-"PO-Revision-Date: 2024-07-24T14:55:16.825Z\n"
+"POT-Creation-Date: 2024-09-30T09:40:43.193Z\n"
+"PO-Revision-Date: 2024-09-30T09:40:43.193Z\n"
 
 msgid "Fetching App configurations..."
 msgstr "Fetching App configurations..."
@@ -38,12 +38,8 @@ msgstr "Cancel"
 msgid "Connect"
 msgstr "Connect"
 
-msgid ""
-"You need the Analytics Messaging Service to get started. Register or "
-"connect your account below."
-msgstr ""
-"You need the Analytics Messaging Service to get started. Register or "
-"connect your account below."
+msgid "Register or Connect your account to Analytics Messaging Service"
+msgstr "Register or Connect your account to Analytics Messaging Service"
 
 msgid "Register"
 msgstr "Register"
@@ -372,6 +368,13 @@ msgstr "Configuration of the visualization groups for push analytics and chat bo
 msgid "Add visualization group"
 msgstr "Add visualization group"
 
+msgid ""
+"There are no configured visualization groups to be accessed by Analytics "
+"Messenger"
+msgstr ""
+"There are no configured visualization groups to be accessed by Analytics "
+"Messenger"
+
 msgid "Visualization group deleted successfully"
 msgstr "Visualization group deleted successfully"
 
@@ -396,8 +399,8 @@ msgstr "Are you sure you want to delete the group {{name}}?"
 msgid "At least one visualization is required"
 msgstr "At least one visualization is required"
 
-msgid "There are no Push Analytics configured, click the below button to add new."
-msgstr "There are no Push Analytics configured, click the below button to add new."
+msgid "There are no Push Analytics configured."
+msgstr "There are no Push Analytics configured."
 
 msgid "Add push analytics"
 msgstr "Add push analytics"
@@ -712,11 +715,11 @@ msgstr "WhatsApp"
 msgid "Telegram"
 msgstr "Telegram"
 
-msgid "Messaging Gateway"
-msgstr "Messaging Gateway"
-
 msgid "Access"
 msgstr "Access"
+
+msgid "Messaging Gateway"
+msgstr "Messaging Gateway"
 
 msgid "Push Analytics"
 msgstr "Push Analytics"
