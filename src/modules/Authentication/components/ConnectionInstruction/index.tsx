@@ -14,7 +14,7 @@ export function ConnectionInstruction(): React.ReactElement {
 		<div className="p-32">
 			<div>
 				{i18n.t(
-					"You need the Analytics Messaging Service to get started. Register or connect your account below.",
+					"Register or Connect your account to Analytics Messaging Service",
 				)}
 			</div>
 			<div className="pt-16">
