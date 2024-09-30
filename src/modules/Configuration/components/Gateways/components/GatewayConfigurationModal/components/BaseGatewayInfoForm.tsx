@@ -1,7 +1,12 @@
 import React from "react";
-import { RHFSingleSelectField, RHFTextInputField } from "@hisptz/dhis2-ui";
+import {
+	RHFCheckboxField,
+	RHFSingleSelectField,
+	RHFTextInputField,
+} from "@hisptz/dhis2-ui";
 import i18n from "@dhis2/d2-i18n";
-import { channels } from "../../../constants/channels";
+import { channels } from "../../../../../../../shared/constants/channels";
+import { RHFWhitelistInputField } from "./RHFWhitelistInputField";
 
 export function BaseGatewayInfoForm() {
 	return (
@@ -16,6 +21,12 @@ export function BaseGatewayInfoForm() {
 				}))}
 				name="channel"
 			/>
+			<RHFCheckboxField
+				required
+				name="enableChatbot"
+				label={i18n.t("Enable chatbot")}
+			/>
+			<RHFWhitelistInputField />
 		</div>
 	);
 }

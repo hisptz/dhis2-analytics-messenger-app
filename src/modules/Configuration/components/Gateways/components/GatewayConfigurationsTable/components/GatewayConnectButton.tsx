@@ -12,7 +12,6 @@ export function GatewayConnectButton({
 	gateway,
 	channel,
 }: GatewayConnectButtonProps) {
-	console.log({ channel });
 	switch (channel) {
 		case SupportedChannels.WHATSAPP:
 			return <WhatsAppGatewayConnectButton gateway={gateway} />;

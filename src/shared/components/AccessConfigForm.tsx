@@ -17,12 +17,14 @@ export function AccessConfigForm({
 		<FormProvider {...form}>
 			<div className="column gap-8">
 				<RHFTextInputField
+					required
 					disabled={!editable}
 					type="password"
 					name="pat"
 					label={i18n.t("Personal access token")}
 				/>
 				<RHFTextInputField
+					required
 					disabled={!editable}
 					type="date"
 					name="expiresOn"

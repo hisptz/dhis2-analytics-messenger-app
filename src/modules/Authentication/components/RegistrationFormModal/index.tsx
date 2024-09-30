@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Parse from "parse";
 import i18n from "@dhis2/d2-i18n";
 import {
@@ -10,7 +10,7 @@ import {
 	ModalContent,
 	ModalTitle,
 } from "@dhis2/ui";
-import { useForm, FormProvider } from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { RHFDHIS2FormField } from "@hisptz/dhis2-ui";
@@ -82,7 +82,7 @@ export function RegistrationFormModal({
 					message: i18n.t(
 						"Registration successful. Check your email to verify your account.",
 					),
-					type: { success: true },
+					type: { success: true, permanent: true },
 				});
 				registrationForm.reset();
 				onClose();

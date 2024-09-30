@@ -14,16 +14,20 @@ import { BaseGatewayInfoForm } from "./components/BaseGatewayInfoForm";
 import i18n from "@dhis2/d2-i18n";
 import { ChannelButtonSelector } from "./components/ChannelButtonSelector";
 import Parse from "parse";
-import { channels } from "../../constants/channels";
+import { channels } from "../../../../../../shared/constants/channels";
 import { useAlert } from "@dhis2/app-runtime";
 import { useDamConfig } from "../../../../../../shared/components/DamConfigProvider";
 import { TelegramForm } from "./components/TelegramForm";
 import { uid } from "@hisptz/dhis2-utils";
 import { useRefetchGateways } from "../GatewayConfigurationsTable/hooks/data";
+import { SupportedChannels } from "../../../../../../shared/interfaces";
+import { set } from "lodash";
 
 export interface GatewayConfigurationModalProps {
 	onClose: () => void;
 	hide: boolean;
+	defaultValue?: Parse.Object;
+	channel?: SupportedChannels;
 }
 
 const gatewayConfigFormDataSchema = z.object({
@@ -32,6 +36,8 @@ const gatewayConfigFormDataSchema = z.object({
 	sessionId: z.string(),
 	enabled: z.boolean(),
 	phoneNumber: z.string().optional(),
+	enableChatbot: z.boolean(),
+	whitelist: z.array(z.string()).optional(),
 });
 
 export type GatewayConfigFormData = z.infer<typeof gatewayConfigFormDataSchema>;
@@ -39,6 +45,8 @@ export type GatewayConfigFormData = z.infer<typeof gatewayConfigFormDataSchema>;
 export function GatewayConfigurationModal({
 	onClose,
 	hide,
+	defaultValue,
+	channel,
 }: GatewayConfigurationModalProps) {
 	const dhis2Instance = useDamConfig();
 
@@ -47,10 +55,16 @@ export function GatewayConfigurationModal({
 	const form = useForm<GatewayConfigFormData>({
 		resolver: zodResolver(gatewayConfigFormDataSchema),
 		shouldFocusError: false,
-		defaultValues: {
-			sessionId: `${dhis2Instance!.id}-${uid()}`,
-			enabled: true,
-		},
+		defaultValues: defaultValue
+			? {
+					...defaultValue.attributes,
+					channel,
+				}
+			: {
+					sessionId: `${dhis2Instance!.id}-${uid()}`,
+					enabled: true,
+					enableChatbot: true,
+				},
 	});
 
 	const { show } = useAlert(
@@ -70,16 +84,23 @@ export function GatewayConfigurationModal({
 				});
 				return;
 			}
-			const gateway = new Parse.Object(channel.className);
-			await gateway.save({
+			const gateway = defaultValue ?? new Parse.Object(channel.className);
+			const payload = {
 				sessionId: data.sessionId,
 				enabled: data.enabled,
 				name: data.name,
+				enableChatbot: data.enableChatbot,
+				whitelist: data.whitelist,
 				dhis2Instance,
-			});
+			};
+			if (data.phoneNumber) {
+				set(payload, "phoneNumber", data.phoneNumber);
+			}
+			await gateway.save(payload);
+			const action = defaultValue ? i18n.t("updated") : i18n.t("created");
 
 			show({
-				message: i18n.t("Gateway created successfully"),
+				message: i18n.t("Gateway {{action}} successfully", { action }),
 				type: { success: true },
 			});
 			refetch();
@@ -99,13 +120,14 @@ export function GatewayConfigurationModal({
 				<ModalContent>
 					<div className="column gap-16">
 						<BaseGatewayInfoForm />
-						<TelegramForm />
+						{!defaultValue && <TelegramForm />}
 					</div>
 				</ModalContent>
 				<ModalActions>
 					<ButtonStrip>
 						<Button onClick={onClose}>{i18n.t("Cancel")}</Button>
 						<ChannelButtonSelector
+							editMode={!!defaultValue}
 							onComplete={form.handleSubmit(onSave)}
 						/>
 					</ButtonStrip>

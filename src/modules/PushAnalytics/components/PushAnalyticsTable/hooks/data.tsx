@@ -17,6 +17,7 @@ export function usePushAnalyticsConfig() {
 			if (dhis2Instance) {
 				const query = new Parse.Query(ParseClass.ANALYTICS_PUSH_JOB);
 				query.equalTo("dhis2Instance", dhis2Instance);
+				query.ascending("name");
 				return await query.find();
 			} else {
 				return null;
@@ -49,15 +50,12 @@ export function usePushAnalyticsConfig() {
 							style={{ gap: 8, flexWrap: "wrap" }}
 							className="row"
 						>
-							{contacts?.map(
-								({ identifier, ...rest }: Contact) => (
-									<ContactChip
-										key={`${identifier}-recipient`}
-										identifier={identifier}
-										{...rest}
-									/>
-								),
-							)}
+							{contacts?.map((contact: Contact) => (
+								<ContactChip
+									key={`${contact.identifier}-${contact.gatewayId}-recipient`}
+									contact={contact}
+								/>
+							))}
 						</div>
 					),
 					actions: (

@@ -2,7 +2,7 @@ import { useDamConfig } from "../../../../../../../shared/components/DamConfigPr
 import { useQueries, useQueryClient } from "@tanstack/react-query";
 import { useMemo } from "react";
 import Parse from "parse";
-import { channels } from "../../../constants/channels";
+import { channels } from "../../../../../../../shared/constants/channels";
 import { forEach } from "async";
 
 function getClients({
@@ -15,6 +15,7 @@ function getClients({
 	return async () => {
 		const query = new Parse.Query(clientClassName);
 		query.equalTo("dhis2Instance", dhis2Instance);
+		query.ascending("name");
 		return query.find();
 	};
 }

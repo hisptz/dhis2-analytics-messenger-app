@@ -15,7 +15,7 @@ export default function AppRouter(): React.ReactElement {
 			<HashRouter>
 				<Suspense fallback={<FullPageLoader />}>
 					<Routes>
-						<Route path="/" element={<Navigator />}></Route>
+						<Route path="/" element={<Navigator />} />
 						<Route path="/landing" element={<Authentication />} />
 						<Route path="/app" element={<MainApp />}>
 							{NAVIGATION_ITEMS.map(

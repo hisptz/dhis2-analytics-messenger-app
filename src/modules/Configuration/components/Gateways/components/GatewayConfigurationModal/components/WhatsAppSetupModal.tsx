@@ -87,7 +87,6 @@ export function WhatsAppSetup({
 		};
 
 		const onLoading = (loadingStatus: any) => {
-			console.log(loadingStatus);
 			setLoadingStatus(loadingStatus);
 		};
 

@@ -96,7 +96,7 @@ export function WhatsAppConnectModal({
 							<img
 								height={300}
 								width={300}
-								src={data.qrCode.base64Image}
+								src={data.qrCode?.base64Image}
 								alt="QR Code Code"
 							/>
 						</div>

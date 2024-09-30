@@ -41,30 +41,26 @@ export function RHFRecipientSelector({
 										)}
 									</Help>
 								) : (
-									recipients.map(
-										({
-											type,
-											identifier,
-											channel,
-										}: Contact) => (
-											<ContactChip
-												channel={channel}
-												key={`${identifier}-recipient`}
-												onRemove={() => {
-													field.onChange(
-														filter(
-															recipients,
-															(recipient) =>
-																identifier !==
-																recipient.identifier,
+									recipients.map((contact: Contact) => (
+										<ContactChip
+											key={`${contact.gatewayId}-${contact.identifier}`}
+											contact={contact}
+											onRemove={() => {
+												const updatedList = filter(
+													recipients,
+													(recipient) =>
+														!(
+															recipient.identifier ===
+																contact.identifier &&
+															recipient.gatewayId ===
+																contact.gatewayId
 														),
-													);
-												}}
-												identifier={identifier}
-												type={type}
-											/>
-										),
-									)
+												);
+
+												field.onChange(updatedList);
+											}}
+										/>
+									))
 								)}
 							</div>
 							<div style={{ maxWidth: "40%" }}>
@@ -84,7 +80,8 @@ export function RHFRecipientSelector({
 											field.onChange(
 												uniqBy(
 													[...recipients, contact],
-													"identifier",
+													(recipient) =>
+														`${recipient.gatewayId}.${recipient.identifier}`,
 												),
 											);
 										}
