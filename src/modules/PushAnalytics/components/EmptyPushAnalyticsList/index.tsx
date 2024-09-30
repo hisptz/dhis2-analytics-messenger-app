@@ -17,9 +17,7 @@ export default function EmptyPushAnalyticsList(): React.ReactElement {
 			<div className={classes["list-container"]}>
 				<PushAnalyticsSvg />
 				<p className="pt-16 center">
-					{i18n.t(
-						"There are no Push Analytics configured, click the below button to add new.",
-					)}
+					{i18n.t("There are no Push Analytics configured.")}
 				</p>
 				<div className="pt-16 ">
 					<Button
