@@ -31,13 +31,18 @@ export function useJobStatus(jobId: string) {
 
 	const status = useMemo(() => {
 		return map(data ?? [], (statusData) => {
+			const startDate = new Date(statusData.get("startTime").toString());
+			const endDate = statusData.get("endTime")
+				? new Date(statusData.get("endTime").toString())
+				: null;
+
 			return {
 				status: statusData.get("status"),
-				startTime: DateTime.fromISO(
-					statusData.get("startTime"),
-				).toFormat("dd/MM/yyyy HH:mm:ss"),
-				endTime: statusData.get("endTime")
-					? DateTime.fromISO(statusData.get("endTime")).toFormat(
+				startTime: DateTime.fromISO(startDate.toISOString()).toFormat(
+					"dd/MM/yyyy HH:mm:ss",
+				),
+				endTime: endDate
+					? DateTime.fromISO(endDate.toISOString()).toFormat(
 							"dd/MM/yyyy HH:mm:ss",
 						)
 					: "N/A",
