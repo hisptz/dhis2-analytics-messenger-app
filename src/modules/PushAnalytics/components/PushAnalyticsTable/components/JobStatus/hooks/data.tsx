@@ -6,6 +6,14 @@ import { useInterval } from "usehooks-ts";
 import { map, head } from "lodash";
 import { DateTime } from "luxon";
 
+export type JobStatus = {
+	status: string;
+	trigger: string;
+	startTime: string;
+	endTime?: string;
+	logs: string;
+};
+
 export function useJobStatus(jobId: string) {
 	async function fetchJobStatus(): Promise<Parse.Object[] | null> {
 		try {
@@ -29,7 +37,7 @@ export function useJobStatus(jobId: string) {
 		queryFn: fetchJobStatus,
 	});
 
-	const status = useMemo(() => {
+	const status: JobStatus[] = useMemo(() => {
 		return map(data ?? [], (statusData) => {
 			const startDate = new Date(statusData.get("startTime").toString());
 			const endDate = statusData.get("endTime")
@@ -38,6 +46,7 @@ export function useJobStatus(jobId: string) {
 
 			return {
 				status: statusData.get("status"),
+				trigger: statusData.get("trigger"),
 				startTime: DateTime.fromISO(startDate.toISOString()).toFormat(
 					"dd/MM/yyyy HH:mm:ss",
 				),

@@ -4,6 +4,7 @@ import {
 	IconDelete24,
 	IconEdit24,
 	IconMessages24,
+	IconTerminalWindow24,
 } from "@dhis2/ui";
 import { ContactName } from "../../../../../shared/components/ContactChip";
 import { ActionButton } from "../../../../../shared/components/CustomDataTable/components/ActionButton";
@@ -16,6 +17,7 @@ import { useManageConfig } from "../../PushAnalyticsModalConfig/hooks/save";
 import { useQueryClient } from "@tanstack/react-query";
 import { ScheduleModal } from "../../ScheduleModal";
 import { useSendAnalytics } from "../../PushAnalyticsModalConfig/hooks/send";
+import { PushAnalyticsLogs } from "../../PushAnalyticsLogs";
 
 export interface JobActionAreaProps {
 	config: Parse.Object;
@@ -31,6 +33,11 @@ export function JobActionArea({ config }: JobActionAreaProps) {
 		value: hideSchedule,
 		setTrue: onHideSchedule,
 		setFalse: onShowSchedule,
+	} = useBoolean(true);
+	const {
+		value: hideLogs,
+		setTrue: onHideLogs,
+		setFalse: onShowLogs,
 	} = useBoolean(true);
 	const { confirm } = useConfirmDialog();
 	const queryClient = useQueryClient();
@@ -54,6 +61,14 @@ export function JobActionArea({ config }: JobActionAreaProps) {
 					onClose={onHideEdit}
 				/>
 			)}
+			{!hideLogs && (
+				<PushAnalyticsLogs
+					key={config.id}
+					config={config}
+					hidden={hideLogs}
+					onClose={onHideLogs}
+				/>
+			)}
 			{!hideSchedule && (
 				<ScheduleModal
 					onClose={onHideSchedule}
@@ -74,6 +89,12 @@ export function JobActionArea({ config }: JobActionAreaProps) {
 						label: i18n.t("Schedule"),
 						icon: <IconClockHistory24 />,
 						onClick: onShowSchedule,
+					},
+					{
+						key: "push-analytics-logs",
+						label: i18n.t("Logs"),
+						icon: <IconTerminalWindow24 />,
+						onClick: onShowLogs,
 					},
 					{
 						key: "delete-config",

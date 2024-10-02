@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2024-10-02T07:59:45.686Z\n"
-"PO-Revision-Date: 2024-10-02T07:59:45.686Z\n"
+"POT-Creation-Date: 2024-10-02T17:46:57.670Z\n"
+"PO-Revision-Date: 2024-10-02T17:46:57.670Z\n"
 
 msgid "Fetching App configurations..."
 msgstr "Fetching App configurations..."
@@ -405,6 +405,18 @@ msgstr "There are no Push Analytics configured."
 msgid "Add push analytics"
 msgstr "Add push analytics"
 
+msgid "Show less"
+msgstr "Show less"
+
+msgid "Show more"
+msgstr "Show more"
+
+msgid "Logs for {{name}}"
+msgstr "Logs for {{name}}"
+
+msgid "Hide"
+msgstr "Hide"
+
 msgid "Minute"
 msgstr "Minute"
 
@@ -537,6 +549,9 @@ msgstr "Recipients"
 
 msgid "Schedule"
 msgstr "Schedule"
+
+msgid "Logs"
+msgstr "Logs"
 
 msgid "Are you sure you want to delete the configuration {{name}}?"
 msgstr "Are you sure you want to delete the configuration {{name}}?"
