@@ -5,6 +5,7 @@ import { capitalize } from "lodash";
 import { TechnicalLog } from "../TechnicalLog";
 import { JobStatus } from "../../../PushAnalyticsTable/components/JobStatus/hooks/data";
 import "./AnalyticsLog.css";
+import { StatusLabel } from "../../../PushAnalyticsTable/components/StatusLabel";
 
 type AnalyticsLogsPros = {
 	analyticsLogs: JobStatus;
@@ -28,7 +29,7 @@ export function AnalyticsLog({ analyticsLogs }: AnalyticsLogsPros) {
 			<div className="row pb-4">
 				<span className="logs-label">{i18n.t("Status")}</span>:
 				&nbsp;&nbsp;
-				<span>{status}</span>
+				<StatusLabel status={status} />
 			</div>
 			<div className="row pb-4">
 				<span className="logs-label">{i18n.t("Trigger")}</span>:
