@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2024-10-03T07:05:42.924Z\n"
-"PO-Revision-Date: 2024-10-03T07:05:42.924Z\n"
+"POT-Creation-Date: 2024-10-03T07:29:53.071Z\n"
+"PO-Revision-Date: 2024-10-03T07:29:53.071Z\n"
 
 msgid "Fetching App configurations..."
 msgstr "Fetching App configurations..."
@@ -414,14 +414,17 @@ msgstr "Trigger"
 msgid "Ended at"
 msgstr "Ended at"
 
-msgid "Show less"
-msgstr "Show less"
+msgid "Hide logs"
+msgstr "Hide logs"
 
-msgid "Show more"
-msgstr "Show more"
+msgid "Show logs"
+msgstr "Show logs"
 
 msgid "Logs for {{name}}"
 msgstr "Logs for {{name}}"
+
+msgid "There are no logs available"
+msgstr "There are no logs available"
 
 msgid "Hide"
 msgstr "Hide"

@@ -35,13 +35,15 @@ export function PushAnalyticsLogs({
 			<ModalContent>
 				{isLoading ? (
 					<div></div>
-				) : (
+				) : allStatus.length ? (
 					allStatus.map((status, index) => (
 						<div className="pt-8">
 							<AnalyticsLog key={index} analyticsLogs={status} />
 							{index < allStatus.length - 1 && <Divider />}
 						</div>
 					))
+				) : (
+					i18n.t("There are no logs available")
 				)}
 			</ModalContent>
 			<ModalActions>
