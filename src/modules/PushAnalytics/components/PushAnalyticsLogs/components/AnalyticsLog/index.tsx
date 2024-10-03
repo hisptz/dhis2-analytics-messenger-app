@@ -52,7 +52,7 @@ export function AnalyticsLog({ analyticsLogs }: AnalyticsLogsPros) {
 						}}
 						onClick={toggleLogs}
 					>
-						{showLogs ? i18n.t("Show less") : i18n.t("Show more")}
+						{showLogs ? i18n.t("Hide logs") : i18n.t("Show logs")}
 					</small>
 				</div>
 			)}
