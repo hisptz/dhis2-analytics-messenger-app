@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2024-10-02T17:46:57.670Z\n"
-"PO-Revision-Date: 2024-10-02T17:46:57.670Z\n"
+"POT-Creation-Date: 2024-10-03T07:05:42.924Z\n"
+"PO-Revision-Date: 2024-10-03T07:05:42.924Z\n"
 
 msgid "Fetching App configurations..."
 msgstr "Fetching App configurations..."
@@ -405,6 +405,15 @@ msgstr "There are no Push Analytics configured."
 msgid "Add push analytics"
 msgstr "Add push analytics"
 
+msgid "Started at"
+msgstr "Started at"
+
+msgid "Trigger"
+msgstr "Trigger"
+
+msgid "Ended at"
+msgstr "Ended at"
+
 msgid "Show less"
 msgstr "Show less"
 
@@ -564,9 +573,6 @@ msgstr "Confirm sending"
 
 msgid "Sending visualizations to"
 msgstr "Sending visualizations to"
-
-msgid "Latest Push Status"
-msgstr "Latest Push Status"
 
 msgid "Add push analytics configuration"
 msgstr "Add push analytics configuration"
