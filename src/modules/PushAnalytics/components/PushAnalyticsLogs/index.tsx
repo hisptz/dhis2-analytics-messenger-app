@@ -25,8 +25,6 @@ export function PushAnalyticsLogs({
 }: PushAnalyticsLogsProps) {
 	const { allStatus, isLoading } = useJobStatus(config.id);
 
-	console.log(allStatus);
-
 	return (
 		<Modal position="middle" onClose={onClose} hide={hidden}>
 			<ModalTitle>
@@ -37,7 +35,7 @@ export function PushAnalyticsLogs({
 					<div></div>
 				) : allStatus.length ? (
 					allStatus.map((status, index) => (
-						<div className="pt-8">
+						<div key={`${index}-status`} className="pt-8">
 							<AnalyticsLog key={index} analyticsLogs={status} />
 							{index < allStatus.length - 1 && <Divider />}
 						</div>

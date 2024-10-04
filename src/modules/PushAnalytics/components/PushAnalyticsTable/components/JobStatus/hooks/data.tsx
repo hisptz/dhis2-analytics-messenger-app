@@ -3,8 +3,8 @@ import { useQuery } from "@tanstack/react-query";
 import { useMemo } from "react";
 import { ParseClass } from "../../../../../../../shared/constants/parse";
 import { useInterval } from "usehooks-ts";
-import { map, head } from "lodash";
-import { DateTime } from "luxon";
+import { head, map } from "lodash";
+import { DateTime, Interval } from "luxon";
 
 export type JobStatus = {
 	status: string;
@@ -12,6 +12,7 @@ export type JobStatus = {
 	startTime: string;
 	endTime?: string;
 	logs: string;
+	time?: string;
 };
 
 export function useJobStatus(jobId: string) {
@@ -44,16 +45,22 @@ export function useJobStatus(jobId: string) {
 				? new Date(statusData.get("endTime").toString())
 				: null;
 
+			const startDateTime = DateTime.fromJSDate(startDate);
+			const endDateTime = endDate
+				? DateTime.fromJSDate(endDate)
+				: undefined;
+
+			const timeTaken = endDateTime
+				? Interval.fromDateTimes(startDateTime, endDateTime)
+				: undefined;
+
 			return {
 				status: statusData.get("status"),
 				trigger: statusData.get("trigger"),
-				startTime: DateTime.fromISO(startDate.toISOString()).toFormat(
-					"dd/MM/yyyy HH:mm:ss",
-				),
-				endTime: endDate
-					? DateTime.fromISO(endDate.toISOString()).toFormat(
-							"dd/MM/yyyy HH:mm:ss",
-						)
+				startTime: startDateTime.toFormat("dd/MM/yyyy HH:mm:ss"),
+				time: timeTaken?.toDuration().rescale().toHuman() ?? "N/A",
+				endTime: endDateTime
+					? endDateTime.toFormat("dd/MM/yyyy HH:mm:ss")
 					: "N/A",
 				logs: statusData.get("logs"),
 			};

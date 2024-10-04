@@ -12,7 +12,8 @@ type AnalyticsLogsPros = {
 };
 
 export function AnalyticsLog({ analyticsLogs }: AnalyticsLogsPros) {
-	const { startTime, endTime, status, trigger, logs } = analyticsLogs;
+	const { startTime, endTime, status, trigger, logs, time } =
+		analyticsLogs ?? {};
 	const [showLogs, setShowLogs] = useState(false);
 
 	const toggleLogs = () => {
@@ -36,11 +37,11 @@ export function AnalyticsLog({ analyticsLogs }: AnalyticsLogsPros) {
 				&nbsp;&nbsp;
 				<span>{capitalize(trigger)}</span>
 			</div>
-			{endTime && endTime !== "N/A" && (
+			{time && time !== "N/A" && (
 				<div className="row pb-4">
-					<span className="logs-label">{i18n.t("Ended at")}</span>:
+					<span className="logs-label">{i18n.t("Time taken")}</span>:
 					&nbsp;&nbsp;
-					<span>{endTime}</span>
+					<span>{time}</span>
 				</div>
 			)}
 			{logs && (
@@ -57,7 +58,7 @@ export function AnalyticsLog({ analyticsLogs }: AnalyticsLogsPros) {
 				</div>
 			)}
 			{showLogs && (
-				<div className="row pb-4">
+				<div className="row pb-4 w-100">
 					<TechnicalLog logs={logs} />
 				</div>
 			)}

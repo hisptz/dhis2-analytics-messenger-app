@@ -7,7 +7,7 @@ interface TechnicalLogProps {
 export function TechnicalLog({ logs }: TechnicalLogProps) {
 	const logJson = JSON.parse(logs);
 	return (
-		<div style={{ maxWidth: "100%" }}>
+		<div style={{ width: "100%" }}>
 			<pre className="terminal">{JSON.stringify(logJson, null, 2)}</pre>
 		</div>
 	);
