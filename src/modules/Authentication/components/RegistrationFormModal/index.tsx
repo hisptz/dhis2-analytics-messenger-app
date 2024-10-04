@@ -173,7 +173,9 @@ export function RegistrationFormModal({
 						type="submit"
 						primary
 						loading={registrationForm.formState.isSubmitting}
-						onClick={registrationForm.handleSubmit(onRegister)}
+						onClick={() =>
+							registrationForm.handleSubmit(onRegister)()
+						}
 					>
 						{i18n.t("Register")}
 					</Button>

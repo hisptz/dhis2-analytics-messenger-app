@@ -9,16 +9,16 @@
     <treeState key="changes">
       <selectedPath>
         <pathElement>
-          <option name="myNodeId" value="helperText" />
-          <option name="myNodeType" value="jetbrains.buildServer.tree.descriptors.LinkedTextDescriptor" />
+          <option name="myNodeId" value="3" />
+          <option name="myNodeType" value="jetbrains.buildServer.tree.descriptors.ChangesGroupDescriptor" />
         </pathElement>
       </selectedPath>
     </treeState>
     <treeState key="project">
       <selectedPath>
         <pathElement>
-          <option name="myNodeId" value="helperText" />
-          <option name="myNodeType" value="jetbrains.buildServer.tree.descriptors.LinkedTextDescriptor" />
+          <option name="myNodeId" value="project82" />
+          <option name="myNodeType" value="jetbrains.buildServer.tree.descriptors.ProjectDescriptor" />
         </pathElement>
       </selectedPath>
     </treeState>
@@ -32,7 +32,14 @@
     </treeState>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="45e8eb8e-5803-456a-9857-5a6354e88f5c" name="Changes" comment="fix: push&#10;&#10;Fixed issues with send push breaking the app" />
+    <list default="true" id="45e8eb8e-5803-456a-9857-5a6354e88f5c" name="Changes" comment="fix: gateway config&#10;&#10;Prevented editing of phone number for telegram when in edit mode">
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/Authentication/components/RegistrationFormModal/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/Authentication/components/RegistrationFormModal/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/PushAnalytics/components/PushAnalyticsModalConfig/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/PushAnalytics/components/PushAnalyticsModalConfig/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -181,7 +188,7 @@
       <recent name="$PROJECT_DIR$/cypress/specs" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.deploy">
+  <component name="RunManager" selected="npm.start">
     <configuration name="build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
@@ -234,9 +241,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="npm.start" />
         <item itemvalue="npm.deploy" />
         <item itemvalue="npm.build" />
-        <item itemvalue="npm.start" />
         <item itemvalue="npm.test:open" />
         <item itemvalue="npm.test:live" />
       </list>
@@ -245,7 +252,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-WS-241.18034.50" />
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-WS-242.23339.15" />
       </set>
     </attachedChunks>
   </component>
@@ -315,15 +322,17 @@
       <workItem from="1721753233582" duration="2128000" />
       <workItem from="1721802375796" duration="5458000" />
       <workItem from="1721812105680" duration="1915000" />
-      <workItem from="1721821390046" duration="9634000" />
-    </task>
-    <task id="LOCAL-00018" summary="fix(env): Fixes&#10;&#10;- Included proxy and cypress keys config examples in env example">
-      <option name="closed" value="true" />
-      <created>1690355551436</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1690355551436</updated>
+      <workItem from="1721821390046" duration="10229000" />
+      <workItem from="1721884436525" duration="201000" />
+      <workItem from="1721910155557" duration="609000" />
+      <workItem from="1723033727154" duration="1331000" />
+      <workItem from="1725540709651" duration="649000" />
+      <workItem from="1727252480991" duration="6144000" />
+      <workItem from="1727679763459" duration="2268000" />
+      <workItem from="1727857080814" duration="134000" />
+      <workItem from="1728024097590" duration="1704000" />
+      <workItem from="1728026449134" duration="87000" />
+      <workItem from="1728026655226" duration="387000" />
     </task>
     <task id="LOCAL-00019" summary="fix(push analytics config): Fixes&#10;&#10;- Set description as required">
       <option name="closed" value="true" />
@@ -709,7 +718,15 @@
       <option name="project" value="LOCAL" />
       <updated>1721834062576</updated>
     </task>
-    <option name="localTasksCounter" value="67" />
+    <task id="LOCAL-00067" summary="fix: gateway config&#10;&#10;Prevented editing of phone number for telegram when in edit mode">
+      <option name="closed" value="true" />
+      <created>1721834561496</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1721834561497</updated>
+    </task>
+    <option name="localTasksCounter" value="68" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -760,7 +777,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="chore: access config&#10;&#10;Refactored the implementation of access configuration" />
     <MESSAGE value="fix: gateways &#10;&#10;Fixed some issues with whatsapp gateway config and listing of gateways" />
     <MESSAGE value="feat: telegram config&#10;&#10;Implemented telegram config" />
     <MESSAGE value="feat: gateways&#10;&#10;Implemented gateway basic actions" />
@@ -785,149 +801,162 @@
     <MESSAGE value="feat: gateway config&#10;&#10;Added gateway edit feature" />
     <MESSAGE value="chore: package.json&#10;&#10;Updated package version to 1.0.0-beta.04" />
     <MESSAGE value="fix: push&#10;&#10;Fixed issues with send push breaking the app" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: push&#10;&#10;Fixed issues with send push breaking the app" />
+    <MESSAGE value="fix: gateway config&#10;&#10;Prevented editing of phone number for telegram when in edit mode" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: gateway config&#10;&#10;Prevented editing of phone number for telegram when in edit mode" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
-  <component name="WfRunsListSearchHistory"><![CDATA[{
-  "history": [
+  <component name="WfRunsListSearchHistory">{
+  &quot;history&quot;: [
     {
-      "branch": "feature/channels",
-      "currentBranchFilter": true
+      &quot;branch&quot;: &quot;feature/channels&quot;,
+      &quot;currentBranchFilter&quot;: true
     },
     {
-      "branch": "feature/channels",
-      "currentBranchFilter": true
+      &quot;branch&quot;: &quot;feature/channels&quot;,
+      &quot;currentBranchFilter&quot;: true
     },
     {
-      "branch": "develop",
-      "currentBranchFilter": true
+      &quot;branch&quot;: &quot;develop&quot;,
+      &quot;currentBranchFilter&quot;: true
     },
     {
-      "branch": "develop",
-      "currentBranchFilter": true
+      &quot;branch&quot;: &quot;develop&quot;,
+      &quot;currentBranchFilter&quot;: true
     },
     {
-      "branch": "feature/access",
-      "currentBranchFilter": true
+      &quot;branch&quot;: &quot;feature/access&quot;,
+      &quot;currentBranchFilter&quot;: true
     },
     {
-      "branch": "develop",
-      "currentBranchFilter": true
+      &quot;branch&quot;: &quot;develop&quot;,
+      &quot;currentBranchFilter&quot;: true
     },
     {
-      "branch": "develop",
-      "currentBranchFilter": true
+      &quot;branch&quot;: &quot;develop&quot;,
+      &quot;currentBranchFilter&quot;: true
     },
     {
-      "branch": "feature/messaging",
-      "currentBranchFilter": true
+      &quot;branch&quot;: &quot;feature/messaging&quot;,
+      &quot;currentBranchFilter&quot;: true
     },
     {
-      "branch": "feature/messaging",
-      "currentBranchFilter": true
+      &quot;branch&quot;: &quot;feature/messaging&quot;,
+      &quot;currentBranchFilter&quot;: true
     },
     {
-      "branch": "feature/messaging",
-      "currentBranchFilter": true
+      &quot;branch&quot;: &quot;feature/messaging&quot;,
+      &quot;currentBranchFilter&quot;: true
     },
     {
-      "branch": "feature/messaging",
-      "currentBranchFilter": true
+      &quot;branch&quot;: &quot;feature/messaging&quot;,
+      &quot;currentBranchFilter&quot;: true
     },
     {
-      "branch": "feature/messaging",
-      "currentBranchFilter": true
+      &quot;branch&quot;: &quot;feature/messaging&quot;,
+      &quot;currentBranchFilter&quot;: true
     },
     {
-      "branch": "feature/messaging",
-      "currentBranchFilter": true
+      &quot;branch&quot;: &quot;feature/messaging&quot;,
+      &quot;currentBranchFilter&quot;: true
     },
     {
-      "branch": "feature/messaging",
-      "currentBranchFilter": true
+      &quot;branch&quot;: &quot;feature/messaging&quot;,
+      &quot;currentBranchFilter&quot;: true
     },
     {
-      "branch": "feature/messaging",
-      "currentBranchFilter": true
+      &quot;branch&quot;: &quot;feature/messaging&quot;,
+      &quot;currentBranchFilter&quot;: true
     },
     {
-      "branch": "feature/messaging",
-      "currentBranchFilter": true
+      &quot;branch&quot;: &quot;feature/messaging&quot;,
+      &quot;currentBranchFilter&quot;: true
     },
     {
-      "branch": "develop",
-      "currentBranchFilter": true
+      &quot;branch&quot;: &quot;develop&quot;,
+      &quot;currentBranchFilter&quot;: true
     },
     {
-      "branch": "develop",
-      "currentBranchFilter": true
+      &quot;branch&quot;: &quot;develop&quot;,
+      &quot;currentBranchFilter&quot;: true
     },
     {
-      "branch": "develop",
-      "currentBranchFilter": true
+      &quot;branch&quot;: &quot;develop&quot;,
+      &quot;currentBranchFilter&quot;: true
     },
     {
-      "branch": "develop",
-      "currentBranchFilter": true
+      &quot;branch&quot;: &quot;develop&quot;,
+      &quot;currentBranchFilter&quot;: true
     },
     {
-      "branch": "develop",
-      "currentBranchFilter": true
+      &quot;branch&quot;: &quot;develop&quot;,
+      &quot;currentBranchFilter&quot;: true
     },
     {
-      "branch": "feature/connect-buttons",
-      "currentBranchFilter": true
+      &quot;branch&quot;: &quot;feature/connect-buttons&quot;,
+      &quot;currentBranchFilter&quot;: true
     },
     {
-      "branch": "develop",
-      "currentBranchFilter": true
+      &quot;branch&quot;: &quot;develop&quot;,
+      &quot;currentBranchFilter&quot;: true
     },
     {
-      "branch": "develop",
-      "currentBranchFilter": true
+      &quot;branch&quot;: &quot;develop&quot;,
+      &quot;currentBranchFilter&quot;: true
     },
     {
-      "branch": "develop",
-      "currentBranchFilter": true
+      &quot;branch&quot;: &quot;develop&quot;,
+      &quot;currentBranchFilter&quot;: true
     },
     {
-      "branch": "feature/group-selector",
-      "currentBranchFilter": true
+      &quot;branch&quot;: &quot;feature/group-selector&quot;,
+      &quot;currentBranchFilter&quot;: true
     },
     {
-      "branch": "feature/group-selector",
-      "currentBranchFilter": true
+      &quot;branch&quot;: &quot;feature/group-selector&quot;,
+      &quot;currentBranchFilter&quot;: true
     },
     {
-      "branch": "feature/group-selector",
-      "currentBranchFilter": true
+      &quot;branch&quot;: &quot;feature/group-selector&quot;,
+      &quot;currentBranchFilter&quot;: true
     },
     {
-      "branch": "feature/group-selector",
-      "currentBranchFilter": true
+      &quot;branch&quot;: &quot;feature/group-selector&quot;,
+      &quot;currentBranchFilter&quot;: true
     },
     {
-      "branch": "feature/group-selector",
-      "currentBranchFilter": true
+      &quot;branch&quot;: &quot;feature/group-selector&quot;,
+      &quot;currentBranchFilter&quot;: true
     },
     {
-      "branch": "develop",
-      "currentBranchFilter": true
+      &quot;branch&quot;: &quot;develop&quot;,
+      &quot;currentBranchFilter&quot;: true
     },
     {
-      "branch": "develop",
-      "currentBranchFilter": true
+      &quot;branch&quot;: &quot;develop&quot;,
+      &quot;currentBranchFilter&quot;: true
     },
     {
-      "branch": "develop",
-      "currentBranchFilter": true
+      &quot;branch&quot;: &quot;develop&quot;,
+      &quot;currentBranchFilter&quot;: true
+    },
+    {
+      &quot;branch&quot;: &quot;develop&quot;,
+      &quot;currentBranchFilter&quot;: true
+    },
+    {
+      &quot;branch&quot;: &quot;develop&quot;,
+      &quot;currentBranchFilter&quot;: true
+    },
+    {
+      &quot;branch&quot;: &quot;develop&quot;,
+      &quot;currentBranchFilter&quot;: true
     }
   ],
-  "lastFilter": {
-    "branch": "develop",
-    "currentBranchFilter": true
+  &quot;lastFilter&quot;: {
+    &quot;branch&quot;: &quot;develop&quot;,
+    &quot;currentBranchFilter&quot;: true
   }
-}]]></component>
+}</component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
