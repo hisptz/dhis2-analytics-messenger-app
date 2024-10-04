@@ -12,8 +12,7 @@ type AnalyticsLogsPros = {
 };
 
 export function AnalyticsLog({ analyticsLogs }: AnalyticsLogsPros) {
-	const { startTime, endTime, status, trigger, logs, time } =
-		analyticsLogs ?? {};
+	const { startTime, status, trigger, logs, time } = analyticsLogs ?? {};
 	const [showLogs, setShowLogs] = useState(false);
 
 	const toggleLogs = () => {
@@ -21,31 +20,27 @@ export function AnalyticsLog({ analyticsLogs }: AnalyticsLogsPros) {
 	};
 
 	return (
-		<div className="column">
-			<div className="row pb-4">
-				<span className="logs-label">{i18n.t("Started at")}</span>:
-				&nbsp;&nbsp;
-				<span>{startTime}</span>
-			</div>
-			<div className="row pb-4">
-				<span className="logs-label">{i18n.t("Status")}</span>:
-				&nbsp;&nbsp;
-				<StatusLabel status={status} />
-			</div>
-			<div className="row pb-4">
-				<span className="logs-label">{i18n.t("Trigger")}</span>:
-				&nbsp;&nbsp;
-				<span>{capitalize(trigger)}</span>
-			</div>
+		<div
+			style={{
+				display: "grid",
+				gridTemplateColumns: "auto 1fr",
+				gap: 8,
+			}}
+		>
+			<span className="logs-label">{i18n.t("Started at")}:</span>
+			<span>{startTime}</span>
+			<span className="logs-label">{i18n.t("Status")}:</span>
+			<StatusLabel status={status} />
+			<span className="logs-label">{i18n.t("Trigger")}:</span>
+			<span>{capitalize(trigger)}</span>
 			{time && time !== "N/A" && (
-				<div className="row pb-4">
-					<span className="logs-label">{i18n.t("Time taken")}</span>:
-					&nbsp;&nbsp;
+				<>
+					<span className="logs-label">{i18n.t("Time taken")}:</span>
 					<span>{time}</span>
-				</div>
+				</>
 			)}
 			{logs && (
-				<div className="row pb-4">
+				<div style={{ gridColumn: "1 / span 2" }} className="row pb-4">
 					<small
 						style={{
 							textDecoration: "underline",
@@ -58,7 +53,10 @@ export function AnalyticsLog({ analyticsLogs }: AnalyticsLogsPros) {
 				</div>
 			)}
 			{showLogs && (
-				<div className="row pb-4 w-100">
+				<div
+					style={{ gridColumn: "1 / span 2" }}
+					className="row pb-4 w-100"
+				>
 					<TechnicalLog logs={logs} />
 				</div>
 			)}
