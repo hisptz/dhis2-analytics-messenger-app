@@ -1,0 +1,15 @@
+.initialized {
+	color: #e56408 !important;
+}
+
+.completed {
+	color: #2e7d32 !important;
+}
+
+.failed {
+	color: #b71c1c !important;
+}
+
+.not-available {
+	color: #4a5768 !important;
+}

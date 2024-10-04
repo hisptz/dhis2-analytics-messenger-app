@@ -24,6 +24,10 @@ const tableColumns: Column[] = [
 		key: "contacts",
 	},
 	{
+		label: i18n.t("Latest Push Status"),
+		key: "status",
+	},
+	{
 		label: i18n.t("Actions"),
 		key: "actions",
 	},

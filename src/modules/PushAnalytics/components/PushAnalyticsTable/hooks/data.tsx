@@ -8,6 +8,7 @@ import { useQuery } from "@tanstack/react-query";
 import { JobActionArea } from "../components/JobActionArea";
 import { ParseClass } from "../../../../../shared/constants/parse";
 import { useDamConfig } from "../../../../../shared/components/DamConfigProvider";
+import { JobStatus } from "../components/JobStatus";
 
 export function usePushAnalyticsConfig() {
 	const dhis2Instance = useDamConfig();
@@ -25,7 +26,7 @@ export function usePushAnalyticsConfig() {
 		} catch (e: Parse.Error | unknown) {
 			const error = e as Parse.Error;
 			if (error.code === Parse.Error.INVALID_SESSION_TOKEN) {
-				//Refresh the user token by logging out and in again
+				// TODO: Refresh the user token by logging out and in again
 			}
 			throw e;
 		}
@@ -58,6 +59,7 @@ export function usePushAnalyticsConfig() {
 							))}
 						</div>
 					),
+					status: <JobStatus job={config.id} />,
 					actions: (
 						<JobActionArea
 							key={`${config.id}-action-area`}
