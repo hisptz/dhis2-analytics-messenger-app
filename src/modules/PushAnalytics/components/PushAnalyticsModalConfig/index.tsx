@@ -93,7 +93,7 @@ export function PushAnalyticsModalConfig({
 				...(config?.attributes ?? {}),
 				gateways: config
 					?.get("gateways")
-					.map(
+					?.map(
 						(gateway: {
 							data: Parse.Object;
 							channel: "whatsapp" | "telegram";
