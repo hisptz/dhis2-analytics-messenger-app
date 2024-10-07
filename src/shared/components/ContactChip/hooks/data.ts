@@ -47,7 +47,7 @@ export function useDHIS2User(contact: Contact) {
 }
 
 export function useContactDetails(contact: Contact) {
-	const { type, channel, gatewayId, identifier } = contact;
+	const { type, gatewayId, identifier } = contact;
 	const { data: gateways, loading: gatewayLoading } = useGateways();
 	const gateway = useMemo(() => {
 		return gateways?.find((gateway) => gateway?.data.id === gatewayId);

@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2024-10-03T07:40:30.540Z\n"
-"PO-Revision-Date: 2024-10-03T07:40:30.540Z\n"
+"POT-Creation-Date: 2024-10-04T08:11:29.168Z\n"
+"PO-Revision-Date: 2024-10-04T08:11:29.168Z\n"
 
 msgid "Fetching App configurations..."
 msgstr "Fetching App configurations..."
@@ -411,8 +411,8 @@ msgstr "Started at"
 msgid "Trigger"
 msgstr "Trigger"
 
-msgid "Ended at"
-msgstr "Ended at"
+msgid "Time taken"
+msgstr "Time taken"
 
 msgid "Hide logs"
 msgstr "Hide logs"
@@ -576,6 +576,9 @@ msgstr "Confirm sending"
 
 msgid "Sending visualizations to"
 msgstr "Sending visualizations to"
+
+msgid "Latest Push Status"
+msgstr "Latest Push Status"
 
 msgid "Add push analytics configuration"
 msgstr "Add push analytics configuration"

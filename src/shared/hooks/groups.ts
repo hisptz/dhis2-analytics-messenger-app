@@ -25,6 +25,9 @@ export function useGatewayGroups({ gateway }: { gateway?: Parse.Object }) {
 	}
 
 	return useQuery({
+		refetchIntervalInBackground: false,
+		refetchInterval: false,
+		retry: 2,
 		queryKey: [gateway],
 		queryFn: getGroups,
 	});
