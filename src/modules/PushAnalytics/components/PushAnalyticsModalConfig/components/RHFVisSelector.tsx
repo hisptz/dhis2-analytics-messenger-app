@@ -1,8 +1,8 @@
 import { MultiSelectField, MultiSelectOption } from "@dhis2/ui";
+import { RHFSingleSelectField } from "@hisptz/dhis2-ui";
 import { find, intersectionWith, isEmpty } from "lodash";
 import React, { useMemo } from "react";
 import {
-	Controller,
 	ControllerFieldState,
 	ControllerRenderProps,
 	useWatch,
@@ -53,7 +53,7 @@ export function Field({
 			selected={
 				groupChanged
 					? []
-					: field.value?.map(({ id }: { id: string }) => id) ?? []
+					: (field.value?.map(({ id }: { id: string }) => id) ?? [])
 			}
 			error={!!fieldState.error}
 			validationText={fieldState.error?.message}
@@ -105,23 +105,13 @@ export function RHFVisSelector({
 	}, [group]);
 
 	return (
-		<>
-			<Controller
-				rules={validations}
-				render={({ field, fieldState }) => {
-					return (
-						<Field
-							options={options}
-							field={field}
-							fieldState={fieldState}
-							label={label}
-							required={required}
-							loading={loading}
-						/>
-					);
-				}}
-				name={name}
-			/>
-		</>
+		<RHFSingleSelectField
+			loading={loading}
+			required={required}
+			validations={validations}
+			label={label}
+			options={options}
+			name={name}
+		/>
 	);
 }
