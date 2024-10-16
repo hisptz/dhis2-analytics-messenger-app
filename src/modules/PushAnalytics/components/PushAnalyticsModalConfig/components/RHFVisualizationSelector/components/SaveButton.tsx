@@ -11,7 +11,6 @@ export function SaveButton({
 }) {
 	const { handleSubmit, reset } = useFormContext<VisualizationData>();
 	const onSaveVisulization = (data: VisualizationData) => {
-		console.log(data);
 		onClose(data);
 		reset();
 	};

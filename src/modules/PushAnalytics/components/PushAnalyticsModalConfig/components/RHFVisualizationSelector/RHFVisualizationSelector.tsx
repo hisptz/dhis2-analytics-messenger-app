@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import i18n from "@dhis2/d2-i18n";
-import { Button, Chip, Field, Help } from "@dhis2/ui";
+import { Button, Field, Help } from "@dhis2/ui";
 import { Controller } from "react-hook-form";
 import {
 	VisualizationData,
@@ -83,10 +83,6 @@ export const RHFVisualizationSelector = ({
 										visualization?: VisualizationData,
 									) => {
 										setShowSelector(false);
-										console.log(
-											"visualization",
-											visualization,
-										);
 										if (visualization) {
 											field.onChange(
 												uniqBy(

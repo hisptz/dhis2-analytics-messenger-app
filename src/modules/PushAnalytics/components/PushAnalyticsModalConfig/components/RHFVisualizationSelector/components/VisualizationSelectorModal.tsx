@@ -66,7 +66,7 @@ export function VisualizationSelectorModal({
 						<RHFVisSelector
 							required
 							name="visualization"
-							label={i18n.t("Visualizations")}
+							label={i18n.t("Visualization")}
 						/>
 						<RHFDescription
 							label={i18n.t("Description")}

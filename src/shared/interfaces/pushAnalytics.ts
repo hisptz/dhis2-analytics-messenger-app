@@ -43,11 +43,17 @@ export const pushAnalyticsJobSchema = z.object({
 		})
 		.min(1, i18n.t("At least one contact is required")),
 	dhis2Instance: z.instanceof(Parse.Object),
-	description: z.string().optional(),
 	visualizations: z
 		.array(visualizationSchema)
 		.min(1, i18n.t("At least one visualization is required")),
 });
+
+export const visualizationFormObjectSchema = z.object({
+	visualization: z.string().optional(),
+	visualizationGroup: z.string(),
+	description: z.string().optional(),
+});
+
 export const pushAnalyticsJobFormDataSchema = pushAnalyticsJobSchema
 	.omit({
 		dhis2Instance: true,
@@ -55,8 +61,7 @@ export const pushAnalyticsJobFormDataSchema = pushAnalyticsJobSchema
 	.extend({
 		contacts: z.array(ToContactSchema),
 		gateways: z.array(z.string()),
-		visualizations: z.array(visualizationSchema),
-		visualizationGroup: z.string(),
+		visualizations: z.array(visualizationFormObjectSchema),
 	});
 export type PushAnalyticsJob = z.infer<typeof pushAnalyticsJobSchema>;
 export type PushAnalyticsJobFormData = z.infer<
