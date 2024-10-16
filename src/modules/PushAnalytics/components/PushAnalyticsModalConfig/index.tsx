@@ -18,16 +18,14 @@ import {
 	PushAnalyticsJobFormData,
 	pushAnalyticsJobFormDataSchema,
 } from "../../../../shared/interfaces";
-import { RHFDescription } from "./components/RHFDescription";
-import { RHFGroupSelector } from "./components/RHFGroupSelector";
 import { RHFRecipientSelector } from "./components/RHFRecipientSelector/RHFRecipientSelector";
-import { RHFVisSelector } from "./components/RHFVisSelector";
 import { useManageConfig } from "./hooks/save";
 import { useSendAnalytics } from "./hooks/send";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Parse from "parse";
 import { useQueryClient } from "@tanstack/react-query";
 import { RHFGatewaySelector } from "./components/RHFGatewaySelector";
+import { RHFVisualizationSelector } from "./components/RHFVisualizationSelector/RHFVisualizationSelector";
 
 export interface PushAnalyticsModalConfigProps {
 	config?: Parse.Object | null;
@@ -146,6 +144,7 @@ export function PushAnalyticsModalConfig({
 
 	const onSaveAndSend = useCallback(
 		(shouldSend: boolean) => async (data: PushAnalyticsJobFormData) => {
+			console.log(data);
 			const job = await save(data);
 			if (shouldSend) {
 				await send(job);
@@ -170,19 +169,10 @@ export function PushAnalyticsModalConfig({
 							name="gateways"
 							label={i18n.t("Gateway(s)")}
 						/>
-						<RHFGroupSelector
-							required
-							name="visualizationGroup"
-							label={i18n.t("Visualization group")}
-						/>
-						<RHFVisSelector
-							required
-							name="visualizations"
+						<RHFVisualizationSelector
 							label={i18n.t("Visualizations")}
-						/>
-						<RHFDescription
-							label={i18n.t("Description")}
-							name="description"
+							name="visualizations"
+							required={true}
 						/>
 						<RHFRecipientSelector
 							label={i18n.t("Recipients")}

@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import i18n from "@dhis2/d2-i18n";
-import { Button, Field, Help } from "@dhis2/ui";
+import { Button, Chip, Field, Help } from "@dhis2/ui";
 import { Controller } from "react-hook-form";
 import {
 	VisualizationData,
 	VisualizationSelectorModal,
 } from "./components/VisualizationSelectorModal";
 import { uniqBy } from "lodash";
+import { VisualizationChip } from "./components/VisualizationChip";
 
 export interface RHFVisualizationSelectorProps {
 	name: string;
@@ -37,9 +38,33 @@ export const RHFVisualizationSelector = ({
 								className="row"
 							>
 								{selectedVisualizations.length ? (
-									<Help>
-										{i18n.t("Visualizations chips here!")}
-									</Help>
+									selectedVisualizations.map(
+										(
+											visualizationData: VisualizationData,
+											index: number,
+										) => (
+											<VisualizationChip
+												key={`visualization-${index}`}
+												visualization={
+													visualizationData.visualization
+												}
+												description={
+													visualizationData.description
+												}
+												onRemove={() => {
+													field.onChange(
+														selectedVisualizations.filter(
+															({
+																visualization,
+															}: VisualizationData) =>
+																visualization !==
+																visualizationData.visualization,
+														),
+													);
+												}}
+											/>
+										),
+									)
 								) : (
 									<Help>
 										{i18n.t("No visualizations selected")}
@@ -58,7 +83,10 @@ export const RHFVisualizationSelector = ({
 										visualization?: VisualizationData,
 									) => {
 										setShowSelector(false);
-										console.log(visualization);
+										console.log(
+											"visualization",
+											visualization,
+										);
 										if (visualization) {
 											field.onChange(
 												uniqBy(

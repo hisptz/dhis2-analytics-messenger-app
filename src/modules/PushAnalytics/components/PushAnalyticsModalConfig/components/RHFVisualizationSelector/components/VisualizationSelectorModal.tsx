@@ -41,7 +41,6 @@ export function VisualizationSelectorModal({
 
 	const onSubmit = useCallback(
 		(data: VisualizationData) => {
-			console.log(data);
 			onClose(data);
 			form.reset();
 		},
@@ -66,7 +65,7 @@ export function VisualizationSelectorModal({
 						/>
 						<RHFVisSelector
 							required
-							name="visualizations"
+							name="visualization"
 							label={i18n.t("Visualizations")}
 						/>
 						<RHFDescription
@@ -80,12 +79,6 @@ export function VisualizationSelectorModal({
 					<ButtonStrip>
 						<Button secondary onClick={() => onClose()}>
 							{i18n.t("Cancel")}
-						</Button>
-						<Button
-							primary
-							onClick={() => form.handleSubmit(onSubmit)()}
-						>
-							{i18n.t("Add")}
 						</Button>
 						<SaveButton onClose={onClose} />
 					</ButtonStrip>
