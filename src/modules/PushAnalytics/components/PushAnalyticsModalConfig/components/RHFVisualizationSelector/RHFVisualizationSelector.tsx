@@ -8,6 +8,7 @@ import {
 } from "./components/VisualizationSelectorModal";
 import { uniqBy } from "lodash";
 import { VisualizationChip } from "./components/VisualizationChip";
+import { PushVisualizationConfiguration } from "./components/SaveButton";
 
 export interface RHFVisualizationSelectorProps {
 	name: string;
@@ -40,13 +41,13 @@ export const RHFVisualizationSelector = ({
 								{selectedVisualizations.length ? (
 									selectedVisualizations.map(
 										(
-											visualizationData: VisualizationData,
+											visualizationData: PushVisualizationConfiguration,
 											index: number,
 										) => (
 											<VisualizationChip
 												key={`visualization-${index}`}
 												visualization={
-													visualizationData.visualization
+													visualizationData.id
 												}
 												description={
 													visualizationData.description
@@ -58,7 +59,7 @@ export const RHFVisualizationSelector = ({
 																visualization,
 															}: VisualizationData) =>
 																visualization !==
-																visualizationData.visualization,
+																visualizationData.id,
 														),
 													);
 												}}
@@ -80,7 +81,7 @@ export const RHFVisualizationSelector = ({
 								<VisualizationSelectorModal
 									hidden={!showSelector}
 									onClose={(
-										visualization?: VisualizationData,
+										visualization?: PushVisualizationConfiguration,
 									) => {
 										setShowSelector(false);
 										if (visualization) {
@@ -90,7 +91,7 @@ export const RHFVisualizationSelector = ({
 														...selectedVisualizations,
 														visualization,
 													],
-													"visualization",
+													"id",
 												),
 											);
 										}

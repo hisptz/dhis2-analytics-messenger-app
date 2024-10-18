@@ -49,8 +49,8 @@ export const pushAnalyticsJobSchema = z.object({
 });
 
 export const visualizationFormObjectSchema = z.object({
-	visualization: z.string().optional(),
-	visualizationGroup: z.string(),
+	id: z.string(),
+	type: z.enum(["map", "visualization"]),
 	description: z.string().optional(),
 });
 

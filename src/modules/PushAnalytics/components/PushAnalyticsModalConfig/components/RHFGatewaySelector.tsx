@@ -24,7 +24,7 @@ export function RHFGatewaySelector({
 				value: value?.data?.id,
 			})) ?? []
 		);
-	}, [data]);
+	}, [data]) as { value: string; label: string }[];
 
 	return (
 		<RHFMultiSelectField

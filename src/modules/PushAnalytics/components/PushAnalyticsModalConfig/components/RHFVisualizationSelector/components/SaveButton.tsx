@@ -4,14 +4,25 @@ import { useFormContext } from "react-hook-form";
 import { Button } from "@dhis2/ui";
 import { VisualizationData } from "./VisualizationSelectorModal";
 
+export type PushVisualizationConfiguration = {
+	id: string;
+	description?: string;
+	type: "map" | "visualization";
+};
+
 export function SaveButton({
 	onClose,
 }: {
-	onClose: (visualization?: VisualizationData) => void;
+	onClose: (visualization?: PushVisualizationConfiguration) => void;
 }) {
 	const { handleSubmit, reset } = useFormContext<VisualizationData>();
 	const onSaveVisulization = (data: VisualizationData) => {
-		onClose(data);
+		onClose({
+			id: data.visualization,
+			description: data.description,
+			// TODO make this flexible to support maps also
+			type: "visualization",
+		});
 		reset();
 	};
 

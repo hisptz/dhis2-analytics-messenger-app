@@ -14,7 +14,7 @@ import { z } from "zod";
 import { RHFGroupSelector } from "../../RHFGroupSelector";
 import { RHFVisSelector } from "../../RHFVisSelector";
 import { RHFDescription } from "../../RHFDescription";
-import { SaveButton } from "./SaveButton";
+import { PushVisualizationConfiguration, SaveButton } from "./SaveButton";
 
 export const VisualizationSchema = z.object({
 	visualizationGroup: z.string(),
@@ -26,7 +26,7 @@ export type VisualizationData = z.infer<typeof VisualizationSchema>;
 
 interface VisualizationSelectorModalProps {
 	hidden: boolean;
-	onClose: (visualization?: VisualizationData) => void;
+	onClose: (visualization?: PushVisualizationConfiguration) => void;
 }
 export function VisualizationSelectorModal({
 	hidden,
@@ -40,7 +40,7 @@ export function VisualizationSelectorModal({
 	});
 
 	const onSubmit = useCallback(
-		(data: VisualizationData) => {
+		(data: PushVisualizationConfiguration) => {
 			onClose(data);
 			form.reset();
 		},
