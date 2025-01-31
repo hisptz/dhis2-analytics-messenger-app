@@ -18,45 +18,51 @@ export function RHFMultiSelectField({
 	...props
 }: RHFMultiSelectFieldProps) {
 	return (
-		<Controller
-			render={({ field, fieldState }) => {
-				return (
-					<MultiSelectField
-						{...props}
-						filterable
-						label={label}
-						onChange={({ selected }: { selected: string[] }) => {
-							field.onChange(
-								selected?.map((sel) => {
-									return sel;
-								}),
-							);
-						}}
-						selected={
-							Array.isArray(field.value)
-								? field.value.filter(
-										(val) =>
-											!!options.find(
-												(option) =>
-													option.value === val,
-											),
-									)
-								: []
-						}
-						error={!!fieldState.error}
-						validationText={fieldState.error?.message}
-					>
-						{options?.map(({ label, value }) => (
-							<MultiSelectOption
-								key={`${label}-${value}`}
-								label={label}
-								value={value}
-							/>
-						))}
-					</MultiSelectField>
-				);
-			}}
-			name={name}
-		/>
+		<div style={{ zIndex: 1 }}>
+			<Controller
+				render={({ field, fieldState }) => {
+					return (
+						<MultiSelectField
+							{...props}
+							filterable
+							label={label}
+							onChange={({
+								selected,
+							}: {
+								selected: string[];
+							}) => {
+								field.onChange(
+									selected?.map((sel) => {
+										return sel;
+									}),
+								);
+							}}
+							selected={
+								Array.isArray(field.value)
+									? field.value.filter(
+											(val) =>
+												!!options.find(
+													(option) =>
+														option.value === val,
+												),
+										)
+									: []
+							}
+							error={!!fieldState.error}
+							validationText={fieldState.error?.message}
+						>
+							{options?.map(({ label, value }) => (
+								<MultiSelectOption
+									key={`${label}-${value}`}
+									label={label}
+									value={value}
+								/>
+							))}
+						</MultiSelectField>
+					);
+				}}
+				name={name}
+			/>
+		</div>
 	);
 }

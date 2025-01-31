@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2024-10-04T08:11:29.168Z\n"
-"PO-Revision-Date: 2024-10-04T08:11:29.168Z\n"
+"POT-Creation-Date: 2024-10-16T14:47:39.506Z\n"
+"PO-Revision-Date: 2024-10-16T14:47:39.506Z\n"
 
 msgid "Fetching App configurations..."
 msgstr "Fetching App configurations..."
@@ -490,6 +490,24 @@ msgstr "User"
 msgid "Could not find any user with name or username {{keyword}}"
 msgstr "Could not find any user with name or username {{keyword}}"
 
+msgid "No visualizations selected"
+msgstr "No visualizations selected"
+
+msgid "Add Visualizations"
+msgstr "Add Visualizations"
+
+msgid "Select visualizations"
+msgstr "Select visualizations"
+
+msgid "Visualization group"
+msgstr "Visualization group"
+
+msgid "Visualization"
+msgstr "Visualization"
+
+msgid "Description"
+msgstr "Description"
+
 msgid "Add recipient"
 msgstr "Add recipient"
 
@@ -549,12 +567,6 @@ msgstr "Send push analytics"
 
 msgid "Gateway(s)"
 msgstr "Gateway(s)"
-
-msgid "Visualization group"
-msgstr "Visualization group"
-
-msgid "Description"
-msgstr "Description"
 
 msgid "Recipients"
 msgstr "Recipients"

@@ -62,7 +62,9 @@ async function saveDamConfig(
 	dhis2Instance.set("expiresOn", new Date(variables.expiresOn));
 	dhis2Instance.set("timezone", variables.serverTimeZoneId);
 
-	return await dhis2Instance.save();
+	return await dhis2Instance.save(null, {
+		sessionToken: Parse.User.current()?.getSessionToken(),
+	});
 }
 
 export function useManageDHIS2Config({ onClose }: { onClose: () => void }) {
