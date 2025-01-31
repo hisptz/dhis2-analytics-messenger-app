@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React from "react";
 import i18n from "@dhis2/d2-i18n";
 import { useFormContext } from "react-hook-form";
 import { Button } from "@dhis2/ui";

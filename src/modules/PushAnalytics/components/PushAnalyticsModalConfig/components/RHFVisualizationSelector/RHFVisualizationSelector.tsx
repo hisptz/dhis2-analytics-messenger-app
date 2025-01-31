@@ -2,10 +2,7 @@ import React, { useState } from "react";
 import i18n from "@dhis2/d2-i18n";
 import { Button, Field, Help } from "@dhis2/ui";
 import { Controller } from "react-hook-form";
-import {
-	VisualizationData,
-	VisualizationSelectorModal,
-} from "./components/VisualizationSelectorModal";
+import { VisualizationSelectorModal } from "./components/VisualizationSelectorModal";
 import { uniqBy } from "lodash";
 import { VisualizationChip } from "./components/VisualizationChip";
 import { PushVisualizationConfiguration } from "./components/SaveButton";
@@ -56,9 +53,11 @@ export const RHFVisualizationSelector = ({
 													field.onChange(
 														selectedVisualizations.filter(
 															({
-																visualization,
-															}: VisualizationData) =>
-																visualization !==
+																id,
+															}: {
+																id: string;
+															}) =>
+																id !==
 																visualizationData.id,
 														),
 													);
