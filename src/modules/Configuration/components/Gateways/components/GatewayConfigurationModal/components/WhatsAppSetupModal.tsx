@@ -34,7 +34,7 @@ export function WhatsAppSetup({
 		name: "name",
 	});
 	const [qrCode, setQrCode] = useState<string | undefined>();
-	const [error, setError] = useState<unknown>();
+	const [error, setError] = useState<Error>();
 	const [loadingStatus, setLoadingStatus] = useState<
 		{ percentage: number; message: string } | undefined
 	>();
@@ -91,11 +91,11 @@ export function WhatsAppSetup({
 		};
 
 		const onDisconnect = () => {
-			setError("Disconnected from the server");
+			setError(Error("Disconnected from the server"));
 		};
 
 		const onConnectionError = () => {
-			setError("Could not connect to the server");
+			setError(Error("Could not connect to the server"));
 		};
 
 		try {
@@ -129,6 +129,7 @@ export function WhatsAppSetup({
 	useEffect(() => {
 		return setupWebsocket();
 	}, []);
+	console.log(error);
 
 	return (
 		<div
@@ -149,7 +150,7 @@ export function WhatsAppSetup({
 				</div>
 			) : null}
 			{!qrCode && !loadingStatus && !error && <CircularLoader small />}
-			{!!error && <div>{error.toString()}</div>}
+			{!!error && <div>{error.message ?? error.toString()}</div>}
 			{qrCode && !error ? (
 				<div className="w-100 h-100">
 					<p>
