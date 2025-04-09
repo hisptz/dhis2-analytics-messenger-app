@@ -14,8 +14,8 @@ import { DateTime } from "luxon";
 const accessConfigSchema = z
 	.object({
 		url: z.string().url(),
-		pat: z.string().startsWith("d2pat_", {
-			message: i18n.t("The personal access token must start with d2pat_"),
+		pat: z.string().startsWith("d2", {
+			message: i18n.t("The personal access token must start with d2"),
 		}),
 		expiresOn: z.string().date("Invalid expiry date"),
 	})
@@ -74,6 +74,7 @@ export function useManageDHIS2Config({ onClose }: { onClose: () => void }) {
 
 	const form = useForm<AccessConfigData>({
 		resolver: zodResolver(accessConfigSchema),
+		shouldFocusError: false,
 		defaultValues: {
 			url: systemInfo?.contextPath,
 			pat: config?.get("pat"),
