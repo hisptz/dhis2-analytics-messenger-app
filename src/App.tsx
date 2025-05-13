@@ -5,6 +5,7 @@ import FullPageLoader from "./shared/components/Loaders";
 import AppRouter from "./modules/Router";
 import "./main.css";
 import "./common.css";
+import "./output.css";
 import { ConfirmDialogProvider } from "@hisptz/dhis2-ui";
 import { RecoilRoot } from "recoil";
 import { Helmet } from "react-helmet";
@@ -12,6 +13,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { predefinedSchedules } from "./shared/constants/dataStore";
 import { initializeParse } from "./shared/utils/parse";
 import { DamConfigProvider } from "./shared/components/DamConfigProvider";
+import { DatastoreNamespaces } from "./shared/interfaces/datastore";
 
 const queryClient = new QueryClient();
 
@@ -42,7 +44,7 @@ const App = () => (
 
 		<QueryClientProvider client={queryClient}>
 			<DataStoreProvider
-				namespace="hisptz-analytics-messenger"
+				namespace={DatastoreNamespaces.APP}
 				defaultGlobalSettings={{
 					predefinedSchedules,
 				}}

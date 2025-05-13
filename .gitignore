@@ -10,3 +10,4 @@ build
 cypress.env.json
 /cypress/videos/
 /cypress/screenshots/
+/src/output.css

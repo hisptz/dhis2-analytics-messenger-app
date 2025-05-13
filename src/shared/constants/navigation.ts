@@ -3,6 +3,7 @@ import React from "react";
 import { AnalyticsIcon16, SettingsIcon16 } from "../components/Icons/Icons";
 import { NavigationItem } from "../interfaces";
 import { AccessConfig } from "../../modules/Configuration/components/Access/Access";
+import { DashboardsConfigPage } from "../../modules/Configuration/components/Dashboards/Dashboards";
 
 // Main pages
 const PushAnalyticsPage = React.lazy(
@@ -42,6 +43,11 @@ export const CONFIGURATION_NAVIGATION_ITEMS: Array<NavigationItem> = [
 		label: i18n.t("Visualization groups"),
 		path: "visualization-groups",
 		element: VisualizationGroupsConfiguration,
+	},
+	{
+		label: i18n.t("Dashboards"),
+		path: "dashboards",
+		element: DashboardsConfigPage,
 	},
 	{
 		path: "",

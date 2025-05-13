@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2025-05-13T09:50:00.717Z\n"
-"PO-Revision-Date: 2025-05-13T09:50:00.719Z\n"
+"POT-Creation-Date: 2025-05-13T13:44:11.007Z\n"
+"PO-Revision-Date: 2025-05-13T13:44:11.007Z\n"
 
 msgid "Fetching App configurations..."
 msgstr "Fetching App configurations..."
@@ -141,6 +141,9 @@ msgstr "Profile changed successfully"
 
 msgid "Could not update the profile"
 msgstr "Could not update the profile"
+
+msgid "Select dashboards that will be accessible in push analytics"
+msgstr "Select dashboards that will be accessible in push analytics"
 
 msgid "Name"
 msgstr "Name"
@@ -762,6 +765,9 @@ msgstr "Access"
 
 msgid "Messaging Gateway"
 msgstr "Messaging Gateway"
+
+msgid "Dashboards"
+msgstr "Dashboards"
 
 msgid "Push Analytics"
 msgstr "Push Analytics"
