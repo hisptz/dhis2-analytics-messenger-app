@@ -31,6 +31,13 @@ export function DashboardsConfigPage() {
 		},
 	});
 
+	const onSave = async (data: DashboardsForm) => {
+		await save(data);
+		form.reset({
+			dashboards: await get(),
+		});
+	};
+
 	return (
 		<FormProvider {...form}>
 			<div className="w-full h-full flex flex-col gap-4">
@@ -51,7 +58,7 @@ export function DashboardsConfigPage() {
 						disabled={!form.formState.isDirty}
 						loading={form.formState.isSubmitting}
 						primary
-						onClick={(_, e) => form.handleSubmit(save)(e)}
+						onClick={(_, e) => form.handleSubmit(onSave)(e)}
 					>
 						{form.formState.isSubmitting
 							? i18n.t("Saving...")
