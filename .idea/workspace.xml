@@ -46,8 +46,7 @@
     </treeState>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="45e8eb8e-5803-456a-9857-5a6354e88f5c" name="Changes" comment="chore(package.json): version update&#10;&#10;Updated app version to 1.0.0-beta.06">
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+    <list default="true" id="45e8eb8e-5803-456a-9857-5a6354e88f5c" name="Changes" comment="fix(access-config):  Fixes &#10;&#10;- Fixed issues with focusing error by useForm causes an error to be thrown &#10;- Changed the validation of PAT to accomodate new pattern starting with v41 of DHIS2">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -152,38 +151,39 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;develop&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/gnnko/projects/hisptz/dhis2-analytics-messenger-app/src/modules/Configuration/components/Gateways/components/GatewayConfigurationsTable/components&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;yarn&quot;,
-    &quot;npm.build.executor&quot;: &quot;Run&quot;,
-    &quot;npm.deploy.executor&quot;: &quot;Run&quot;,
-    &quot;npm.start.executor&quot;: &quot;Run&quot;,
-    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/Users/gnnko/projects/hisptz/dhis2-analytics-messenger-app/node_modules/prettier&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;vcs.Git&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/Users/gnnko/projects/hisptz/dhis2-analytics-messenger-app/node_modules/typescript/lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "dart.analysis.tool.window.visible": "false",
+    "git-widget-placeholder": "develop",
+    "junie.onboarding.icon.badge.shown": "true",
+    "last_opened_file_path": "/Users/gnnko/projects/hisptz/dhis2-analytics-messenger-app/src/modules/Configuration/components/Gateways/components/GatewayConfigurationsTable/components",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.standard": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.standard": "",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "yarn",
+    "npm.build.executor": "Run",
+    "npm.deploy.executor": "Run",
+    "npm.start.executor": "Run",
+    "prettierjs.PrettierConfiguration.Package": "/Users/gnnko/projects/hisptz/dhis2-analytics-messenger-app/node_modules/prettier",
+    "settings.editor.selected.configurable": "vcs.Git",
+    "ts.external.directory.path": "/Users/gnnko/Applications/WebStorm.app/Contents/plugins/javascript-plugin/jsLanguageServicesImpl/external",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
-      &quot;JSON&quot;
+  "keyToStringList": {
+    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
+      "JSON"
     ],
-    &quot;stardust.markdown.MarkdownSplitEditorSuppressor:keyList&quot;: []
+    "stardust.markdown.MarkdownSplitEditorSuppressor:keyList": []
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationsTable/components" />
@@ -270,7 +270,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-WS-243.26053.12" />
+        <option value="bundled-js-predefined-d6986cc7102b-f27c65a3e318-JavaScript-WS-251.23774.424" />
       </set>
     </attachedChunks>
   </component>
@@ -360,15 +360,9 @@
       <workItem from="1743223023821" duration="30000" />
       <workItem from="1743500991333" duration="1138000" />
       <workItem from="1743573409822" duration="185000" />
-      <workItem from="1744183515541" duration="789000" />
-    </task>
-    <task id="LOCAL-00023" summary="fix(gateway status): Fixes&#10;&#10;- Fixed issues with gateway status not updating after updating gateway until you refresh the whole page">
-      <option name="closed" value="true" />
-      <created>1690450009134</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1690450009134</updated>
+      <workItem from="1744183515541" duration="2157000" />
+      <workItem from="1744707388017" duration="606000" />
+      <workItem from="1746534752300" duration="636000" />
     </task>
     <task id="LOCAL-00024" summary="fix(push analytics config): Fixes&#10;&#10;- Fixed issues with groups being identified as normal phone numbers">
       <option name="closed" value="true" />
@@ -754,7 +748,15 @@
       <option name="project" value="LOCAL" />
       <updated>1741245248355</updated>
     </task>
-    <option name="localTasksCounter" value="72" />
+    <task id="LOCAL-00072" summary="fix(access-config):  Fixes &#10;&#10;- Fixed issues with focusing error by useForm causes an error to be thrown &#10;- Changed the validation of PAT to accomodate new pattern starting with v41 of DHIS2">
+      <option name="closed" value="true" />
+      <created>1744184477620</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1744184477620</updated>
+    </task>
+    <option name="localTasksCounter" value="73" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -810,7 +812,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="feat: access config&#10;&#10;Implemented User profile editing" />
     <MESSAGE value="feat: access config&#10;&#10;Implemented change password feature" />
     <MESSAGE value="feat: logout&#10;" />
     <MESSAGE value="Add LogoutButton component to DAMUserConfig and update translations.&#10;&#10;A new LogoutButton component is added to the DAMUserConfig file, allowing users to disconnect from the analytics messenger. Corresponding translations are also updated, providing multi-language support for new and modified text entries in the User Interface." />
@@ -835,7 +836,8 @@
     <MESSAGE value="fix: contact queries&#10;&#10;Fixed issues with gateway group query refetching unnecessarily" />
     <MESSAGE value="refactor: simplify imports in RHFVisualizationSelector and SaveButton components&#10;&#10;Consolidated unnecessary imports and type declarations to improve code readability and maintainability. Adjusted imports in React and removed unused callbacks to streamline the codebase." />
     <MESSAGE value="chore(package.json): version update&#10;&#10;Updated app version to 1.0.0-beta.06" />
-    <option name="LAST_COMMIT_MESSAGE" value="chore(package.json): version update&#10;&#10;Updated app version to 1.0.0-beta.06" />
+    <MESSAGE value="fix(access-config):  Fixes &#10;&#10;- Fixed issues with focusing error by useForm causes an error to be thrown &#10;- Changed the validation of PAT to accomodate new pattern starting with v41 of DHIS2" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix(access-config):  Fixes &#10;&#10;- Fixed issues with focusing error by useForm causes an error to be thrown &#10;- Changed the validation of PAT to accomodate new pattern starting with v41 of DHIS2" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="WfRunsListSearchHistory">{
