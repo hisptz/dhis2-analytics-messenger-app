@@ -1,6 +1,6 @@
 import i18n from "@dhis2/d2-i18n";
 import { Button, IconAdd16 } from "@dhis2/ui";
-import { CustomDataTable } from "@hisptz/dhis2-ui";
+import { SimpleDataTable } from "@hisptz/dhis2-ui";
 import React, { useCallback } from "react";
 import { useBoolean } from "usehooks-ts";
 import FullPageLoader from "../../../../../../shared/components/Loaders";
@@ -29,7 +29,7 @@ const tableColumns: Column[] = [
 
 export default function VisualizationGroupsTable(): React.ReactElement {
 	const { value: hidden, setTrue: hide, setFalse: open } = useBoolean(true);
-	const { visualizationGroups, loading, error, refetch, pager } =
+	const { visualizationGroups, loading, refetch } =
 		useVisualizationGroups(open);
 
 	const onCloseClick = useCallback(() => {
@@ -66,7 +66,7 @@ export default function VisualizationGroupsTable(): React.ReactElement {
 				{loading ? (
 					<FullPageLoader />
 				) : (
-					<CustomDataTable
+					<SimpleDataTable
 						columns={tableColumns}
 						loading={loading}
 						emptyLabel={i18n.t(

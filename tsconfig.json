@@ -1,9 +1,9 @@
 {
   "exclude": [],
   "compilerOptions": {
-    "target": "es2021",
+    "target": "esnext",
     /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
-    "module": "commonjs",
+    "module": "ESNext",
     "moduleResolution": "Node",
     /* Specify what module code is generated. */
     "esModuleInterop": true,

@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import { Button, CircularLoader, IconAdd24 } from "@dhis2/ui";
-import { CustomDataTable, CustomDataTableRow } from "@hisptz/dhis2-ui";
+import { SimpleDataTable, SimpleDataTableRow } from "@hisptz/dhis2-ui";
 import i18n from "@dhis2/d2-i18n";
 import { useGateways } from "./hooks/data";
 import { capitalize, isEmpty } from "lodash";
@@ -65,7 +65,7 @@ export default function GatewayConfigurationsTable(): React.ReactElement {
 						),
 					};
 				})
-				.filter((value) => !!value) as CustomDataTableRow[],
+				.filter((value) => !!value) as SimpleDataTableRow[],
 		[data],
 	);
 
@@ -103,7 +103,7 @@ export default function GatewayConfigurationsTable(): React.ReactElement {
 				)}
 			</div>
 			<div className="flex-1">
-				<CustomDataTable
+				<SimpleDataTable
 					loading={loading}
 					emptyLabel={i18n.t("There are no configured gateways")}
 					columns={columns}

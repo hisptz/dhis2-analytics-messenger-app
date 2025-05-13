@@ -1,9 +1,9 @@
 import Parse from "parse";
 
 export function initializeParse() {
-	Parse.initialize(process.env.REACT_APP_SAAS_APP_ID ?? "DAM-AUTH");
+	Parse.initialize(import.meta.env.DHIS2_SAAS_APP_ID ?? "DAM-AUTH");
 	Parse.serverURL =
-		process.env.REACT_APP_SAAS_BASE_URL ?? "http://localhost:3001/api";
+		import.meta.env.DHIS2_SAAS_BASE_URL ?? "http://localhost:3001/api";
 }
 
 export async function logoutParseUser() {

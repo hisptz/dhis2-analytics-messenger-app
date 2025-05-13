@@ -6,8 +6,8 @@ import React from "react";
 import { useSetRecoilState } from "recoil";
 import { ActionButton } from "../../../../../shared/components/CustomDataTable/components/ActionButton";
 import { ANALYTICS_GROUPS_DATASTORE_KEY } from "../../../../../shared/constants/dataStore";
-import { VisualizationGroup } from "../../../../../shared/interfaces";
 import { VisGroupUpdateState } from "../components/VisualizationGroupsModal/hooks/save";
+import { VisualizationGroup } from "../schema";
 // TODO add mechanism for pagination
 const query = {
 	visualizationGroups: {

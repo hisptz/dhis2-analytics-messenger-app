@@ -1,14 +1,16 @@
-import {RHFSingleSelectField} from "@hisptz/dhis2-ui";
-import {Info} from "luxon";
-import React, {useMemo} from "react";
+import { RHFSingleSelectField } from "@hisptz/dhis2-ui";
+import { Info } from "luxon";
+import React, { useMemo } from "react";
 
 export function WeekdayField() {
-    const options = useMemo(() => Info.weekday("long").map((option: string, index: number) => ({
-        label: option,
-        value: index.toString()
-    })), []);
+	const options = useMemo(
+		() =>
+			Info.weekdays("long").map((option: string, index: number) => ({
+				label: option,
+				value: index.toString(),
+			})),
+		[],
+	);
 
-    return (
-        <RHFSingleSelectField options={options} name={"2"}/>
-    );
+	return <RHFSingleSelectField options={options} name={"2"} />;
 }

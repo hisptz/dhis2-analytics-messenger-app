@@ -1,3 +1,5 @@
+@import "tailwindcss";
+
 body {
     background: #F8F9FA;
     word-break: keep-all;

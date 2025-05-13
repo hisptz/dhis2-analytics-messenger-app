@@ -1,5 +1,4 @@
-import { FlyoutMenu, IconMore24, MenuItem, Popover } from "@dhis2/ui";
-import { IconButton } from "@mui/material";
+import { Button, FlyoutMenu, IconMore24, MenuItem, Popover } from "@dhis2/ui";
 import React, { useState } from "react";
 import { TableAction } from "../interfaces";
 
@@ -14,18 +13,17 @@ export function ActionButton({
 
 	return (
 		<>
-			<IconButton
+			<Button
 				style={{
 					padding: 2,
 				}}
-				onClick={(event: any) => {
-					event?.stopPropagation();
+				onClick={(_, event) => {
+					event.stopPropagation();
 					event.preventDefault();
 					setButtonRef(event.target);
 				}}
-			>
-				<IconMore24 />
-			</IconButton>
+				icon={<IconMore24 />}
+			/>
 			{buttonRef && (
 				<Popover
 					onClickOutside={() => setButtonRef(null)}

@@ -43,9 +43,8 @@ export const pushAnalyticsJobSchema = z.object({
 		})
 		.min(1, i18n.t("At least one contact is required")),
 	dhis2Instance: z.instanceof(Parse.Object),
-	visualizations: z
-		.array(visualizationSchema)
-		.min(1, i18n.t("At least one visualization is required")),
+	visualizations: z.array(visualizationSchema).optional(),
+	dashboards: z.array(visualizationSchema).optional(),
 });
 
 export const visualizationFormObjectSchema = z.object({
@@ -59,10 +58,26 @@ export const pushAnalyticsJobFormDataSchema = pushAnalyticsJobSchema
 		dhis2Instance: true,
 	})
 	.extend({
-		contacts: z.array(ToContactSchema),
+		contacts: z
+			.array(ToContactSchema)
+			.min(1, { message: i18n.t("At least one contact is required") }),
 		gateways: z.array(z.string()),
-		visualizations: z.array(visualizationFormObjectSchema),
-	});
+		visualizations: z.array(visualizationFormObjectSchema).optional(),
+		dashboards: z.array(visualizationFormObjectSchema).optional(),
+	})
+	.refine(
+		(values) => {
+			return (
+				(values.visualizations?.length ?? 0) > 0 ||
+				(values.dashboards?.length ?? 0) > 0
+			);
+		},
+		{
+			message: i18n.t(
+				"At least one visualization or dashboard must be selected",
+			),
+		},
+	);
 export type PushAnalyticsJob = z.infer<typeof pushAnalyticsJobSchema>;
 export type PushAnalyticsJobFormData = z.infer<
 	typeof pushAnalyticsJobFormDataSchema
