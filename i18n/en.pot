@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2025-05-13T13:44:11.007Z\n"
-"PO-Revision-Date: 2025-05-13T13:44:11.007Z\n"
+"POT-Creation-Date: 2025-05-13T15:07:36.044Z\n"
+"PO-Revision-Date: 2025-05-13T15:07:36.044Z\n"
 
 msgid "Fetching App configurations..."
 msgstr "Fetching App configurations..."
@@ -145,6 +145,21 @@ msgstr "Could not update the profile"
 msgid "Select dashboards that will be accessible in push analytics"
 msgstr "Select dashboards that will be accessible in push analytics"
 
+msgid "Reset"
+msgstr "Reset"
+
+msgid "Save changes"
+msgstr "Save changes"
+
+msgid "Updates saved successfully"
+msgstr "Updates saved successfully"
+
+msgid "Error saving updates"
+msgstr "Error saving updates"
+
+msgid "Unknown error"
+msgstr "Unknown error"
+
 msgid "Name"
 msgstr "Name"
 
@@ -153,9 +168,6 @@ msgstr "Messaging channel"
 
 msgid "Enable chatbot"
 msgstr "Enable chatbot"
-
-msgid "Save changes"
-msgstr "Save changes"
 
 msgid "Contacts to whitelist"
 msgstr "Contacts to whitelist"
@@ -456,6 +468,24 @@ msgstr "Day of week"
 msgid "Year"
 msgstr "Year"
 
+msgid "No visualizations selected"
+msgstr "No visualizations selected"
+
+msgid "Add Dashboards"
+msgstr "Add Dashboards"
+
+msgid "Select dashboard"
+msgstr "Select dashboard"
+
+msgid "Description"
+msgstr "Description"
+
+msgid "Error getting dashboards"
+msgstr "Error getting dashboards"
+
+msgid "Dashboard"
+msgstr "Dashboard"
+
 msgid ""
 "You can use different formatting conventions as per the selected gateway. "
 "(E.g * to bold for whatsapp gateway)"
@@ -493,9 +523,6 @@ msgstr "User"
 msgid "Could not find any user with name or username {{keyword}}"
 msgstr "Could not find any user with name or username {{keyword}}"
 
-msgid "No visualizations selected"
-msgstr "No visualizations selected"
-
 msgid "Add Visualizations"
 msgstr "Add Visualizations"
 
@@ -508,14 +535,14 @@ msgstr "Visualization group"
 msgid "Visualization"
 msgstr "Visualization"
 
-msgid "Description"
-msgstr "Description"
-
 msgid "Add recipient"
 msgstr "Add recipient"
 
 msgid "Type"
 msgstr "Type"
+
+msgid "Dashboards"
+msgstr "Dashboards"
 
 msgid "Whatsapp Group"
 msgstr "Whatsapp Group"
@@ -765,9 +792,6 @@ msgstr "Access"
 
 msgid "Messaging Gateway"
 msgstr "Messaging Gateway"
-
-msgid "Dashboards"
-msgstr "Dashboards"
 
 msgid "Push Analytics"
 msgstr "Push Analytics"

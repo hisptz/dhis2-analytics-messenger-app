@@ -38,12 +38,12 @@ export function WhatsAppConnectModal({
 
 	async function getQR() {
 		const url = `${
-			process.env.REACT_APP_SAAS_BASE_URL
+			import.meta.env.DHIS2_SAAS_BASE_URL
 		}/channels/whatsapp/sessions/${sessionId}/qrCode`;
 		const response = await fetch(url, {
 			headers: {
 				"X-Parse-Session-Token": user!.getSessionToken()!,
-				"X-Parse-Application-Id": process.env.REACT_APP_SAAS_APP_ID!,
+				"X-Parse-Application-Id": import.meta.env.DHIS2_SAAS_APP_ID!,
 			},
 		});
 		if (response.status === 200) {

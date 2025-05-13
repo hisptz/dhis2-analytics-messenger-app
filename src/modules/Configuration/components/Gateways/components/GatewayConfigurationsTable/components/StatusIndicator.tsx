@@ -2,9 +2,8 @@ import { Gateway } from "../../../schema";
 import React, { useMemo } from "react";
 import { usePushServiceClient } from "../../../../../../../shared/hooks/pushService";
 import { useQuery } from "@tanstack/react-query";
-import { CircularLoader, IconSync16, Tag, Tooltip } from "@dhis2/ui";
+import { Button, CircularLoader, IconSync16, Tag, Tooltip } from "@dhis2/ui";
 import i18n from "@dhis2/d2-i18n";
-import { IconButton } from "@mui/material";
 import { capitalize } from "lodash";
 import { DateTime } from "luxon";
 import { AxiosError } from "axios";
@@ -58,15 +57,14 @@ const Wrapper = ({
 			{children}
 		</Tooltip>
 		<Tooltip content={i18n.t("Refresh")}>
-			<IconButton
+			<Button
 				disabled={isRefetching}
 				style={{
 					padding: 2,
 				}}
 				onClick={() => refetch()}
-			>
-				<IconSync16 />
-			</IconButton>
+				icon={<IconSync16 />}
+			></Button>
 		</Tooltip>
 	</div>
 );

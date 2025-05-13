@@ -18,6 +18,7 @@
     "_cy:stub": "dotenv -- cross-var yarn cypress run --env networkMode=stub --record --key %CYPRESS_RECORD_KEY%",
     "test:stub": "yarn cy:prepare 'yarn _cy:stub'",
     "test": "d2-app-scripts test",
+    "type-check": "tsc --noEmit",
     "deploy": "d2-app-scripts deploy",
     "lint": "yarn d2-style check",
     "lint:staged": "yarn lint --staged",

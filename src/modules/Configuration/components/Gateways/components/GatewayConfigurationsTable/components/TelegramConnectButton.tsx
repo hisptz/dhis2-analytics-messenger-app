@@ -20,15 +20,15 @@ export function TelegramConnectButton({ gateway }: { gateway: Parse.Object }) {
 		return new Promise<null>((resolve, reject) => {
 			const token = sessionId;
 			const user = Parse.User.current();
-			const url = `${process.env.REACT_APP_SAAS_BASE_URL}channels/telegram/socket.io/${token}/init`;
+			const url = `${import.meta.env.DHIS2_SAAS_BASE_URL}channels/telegram/socket.io/${token}/init`;
 			const socket = io(url, {
 				path: `${
-					new URL(process.env.REACT_APP_SAAS_BASE_URL!).pathname
+					new URL(import.meta.env.DHIS2_SAAS_BASE_URL!).pathname
 				}/channels/telegram/socket.io`,
 				extraHeaders: {
 					"X-Parse-Session-Token": user!.getSessionToken()!,
-					"X-Parse-Application-Id":
-						process.env.REACT_APP_SAAS_APP_ID!,
+					"X-Parse-Application-Id": import.meta.env
+						.DHIS2_SAAS_APP_ID!,
 				},
 				query: {
 					name: gateway.get("name"),

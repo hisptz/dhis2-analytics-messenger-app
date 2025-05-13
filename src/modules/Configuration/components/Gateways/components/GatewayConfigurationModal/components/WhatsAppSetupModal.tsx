@@ -48,14 +48,14 @@ export function WhatsAppSetup({
 	const setupWebsocket = () => {
 		const token = sessionId;
 		const user = Parse.User.current();
-		const url = `${process.env.REACT_APP_SAAS_BASE_URL}channels/whatsapp/socket.io/${token}/init`;
+		const url = `${import.meta.env.DHIS2_SAAS_BASE_URL}channels/whatsapp/socket.io/${token}/init`;
 		const socket = io(url, {
 			path: `${
-				new URL(process.env.REACT_APP_SAAS_BASE_URL!).pathname
+				new URL(import.meta.env.DHIS2_SAAS_BASE_URL!).pathname
 			}/channels/whatsapp/socket.io`,
 			extraHeaders: {
 				"X-Parse-Session-Token": user!.getSessionToken()!,
-				"X-Parse-Application-Id": process.env.REACT_APP_SAAS_APP_ID!,
+				"X-Parse-Application-Id": import.meta.env.DHIS2_SAAS_ID!,
 				"Authorization": `Token ${user?.getSessionToken()}`,
 			},
 			query: {
