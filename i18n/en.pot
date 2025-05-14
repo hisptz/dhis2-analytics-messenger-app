@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2025-05-13T15:07:36.044Z\n"
-"PO-Revision-Date: 2025-05-13T15:07:36.044Z\n"
+"POT-Creation-Date: 2025-05-14T06:34:46.002Z\n"
+"PO-Revision-Date: 2025-05-14T06:34:46.003Z\n"
 
 msgid "Fetching App configurations..."
 msgstr "Fetching App configurations..."
@@ -816,6 +816,9 @@ msgstr "Contacts are required"
 
 msgid "At least one contact is required"
 msgstr "At least one contact is required"
+
+msgid "At least one visualization or dashboard must be selected"
+msgstr "At least one visualization or dashboard must be selected"
 
 msgctxt "Application title"
 msgid "__MANIFEST_APP_TITLE"

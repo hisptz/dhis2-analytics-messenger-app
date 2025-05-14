@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/dhis2-analytics-messenger-app.iml" filepath="$PROJECT_DIR$/.idea/dhis2-analytics-messenger-app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../dhis2-analytics-messenger-saas/.idea/dhis2-analytics-messenger-saas.iml" filepath="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/.idea/dhis2-analytics-messenger-saas.iml" />
     </modules>
   </component>
 </project>

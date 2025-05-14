@@ -78,9 +78,11 @@ export function useManageDHIS2Config({ onClose }: { onClose: () => void }) {
 		defaultValues: {
 			url: systemInfo?.contextPath,
 			pat: config?.get("pat"),
-			expiresOn: DateTime.fromJSDate(
-				config?.get("expiresOn") as Date,
-			).toFormat("yyyy-MM-dd"),
+			expiresOn: config?.get("expiresOn")
+				? DateTime.fromJSDate(
+						config?.get("expiresOn") as Date,
+					).toFormat("yyyy-MM-dd")
+				: undefined,
 		},
 	});
 	const { show } = useAlert(
