@@ -47,35 +47,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="45e8eb8e-5803-456a-9857-5a6354e88f5c" name="Changes" comment="feat(schemas): introduce custom report schema and update dependencies&#10;&#10;- Added `customReport` schema definitions, including header, footer, and sections for improved structure and validation.&#10;- Introduced enums for `PageSize`, `SectionType`, and `ItemType` to enhance schema readability and usage.&#10;- Updated `pnpm-lock.yaml` to upgrade dependencies (`zod`, `typescript`, `bufferutil`, etc.) for compatibility and new feature adoption.&#10;&#10;These changes enable better modularization and validation for custom report handling while ensuring alignment with the latest library updates.">
-      <change afterPath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationsTable/components/CleanupButton.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/services/visualizer/src/components/CustomReportVisualizer/CustomReportVisualizer.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/services/visualizer/src/components/CustomReportVisualizer/components/FlexSection.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/services/visualizer/src/components/CustomReportVisualizer/components/ReportHeader.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/services/visualizer/src/components/CustomReportVisualizer/components/ReportItemVisualizer.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/services/visualizer/src/components/CustomReportVisualizer/components/SingleItemSection.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/services/visualizer/src/components/CustomReportVisualizer/components/StretchVisualization/StretchVisualization.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/services/visualizer/src/components/CustomReportVisualizer/components/StretchVisualization/components/Visualization.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/services/visualizer/src/components/CustomReportVisualizer/hooks/config.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/services/visualizer/src/components/ErrorContainer.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/i18n/en.pot" beforeDir="false" afterPath="$PROJECT_DIR$/i18n/en.pot" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationsTable/components/GatewayActions.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationsTable/components/GatewayActions.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/packages/schemas/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/packages/schemas/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/packages/schemas/src/custom-report/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/packages/schemas/src/custom-report/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/packages/schemas/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/packages/schemas/src/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/packages/utils/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/packages/utils/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/pnpm-lock.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/pnpm-lock.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/services/visualizer/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/services/visualizer/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/services/visualizer/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/services/visualizer/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/services/visualizer/src/components/LegacyVisualizer/components/Visualization/components/Chart/Chart.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/services/visualizer/src/components/LegacyVisualizer/components/Visualization/components/Chart/Chart.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/services/visualizer/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/services/visualizer/src/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/services/visualizer/src/main.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/services/visualizer/src/main.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/services/visualizer/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/services/visualizer/tsconfig.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/services/visualizer/tsconfig.node.json" beforeDir="false" afterPath="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/services/visualizer/tsconfig.node.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/services/visualizer/vite.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/services/visualizer/vite.config.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/types/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/types/index.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,13 +64,6 @@
         <option value="TypeScript File" />
         <option value="TypeScript JSX File" />
       </list>
-    </option>
-  </component>
-  <component name="FormatOnSaveOptions">
-    <option name="myRunOnSave" value="false" />
-    <option name="myAllFileTypesSelected" value="true" />
-    <option name="mySelectedFileTypes">
-      <set />
     </option>
   </component>
   <component name="Git.Settings">
@@ -116,7 +84,7 @@
         <entry key="$PROJECT_DIR$/../dhis2-analytics-messenger-saas" value="feature/dashboard-support" />
       </map>
     </option>
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../dhis2-analytics-messenger-saas" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="ROOT_SYNC" value="DONT_SYNC" />
     <option name="SIGN_OFF_COMMIT" value="true" />
   </component>
@@ -136,29 +104,6 @@
               <option name="branches">
                 <list>
                   <RecentBranch>
-                    <option name="branchName" value="develop" />
-                    <option name="lastUsedInstant" value="1747150973" />
-                  </RecentBranch>
-                  <RecentBranch>
-                    <option name="branchName" value="v1" />
-                    <option name="lastUsedInstant" value="1720510956" />
-                  </RecentBranch>
-                  <RecentBranch>
-                    <option name="branchName" value="saas" />
-                    <option name="lastUsedInstant" value="1699160835" />
-                  </RecentBranch>
-                  <RecentBranch>
-                    <option name="branchName" value="feature/testing" />
-                    <option name="lastUsedInstant" value="1690879197" />
-                  </RecentBranch>
-                </list>
-              </option>
-              <option name="repositoryRootUrl" value="file://$PROJECT_DIR$" />
-            </RecentBranchesForRepo>
-            <RecentBranchesForRepo>
-              <option name="branches">
-                <list>
-                  <RecentBranch>
                     <option name="branchName" value="feature/custom-report-support" />
                     <option name="lastUsedInstant" value="1748506393" />
                   </RecentBranch>
@@ -174,17 +119,32 @@
               </option>
               <option name="repositoryRootUrl" value="file://$PROJECT_DIR$/../dhis2-analytics-messenger-saas" />
             </RecentBranchesForRepo>
+            <RecentBranchesForRepo>
+              <option name="branches">
+                <list>
+                  <RecentBranch>
+                    <option name="branchName" value="feature/custom-report-config" />
+                    <option name="lastUsedInstant" value="1748595767" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="develop" />
+                    <option name="lastUsedInstant" value="1747150973" />
+                  </RecentBranch>
+                </list>
+              </option>
+              <option name="repositoryRootUrl" value="file://$PROJECT_DIR$" />
+            </RecentBranchesForRepo>
           </list>
         </option>
       </RecentBranches>
     </option>
   </component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;git@github.com:hisptz/dhis2-analytics-messenger-app.git&quot;,
-    &quot;accountId&quot;: &quot;f679fa9b-ab38-4bdf-a5ca-34bb54cd9b95&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "git@github.com:hisptz/dhis2-analytics-messenger-app.git",
+    "accountId": "cd9e024e-e0f4-450d-b0ac-6eddc46c76f3"
   }
-}</component>
+}]]></component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -200,49 +160,49 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;feature/custom-report-support&quot;,
-    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/gnnko/projects/hisptz/dhis2-analytics-messenger-saas/services/visualizer/src/components/CustomReportVisualizer/components/StretchVisualization/components&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;yarn&quot;,
-    &quot;npm.build (1).executor&quot;: &quot;Run&quot;,
-    &quot;npm.build.executor&quot;: &quot;Run&quot;,
-    &quot;npm.clean.executor&quot;: &quot;Run&quot;,
-    &quot;npm.deploy.executor&quot;: &quot;Run&quot;,
-    &quot;npm.dev (1).executor&quot;: &quot;Run&quot;,
-    &quot;npm.dev.executor&quot;: &quot;Run&quot;,
-    &quot;npm.dev:core.executor&quot;: &quot;Run&quot;,
-    &quot;npm.dev:visualizer.executor&quot;: &quot;Run&quot;,
-    &quot;npm.lint.executor&quot;: &quot;Run&quot;,
-    &quot;npm.lint:staged.executor&quot;: &quot;Run&quot;,
-    &quot;npm.start.executor&quot;: &quot;Run&quot;,
-    &quot;npm.type-check.executor&quot;: &quot;Run&quot;,
-    &quot;npm.visualizer &gt; build.executor&quot;: &quot;Run&quot;,
-    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/Users/gnnko/projects/hisptz/dhis2-analytics-messenger-saas/node_modules/prettier&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;vcs.Git&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/Users/gnnko/projects/hisptz/dhis2-analytics-messenger-app/node_modules/typescript/lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "dart.analysis.tool.window.visible": "false",
+    "git-widget-placeholder": "feature/custom-report-config",
+    "junie.onboarding.icon.badge.shown": "true",
+    "last_opened_file_path": "/Users/eric/code/hisptz/dhis2-analytics-messenger-app",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.standard": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.standard": "",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "yarn",
+    "npm.build (1).executor": "Run",
+    "npm.build.executor": "Run",
+    "npm.clean.executor": "Run",
+    "npm.deploy.executor": "Run",
+    "npm.dev (1).executor": "Run",
+    "npm.dev.executor": "Run",
+    "npm.dev:core.executor": "Run",
+    "npm.dev:visualizer.executor": "Run",
+    "npm.lint.executor": "Run",
+    "npm.lint:staged.executor": "Run",
+    "npm.start.executor": "Run",
+    "npm.type-check.executor": "Run",
+    "npm.visualizer > build.executor": "Run",
+    "prettierjs.PrettierConfiguration.Package": "/Users/eric/code/hisptz/dhis2-analytics-messenger-app/node_modules/prettier",
+    "settings.editor.selected.configurable": "vcs.Git",
+    "ts.external.directory.path": "/Users/eric/code/hisptz/dhis2-analytics-messenger-app/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
-      &quot;JSON&quot;
+  "keyToStringList": {
+    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
+      "JSON"
     ],
-    &quot;stardust.markdown.MarkdownSplitEditorSuppressor:keyList&quot;: []
+    "stardust.markdown.MarkdownSplitEditorSuppressor:keyList": []
   }
-}</component>
+}]]></component>
   <component name="ReactDesignerToolWindowState">
     <option name="myId2Visible">
       <map>
@@ -268,7 +228,7 @@
       <recent name="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationsTable/components/GatewayConnectButton" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.dev:visualizer">
+  <component name="RunManager" selected="npm.dev (1)">
     <configuration name="clean" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/package.json" />
       <command value="run" />
@@ -343,10 +303,10 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="npm.dev (1)" />
         <item itemvalue="npm.visualizer &gt; build" />
         <item itemvalue="npm.clean" />
         <item itemvalue="npm.dev:core" />
-        <item itemvalue="npm.dev (1)" />
         <item itemvalue="npm.dev" />
       </list>
     </recent_temporary>
@@ -354,7 +314,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-6a121458b545-JavaScript-WS-251.25410.117" />
+        <option value="bundled-js-predefined-d6986cc7102b-f27c65a3e318-JavaScript-WS-251.23774.424" />
       </set>
     </attachedChunks>
   </component>
@@ -455,6 +415,7 @@
       <workItem from="1747369395593" duration="2840000" />
       <workItem from="1748503089128" duration="25668000" />
       <workItem from="1748582137681" duration="623000" />
+      <workItem from="1748592726823" duration="2990000" />
     </task>
     <task id="LOCAL-00057" summary="feat: push config&#10;&#10;Implemented group selectors for recipients">
       <option name="closed" value="true" />
