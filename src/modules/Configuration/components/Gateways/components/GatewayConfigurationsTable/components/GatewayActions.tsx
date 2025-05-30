@@ -8,6 +8,7 @@ import { GatewayDeleteButton } from "./DeleteButton";
 import { GatewayConnectButton } from "./GatewayConnectButton";
 import { SupportedChannels } from "../../../../../../../shared/interfaces";
 import { GatewayEditButton } from "./EditButton";
+import { GatewayCleanupButton } from "./CleanupButton";
 
 export interface GatewayActionsProps {
 	gateway: Parse.Object;
@@ -60,6 +61,9 @@ export function GatewayActions({ gateway, channel }: GatewayActionsProps) {
 					<GatewayConnectButton gateway={gateway} channel={channel} />
 				</Tooltip>
 			) : null}
+			<Tooltip content={i18n.t("Clean whatsapp installation")}>
+				<GatewayCleanupButton channel={channel} gateway={gateway} />
+			</Tooltip>
 			<Tooltip content={i18n.t("Remove gateway")}>
 				<GatewayDeleteButton channel={channel} gateway={gateway} />
 			</Tooltip>

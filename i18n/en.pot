@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2025-05-14T06:34:46.002Z\n"
-"PO-Revision-Date: 2025-05-14T06:34:46.003Z\n"
+"POT-Creation-Date: 2025-05-14T13:07:45.863Z\n"
+"PO-Revision-Date: 2025-05-14T13:07:45.864Z\n"
 
 msgid "Fetching App configurations..."
 msgstr "Fetching App configurations..."
@@ -254,6 +254,9 @@ msgstr "Are you sure you want to delete the gateway"
 msgid "Could not delete the gateway"
 msgstr "Could not delete the gateway"
 
+msgid "Gateway cleaned up successfully"
+msgstr "Gateway cleaned up successfully"
+
 msgid "Gateway deleted successfully"
 msgstr "Gateway deleted successfully"
 
@@ -274,6 +277,9 @@ msgstr "Disconnect gateway"
 
 msgid "Connect gateway"
 msgstr "Connect gateway"
+
+msgid "Clean whatsapp installation"
+msgstr "Clean whatsapp installation"
 
 msgid "Remove gateway"
 msgstr "Remove gateway"

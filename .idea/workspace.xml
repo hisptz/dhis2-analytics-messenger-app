@@ -46,26 +46,36 @@
     </treeState>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="45e8eb8e-5803-456a-9857-5a6354e88f5c" name="Changes" comment="feat(core): add PDF export support and switch image format to PNG&#10;&#10;- Introduced `getPDF` function to enable exporting visualizations as PDFs with specified dimensions and settings.&#10;- Changed screenshot export format from JPEG to PNG for better quality.&#10;- Updated default viewport width from 1920 to 1980 to enhance dashboard rendering.&#10;- Replaced image export with PDF export in dashboard capture functionality.">
-      <change beforePath="$PROJECT_DIR$/.idea/dhis2-analytics-messenger-app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dhis2-analytics-messenger-app.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+    <list default="true" id="45e8eb8e-5803-456a-9857-5a6354e88f5c" name="Changes" comment="feat(schemas): introduce custom report schema and update dependencies&#10;&#10;- Added `customReport` schema definitions, including header, footer, and sections for improved structure and validation.&#10;- Introduced enums for `PageSize`, `SectionType`, and `ItemType` to enhance schema readability and usage.&#10;- Updated `pnpm-lock.yaml` to upgrade dependencies (`zod`, `typescript`, `bufferutil`, etc.) for compatibility and new feature adoption.&#10;&#10;These changes enable better modularization and validation for custom report handling while ensuring alignment with the latest library updates.">
+      <change afterPath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationsTable/components/CleanupButton.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/services/visualizer/src/components/CustomReportVisualizer/CustomReportVisualizer.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/services/visualizer/src/components/CustomReportVisualizer/components/FlexSection.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/services/visualizer/src/components/CustomReportVisualizer/components/ReportHeader.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/services/visualizer/src/components/CustomReportVisualizer/components/ReportItemVisualizer.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/services/visualizer/src/components/CustomReportVisualizer/components/SingleItemSection.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/services/visualizer/src/components/CustomReportVisualizer/components/StretchVisualization/StretchVisualization.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/services/visualizer/src/components/CustomReportVisualizer/components/StretchVisualization/components/Visualization.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/services/visualizer/src/components/CustomReportVisualizer/hooks/config.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/services/visualizer/src/components/ErrorContainer.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/i18n/en.pot" beforeDir="false" afterPath="$PROJECT_DIR$/i18n/en.pot" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/components/CustomDataTable/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/components/CustomDataTable/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/hooks/saveDHIS2Config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/hooks/saveDHIS2Config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationsTable/components/GatewayActions.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationsTable/components/GatewayActions.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/packages/schemas/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/packages/schemas/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/packages/schemas/src/client/message.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/packages/schemas/src/client/message.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/packages/schemas/src/custom-report/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/packages/schemas/src/custom-report/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/packages/schemas/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/packages/schemas/src/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/packages/utils/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/packages/utils/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/pnpm-lock.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/pnpm-lock.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/services/core/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/services/core/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/services/core/src/cloud/messaging.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/services/core/src/cloud/messaging.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/services/core/src/utils/visualization.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/services/core/src/utils/visualization.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/services/messaging/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/services/messaging/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/services/telegram/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/services/telegram/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/services/whatsapp/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/services/whatsapp/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/services/whatsapp/src/client/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/services/whatsapp/src/client/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/services/whatsapp/src/routes/sessions/{id}/send/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/services/whatsapp/src/routes/sessions/{id}/send/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/services/visualizer/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/services/visualizer/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/services/visualizer/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/services/visualizer/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/services/visualizer/src/components/LegacyVisualizer/components/Visualization/components/Chart/Chart.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/services/visualizer/src/components/LegacyVisualizer/components/Visualization/components/Chart/Chart.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/services/visualizer/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/services/visualizer/src/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/services/visualizer/src/main.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/services/visualizer/src/main.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/services/visualizer/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/services/visualizer/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/services/visualizer/tsconfig.node.json" beforeDir="false" afterPath="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/services/visualizer/tsconfig.node.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/services/visualizer/vite.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/services/visualizer/vite.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/types/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/types/index.d.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -149,6 +159,10 @@
               <option name="branches">
                 <list>
                   <RecentBranch>
+                    <option name="branchName" value="feature/custom-report-support" />
+                    <option name="lastUsedInstant" value="1748506393" />
+                  </RecentBranch>
+                  <RecentBranch>
                     <option name="branchName" value="develop" />
                     <option name="lastUsedInstant" value="1747206177" />
                   </RecentBranch>
@@ -186,47 +200,49 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "dart.analysis.tool.window.visible": "false",
-    "git-widget-placeholder": "develop",
-    "junie.onboarding.icon.badge.shown": "true",
-    "last_opened_file_path": "/Users/gnnko/projects/hisptz/dhis2-analytics-messenger-saas/services/visualizer/src/components/DashboardVisualizer/components",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.standard": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.standard": "",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "yarn",
-    "npm.build (1).executor": "Run",
-    "npm.build.executor": "Run",
-    "npm.deploy.executor": "Run",
-    "npm.dev (1).executor": "Run",
-    "npm.dev.executor": "Run",
-    "npm.dev:core.executor": "Run",
-    "npm.dev:visualizer.executor": "Run",
-    "npm.lint.executor": "Run",
-    "npm.lint:staged.executor": "Run",
-    "npm.start.executor": "Run",
-    "npm.type-check.executor": "Run",
-    "prettierjs.PrettierConfiguration.Package": "/Users/gnnko/projects/hisptz/dhis2-analytics-messenger-app/node_modules/prettier",
-    "settings.editor.selected.configurable": "vcs.Git",
-    "ts.external.directory.path": "/Users/gnnko/projects/hisptz/dhis2-analytics-messenger-app/node_modules/typescript/lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feature/custom-report-support&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/gnnko/projects/hisptz/dhis2-analytics-messenger-saas/services/visualizer/src/components/CustomReportVisualizer/components/StretchVisualization/components&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;yarn&quot;,
+    &quot;npm.build (1).executor&quot;: &quot;Run&quot;,
+    &quot;npm.build.executor&quot;: &quot;Run&quot;,
+    &quot;npm.clean.executor&quot;: &quot;Run&quot;,
+    &quot;npm.deploy.executor&quot;: &quot;Run&quot;,
+    &quot;npm.dev (1).executor&quot;: &quot;Run&quot;,
+    &quot;npm.dev.executor&quot;: &quot;Run&quot;,
+    &quot;npm.dev:core.executor&quot;: &quot;Run&quot;,
+    &quot;npm.dev:visualizer.executor&quot;: &quot;Run&quot;,
+    &quot;npm.lint.executor&quot;: &quot;Run&quot;,
+    &quot;npm.lint:staged.executor&quot;: &quot;Run&quot;,
+    &quot;npm.start.executor&quot;: &quot;Run&quot;,
+    &quot;npm.type-check.executor&quot;: &quot;Run&quot;,
+    &quot;npm.visualizer &gt; build.executor&quot;: &quot;Run&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/Users/gnnko/projects/hisptz/dhis2-analytics-messenger-saas/node_modules/prettier&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;vcs.Git&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Users/gnnko/projects/hisptz/dhis2-analytics-messenger-app/node_modules/typescript/lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
-      "JSON"
+  &quot;keyToStringList&quot;: {
+    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
+      &quot;JSON&quot;
     ],
-    "stardust.markdown.MarkdownSplitEditorSuppressor:keyList": []
+    &quot;stardust.markdown.MarkdownSplitEditorSuppressor:keyList&quot;: []
   }
-}]]></component>
+}</component>
   <component name="ReactDesignerToolWindowState">
     <option name="myId2Visible">
       <map>
@@ -238,21 +254,31 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/services/visualizer/src/components/DashboardVisualizer/components" />
-      <recent name="$PROJECT_DIR$/src/modules/PushAnalytics/components/PushAnalyticsModalConfig/components" />
-      <recent name="$PROJECT_DIR$/src/modules/Configuration/components/Dashboards/components" />
+      <recent name="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/services/visualizer/src/components/CustomReportVisualizer/components/StretchVisualization/components" />
+      <recent name="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/services/visualizer/src/components/CustomReportVisualizer/components" />
+      <recent name="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/packages/schemas/src/custom-report" />
       <recent name="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationsTable/components" />
-      <recent name="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationModal/components" />
+      <recent name="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/services/visualizer/src/components/DashboardVisualizer/components" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/services/visualizer/src/components/CustomReportVisualizer/components/StretchVisualization" />
+      <recent name="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/services/visualizer/src/components/CustomReportVisualizer" />
       <recent name="$PROJECT_DIR$/src/modules/PushAnalytics/components/PushAnalyticsModalConfig/components/RHFDashboardSelector/components" />
       <recent name="$PROJECT_DIR$/src/shared/constants" />
       <recent name="$PROJECT_DIR$/src/modules/Configuration/components/Gateways/components/GatewayConfigurationsTable/components/GatewayConnectButton" />
-      <recent name="$PROJECT_DIR$/src/modules/PushAnalytics/components/PushAnalyticsModalConfig/components/RHFRecipientSelector/components/Group" />
-      <recent name="$PROJECT_DIR$/src/modules/PushAnalytics/components/PushAnalyticsModalConfig/components/RHFRecipientSelector" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.dev">
+  <component name="RunManager" selected="npm.dev:visualizer">
+    <configuration name="clean" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="clean" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
     <configuration name="dev (1)" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
@@ -281,43 +307,47 @@
         <script value="dev:core" />
       </scripts>
       <node-interpreter value="project" />
+      <package-manager value="$USER_HOME$/Library/pnpm/pnpm" />
       <envs />
       <method v="2" />
     </configuration>
-    <configuration name="test:live" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/package.json" />
+    <configuration name="dev:visualizer" type="js.build_tools.npm" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/package.json" />
       <command value="run" />
       <scripts>
-        <script value="test:live" />
+        <script value="dev:visualizer" />
       </scripts>
       <node-interpreter value="project" />
+      <package-manager value="$USER_HOME$/Library/pnpm/pnpm" />
       <envs />
       <method v="2" />
     </configuration>
-    <configuration name="test:open" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/package.json" />
+    <configuration name="visualizer &gt; build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/../dhis2-analytics-messenger-saas/services/visualizer/package.json" />
       <command value="run" />
       <scripts>
-        <script value="test:open" />
+        <script value="build" />
       </scripts>
       <node-interpreter value="project" />
+      <package-manager value="pnpm" />
       <envs />
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="npm.dev:visualizer" />
+      <item itemvalue="npm.clean" />
+      <item itemvalue="npm.visualizer &gt; build" />
       <item itemvalue="npm.dev (1)" />
       <item itemvalue="npm.dev:core" />
       <item itemvalue="npm.dev" />
-      <item itemvalue="npm.test:live" />
-      <item itemvalue="npm.test:open" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.dev" />
-        <item itemvalue="npm.dev (1)" />
+        <item itemvalue="npm.visualizer &gt; build" />
+        <item itemvalue="npm.clean" />
         <item itemvalue="npm.dev:core" />
-        <item itemvalue="npm.test:open" />
-        <item itemvalue="npm.test:live" />
+        <item itemvalue="npm.dev (1)" />
+        <item itemvalue="npm.dev" />
       </list>
     </recent_temporary>
   </component>
@@ -418,103 +448,13 @@
       <workItem from="1744707388017" duration="606000" />
       <workItem from="1746534752300" duration="636000" />
       <workItem from="1747127647660" duration="29241000" />
-      <workItem from="1747195749290" duration="21748000" />
-    </task>
-    <task id="LOCAL-00045" summary="feat: gateways&#10;&#10;Implemented gateway basic actions">
-      <option name="closed" value="true" />
-      <created>1720531023565</created>
-      <option name="number" value="00045" />
-      <option name="presentableId" value="LOCAL-00045" />
-      <option name="project" value="LOCAL" />
-      <updated>1720531023565</updated>
-    </task>
-    <task id="LOCAL-00046" summary="feat: access config&#10;&#10;Implemented DHIS2 access config">
-      <option name="closed" value="true" />
-      <created>1720536113336</created>
-      <option name="number" value="00046" />
-      <option name="presentableId" value="LOCAL-00046" />
-      <option name="project" value="LOCAL" />
-      <updated>1720536113336</updated>
-    </task>
-    <task id="LOCAL-00047" summary="feat: access config&#10;&#10;Implemented User profile editing">
-      <option name="closed" value="true" />
-      <created>1720541110783</created>
-      <option name="number" value="00047" />
-      <option name="presentableId" value="LOCAL-00047" />
-      <option name="project" value="LOCAL" />
-      <updated>1720541110783</updated>
-    </task>
-    <task id="LOCAL-00048" summary="feat: access config&#10;&#10;Implemented change password feature">
-      <option name="closed" value="true" />
-      <created>1720544417001</created>
-      <option name="number" value="00048" />
-      <option name="presentableId" value="LOCAL-00048" />
-      <option name="project" value="LOCAL" />
-      <updated>1720544417001</updated>
-    </task>
-    <task id="LOCAL-00049" summary="Add LogoutButton component to DAMUserConfig and update translations.&#10;&#10;A new LogoutButton component is added to the DAMUserConfig file, allowing users to disconnect from the analytics messenger. Corresponding translations are also updated, providing multi-language support for new and modified text entries in the User Interface.">
-      <option name="closed" value="true" />
-      <created>1720545661214</created>
-      <option name="number" value="00049" />
-      <option name="presentableId" value="LOCAL-00049" />
-      <option name="project" value="LOCAL" />
-      <updated>1720545661214</updated>
-    </task>
-    <task id="LOCAL-00050" summary="fix: login&#10;&#10;Fixed issues with login not refreshing the dam config">
-      <option name="closed" value="true" />
-      <created>1720598431369</created>
-      <option name="number" value="00050" />
-      <option name="presentableId" value="LOCAL-00050" />
-      <option name="project" value="LOCAL" />
-      <updated>1720598431369</updated>
-    </task>
-    <task id="LOCAL-00051" summary="feat: Push analytics&#10;&#10;Implemented new flow of sending push analytics">
-      <option name="closed" value="true" />
-      <created>1720774627843</created>
-      <option name="number" value="00051" />
-      <option name="presentableId" value="LOCAL-00051" />
-      <option name="project" value="LOCAL" />
-      <updated>1720774627843</updated>
-    </task>
-    <task id="LOCAL-00052" summary="chore: &#10;&#10;Fixed styling and typescript errors in some files">
-      <option name="closed" value="true" />
-      <created>1721021009561</created>
-      <option name="number" value="00052" />
-      <option name="presentableId" value="LOCAL-00052" />
-      <option name="project" value="LOCAL" />
-      <updated>1721021009562</updated>
-    </task>
-    <task id="LOCAL-00053" summary="fix: dam config&#10;&#10;Improved the dam config query to include context path">
-      <option name="closed" value="true" />
-      <created>1721198180625</created>
-      <option name="number" value="00053" />
-      <option name="presentableId" value="LOCAL-00053" />
-      <option name="project" value="LOCAL" />
-      <updated>1721198180625</updated>
-    </task>
-    <task id="LOCAL-00054" summary="fix: timezone&#10;&#10;Added timezone to dhis2Instance configuration">
-      <option name="closed" value="true" />
-      <created>1721303512459</created>
-      <option name="number" value="00054" />
-      <option name="presentableId" value="LOCAL-00054" />
-      <option name="project" value="LOCAL" />
-      <updated>1721303512459</updated>
-    </task>
-    <task id="LOCAL-00055" summary="feat: connect button&#10;&#10;Implemented whatsapp connect button for disconnected gateways">
-      <option name="closed" value="true" />
-      <created>1721381890769</created>
-      <option name="number" value="00055" />
-      <option name="presentableId" value="LOCAL-00055" />
-      <option name="project" value="LOCAL" />
-      <updated>1721381890769</updated>
-    </task>
-    <task id="LOCAL-00056" summary="fix: gateway config&#10;&#10;Improved gateway configuration due to implementation of security to channels API">
-      <option name="closed" value="true" />
-      <created>1721392543389</created>
-      <option name="number" value="00056" />
-      <option name="presentableId" value="LOCAL-00056" />
-      <option name="project" value="LOCAL" />
-      <updated>1721392543389</updated>
+      <workItem from="1747195749290" duration="35595000" />
+      <workItem from="1747244635865" duration="1471000" />
+      <workItem from="1747283068622" duration="7455000" />
+      <workItem from="1747309521672" duration="3991000" />
+      <workItem from="1747369395593" duration="2840000" />
+      <workItem from="1748503089128" duration="25668000" />
+      <workItem from="1748582137681" duration="623000" />
     </task>
     <task id="LOCAL-00057" summary="feat: push config&#10;&#10;Implemented group selectors for recipients">
       <option name="closed" value="true" />
@@ -812,7 +752,103 @@
       <option name="project" value="LOCAL" />
       <updated>1747215867670</updated>
     </task>
-    <option name="localTasksCounter" value="94" />
+    <task id="LOCAL-00094" summary="feat: refactor message handling and improve schema definitions&#10;&#10;- Introduced `BaseMessageSchema` and refactored message types to extend from it for cleaner and standardized schema definitions.&#10;- Added support for `DocumentMessage` type, including filename handling for dashboard exports.&#10;- Enhanced handling of incoming and outgoing messages, ensuring compatibility with new message types.&#10;- Implemented a utility function to fetch dashboard names dynamically for accurate file naming.&#10;- Updated Zod dependency to `^3.24.4` across all services to leverage the latest features.&#10;- Improved error handling for Axios responses and message validation errors.&#10;- Added missing commas and fixed minor code style inconsistencies for better readability.&#10;&#10;These changes aim to enhance the flexibility of the messaging system and ensure consistency in the underlying schemas.">
+      <option name="closed" value="true" />
+      <created>1747220093429</created>
+      <option name="number" value="00094" />
+      <option name="presentableId" value="LOCAL-00094" />
+      <option name="project" value="LOCAL" />
+      <updated>1747220093430</updated>
+    </task>
+    <task id="LOCAL-00095" summary="feat(core): add PDF export support and switch image format to PNG&#10;&#10;- Introduced `getPDF` function to export visualizations as PDFs with configurable dimensions and settings.&#10;- Switched screenshot export format from JPEG to PNG for improved quality.&#10;- Updated default viewport width for better dashboard rendering.&#10;- Replaced image export with PDF export in dashboard capture functionality.">
+      <option name="closed" value="true" />
+      <created>1747220331969</created>
+      <option name="number" value="00095" />
+      <option name="presentableId" value="LOCAL-00095" />
+      <option name="project" value="LOCAL" />
+      <updated>1747220331969</updated>
+    </task>
+    <task id="LOCAL-00096" summary="chore: refactor code and update dependencies for improved functionality and compatibility&#10;&#10;- Increased delay in `visualization.ts` for better dashboard loading.&#10;- Removed unnecessary logs, improved logging consistency, and updated file handling logic to ensure robustness.&#10;- Added new methods to the WhatsApp client for session management and file handling.&#10;- Enhanced Parse Cloud functions with additional validation and a new `cleanupWhatsappClient` function.&#10;- Upgraded dependencies (`@anatine/zod-openapi`, `@wppconnect-team/wppconnect`, `express`, `helmet`, etc.) to their latest versions for enhanced features and security.&#10;- Adjusted scripts in `package.json` for modern tooling (replaced `nodemon` with `tsx`).&#10;- Updated `pnpm-lock.yaml` to align with new dependency versions.&#10;&#10;These changes improve the overall reliability, maintainability, and compatibility of the application.">
+      <option name="closed" value="true" />
+      <created>1747229964140</created>
+      <option name="number" value="00096" />
+      <option name="presentableId" value="LOCAL-00096" />
+      <option name="project" value="LOCAL" />
+      <updated>1747229964142</updated>
+    </task>
+    <task id="LOCAL-00097" summary="feat(whatsapp-client): optimize document sending by removing temporary file handling&#10;&#10;Refactored to directly utilize `message.file` instead of saving and deleting temporary files for documents. This simplifies file handling and improves efficiency.">
+      <option name="closed" value="true" />
+      <created>1747232144058</created>
+      <option name="number" value="00097" />
+      <option name="presentableId" value="LOCAL-00097" />
+      <option name="project" value="LOCAL" />
+      <updated>1747232144058</updated>
+    </task>
+    <task id="LOCAL-00098" summary="feat(chart): remove unnecessary padding from Chart component  &#10;&#10;Refactored the Chart component by eliminating the redundant padding style. This improvement streamlines the visual layout and ensures consistent rendering.">
+      <option name="closed" value="true" />
+      <created>1747244892737</created>
+      <option name="number" value="00098" />
+      <option name="presentableId" value="LOCAL-00098" />
+      <option name="project" value="LOCAL" />
+      <updated>1747244892738</updated>
+    </task>
+    <task id="LOCAL-00099" summary="feat(visualization): enhance responsiveness and error handling in chart rendering&#10;&#10;- Added `useResizeObserver` to dynamically handle container size and make visualizations responsive.&#10;- Improved loading and error states with centered and styled messages.&#10;- Introduced a new fallback for cases with empty data, displaying a &quot;No data to display&quot; message.&#10;- Refactored `Chart` component with a `size` prop and optimized rendering logic using `useCallback`.&#10;- Added logging for chart rendering for better debugging.&#10;&#10;These changes improve UI responsiveness and user experience while making the chart rendering process more robust.">
+      <option name="closed" value="true" />
+      <created>1747290288830</created>
+      <option name="number" value="00099" />
+      <option name="presentableId" value="LOCAL-00099" />
+      <option name="project" value="LOCAL" />
+      <updated>1747290288830</updated>
+    </task>
+    <task id="LOCAL-00100" summary="feat: add 'loaded-dashboard-item' class to visualization components`&#10;&#10;Adding the `loaded-dashboard-item` class enhances styling and provides a consistent way to target these elements for visual customization or testing purposes.">
+      <option name="closed" value="true" />
+      <created>1747290883634</created>
+      <option name="number" value="00100" />
+      <option name="presentableId" value="LOCAL-00100" />
+      <option name="project" value="LOCAL" />
+      <updated>1747290883634</updated>
+    </task>
+    <task id="LOCAL-00101" summary="refactor: improve UI consistency and code maintainability&#10;&#10;- Applied `@dhis2/ui` colors for error and no-data messages to ensure visual consistency.&#10;- Introduced constants for viewport dimensions to enhance maintainability.&#10;- Removed redundant `CssReset` usage in `LegacyVisualizer` and reintroduced it in other components where necessary for styling coherence.&#10;- Simplified loading and error handling UI in `DashboardVisualizer`.&#10;- Removed debug logging from `Chart` component for cleaner console output.">
+      <option name="closed" value="true" />
+      <created>1747293520646</created>
+      <option name="number" value="00101" />
+      <option name="presentableId" value="LOCAL-00101" />
+      <option name="project" value="LOCAL" />
+      <updated>1747293520646</updated>
+    </task>
+    <task id="LOCAL-00102" summary="refactor(visualization): optimize resizing logic by moving `useResizeObserver` to Chart component&#10;&#10;Removed unused `useResizeObserver` hook from Visualization component and relocated it to the Chart component to handle size dependencies more effectively. Introduced new CSS for better styling of single-value visualizations.">
+      <option name="closed" value="true" />
+      <created>1747311311982</created>
+      <option name="number" value="00102" />
+      <option name="presentableId" value="LOCAL-00102" />
+      <option name="project" value="LOCAL" />
+      <updated>1747311311982</updated>
+    </task>
+    <task id="LOCAL-00103" summary="refactor(styles): relocate primary value styles from Chart.module.css to index.css&#10;&#10;Moved specific styles for `visualization-primary-value` from component-level CSS to global index.css for better style reuse and maintainability. Removed unused Chart.module.css import from Chart.tsx.">
+      <option name="closed" value="true" />
+      <created>1747312094032</created>
+      <option name="number" value="00103" />
+      <option name="presentableId" value="LOCAL-00103" />
+      <option name="project" value="LOCAL" />
+      <updated>1747312094033</updated>
+    </task>
+    <task id="LOCAL-00104" summary="refactor(scheduling): standardize code formatting and add missing optional chaining for robustness&#10;&#10;- Improved code readability by adding missing commas and optional chaining.&#10;- Enhanced safety by avoiding potential runtime errors when accessing undefined properties.&#10;- No functional changes introduced.">
+      <option name="closed" value="true" />
+      <created>1747370733761</created>
+      <option name="number" value="00104" />
+      <option name="presentableId" value="LOCAL-00104" />
+      <option name="project" value="LOCAL" />
+      <updated>1747370733761</updated>
+    </task>
+    <task id="LOCAL-00105" summary="feat(schemas): introduce custom report schema and update dependencies&#10;&#10;- Added `customReport` schema definitions, including header, footer, and sections for improved structure and validation.&#10;- Introduced enums for `PageSize`, `SectionType`, and `ItemType` to enhance schema readability and usage.&#10;- Updated `pnpm-lock.yaml` to upgrade dependencies (`zod`, `typescript`, `bufferutil`, etc.) for compatibility and new feature adoption.&#10;&#10;These changes enable better modularization and validation for custom report handling while ensuring alignment with the latest library updates.">
+      <option name="closed" value="true" />
+      <created>1748506648670</created>
+      <option name="number" value="00105" />
+      <option name="presentableId" value="LOCAL-00105" />
+      <option name="project" value="LOCAL" />
+      <updated>1748506648670</updated>
+    </task>
+    <option name="localTasksCounter" value="106" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -868,21 +904,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="refactor: simplify imports in RHFVisualizationSelector and SaveButton components&#10;&#10;Consolidated unnecessary imports and type declarations to improve code readability and maintainability. Adjusted imports in React and removed unused callbacks to streamline the codebase." />
-    <MESSAGE value="chore(package.json): version update&#10;&#10;Updated app version to 1.0.0-beta.06" />
-    <MESSAGE value="fix(access-config):  Fixes &#10;&#10;- Fixed issues with focusing error by useForm causes an error to be thrown &#10;- Changed the validation of PAT to accomodate new pattern starting with v41 of DHIS2" />
-    <MESSAGE value="chore: update dependencies and remove unused VCS configuration&#10;&#10;Updated `turbo` to v2.5.3 and `pnpm` to v10.10.0 for improved performance and compatibility. Removed unnecessary VCS configuration from `.idea/vcs.xml`. Addressed deprecated packages in `pnpm-lock.yaml` to ensure package relevancy and avoid potential issues." />
-    <MESSAGE value="chore(dependencies): update package lockfile&#10;&#10;Updated `pnpm-lock.yaml` to reflect dependency version upgrades. The changes were applied to ensure compatibility, security, and to leverage the latest features/bug fixes of the updated libraries such as `@tanstack/react-query`, `next`, `express`, `axios`, `@apollo/server`, and others." />
-    <MESSAGE value="chore(deps): update `puppeteer-core`, `puppeteer`, and related dependencies to latest versions&#10;&#10;Upgraded `puppeteer-core` to `24.8.2`, alongside updates to dependent packages like `puppeteer`, `puppeteer-extra`, and plugins to ensure compatibility with the latest browser versions and features. Includes upgrades for additional dependencies like `@types/node` and various `bare-*` modules to improve performance and functionality." />
-    <MESSAGE value="fix(access-config): resolved errors with `useForm` focus and PAT validation  &#10;&#10;- Fixed issues where focusing errors in `useForm` caused an error to be thrown.&#10;- Updated validation logic for PAT to support DHIS2 v41+ patterns." />
-    <MESSAGE value="chore: add Vite environment type references&#10;&#10;Added `vite-env.d.ts` to provide TypeScript definitions for Vite client and import meta, ensuring better type safety and developer experience." />
-    <MESSAGE value="feat(dashboards): add dashboards configuration module&#10;&#10;Introduced a new module for managing dashboards in push analytics configurations. This includes a `DashboardsConfigPage` component, related logic for fetching and saving dashboard settings, and a `DashboardSelector` component for selecting dashboards via a UI interface. Included hooks for data handling, updated navigation, and added necessary i18n translations. Tailwind integration was also added for streamlined styling." />
-    <MESSAGE value="feat(dashboards): add onSave handler to reset form after saving&#10;&#10;Introduced an `onSave` handler in Dashboards to reset the form with updated data after saving. Updated the save button to use the new handler to ensure the form state reflects the latest dashboard data upon saving." />
-    <MESSAGE value="feat(push-analytics): add dashboard support and enhance flexibility&#10;&#10;- Introduced a new `RHFDashboardSelector` component to enable dashboard selection in Push Analytics configurations.&#10;- Implemented a `TypeSelector` component to toggle between visualizations and dashboards.&#10;- Updated `PushAnalyticsModalConfig` to support dashboards alongside visualizations while enforcing at least one selection.&#10;- Added a new `SaveButton` component for saving dashboard configurations efficiently.&#10;- Updated environment variable references from `process.env` to `import.meta.env` for compatibility with Vite builds.&#10;- Replaced `CustomDataTable` with `SimpleDataTable` for better performance and simplicity.&#10;- Enhanced UI components (`StatusIndicator`, `ActionButton`) by switching to `@dhis2/ui` styled buttons for improved UI consistency.&#10;&#10;These changes aim to improve the flexibility and user experience of Push Analytics while transitioning to a more modern development environment." />
-    <MESSAGE value="style: normalize code formatting and clean up imports across components&#10;&#10;This commit standardizes code formatting with consistent spacing and indentation in multiple files to improve readability. Additionally, it updates import paths to simplify and align with current project structure. Minor refactors ensure better code clarity and maintainability." />
-    <MESSAGE value="feat(dbSchemas): add dashboards field to push schema&#10;&#10;Added a new &quot;dashboards&quot; field of type Array to the push schema to support storing dashboard-related data. This enhances the schema's capability to manage additional use cases." />
-    <MESSAGE value="feat: add dashboard image generation support alongside visualizations&#10;&#10;Extend the analytics service to support dashboard image generation using `getDashboards` in addition to the existing `getVisualizations`. This improves versatility by enabling message creation for both dashboards and visualizations. Refactored related logic in the messaging and visualization utilities for cleaner configuration handling." />
-    <MESSAGE value="feat(visualizer): introduce DashboardVisualizer and related components for modular visualization&#10;&#10;- Added `DashboardVisualizer` to enable dashboard-based visualization with a grid layout using `react-grid-layout`.&#10;- Introduced `DashboardItemVisualizer` and `DashboardLayoutItemContainer` for handling individual visualization items in the dashboard.&#10;- Added `VisualizationError` to handle error boundaries in visualizations.&#10;- Updated `LegacyVisualizer` to support optional title rendering and reused it in `StandaloneVisualizer`.&#10;- Changed styles in `Visualization` for improved layout handling.&#10;- Bumped dependencies such as `@dhis2/analytics` to `^27.0.1` for compatibility and stability.&#10;&#10;These changes aim to modularize visualizer components, improve reusability, and add enhanced dashboard visualization capabilities." />
     <MESSAGE value="fix(visualizer): Fixes on visualizer having inconsistent data due to use query caching" />
     <MESSAGE value="feat(visualizer): improve UI consistency and add chart footer component&#10;&#10;Refined padding, headers, and styles for `LegacyVisualizer` and `DashboardVisualizer` to enhance UI consistency. Added a `ChartFooter` component to `DashboardVisualizer` to standardize footer content, and updated `DashboardLayoutItemContainer` to include border styling using DHIS2 UI colors. Adjusted `Footer` components with better alignment, spacing, and content clarification for branding." />
     <MESSAGE value="feat(visualizer): add `dashboard` prop for enhanced dashboard visualization support&#10;&#10;Introduced a `dashboard` prop to components (`Visualization`, `LegacyVisualizer`, `DashboardItemVisualizer`) to enable differentiation of rendering behavior for dashboards. Updated `useVisualizationData` hook to handle compact legend set mapping and ensure accurate API queries for legend data. Enhancements improve flexibility and maintainability of visualizations across standalone and dashboard contexts." />
@@ -893,7 +914,22 @@
     <MESSAGE value="feat(utils): improve dashboard loading and error handling&#10;&#10;Enhanced the dashboard loading process by adding detailed logging for progress and status updates. Adjusted the viewport setting logic to ensure accurate page dimensions. Introduced error handling for cases where the dashboard page is unavailable. This improves transparency and reliability during visualization rendering." />
     <MESSAGE value="refactor(utils): improve dashboard visualization loading logic&#10;&#10;- Introduced delay helper for better control over async operations.&#10;- Enhanced loading checks with `.dashboard-item` and `.loaded-dashboard-item`.&#10;- Adjusted viewport settings for consistent 1920x1080 resolution capture.&#10;- Improved error handling and loading feedback for dashboards.&#10;- Updated dependencies: upgraded `react-hook-form`, `@hookform/resolvers`, and `zod` for enhanced compatibility and functionality.&#10;- Removed unused `username` in password reset logic for cleaner code.&#10;&#10;These changes improve visualization performance, ensure compatibility with upgraded dependencies, and enhance code maintainability." />
     <MESSAGE value="feat(core): add PDF export support and switch image format to PNG&#10;&#10;- Introduced `getPDF` function to enable exporting visualizations as PDFs with specified dimensions and settings.&#10;- Changed screenshot export format from JPEG to PNG for better quality.&#10;- Updated default viewport width from 1920 to 1980 to enhance dashboard rendering.&#10;- Replaced image export with PDF export in dashboard capture functionality." />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(core): add PDF export support and switch image format to PNG&#10;&#10;- Introduced `getPDF` function to enable exporting visualizations as PDFs with specified dimensions and settings.&#10;- Changed screenshot export format from JPEG to PNG for better quality.&#10;- Updated default viewport width from 1920 to 1980 to enhance dashboard rendering.&#10;- Replaced image export with PDF export in dashboard capture functionality." />
+    <MESSAGE value="feat: refactor message handling and improve schema definitions&#10;&#10;- Introduced `BaseMessageSchema` and refactored message types to extend from it for cleaner and standardized schema definitions.&#10;- Added support for `DocumentMessage` type, including filename handling for dashboard exports.&#10;- Enhanced handling of incoming and outgoing messages, ensuring compatibility with new message types.&#10;- Implemented a utility function to fetch dashboard names dynamically for accurate file naming.&#10;- Updated Zod dependency to `^3.24.4` across all services to leverage the latest features.&#10;- Improved error handling for Axios responses and message validation errors.&#10;- Added missing commas and fixed minor code style inconsistencies for better readability.&#10;&#10;These changes aim to enhance the flexibility of the messaging system and ensure consistency in the underlying schemas." />
+    <MESSAGE value="feat(core): add PDF export support and switch image format to PNG&#10;&#10;- Introduced `getPDF` function to export visualizations as PDFs with configurable dimensions and settings.&#10;- Switched screenshot export format from JPEG to PNG for improved quality.&#10;- Updated default viewport width for better dashboard rendering.&#10;- Replaced image export with PDF export in dashboard capture functionality." />
+    <MESSAGE value="chore: refactor code and update dependencies for improved functionality and compatibility&#10;&#10;- Increased delay in `visualization.ts` for better dashboard loading.&#10;- Removed unnecessary logs, improved logging consistency, and updated file handling logic to ensure robustness.&#10;- Added new methods to the WhatsApp client for session management and file handling.&#10;- Enhanced Parse Cloud functions with additional validation and a new `cleanupWhatsappClient` function.&#10;- Upgraded dependencies (`@anatine/zod-openapi`, `@wppconnect-team/wppconnect`, `express`, `helmet`, etc.) to their latest versions for enhanced features and security.&#10;- Adjusted scripts in `package.json` for modern tooling (replaced `nodemon` with `tsx`).&#10;- Updated `pnpm-lock.yaml` to align with new dependency versions.&#10;&#10;These changes improve the overall reliability, maintainability, and compatibility of the application." />
+    <MESSAGE value="feat(gateways): add cleanup functionality for WhatsApp installations&#10;&#10;- Introduced `GatewayCleanupButton` to allow users to clean up WhatsApp installations.&#10;- Added confirmation dialog and alert feedback for success or failure of cleanup actions.&#10;- Updated `GatewayActions` to include the cleanup button with necessary localization.&#10;- Integrated `cleanupWhatsappClient` Parse Cloud function for session cleanup.&#10;- Enhanced i18n with new messages for cleanup actions.&#10;&#10;These changes improve gateway management by enabling users to handle WhatsApp session cleanups effectively." />
+    <MESSAGE value="feat(whatsapp-client): optimize document sending by removing temporary file handling&#10;&#10;Refactored to directly utilize `message.file` instead of saving and deleting temporary files for documents. This simplifies file handling and improves efficiency." />
+    <MESSAGE value="feat(chart): remove unnecessary padding from Chart component  &#10;&#10;Refactored the Chart component by eliminating the redundant padding style. This improvement streamlines the visual layout and ensures consistent rendering." />
+    <MESSAGE value="feat(visualization): enhance responsiveness and error handling in chart rendering&#10;&#10;- Added `useResizeObserver` to dynamically handle container size and make visualizations responsive.&#10;- Improved loading and error states with centered and styled messages.&#10;- Introduced a new fallback for cases with empty data, displaying a &quot;No data to display&quot; message.&#10;- Refactored `Chart` component with a `size` prop and optimized rendering logic using `useCallback`.&#10;- Added logging for chart rendering for better debugging.&#10;&#10;These changes improve UI responsiveness and user experience while making the chart rendering process more robust." />
+    <MESSAGE value="feat: add 'loaded-dashboard-item' class to visualization components`&#10;&#10;Adding the `loaded-dashboard-item` class enhances styling and provides a consistent way to target these elements for visual customization or testing purposes." />
+    <MESSAGE value="```txt&#10;feat: enhance workspace configurations and update visualization features&#10;&#10;- Updated `.idea/workspace.xml` to align configurations with the latest project structure and cleanup outdated workspace settings.&#10;- Added a `loaded-dashboard-item` class for better visualization component styling and targeting.&#10;- Refactored workspace tasks and removed redundant temporary file handling for efficiency.&#10;- Adjusted npm configuration to prioritize `dev:visualizer` scripts for improved development flow.&#10;&#10;These changes streamline project configuration, enhance user UI customization, and improve overall development efficiency.&#10;```" />
+    <MESSAGE value="feat: enhance and refactor visualization and project configuration&#10;&#10;- Added support for new features in visualization components, including the `loaded-dashboard-item` class for consistent styling and testing.&#10;- Updated workspace settings and configurations to streamline development workflows.&#10;- Refactored Chart and Gateway components for improved layout, maintainability, and better responsiveness.&#10;- Adjusted npm tasks in workspace to align with recent development and visualization flows.&#10;&#10;These changes aim to improve developer experience, enhance feature consistency, and optimize project workflows." />
+    <MESSAGE value="refactor: improve UI consistency and code maintainability&#10;&#10;- Applied `@dhis2/ui` colors for error and no-data messages to ensure visual consistency.&#10;- Introduced constants for viewport dimensions to enhance maintainability.&#10;- Removed redundant `CssReset` usage in `LegacyVisualizer` and reintroduced it in other components where necessary for styling coherence.&#10;- Simplified loading and error handling UI in `DashboardVisualizer`.&#10;- Removed debug logging from `Chart` component for cleaner console output." />
+    <MESSAGE value="refactor(visualization): optimize resizing logic by moving `useResizeObserver` to Chart component&#10;&#10;Removed unused `useResizeObserver` hook from Visualization component and relocated it to the Chart component to handle size dependencies more effectively. Introduced new CSS for better styling of single-value visualizations." />
+    <MESSAGE value="refactor(styles): relocate primary value styles from Chart.module.css to index.css&#10;&#10;Moved specific styles for `visualization-primary-value` from component-level CSS to global index.css for better style reuse and maintainability. Removed unused Chart.module.css import from Chart.tsx." />
+    <MESSAGE value="refactor(scheduling): standardize code formatting and add missing optional chaining for robustness&#10;&#10;- Improved code readability by adding missing commas and optional chaining.&#10;- Enhanced safety by avoiding potential runtime errors when accessing undefined properties.&#10;- No functional changes introduced." />
+    <MESSAGE value="feat(schemas): introduce custom report schema and update dependencies&#10;&#10;- Added `customReport` schema definitions, including header, footer, and sections for improved structure and validation.&#10;- Introduced enums for `PageSize`, `SectionType`, and `ItemType` to enhance schema readability and usage.&#10;- Updated `pnpm-lock.yaml` to upgrade dependencies (`zod`, `typescript`, `bufferutil`, etc.) for compatibility and new feature adoption.&#10;&#10;These changes enable better modularization and validation for custom report handling while ensuring alignment with the latest library updates." />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(schemas): introduce custom report schema and update dependencies&#10;&#10;- Added `customReport` schema definitions, including header, footer, and sections for improved structure and validation.&#10;- Introduced enums for `PageSize`, `SectionType`, and `ItemType` to enhance schema readability and usage.&#10;- Updated `pnpm-lock.yaml` to upgrade dependencies (`zod`, `typescript`, `bufferutil`, etc.) for compatibility and new feature adoption.&#10;&#10;These changes enable better modularization and validation for custom report handling while ensuring alignment with the latest library updates." />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="WfRunsListSearchHistory">{
