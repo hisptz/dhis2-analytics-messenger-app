@@ -27,7 +27,7 @@ export function DashboardChip({
 		variables: { id: visualization },
 	});
 
-	const sanitizedVisualiationLabel = loading
+	const sanitizedVisualizationLabel = loading
 		? "..."
 		: !error
 			? data.visualization.name
@@ -35,9 +35,9 @@ export function DashboardChip({
 
 	return description ? (
 		<Tooltip content={description}>
-			<Chip onRemove={onRemove}>{sanitizedVisualiationLabel}</Chip>
+			<Chip onRemove={onRemove}>{sanitizedVisualizationLabel}</Chip>
 		</Tooltip>
 	) : (
-		<Chip onRemove={onRemove}>{sanitizedVisualiationLabel}</Chip>
+		<Chip onRemove={onRemove}>{sanitizedVisualizationLabel}</Chip>
 	);
 }

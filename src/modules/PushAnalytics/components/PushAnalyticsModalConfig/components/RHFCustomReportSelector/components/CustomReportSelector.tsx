@@ -38,15 +38,6 @@ export function CustomReportSelectorModal({
 		resolver: zodResolver(CustomReportSchema),
 	});
 
-	// TODO follow up on this
-	// const onSubmit = useCallback(
-	// 	(data: CustomReportData) => {
-	// 		onClose(data);
-	// 		form.reset();
-	// 	},
-	// 	[onClose],
-	// );
-
 	return (
 		<FormProvider {...form}>
 			<Modal

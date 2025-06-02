@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2025-05-14T13:07:45.863Z\n"
-"PO-Revision-Date: 2025-05-14T13:07:45.864Z\n"
+"POT-Creation-Date: 2025-06-02T07:08:38.305Z\n"
+"PO-Revision-Date: 2025-06-02T07:08:38.306Z\n"
 
 msgid "Fetching App configurations..."
 msgstr "Fetching App configurations..."
@@ -474,17 +474,32 @@ msgstr "Day of week"
 msgid "Year"
 msgstr "Year"
 
-msgid "No visualizations selected"
-msgstr "No visualizations selected"
+msgid "No custom reports selected"
+msgstr "No custom reports selected"
+
+msgid "Add Custom Report"
+msgstr "Add Custom Report"
+
+msgid "Select custom report"
+msgstr "Select custom report"
+
+msgid "Description"
+msgstr "Description"
+
+msgid "Error getting custom reports"
+msgstr "Error getting custom reports"
+
+msgid "Custom Report"
+msgstr "Custom Report"
+
+msgid "No dashboards selected"
+msgstr "No dashboards selected"
 
 msgid "Add Dashboards"
 msgstr "Add Dashboards"
 
 msgid "Select dashboard"
 msgstr "Select dashboard"
-
-msgid "Description"
-msgstr "Description"
 
 msgid "Error getting dashboards"
 msgstr "Error getting dashboards"
@@ -529,6 +544,9 @@ msgstr "User"
 msgid "Could not find any user with name or username {{keyword}}"
 msgstr "Could not find any user with name or username {{keyword}}"
 
+msgid "No visualizations selected"
+msgstr "No visualizations selected"
+
 msgid "Add Visualizations"
 msgstr "Add Visualizations"
 
@@ -549,6 +567,9 @@ msgstr "Type"
 
 msgid "Dashboards"
 msgstr "Dashboards"
+
+msgid "Custom Reports"
+msgstr "Custom Reports"
 
 msgid "Whatsapp Group"
 msgstr "Whatsapp Group"

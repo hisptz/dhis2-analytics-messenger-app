@@ -49,7 +49,7 @@ export const pushAnalyticsJobSchema = z.object({
 
 export const visualizationFormObjectSchema = z.object({
 	id: z.string(),
-	type: z.enum(["map", "visualization"]),
+	type: z.enum(["map", "visualization"]).optional(),
 	description: z.string().optional(),
 });
 
@@ -64,6 +64,7 @@ export const pushAnalyticsJobFormDataSchema = pushAnalyticsJobSchema
 		gateways: z.array(z.string()),
 		visualizations: z.array(visualizationFormObjectSchema).optional(),
 		dashboards: z.array(visualizationFormObjectSchema).optional(),
+		customReports: z.array(visualizationFormObjectSchema).optional(),
 	})
 	.refine(
 		(values) => {

@@ -67,7 +67,7 @@ export const RHFDashboardSelector = ({
 									)
 								) : (
 									<Help>
-										{i18n.t("No visualizations selected")}
+										{i18n.t("No dashboards selected")}
 									</Help>
 								)}
 							</div>
