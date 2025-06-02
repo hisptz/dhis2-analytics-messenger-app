@@ -144,7 +144,7 @@ export function PushAnalyticsModalConfig({
 
 	const onSaveAndSend = useCallback(
 		(shouldSend: boolean) => async (data: PushAnalyticsJobFormData) => {
-			console.log(data);
+			console.log({ data });
 			const job = await save(data);
 			if (shouldSend) {
 				await send(job);

@@ -4,6 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { FormProvider, useForm } from "react-hook-form";
 import {
 	Button,
+	ButtonStrip,
 	Modal,
 	ModalActions,
 	ModalContent,
@@ -57,22 +58,25 @@ export function CustomReportSelectorModal({
 					</div>
 				</ModalContent>
 				<ModalActions>
-					<Button secondary onClick={() => onClose()}>
-						{i18n.t("Cancel")}
-					</Button>
-					<Button
-						primary
-						onClick={() =>
-							onClose({
-								id: form.getValues("customReport"),
-								type: "customReport",
-								customReport: form.getValues("customReport"),
-								description: form.getValues("description"),
-							})
-						}
-					>
-						{i18n.t("Add")}
-					</Button>
+					<ButtonStrip>
+						<Button secondary onClick={() => onClose()}>
+							{i18n.t("Cancel")}
+						</Button>
+						<Button
+							primary
+							onClick={() =>
+								onClose({
+									id: form.getValues("customReport"),
+									type: "customReport",
+									customReport:
+										form.getValues("customReport"),
+									description: form.getValues("description"),
+								})
+							}
+						>
+							{i18n.t("Add")}
+						</Button>
+					</ButtonStrip>
 				</ModalActions>
 			</Modal>
 		</FormProvider>

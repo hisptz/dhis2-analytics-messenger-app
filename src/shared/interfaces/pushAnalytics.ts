@@ -49,7 +49,7 @@ export const pushAnalyticsJobSchema = z.object({
 
 export const visualizationFormObjectSchema = z.object({
 	id: z.string(),
-	type: z.enum(["map", "visualization"]).optional(),
+	type: z.enum(["map", "visualization", "customReport"]).optional(),
 	description: z.string().optional(),
 });
 
@@ -70,7 +70,8 @@ export const pushAnalyticsJobFormDataSchema = pushAnalyticsJobSchema
 		(values) => {
 			return (
 				(values.visualizations?.length ?? 0) > 0 ||
-				(values.dashboards?.length ?? 0) > 0
+				(values.dashboards?.length ?? 0) > 0 ||
+				(values.customReports?.length ?? 0) > 0
 			);
 		},
 		{

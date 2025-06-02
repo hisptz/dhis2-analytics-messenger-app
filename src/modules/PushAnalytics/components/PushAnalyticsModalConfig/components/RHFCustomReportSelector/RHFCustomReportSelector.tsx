@@ -21,8 +21,6 @@ export const RHFCustomReportSelector = ({
 }: RHFCustomReportSelectorProps) => {
 	const [showSelector, setShowSelector] = useState(false);
 
-	console.log(name, validations, label, required);
-
 	return (
 		<Controller
 			name={name}
