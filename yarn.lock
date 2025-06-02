@@ -2917,10 +2917,10 @@
   dependencies:
     "@hapi/hoek" "^9.0.0"
 
-"@hisptz/dhis2-ui@^2.0.47":
-  version "2.0.47"
-  resolved "https://registry.yarnpkg.com/@hisptz/dhis2-ui/-/dhis2-ui-2.0.47.tgz#2d249ffa7f8d7784acd6299e5cd838a604259548"
-  integrity sha512-IQfrs0G6Ndhoh9nX8iGRxSHOUD82Edo99+qgw24oHAb4GhV5t3vYY3Ft/NblMLfgC9Y5zzJwS1ghfbQEbU8H0A==
+"@hisptz/dhis2-ui@^2.0.48":
+  version "2.0.48"
+  resolved "https://registry.yarnpkg.com/@hisptz/dhis2-ui/-/dhis2-ui-2.0.48.tgz#d1373bd43e68254454d2602d254e9425d8407c58"
+  integrity sha512-EVuHHDpt0X+KDiEQZ5LNPqcKjy5gmP9RpV1BYg8h4gBy2qv1f9wsHSTYyJapcfQ/ILnX665rnuswfnCwmCAKuQ==
   dependencies:
     "@hisptz/dhis2-utils" "2.0.18"
     classnames "^2.5.1"
@@ -2931,10 +2931,8 @@
     react-circular-progressbar "^2.1.0"
     react-collapsible "^2.10.0"
     react-color "^2.19.3"
-    react-hook-form "^7.56.2"
     recoil "^0.7.7"
     styled-components "^6.1.8"
-    usehooks-ts "^2.9.2"
 
 "@hisptz/dhis2-utils@2.0.18":
   version "2.0.18"
@@ -12655,7 +12653,7 @@ react-helmet@^6.1.0:
     react-fast-compare "^3.1.1"
     react-side-effect "^2.1.0"
 
-react-hook-form@^7.56.2, react-hook-form@^7.56.3:
+react-hook-form@^7.56.3:
   version "7.56.3"
   resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-7.56.3.tgz#c459f59fead379db30113951152e13db386cc015"
   integrity sha512-IK18V6GVbab4TAo1/cz3kqajxbDPGofdF0w7VHdCo0Nt8PrPlOZcuuDq9YYIV1BtjcX78x0XsldbQRQnQXWXmw==
@@ -14998,7 +14996,7 @@ use@^3.1.0:
   resolved "https://registry.yarnpkg.com/use/-/use-3.1.1.tgz#d50c8cac79a19fbc20f2911f56eb973f4e10070f"
   integrity sha512-cwESVXlO3url9YWlFW/TA9cshCEhtu7IKJ/p5soJ/gGpj7vbvFrAY/eIioQ6Dw23KjZhYgiIo8HOs1nQ2vr/oQ==
 
-usehooks-ts@^2.9.1, usehooks-ts@^2.9.2:
+usehooks-ts@^2.9.1:
   version "2.16.0"
   resolved "https://registry.yarnpkg.com/usehooks-ts/-/usehooks-ts-2.16.0.tgz#31deaa2f1147f65666aae925bd890b54e63b0d3f"
   integrity sha512-bez95WqYujxp6hFdM/CpRDiVPirZPxlMzOH2QB8yopoKQMXpscyZoxOjpEdaxvV+CAWUDSM62cWnqHE0E/MZ7w==

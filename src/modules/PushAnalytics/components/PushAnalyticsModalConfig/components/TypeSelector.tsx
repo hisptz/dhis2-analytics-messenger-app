@@ -5,8 +5,9 @@ import { RHFVisualizationSelector } from "./RHFVisualizationSelector/RHFVisualiz
 import { RHFDashboardSelector } from "./RHFDashboardSelector/RHFDashboardSelector";
 import { useFormContext } from "react-hook-form";
 import { isEmpty } from "lodash";
+import { RHFCustomReportSelector } from "./RHFCustomReportSelector/RHFCustomReportSelector";
 
-type Values = "visualizations" | "dashboards";
+type Values = "visualizations" | "dashboards" | "customReports";
 
 export function TypeSelector() {
 	const { getValues } = useFormContext();
@@ -27,6 +28,10 @@ export function TypeSelector() {
 							label: i18n.t("Dashboards"),
 							value: "dashboards",
 						},
+						{
+							label: i18n.t("Custom Reports"),
+							value: "customReports",
+						},
 					]}
 					selected={active}
 					onChange={({ value }: { value: string }) =>
@@ -45,6 +50,13 @@ export function TypeSelector() {
 				<RHFDashboardSelector
 					name="dashboards"
 					label={i18n.t("Dashboards")}
+					required
+				/>
+			)}
+			{active === "customReports" && (
+				<RHFCustomReportSelector
+					name="customReports"
+					label={i18n.t("Custom Reports")}
 					required
 				/>
 			)}

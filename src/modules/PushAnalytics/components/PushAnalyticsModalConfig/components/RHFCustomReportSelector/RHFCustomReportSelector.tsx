@@ -2,24 +2,23 @@ import React, { useState } from "react";
 import i18n from "@dhis2/d2-i18n";
 import { Button, Field, Help } from "@dhis2/ui";
 import { Controller } from "react-hook-form";
-import { DashboardSelectorModal } from "./components/DashboardSelectorModal";
+import { CustomReportChip } from "./components/CustomReportChip";
+import { CustomReportSelectorModal } from "./components/CustomReportSelector";
 import { uniqBy } from "lodash";
-import { DashboardChip } from "./components/DashboardChip";
-import { PushDashboardConfiguration } from "./components/SaveButton";
 
-export interface RHFDashboardSelectorProps {
+export interface RHFCustomReportSelectorProps {
 	name: string;
 	validations?: Record<string, any>;
 	label: string;
 	required?: boolean;
 }
 
-export const RHFDashboardSelector = ({
+export const RHFCustomReportSelector = ({
 	name,
 	validations,
 	label,
 	required,
-}: RHFDashboardSelectorProps) => {
+}: RHFCustomReportSelectorProps) => {
 	const [showSelector, setShowSelector] = useState(false);
 
 	return (
@@ -27,7 +26,8 @@ export const RHFDashboardSelector = ({
 			name={name}
 			rules={validations}
 			render={({ field }) => {
-				const selectedDashboards = field.value ?? [];
+				const selectedReports = field.value ?? [];
+
 				return (
 					<Field required={required} label={label}>
 						<div className="column gap-16">
@@ -35,65 +35,64 @@ export const RHFDashboardSelector = ({
 								style={{ flexWrap: "wrap", gap: 8 }}
 								className="row"
 							>
-								{selectedDashboards.length ? (
-									selectedDashboards.map(
+								{selectedReports.length ? (
+									selectedReports.map(
 										(
-											visualizationData: PushDashboardConfiguration,
+											report: {
+												id: string;
+												name: string;
+												description?: string;
+											},
 											index: number,
 										) => (
-											<DashboardChip
-												key={`visualization-${index}`}
-												visualization={
-													visualizationData.id
-												}
-												description={
-													visualizationData.description
-												}
+											<CustomReportChip
+												key={`report-${index}`}
+												report={report.id}
+												description={report.description}
 												onRemove={() => {
 													field.onChange(
-														selectedDashboards.filter(
+														selectedReports.filter(
 															({
 																id,
 															}: {
 																id: string;
 															}) =>
 																id !==
-																visualizationData.id,
+																report.id,
 														),
 													);
 												}}
-											/>
+											></CustomReportChip>
 										),
 									)
 								) : (
 									<Help>
-										{i18n.t("No dashboards selected")}
+										{i18n.t("No custom reports selected")}
 									</Help>
 								)}
 							</div>
 							<div style={{ maxWidth: "40%" }}>
 								<Button onClick={() => setShowSelector(true)}>
-									{i18n.t("Add Dashboards")}
+									{i18n.t("Add Custom Report")}
 								</Button>
 							</div>
+
 							{showSelector && (
-								<DashboardSelectorModal
+								<CustomReportSelectorModal
 									hidden={!showSelector}
-									onClose={(
-										visualization?: PushDashboardConfiguration,
-									) => {
-										setShowSelector(false);
-										if (visualization) {
+									onClose={(customReport) => {
+										if (customReport) {
 											field.onChange(
 												uniqBy(
 													[
-														...selectedDashboards,
-														visualization,
+														...selectedReports,
+														customReport,
 													],
 													"id",
 												),
 											);
 										}
+										setShowSelector(false);
 									}}
 								/>
 							)}
