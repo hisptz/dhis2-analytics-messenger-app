@@ -11,18 +11,22 @@ const query = {
 	},
 };
 
+interface CustomReport {
+	id: string;
+	name: string;
+}
+
 interface QueryResponse {
-	customReports: Array<{
-		id: string;
-		name: string;
-	}>;
+	customReports: CustomReport[] | { entries: CustomReport[] };
 }
 
 export function useCustomReports() {
 	const { data, loading, error } = useDataQuery<QueryResponse>(query);
 
 	return {
-		customReports: data?.customReports ?? [],
+		customReports: Array.isArray(data?.customReports)
+			? data.customReports
+			: (data?.customReports?.entries ?? []),
 		loading,
 		error,
 	};
